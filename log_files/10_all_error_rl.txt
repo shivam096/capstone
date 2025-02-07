@@ -1,0 +1,149 @@
+Repository: rl
+Checking root directory only to avoid duplication.
+torchrl/data/replay_buffers/replay_buffers.py:563:45: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchrl/modules/models/rlhf.py:148:20: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchrl/objectives/value/advantages.py:58:9: TOR103 [*] Import of deprecated function functorch.vmap
+torchrl/objectives/value/advantages.py:509:28: TOR101 Use of deprecated function functorch.vmap
+test/test_loggers.py:200:28: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/test_modules.py:1265:17: TOR103 [*] Import of deprecated function functorch.vmap
+torchrl/objectives/utils.py:24:9: TOR103 [*] Import of deprecated function functorch.vmap
+torchrl/trainers/trainers.py:309:40: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchrl/data/replay_buffers/checkpointers.py:396:43: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/test_tensordictmodules.py:70:9: TOR103 [*] Import of deprecated function functorch.vmap
+test/test_tensordictmodules.py:1089:16: TOR101 Use of deprecated function functorch.vmap
+test/test_tensordictmodules.py:1510:16: TOR101 Use of deprecated function functorch.vmap
+Finished checking 288 files.
+[*] 9 potentially fixable with the --fix option
+--- /Users/anuragagarwal/Desktop/torchfix/examples/rl/torchrl/data/replay_buffers/checkpointers.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/rl/torchrl/data/replay_buffers/checkpointers.py
+@@ -391,7 +391,7 @@
+         path = Path(path).absolute()
+         for i, _storage in enumerate(storage._storages):
+             _storage.loads(path / str(i))
+         if storage._transforms is not None:
+             for i, transform in enumerate(storage._transforms):
+-                transform.load_state_dict(torch.load(path / f"{i}_transform.pt"))
+-
++                transform.load_state_dict(torch.load(path / f"{i}_transform.pt", weights_only=True))
++
+--- /Users/anuragagarwal/Desktop/torchfix/examples/rl/test/test_loggers.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/rl/test/test_loggers.py
+@@ -195,11 +195,11 @@
+             else ".mp4"
+         )
+         video_file_name = "foo_" + ("0" if not steps else str(steps[0])) + extention
+         path = os.path.join(tmpdir, exp_name, "videos", video_file_name)
+         if video_format == "pt":
+-            logged_video = torch.load(path)
++            logged_video = torch.load(path, weights_only=True)
+             assert torch.equal(video, logged_video), logged_video
+         elif video_format == "memmap":
+             logged_video = MemoryMappedTensor.from_filename(
+                 path, dtype=torch.uint8, shape=(1, 128, 1, 32, 32)
+             )
+--- /Users/anuragagarwal/Desktop/torchfix/examples/rl/test/test_modules.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/rl/test/test_modules.py
+@@ -1260,11 +1260,11 @@
+     if use_vmap:
+         try:
+             from torch import vmap
+         except ImportError:
+             try:
+-                from functorch import vmap
++                from torch.func import vmap
+             except ImportError:
+                 raise pytest.skip("functorch not found")
+ 
+     torch.manual_seed(0)
+     x = (torch.randn(10, dtype=torch.double) * scale).requires_grad_(True)
+--- /Users/anuragagarwal/Desktop/torchfix/examples/rl/torchrl/data/replay_buffers/replay_buffers.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/rl/torchrl/data/replay_buffers/replay_buffers.py
+@@ -558,11 +558,11 @@
+             rng = torch.Generator(device=rng_state.device)
+             rng.set_state(rng_state["rng_state"])
+             self.set_rng(rng)
+         # fall back on state_dict for transforms
+         if (path / "transform.t").exists():
+-            self._transform.load_state_dict(torch.load(path / "transform.t"))
++            self._transform.load_state_dict(torch.load(path / "transform.t", weights_only=True))
+         with open(path / "buffer_metadata.json", "r") as file:
+             metadata = json.load(file)
+         self._batch_size = metadata["batch_size"]
+ 
+     def save(self, *args, **kwargs):
+--- /Users/anuragagarwal/Desktop/torchfix/examples/rl/torchrl/modules/models/rlhf.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/rl/torchrl/modules/models/rlhf.py
+@@ -143,11 +143,11 @@
+ 
+     @classmethod
+     def from_pretrained(cls, path):
+         filename = Path(path) / "reward_model.pt"
+         if filename.exists():
+-            return torch.load(filename)
++            return torch.load(filename, weights_only=True)
+         return cls(path)
+ 
+     def save_pretrained(self, path):
+         save_dir = Path(path)
+         save_dir.mkdir(exist_ok=True)
+--- /Users/anuragagarwal/Desktop/torchfix/examples/rl/torchrl/objectives/utils.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/rl/torchrl/objectives/utils.py
+@@ -19,11 +19,11 @@
+ 
+ try:
+     from torch import vmap
+ except ImportError as err:
+     try:
+-        from functorch import vmap
++        from torch.func import vmap
+     except ImportError as err_ft:
+         raise err_ft from err
+ from torchrl.envs.utils import step_mdp
+ 
+ try:
+--- /Users/anuragagarwal/Desktop/torchfix/examples/rl/torchrl/objectives/value/advantages.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/rl/torchrl/objectives/value/advantages.py
+@@ -53,11 +53,11 @@
+ 
+ try:
+     from torch import vmap
+ except ImportError as err:
+     try:
+-        from functorch import vmap
++        from torch.func import vmap
+     except ImportError:
+         raise ImportError(
+             "vmap couldn't be found. Make sure you have torch>2.0 installed."
+         ) from err
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/rl/torchrl/trainers/trainers.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/rl/torchrl/trainers/trainers.py
+@@ -304,11 +304,11 @@
+         """
+         if _CKPT_BACKEND == "torchsnapshot":
+             snapshot = Snapshot(path=file)
+             snapshot.restore(app_state=self.app_state)
+         elif _CKPT_BACKEND == "torch":
+-            loaded_dict: OrderedDict = torch.load(file, **kwargs)
++            loaded_dict: OrderedDict = torch.load(file, **kwargs, weights_only=True)
+             self.load_state_dict(loaded_dict)
+         return self
+ 
+     def set_seed(self):
+         seed = self.collector.set_seed(self.seed, static_seed=False)
+--- /Users/anuragagarwal/Desktop/torchfix/examples/rl/test/test_tensordictmodules.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/rl/test/test_tensordictmodules.py
+@@ -65,11 +65,11 @@
+ _has_functorch = False
+ try:
+     try:
+         from torch import vmap
+     except ImportError:
+-        from functorch import vmap
++        from torch.func import vmap
+ 
+     _has_functorch = True
+ except ImportError:
+     pass
+ 
+Repository: rl

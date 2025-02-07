@@ -1,0 +1,16 @@
+Repository: torchtune
+Checking root directory only to avoid duplication.
+recipes/lora_dpo_single_device.py:394:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+recipes/lora_finetune_distributed.py:608:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+recipes/lora_finetune_single_device.py:548:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+recipes/full_finetune_distributed.py:675:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+recipes/full_finetune_single_device.py:578:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+recipes/dev/early_exit_finetune_distributed.py:669:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+recipes/ppo_full_finetune_single_device.py:675:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+recipes/qat_distributed.py:622:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+recipes/qat_lora_finetune_distributed.py:650:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+recipes/knowledge_distillation_distributed.py:667:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+recipes/knowledge_distillation_single_device.py:546:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+recipes/lora_dpo_distributed.py:510:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+Finished checking 338 files.
+Repository: torchtune

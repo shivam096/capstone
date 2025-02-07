@@ -1,0 +1,81 @@
+Repository: machine-learning-book
+Checking root directory only to avoid duplication.
+ch16/ch16-part3-bert.py:184:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ch16/ch16-part3-bert.py:185:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ch16/ch16-part3-bert.py:186:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ch17/ch17_part1.py:258:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ch17/ch17_part1.py:308:12: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ch17/ch17_part1.py:527:12: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ch15/ch15_part2.py:155:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ch15/ch15_part2.py:169:12: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ch15/ch15_part2.py:171:12: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ch15/ch15_part2.py:173:11: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ch15/ch15_part2.py:388:11: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ch15/ch15_part3.py:172:10: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ch17/ch17_part2.py:145:12: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ch18/ch18_part1.py:347:10: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ch12/ch12_part1.py:278:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ch12/ch12_part1.py:289:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ch12/ch12_part1.py:331:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ch12/ch12_part1.py:15:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+ch12/ch12_part2.py:347:13: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+ch12/ch12_part2.py:370:27: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+ch12/ch12_part2.py:104:12: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ch12/ch12_part2.py:247:12: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ch13/ch13_part1.py:259:12: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ch13/ch13_part2.py:157:12: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ch13/ch13_part2.py:233:12: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ch13/ch13_part4_ignite.py:128:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ch13/ch13_part4_ignite.py:132:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ch14/ch14_part1.py:317:12: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ch14/ch14_part1.py:318:12: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ch14/ch14_part2.py:219:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ch14/ch14_part2.py:273:12: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ch14/ch14_part2.py:274:12: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ch14/ch14_part2.py:275:11: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+Finished checking 21 files.
+[*] 2 potentially fixable with the --fix option
+--- /Users/anuragagarwal/Desktop/torchfix/examples/machine-learning-book/ch12/ch12_part1.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/machine-learning-book/ch12/ch12_part1.py
+@@ -10,11 +10,11 @@
+ from torch.utils.data import TensorDataset
+ import pathlib
+ import matplotlib.pyplot as plt
+ import os
+ from PIL import Image
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ import torchvision
+ from itertools import islice
+ 
+ # # Machine Learning with PyTorch and Scikit-Learn  
+ # # -- Code Examples
+--- /Users/anuragagarwal/Desktop/torchfix/examples/machine-learning-book/ch12/ch12_part2.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/machine-learning-book/ch12/ch12_part2.py
+@@ -342,11 +342,11 @@
+ torch.save(model, path)
+ 
+ 
+ 
+ 
+-model_new = torch.load(path)
++model_new = torch.load(path, weights_only=True)
+ model_new.eval()
+ 
+ 
+ 
+ 
+@@ -365,11 +365,11 @@
+ 
+ 
+ 
+ 
+ model_new = Model(input_size, hidden_size, output_size)
+-model_new.load_state_dict(torch.load(path))
++model_new.load_state_dict(torch.load(path, weights_only=True))
+ 
+ 
+ # ## Choosing activation functions for multilayer neural networks
+ # 
+ 
+Repository: machine-learning-book

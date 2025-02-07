@@ -1,0 +1,37 @@
+Repository: extension-ffi
+Checking root directory only to avoid duplication.
+script/test.py:16:5: TOR101 [*] Use of deprecated function torch.range
+package/test/test.py:15:5: TOR101 [*] Use of deprecated function torch.range
+Finished checking 9 files.
+[*] 2 potentially fixable with the --fix option
+--- /Users/anuragagarwal/Desktop/torchfix/examples/extension-ffi/script/test.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/extension-ffi/script/test.py
+@@ -11,11 +11,11 @@
+ 
+     def forward(self, input1, input2):
+         return self.add(input1, input2)
+ 
+ model = MyNetwork()
+-x = torch.range(1, 25).view(5, 5)
++x = torch.arange(1, 26).view(5, 5)
+ input1, input2 = Variable(x), Variable(x * 4)
+ print(model(input1, input2))
+ print(input1 + input2)
+ 
+ if torch.cuda.is_available():
+--- /Users/anuragagarwal/Desktop/torchfix/examples/extension-ffi/package/test/test.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/extension-ffi/package/test/test.py
+@@ -10,11 +10,11 @@
+ 
+     def forward(self, input1, input2):
+         return self.add(input1, input2)
+ 
+ model = MyNetwork()
+-x = torch.range(1, 25).view(5, 5)
++x = torch.arange(1, 26).view(5, 5)
+ input1, input2 = Variable(x), Variable(x * 4)
+ print(model(input1, input2))
+ print(input1 + input2)
+ 
+ if torch.cuda.is_available():
+Repository: extension-ffi

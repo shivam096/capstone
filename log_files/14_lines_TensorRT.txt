@@ -1,0 +1,9 @@
+Repository: TensorRT
+Total Python lines:   139295
+Total TorchFix errors (TOR***): 244
+Individual TorchFix error counts:
+TOR101: 2
+TOR102: 23
+TOR201: 127
+TOR203: 91
+TOR901: 1

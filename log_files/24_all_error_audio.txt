@@ -1,0 +1,418 @@
+Repository: audio
+Checking root directory only to avoid duplication.
+examples/avsr/eval.py:27:12: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/avsr/lightning.py:72:20: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/dnn_beamformer/eval.py:18:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+src/torchaudio/pipelines/_source_separation_pipeline.py:56:22: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/torchaudio_unittest/prototype/hifi_gan/original/models.py:5:1: TOR103 Import of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+test/torchaudio_unittest/prototype/hifi_gan/original/models.py:18:17: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+test/torchaudio_unittest/prototype/hifi_gan/original/models.py:28:17: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+test/torchaudio_unittest/prototype/hifi_gan/original/models.py:38:17: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+test/torchaudio_unittest/prototype/hifi_gan/original/models.py:54:17: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+test/torchaudio_unittest/prototype/hifi_gan/original/models.py:57:17: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+test/torchaudio_unittest/prototype/hifi_gan/original/models.py:60:17: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+test/torchaudio_unittest/prototype/hifi_gan/original/models.py:89:17: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+test/torchaudio_unittest/prototype/hifi_gan/original/models.py:99:17: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+test/torchaudio_unittest/prototype/hifi_gan/original/models.py:131:25: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+test/torchaudio_unittest/prototype/hifi_gan/original/models.py:137:17: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+test/torchaudio_unittest/prototype/hifi_gan/original/models.py:154:26: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+tools/convert_voxpopuli_models.py:42:12: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/pipeline_tacotron2/train.py:361:22: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/pipeline_tacotron2/train.py:397:20: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/pipeline_tacotron2/train.py:398:18: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+src/torchaudio/functional/functional.py:731:25: TOR107 Use `torch.special.expm1(x)` instead of `torch.exp(x) - 1`. It is more accurate for small values of `x`.
+examples/asr/librispeech_conformer_rnnt_biasing/data_module.py:203:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/hubert/utils/feature_utils.py:109:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/hubert/utils/kmeans.py:41:16: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/hubert/utils/kmeans.py:42:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/hubert/utils/kmeans.py:184:21: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/hubert/utils/kmeans.py:185:22: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/source_separation/utils/dist_utils.py:77:16: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/pipeline_wavernn/losses.py:111:16: TOR108 Use numerically stabilized `torch.logsumexp`.
+examples/pipeline_wavernn/main.py:371:22: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/pipeline_wavernn/main.py:321:20: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/pipeline_wavernn/main.py:327:18: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+test/integration_tests/conftest.py:119:12: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/asr/emformer_rnnt/mustc/lightning.py:182:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/asr/emformer_rnnt/mustc/lightning.py:187:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/asr/emformer_rnnt/mustc/lightning.py:192:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/asr/emformer_rnnt/tedlium3/lightning.py:227:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/asr/emformer_rnnt/tedlium3/lightning.py:232:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/pipeline_tacotron2/inference.py:267:32: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/source_separation/eval.py:70:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/source_separation/lightning_train.py:425:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+src/torchaudio/pipelines/rnnt_pipeline.py:248:22: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/avsr/average_checkpoints.py:9:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/avsr/data_module.py:133:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/pipeline_wav2letter/main.py:539:22: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/pipeline_wav2letter/main.py:515:23: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/pipeline_wav2letter/main.py:521:25: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/asr/emformer_rnnt/librispeech/lightning.py:229:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/hubert/lightning_modules.py:250:14: TOR101 [*] Use of deprecated function torch.cuda.amp.autocast
+examples/hubert/lightning_modules.py:484:14: TOR101 [*] Use of deprecated function torch.cuda.amp.autocast
+examples/hubert/lightning_modules.py:414:22: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+src/torchaudio/prototype/pipelines/_vggish/_vggish_impl.py:92:36: TOR106 Use `torch.log1p(x)` instead of `torch.log(1 + x)`. It is more accurate for small values of `x`.
+src/torchaudio/prototype/pipelines/_vggish/_vggish_pipeline.py:12:12: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/asr/librispeech_conformer_rnnt/data_module.py:193:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/hubert/evaluate.py:16:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/source_separation/conv_tasnet/train.py:197:22: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/source_separation/conv_tasnet/train.py:147:20: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/source_separation/conv_tasnet/train.py:154:20: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/source_separation/conv_tasnet/train.py:161:19: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+Finished checking 422 files.
+[*] 21 potentially fixable with the --fix option
+--- /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/avsr/average_checkpoints.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/avsr/average_checkpoints.py
+@@ -4,11 +4,11 @@
+ 
+ 
+ def average_checkpoints(last):
+     avg = None
+     for path in last:
+-        states = torch.load(path, map_location=lambda storage, loc: storage)["state_dict"]
++        states = torch.load(path, map_location=lambda storage, loc: storage, weights_only=True)["state_dict"]
+         if avg is None:
+             avg = states
+         else:
+             for k in avg.keys():
+                 avg[k] += states[k]
+--- /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/avsr/eval.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/avsr/eval.py
+@@ -22,11 +22,11 @@
+         model = AVConformerRNNTModule(args, sp_model)
+     else:
+         from lightning import ConformerRNNTModule
+ 
+         model = ConformerRNNTModule(args, sp_model)
+-    ckpt = torch.load(args.checkpoint_path, map_location=lambda storage, loc: storage)["state_dict"]
++    ckpt = torch.load(args.checkpoint_path, map_location=lambda storage, loc: storage, weights_only=True)["state_dict"]
+     model.load_state_dict(ckpt)
+     model.eval()
+     return model
+ 
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/avsr/lightning.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/avsr/lightning.py
+@@ -67,11 +67,11 @@
+         if args.mode == "offline":
+             self.model = conformer_rnnt()
+ 
+         # -- initialise
+         if args.pretrained_model_path:
+-            ckpt = torch.load(args.pretrained_model_path, map_location=lambda storage, loc: storage)
++            ckpt = torch.load(args.pretrained_model_path, map_location=lambda storage, loc: storage, weights_only=True)
+             tmp_ckpt = {
+                 k.replace("encoder.frontend.", ""): v for k, v in ckpt.items() if k.startswith("encoder.frontend.")
+             }
+             self.frontend.load_state_dict(tmp_ckpt)
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/dnn_beamformer/eval.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/dnn_beamformer/eval.py
+@@ -13,11 +13,11 @@
+ logger = logging.getLogger()
+ 
+ 
+ def run_eval(args):
+     model = DNNBeamformer()
+-    checkpoint = torch.load(args.checkpoint_path)
++    checkpoint = torch.load(args.checkpoint_path, weights_only=True)
+     new_state_dict = {}
+     for k in checkpoint["state_dict"].keys():
+         if "loss" not in k:
+             new_state_dict[k.replace("model.", "")] = checkpoint["state_dict"][k]
+     model.load_state_dict(new_state_dict)
+--- /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/hubert/utils/feature_utils.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/hubert/utils/feature_utils.py
+@@ -104,11 +104,11 @@
+         device (torch.device, optional): The device of the model. (Default: ``torch.device("cpu")``)
+ 
+     Returns:
+         (Module): The pretrained model.
+     """
+-    state_dict = torch.load(checkpoint_path, map_location=device)
++    state_dict = torch.load(checkpoint_path, map_location=device, weights_only=True)
+     state_dict = {k.replace("model.", ""): v for k, v in state_dict["state_dict"].items()}
+     model.load_state_dict(state_dict)
+     return model
+ 
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/hubert/utils/kmeans.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/hubert/utils/kmeans.py
+@@ -36,12 +36,12 @@
+     """
+     feats = []
+     lens = []
+     for rank in range(1, num_rank + 1):
+         feat_path, len_path = _get_feat_lens_paths(feat_dir, split, rank, num_rank)
+-        feat = torch.load(feat_path)
+-        length = torch.load(len_path).int()
++        feat = torch.load(feat_path, weights_only=True)
++        length = torch.load(len_path, weights_only=True).int()
+         if percent < 0:
+             feats.append(feat)
+             lens.append(length)
+         else:
+             offsets = [0] + torch.cumsum(length, dim=0, dtype=torch.int).tolist()
+@@ -179,12 +179,12 @@
+     apply_kmeans = ApplyKmeans(km_path, device)
+     with open(label_path, "w") as f:
+         for rank in range(1, num_rank + 1):
+             offset = 0
+             feat_path, len_path = _get_feat_lens_paths(feat_dir, split, rank, num_rank)
+-            feats = torch.load(feat_path)
+-            length = torch.load(len_path).int()
++            feats = torch.load(feat_path, weights_only=True)
++            length = torch.load(len_path, weights_only=True).int()
+             assert feats.shape[0] == length.sum()
+             labels = apply_kmeans(feats.to(device)).tolist()
+             for i in range(length.shape[0]):
+                 label = labels[offset : offset + length[i]]
+                 offset += length[i]
+--- /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/hubert/evaluate.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/hubert/evaluate.py
+@@ -11,11 +11,11 @@
+ logger = logging.getLogger(__name__)
+ 
+ 
+ def _load_checkpoint(checkpoint: str) -> torch.nn.Module:
+     model = torchaudio.models.hubert_base(aux_num_out=29)
+-    checkpoint = torch.load(checkpoint, map_location="cpu")
++    checkpoint = torch.load(checkpoint, map_location="cpu", weights_only=True)
+     state_dict = checkpoint["state_dict"]
+     new_state_dict = {}
+     for k in state_dict:
+         if "model.wav2vec2" in k:
+             new_state_dict[k.replace("model.wav2vec2.", "")] = state_dict[k]
+--- /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/pipeline_tacotron2/inference.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/pipeline_tacotron2/inference.py
+@@ -262,11 +262,11 @@
+     )
+ 
+     if args.checkpoint_path is not None:
+         tacotron2 = Tacotron2(n_symbol=n_symbols)
+         tacotron2.load_state_dict(
+-            unwrap_distributed(torch.load(args.checkpoint_path, map_location=device)["state_dict"])
++            unwrap_distributed(torch.load(args.checkpoint_path, map_location=device, weights_only=True)["state_dict"])
+         )
+         tacotron2 = tacotron2.to(device).eval()
+     elif args.checkpoint_name is not None:
+         tacotron2 = pretrained_tacotron2(args.checkpoint_name).to(device).eval()
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/hubert/lightning_modules.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/hubert/lightning_modules.py
+@@ -245,11 +245,11 @@
+         Doing so allows us to account for the variability in number of masked frames in
+         variable-length sequential data.
+         """
+         opt = self.optimizers()
+         opt.zero_grad()
+-        with torch.cuda.amp.autocast(enabled=True):
++        with torch.amp.autocast("cuda", enabled=True):
+             loss, num_frame = self._step(batch, batch_idx, "train")
+         if torch.isinf(loss) or torch.isnan(loss):
+             opt.zero_grad()
+             return None
+ 
+@@ -409,11 +409,11 @@
+         self.automatic_optimization = False
+         self.scaler = torch.cuda.amp.GradScaler()
+ 
+     def _load_checkpoint(self, checkpoint):
+         # load pretrain model from checkpoint
+-        state_dict = torch.load(checkpoint, map_location=torch.device("cpu"))
++        state_dict = torch.load(checkpoint, map_location=torch.device("cpu"), weights_only=True)
+         state_dict = state_dict["state_dict"]
+         s = {}
+         for k in state_dict:
+             if "model." in k:
+                 s[k.replace("model.", "")] = state_dict[k]
+@@ -479,11 +479,11 @@
+         Doing so allows us to account for the variability in batch sizes that
+         variable-length sequential data commonly yields.
+         """
+         opt = self.optimizers()
+         opt.zero_grad()
+-        with torch.cuda.amp.autocast(enabled=True):
++        with torch.amp.autocast("cuda", enabled=True):
+             loss = self._step(batch, batch_idx, "train")
+ 
+         # normalize the loss based on the sum of batch_sie across all GPUs
+         batch_size = batch[0].size(0)
+         batch_sizes = self.all_gather(batch_size)
+--- /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/pipeline_tacotron2/train.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/pipeline_tacotron2/train.py
+@@ -356,11 +356,11 @@
+     start_epoch = 0
+ 
+     if args.checkpoint_path and os.path.isfile(args.checkpoint_path):
+         logger.info(f"Checkpoint: loading '{args.checkpoint_path}'")
+         map_location = {"cuda:%d" % 0: "cuda:%d" % rank}
+-        checkpoint = torch.load(args.checkpoint_path, map_location=map_location)
++        checkpoint = torch.load(args.checkpoint_path, map_location=map_location, weights_only=True)
+ 
+         start_epoch = checkpoint["epoch"]
+         best_loss = checkpoint["best_loss"]
+ 
+         model.load_state_dict(checkpoint["state_dict"])
+--- /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/pipeline_wavernn/main.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/pipeline_wavernn/main.py
+@@ -366,11 +366,11 @@
+ 
+     best_loss = 10.0
+ 
+     if args.checkpoint and os.path.isfile(args.checkpoint):
+         logging.info(f"Checkpoint: loading '{args.checkpoint}'")
+-        checkpoint = torch.load(args.checkpoint)
++        checkpoint = torch.load(args.checkpoint, weights_only=True)
+ 
+         args.start_epoch = checkpoint["epoch"]
+         best_loss = checkpoint["best_loss"]
+ 
+         model.load_state_dict(checkpoint["state_dict"])
+--- /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/pipeline_wav2letter/main.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/pipeline_wav2letter/main.py
+@@ -534,11 +534,11 @@
+     if args.distributed:
+         torch.distributed.barrier()
+ 
+     if load_checkpoint:
+         logging.info("Checkpoint: loading %s", args.checkpoint)
+-        checkpoint = torch.load(args.checkpoint)
++        checkpoint = torch.load(args.checkpoint, weights_only=True)
+ 
+         args.start_epoch = checkpoint["epoch"]
+         best_loss = checkpoint["best_loss"]
+ 
+         model.load_state_dict(checkpoint["state_dict"])
+--- /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/source_separation/utils/dist_utils.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/source_separation/utils/dist_utils.py
+@@ -72,11 +72,11 @@
+         _LG.info("[Parameter Sync]: Saving parameters to a temp file...")
+         torch.save({f"{i}": m.state_dict() for i, m in enumerate(modules)}, path)
+     dist.barrier()
+     if rank != 0:
+         _LG.info("[Parameter Sync]:    Loading parameters...")
+-        data = torch.load(path, map_location=device)
++        data = torch.load(path, map_location=device, weights_only=True)
+         for i, m in enumerate(modules):
+             m.load_state_dict(data[f"{i}"])
+     dist.barrier()
+     if rank == 0:
+         _LG.info("[Parameter Sync]: Removing the temp file...")
+--- /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/source_separation/conv_tasnet/train.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/source_separation/conv_tasnet/train.py
+@@ -192,11 +192,11 @@
+     if "sox_io" in torchaudio.list_audio_backends():
+         torchaudio.set_audio_backend("sox_io")
+ 
+     start_epoch = 1
+     if args.resume:
+-        checkpoint = torch.load(args.resume)
++        checkpoint = torch.load(args.resume, weights_only=True)
+         if args.sample_rate != checkpoint["sample_rate"]:
+             raise ValueError(
+                 "The provided sample rate ({args.sample_rate}) does not match "
+                 "the sample rate from the check point ({checkpoint['sample_rate']})."
+             )
+--- /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/source_separation/eval.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/source_separation/eval.py
+@@ -65,11 +65,11 @@
+     parser.add_argument("--gpu-device", default=-1, type=int, help="The gpu device for model inference. (default: -1)")
+ 
+     args = parser.parse_args()
+ 
+     model = _get_model(num_sources=2)
+-    state_dict = torch.load(args.exp_dir / "best_model.pth")
++    state_dict = torch.load(args.exp_dir / "best_model.pth", weights_only=True)
+     model.load_state_dict(state_dict)
+ 
+     if args.gpu_device != -1:
+         device = torch.device("cuda:" + str(args.gpu_device))
+     else:
+--- /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/source_separation/lightning_train.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/audio/examples/source_separation/lightning_train.py
+@@ -420,11 +420,11 @@
+         gradient_clip_val=5.0,
+         callbacks=callbacks,
+     )
+     trainer.fit(model)
+     model.load_from_checkpoint(checkpoint.best_model_path)
+-    state_dict = torch.load(checkpoint.best_model_path, map_location="cpu")
++    state_dict = torch.load(checkpoint.best_model_path, map_location="cpu", weights_only=True)
+     state_dict = {k.replace("model.", ""): v for k, v in state_dict["state_dict"].items()}
+     torch.save(state_dict, args.exp_dir / "best_model.pth")
+     trainer.test(model, eval_loader)
+ 
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/audio/src/torchaudio/pipelines/_source_separation_pipeline.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/audio/src/torchaudio/pipelines/_source_separation_pipeline.py
+@@ -51,11 +51,11 @@
+ 
+     def get_model(self) -> torch.nn.Module:
+         """Construct the model and load the pretrained weight."""
+         model = self._model_factory_func()
+         path = torchaudio.utils.download_asset(self._model_path)
+-        state_dict = torch.load(path)
++        state_dict = torch.load(path, weights_only=True)
+         model.load_state_dict(state_dict)
+         model.eval()
+         return model
+ 
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/audio/test/integration_tests/conftest.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/audio/test/integration_tests/conftest.py
+@@ -114,7 +114,7 @@
+ 
+ 
+ @pytest.fixture()
+ def emissions():
+     path = torchaudio.utils.download_asset("test-assets/emissions-8555-28447-0012.pt")
+-    return torch.load(path)
++    return torch.load(path, weights_only=True)
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/audio/src/torchaudio/pipelines/rnnt_pipeline.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/audio/src/torchaudio/pipelines/rnnt_pipeline.py
+@@ -243,11 +243,11 @@
+     _right_context_length: int
+ 
+     def _get_model(self) -> RNNT:
+         model = self._rnnt_factory_func()
+         path = torchaudio.utils.download_asset(self._rnnt_path)
+-        state_dict = torch.load(path)
++        state_dict = torch.load(path, weights_only=True)
+         model.load_state_dict(state_dict)
+         model.eval()
+         return model
+ 
+     @property
+--- /Users/anuragagarwal/Desktop/torchfix/examples/audio/src/torchaudio/prototype/pipelines/_vggish/_vggish_pipeline.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/audio/src/torchaudio/prototype/pipelines/_vggish/_vggish_pipeline.py
+@@ -7,11 +7,11 @@
+ from ._vggish_impl import _SAMPLE_RATE, VGGish as _VGGish, VGGishInputProcessor as _VGGishInputProcessor
+ 
+ 
+ def _get_state_dict():
+     path = torchaudio.utils.download_asset("models/vggish.pt")
+-    return torch.load(path)
++    return torch.load(path, weights_only=True)
+ 
+ 
+ @dataclass
+ class VGGishBundle:
+     """VGGish :cite:`45611` inference pipeline ported from
+--- /Users/anuragagarwal/Desktop/torchfix/examples/audio/tools/convert_voxpopuli_models.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/audio/tools/convert_voxpopuli_models.py
+@@ -37,11 +37,11 @@
+ 
+ def _load(input_file):
+     import torch
+     from omegaconf import OmegaConf
+ 
+-    data = torch.load(input_file)
++    data = torch.load(input_file, weights_only=True)
+     cfg = OmegaConf.to_container(data["cfg"])
+     for key in list(cfg.keys()):
+         if key != "model":
+             del cfg[key]
+             if "w2v_args" in cfg["model"]:
+Repository: audio

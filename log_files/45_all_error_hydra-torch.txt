@@ -1,0 +1,40 @@
+Repository: hydra-torch
+Checking root directory only to avoid duplication.
+examples/mnist_00.py:140:20: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/mnist_00.py:141:19: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+hydra-configs-torch/tests/test_instantiate_data.py:25:13: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+hydra-configs-torchvision/tests/test_instantiate_datasets.py:10:1: TOR203 [*] Consider replacing 'import torchvision.datasets as datasets' with 'from torchvision import datasets'.
+hydra-configs-torchvision/tests/test_instantiate_transforms.py:9:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+Finished checking 31 files.
+[*] 2 potentially fixable with the --fix option
+--- /Users/anuragagarwal/Desktop/torchfix/examples/hydra-torch/hydra-configs-torchvision/tests/test_instantiate_datasets.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/hydra-torch/hydra-configs-torchvision/tests/test_instantiate_datasets.py
+@@ -5,11 +5,11 @@
+ from hydra.utils import get_class, instantiate
+ from omegaconf import OmegaConf
+ from typing import Any
+ 
+ import torch
+-import torchvision.datasets as datasets
++from torchvision import datasets
+ 
+ 
+ @pytest.mark.parametrize(
+     "modulepath, classname, cfg, passthrough_args, passthrough_kwargs, expected_class",
+     [
+--- /Users/anuragagarwal/Desktop/torchfix/examples/hydra-torch/hydra-configs-torchvision/tests/test_instantiate_transforms.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/hydra-torch/hydra-configs-torchvision/tests/test_instantiate_transforms.py
+@@ -4,11 +4,11 @@
+ from omegaconf import OmegaConf
+ 
+ import torch
+ 
+ # import torchvision.datasets as datasets
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ from torchvision.transforms.transforms import ToTensor
+ 
+ from typing import Any
+ 
+ 
+Repository: hydra-torch

@@ -1,0 +1,6 @@
+Repository: functorch
+Total Python lines:      948
+Total TorchFix errors (TOR***): 29
+Individual TorchFix error counts:
+TOR101: 18
+TOR103: 11

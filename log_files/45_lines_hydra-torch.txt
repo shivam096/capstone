@@ -1,0 +1,6 @@
+Repository: hydra-torch
+Total Python lines:     2199
+Total TorchFix errors (TOR***): 5
+Individual TorchFix error counts:
+TOR203: 2
+TOR401: 3

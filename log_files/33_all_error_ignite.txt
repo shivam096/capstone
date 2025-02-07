@@ -1,0 +1,683 @@
+Repository: ignite
+Checking root directory only to avoid duplication.
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/cifar10_qat/main.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/cifar10_qat/main.py
+@@ -320,11 +320,11 @@
+     resume_from = config["resume_from"]
+     if resume_from is not None:
+         checkpoint_fp = Path(resume_from)
+         assert checkpoint_fp.exists(), f"Checkpoint '{checkpoint_fp.as_posix()}' is not found"
+         logger.info(f"Resume from a checkpoint: {checkpoint_fp.as_posix()}")
+-        checkpoint = torch.load(checkpoint_fp.as_posix(), map_location="cpu")
++        checkpoint = torch.load(checkpoint_fp.as_posix(), map_location="cpu", weights_only=True)
+         Checkpoint.load_objects(to_load=to_save, checkpoint=checkpoint)
+ 
+     return trainer
+ 
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/cifar10/main.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/cifar10/main.py
+@@ -336,11 +336,11 @@
+     resume_from = config["resume_from"]
+     if resume_from is not None:
+         checkpoint_fp = Path(resume_from)
+         assert checkpoint_fp.exists(), f"Checkpoint '{checkpoint_fp.as_posix()}' is not found"
+         logger.info(f"Resume from a checkpoint: {checkpoint_fp.as_posix()}")
+-        checkpoint = torch.load(checkpoint_fp.as_posix(), map_location="cpu")
++        checkpoint = torch.load(checkpoint_fp.as_posix(), map_location="cpu", weights_only=True)
+         Checkpoint.load_objects(to_load=to_save, checkpoint=checkpoint)
+ 
+     return trainer
+ 
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/mnist/mnist_save_resume_engine.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/mnist/mnist_save_resume_engine.py
+@@ -256,11 +256,11 @@
+     for h in [log_data_stats, log_model_weights, log_model_grads]:
+         trainer.add_event_handler(Events.ITERATION_COMPLETED(event_filter=log_event_filter), h, model=model, fp=fp)
+ 
+     if resume_from is not None:
+         tqdm.write(f"Resume from the checkpoint: {resume_from}")
+-        checkpoint = torch.load(resume_from)
++        checkpoint = torch.load(resume_from, weights_only=True)
+         Checkpoint.load_objects(to_load=objects_to_checkpoint, checkpoint=checkpoint)
+ 
+     try:
+         # Synchronize random states
+         manual_seed(15)
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/fast_neural_style/neural_style.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/fast_neural_style/neural_style.py
+@@ -130,11 +130,11 @@
+     content_image = utils.load_image(args.content_image, scale=args.content_scale)
+     content_image = content_transform(content_image)
+     content_image = content_image.unsqueeze(0).to(device)
+ 
+     with torch.no_grad():
+-        style_model = torch.load(args.model)
++        style_model = torch.load(args.model, weights_only=True)
+         style_model.to(device)
+         output = style_model(content_image).cpu()
+         utils.save_image(args.output_image, output[0])
+ 
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/gan/dcgan.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/gan/dcgan.py
+@@ -14,11 +14,11 @@
+ from ignite.handlers import ModelCheckpoint, ProgressBar, Timer
+ from ignite.metrics import RunningAverage
+ 
+ try:
+     import torchvision.datasets as dset
+-    import torchvision.transforms as transforms
++    from torchvision import transforms
+     import torchvision.utils as vutils
+ 
+ except ImportError:
+     raise ModuleNotFoundError(
+         "Please install torchvision to run this example, for example "
+@@ -225,14 +225,14 @@
+     optimizerG = optim.Adam(netG.parameters(), lr=learning_rate, betas=(beta_1, 0.999))
+     optimizerD = optim.Adam(netD.parameters(), lr=learning_rate, betas=(beta_1, 0.999))
+ 
+     # load pre-trained models
+     if saved_G:
+-        netG.load_state_dict(torch.load(saved_G))
++        netG.load_state_dict(torch.load(saved_G, weights_only=True))
+ 
+     if saved_D:
+-        netD.load_state_dict(torch.load(saved_D))
++        netD.load_state_dict(torch.load(saved_D, weights_only=True))
+ 
+     # misc
+     real_labels = torch.ones(batch_size, device=device)
+     fake_labels = torch.zeros(batch_size, device=device)
+     fixed_noise = torch.randn(batch_size, z_dim, 1, 1, device=device)
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/notebooks/FashionMNIST.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/notebooks/FashionMNIST.py
+@@ -347,11 +347,11 @@
+         int(x.split('_')[2].split('.')[0])
+         for x in checkpoint_files]
+     last_idx = np.array(checkpoint_iter).argmax()
+     return Path(model_save_path) / checkpoint_files[last_idx]
+ 
+-model.load_state_dict(torch.load(fetch_last_checkpoint_model_filename('./saved_models')))
++model.load_state_dict(torch.load(fetch_last_checkpoint_model_filename('./saved_models'), weights_only=True))
+ print("Model Loaded")
+ 
+ 
+ # ### Inferencing the model 
+ # Below code will be used for inferencing from the model and visualizing the results.
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/notebooks/FastaiLRFinder_MNIST.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/notebooks/FastaiLRFinder_MNIST.py
+@@ -24,11 +24,11 @@
+ 
+ import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+ import torch.optim as optim
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ from torch.utils.data import DataLoader
+ from torchvision.datasets import MNIST
+ 
+ 
+ # In[ ]:
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/notebooks/HandlersTimeProfiler_MNIST.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/notebooks/HandlersTimeProfiler_MNIST.py
+@@ -24,11 +24,11 @@
+ 
+ import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+ import torch.optim as optim
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ from torch.utils.data import DataLoader
+ from torchvision.datasets import MNIST
+ 
+ # A hack to fix the horizontal spill in large output
+ # ref: https://stackoverflow.com/a/59058418/6574605
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/references/classification/imagenet/main.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/references/classification/imagenet/main.py
+@@ -220,11 +220,11 @@
+     resume_from = config.get("resume_from", None)
+     if resume_from is not None:
+         checkpoint_fp = Path(resume_from)
+         assert checkpoint_fp.exists(), f"Checkpoint '{checkpoint_fp.as_posix()}' is not found"
+         logger.info(f"Resume from a checkpoint: {checkpoint_fp.as_posix()}")
+-        checkpoint = torch.load(checkpoint_fp.as_posix(), map_location="cpu")
++        checkpoint = torch.load(checkpoint_fp.as_posix(), map_location="cpu", weights_only=True)
+         Checkpoint.load_objects(to_load=to_save, checkpoint=checkpoint)
+ 
+     return trainer
+ 
+ 
+@@ -344,11 +344,11 @@
+     else:
+         path = config.weights_path
+         logger.info(f"Loading {path}")
+ 
+     assert Path(path).exists(), f"{path} is not found"
+-    return torch.load(path)
++    return torch.load(path, weights_only=True)
+ 
+ 
+ def evaluation(local_rank, config, logger, with_clearml):
+     rank = idist.get_rank()
+     device = idist.device()
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/transformers/main.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/transformers/main.py
+@@ -351,11 +351,11 @@
+     resume_from = config["resume_from"]
+     if resume_from is not None:
+         checkpoint_fp = Path(resume_from)
+         assert checkpoint_fp.exists(), f"Checkpoint '{checkpoint_fp.as_posix()}' is not found"
+         logger.info(f"Resume from a checkpoint: {checkpoint_fp.as_posix()}")
+-        checkpoint = torch.load(checkpoint_fp.as_posix(), map_location="cpu")
++        checkpoint = torch.load(checkpoint_fp.as_posix(), map_location="cpu", weights_only=True)
+         Checkpoint.load_objects(to_load=to_save, checkpoint=checkpoint)
+ 
+     return trainer
+ 
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/super_resolution/super_resolve.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/super_resolution/super_resolve.py
+@@ -15,11 +15,11 @@
+ 
+ print(opt)
+ img = Image.open(opt.input_image).convert("YCbCr")
+ y, cb, cr = img.split()
+ 
+-model = torch.load(opt.model)
++model = torch.load(opt.model, weights_only=True)
+ input = to_tensor(y).view(1, -1, y.size[1], y.size[0])
+ 
+ if opt.cuda:
+     model = model.cuda()
+     input = input.cuda()
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/references/segmentation/pascal_voc2012/main.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/references/segmentation/pascal_voc2012/main.py
+@@ -257,11 +257,11 @@
+     resume_from = config.get("resume_from", None)
+     if resume_from is not None:
+         checkpoint_fp = Path(resume_from)
+         assert checkpoint_fp.exists(), f"Checkpoint '{checkpoint_fp.as_posix()}' is not found"
+         logger.info(f"Resume from a checkpoint: {checkpoint_fp.as_posix()}")
+-        checkpoint = torch.load(checkpoint_fp.as_posix(), map_location="cpu")
++        checkpoint = torch.load(checkpoint_fp.as_posix(), map_location="cpu", weights_only=True)
+         Checkpoint.load_objects(to_load=to_save, checkpoint=checkpoint)
+ 
+     return trainer
+ 
+ 
+@@ -381,11 +381,11 @@
+     else:
+         path = config.weights_path
+         logger.info(f"Loading {path}")
+ 
+     assert Path(path).exists(), f"{path} is not found"
+-    return torch.load(path)
++    return torch.load(path, weights_only=True)
+ 
+ 
+ def evaluation(local_rank, config, logger, with_clearml):
+     rank = idist.get_rank()
+     device = idist.device()
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ignite/ignite/handlers/lr_finder.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ignite/ignite/handlers/lr_finder.py
+@@ -510,11 +510,11 @@
+                 trainer.add_event_handler(Events.COMPLETED, self._reset)
+ 
+             yield trainer
+             self._detach(trainer)
+             # restore to_save and reset trainer's state
+-            obj = torch.load(cache_filepath.as_posix())
++            obj = torch.load(cache_filepath.as_posix(), weights_only=True)
+             trainer.load_state_dict(obj["trainer"])
+             for k, o in obj.items():
+                 if k in to_save:
+                     to_save[k].load_state_dict(o)
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/notebooks/CycleGAN_with_nvidia_apex.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/notebooks/CycleGAN_with_nvidia_apex.py
+@@ -1035,11 +1035,11 @@
+ 
+ 
+ # In[ ]:
+ 
+ 
+-checkpoint_state_dict = torch.load(checkpoint_path)
++checkpoint_state_dict = torch.load(checkpoint_path, weights_only=True)
+ generator_A2B.load_state_dict(checkpoint_state_dict["generator_A2B"])
+ 
+ 
+ # In[ ]:
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/notebooks/CycleGAN_with_torch_cuda_amp.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/notebooks/CycleGAN_with_torch_cuda_amp.py
+@@ -1009,11 +1009,11 @@
+ 
+ 
+ # In[ ]:
+ 
+ 
+-checkpoint_state_dict = torch.load(checkpoint_path)
++checkpoint_state_dict = torch.load(checkpoint_path, weights_only=True)
+ generator_A2B.load_state_dict(checkpoint_state_dict["generator_A2B"])
+ 
+ 
+ # In[ ]:
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/notebooks/EfficientNet_Cifar100_finetuning.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ignite/examples/notebooks/EfficientNet_Cifar100_finetuning.py
+@@ -410,13 +410,13 @@
+ 
+ 
+ # In[ ]:
+ 
+ 
+-print_num_params(resnet18(pretrained=False, num_classes=100))
+-print_num_params(resnet34(pretrained=False, num_classes=100))
+-print_num_params(resnet50(pretrained=False, num_classes=100))
++print_num_params(resnet18(weights=None, num_classes=100))
++print_num_params(resnet34(weights=None, num_classes=100))
++print_num_params(resnet50(weights=None, num_classes=100))
+ 
+ 
+ # In[ ]:
+ 
+ 
+@@ -494,11 +494,11 @@
+ # In[ ]:
+ 
+ 
+ from collections import OrderedDict
+ 
+-model_state = torch.load("/tmp/efficientnet_weights/efficientnet-b0-08094119.pth")
++model_state = torch.load("/tmp/efficientnet_weights/efficientnet-b0-08094119.pth", weights_only=True)
+ 
+ # A basic remapping is required
+ mapping = {
+     k: v for k, v in zip(model_state.keys(), model.state_dict().keys())
+ }
+@@ -523,11 +523,11 @@
+ 
+ with open("/tmp/labels_map.txt", "r") as h:
+     labels = json.load(h)
+ 
+ from PIL import Image
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ 
+ img = Image.open("/tmp/giant_panda.jpg")
+ # Preprocess image
+ image_size = 224
+@@ -1012,11 +1012,11 @@
+ 
+ # In[ ]:
+ 
+ 
+ best_model = EfficientNet()
+-best_model.load_state_dict(torch.load(log_path + "/model.pt"))
++best_model.load_state_dict(torch.load(log_path + "/model.pt", weights_only=True))
+ 
+ 
+ # In[ ]:
+ 
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ignite/ignite/handlers/param_scheduler.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ignite/ignite/handlers/param_scheduler.py
+@@ -843,11 +843,11 @@
+                 for param_name in param_names:
+                     params = [p[param_name] for p in scheduler.optimizer_param_groups]
+                     values = values + params
+                 output.append(values)
+ 
+-            objs = torch.load(cache_filepath.as_posix())
++            objs = torch.load(cache_filepath.as_posix(), weights_only=True)
+             for i, s in enumerate(schedulers):
+                 s.load_state_dict(objs[f"lr_scheduler_{i}"])
+             optimizer.load_state_dict(objs["optimizer"])
+ 
+             return output
+@@ -1036,11 +1036,11 @@
+             for i in range(num_events):
+                 scheduler(engine=None)
+                 params = [p[scheduler.param_name] for p in scheduler.optimizer_param_groups]
+                 values.append([i] + params)
+ 
+-            obj = torch.load(cache_filepath.as_posix())
++            obj = torch.load(cache_filepath.as_posix(), weights_only=True)
+             lr_scheduler.load_state_dict(obj["lr_scheduler"])
+             lr_scheduler.optimizer.load_state_dict(obj["optimizer"])
+ 
+             return values
+ 
+@@ -1534,11 +1534,11 @@
+             for i in range(num_events):
+                 params = [scheduler.get_param() for scheduler in schedulers]
+                 values.append([i] + params)
+                 scheduler(engine=None)
+ 
+-            objs = torch.load(cache_filepath.as_posix())
++            objs = torch.load(cache_filepath.as_posix(), weights_only=True)
+             for i, s in enumerate(schedulers):
+                 s.load_state_dict(objs[f"lr_scheduler_{i}"])
+                 s.optimizer.load_state_dict(objs["optimizer"])
+ 
+             return values
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ignite/ignite/handlers/checkpoint.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ignite/ignite/handlers/checkpoint.py
+@@ -599,11 +599,11 @@
+             raise TypeError(f"Argument checkpoint should be a string or a dictionary, but given {type(checkpoint)}")
+ 
+         Checkpoint._check_objects(to_load, "load_state_dict")
+ 
+         if isinstance(checkpoint, (str, Path)):
+-            checkpoint_obj = torch.load(checkpoint)
++            checkpoint_obj = torch.load(checkpoint, weights_only=True)
+         else:
+             checkpoint_obj = checkpoint
+ 
+         def _load_object(obj: Any, chkpt_obj: Any) -> None:
+             if isinstance(obj, (nn.DataParallel, nn.parallel.DistributedDataParallel)):
+examples/notebooks/FashionMNIST.py:90:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/notebooks/FashionMNIST.py:94:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/notebooks/FashionMNIST.py:352:23: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/notebooks/FastaiLRFinder_MNIST.py:68:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/notebooks/FastaiLRFinder_MNIST.py:29:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+examples/notebooks/HandlersTimeProfiler_MNIST.py:65:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/notebooks/HandlersTimeProfiler_MNIST.py:29:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+examples/notebooks/TextCNN.py:243:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/ignite/handlers/test_clearml_logger.py:961:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/cifar10/main.py:341:22: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tests/ignite/engine/test_engine_state_dict.py:201:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tests/ignite/handlers/test_checkpoint.py:584:22: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tests/ignite/handlers/test_checkpoint.py:610:22: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tests/ignite/handlers/test_checkpoint.py:827:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tests/ignite/handlers/test_checkpoint.py:905:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tests/ignite/handlers/test_checkpoint.py:1008:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tests/ignite/handlers/test_checkpoint.py:1145:22: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tests/ignite/handlers/test_checkpoint.py:1157:22: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tests/ignite/handlers/test_checkpoint.py:1170:22: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tests/ignite/handlers/test_checkpoint.py:1186:25: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tests/ignite/handlers/test_checkpoint.py:1273:29: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tests/ignite/handlers/test_checkpoint.py:1346:22: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/mnist/mnist_with_visdom.py:43:20: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/mnist/mnist_with_visdom.py:47:18: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/mnist/mnist_with_visdom_logger.py:66:20: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/mnist/mnist_with_visdom_logger.py:70:18: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/mnist/mnist_with_wandb_logger.py:59:20: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/mnist/mnist_with_wandb_logger.py:63:18: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/notebooks/VAE.py:132:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/notebooks/VAE.py:133:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ignite/distributed/auto.py:119:18: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/ignite/handlers/test_lr_finder.py:161:32: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/ignite/handlers/test_lr_finder.py:615:20: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/ignite/test_utils.py:296:27: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/mnist/mnist_with_tensorboard.py:66:20: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/mnist/mnist_with_tensorboard.py:70:18: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/mnist/mnist_with_tensorboard_logger.py:69:20: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/mnist/mnist_with_tensorboard_logger.py:73:18: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/mnist/mnist_with_tensorboard_on_tpu.py:63:20: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/mnist/mnist_with_tensorboard_on_tpu.py:67:18: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/mnist/mnist_with_tqdm_logger.py:39:20: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/mnist/mnist_with_tqdm_logger.py:43:18: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/references/segmentation/pascal_voc2012/main.py:262:22: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/references/segmentation/pascal_voc2012/main.py:386:12: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/notebooks/CycleGAN_with_nvidia_apex.py:1040:25: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/notebooks/CycleGAN_with_torch_cuda_amp.py:1014:25: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/notebooks/EfficientNet_Cifar100_finetuning.py:499:15: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/notebooks/EfficientNet_Cifar100_finetuning.py:1017:28: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/notebooks/EfficientNet_Cifar100_finetuning.py:415:18: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+examples/notebooks/EfficientNet_Cifar100_finetuning.py:416:18: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+examples/notebooks/EfficientNet_Cifar100_finetuning.py:417:18: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+examples/notebooks/EfficientNet_Cifar100_finetuning.py:528:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+ignite/metrics/gan/utils.py:33:22: TOR201 Parameter `pretrained` is deprecated, please use `weights` instead.
+examples/cifar10_qat/main.py:325:22: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/references/classification/imagenet/main.py:225:22: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/references/classification/imagenet/main.py:349:12: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+ignite/handlers/checkpoint.py:604:30: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tests/ignite/handlers/test_state_param_scheduler.py:302:47: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/fast_neural_style/neural_style.py:135:23: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/fast_neural_style/neural_style.py:55:20: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/gan/dcgan.py:230:30: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/gan/dcgan.py:233:30: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/gan/dcgan.py:19:5: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+examples/transformers/main.py:356:22: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+ignite/handlers/lr_finder.py:515:19: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tests/ignite/engine/test_deterministic.py:692:97: TOR101 Use of deprecated function torch.norm
+tests/ignite/engine/test_deterministic.py:731:22: TOR101 Use of deprecated function torch.norm
+tests/ignite/engine/test_deterministic.py:732:22: TOR101 Use of deprecated function torch.norm
+tests/ignite/engine/test_deterministic.py:745:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tests/ignite/engine/test_deterministic.py:100:18: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/ignite/engine/test_deterministic.py:598:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/ignite/engine/test_deterministic.py:810:19: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/ignite/engine/test_deterministic.py:868:18: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/ignite/engine/test_engine.py:820:23: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/ignite/engine/test_engine.py:1062:17: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/ignite/engine/test_engine.py:1063:17: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+Finished checking 258 files.
+[*] 24 potentially fixable with the --fix option
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ignite/tests/ignite/handlers/test_clearml_logger.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ignite/tests/ignite/handlers/test_clearml_logger.py
+@@ -956,11 +956,11 @@
+     saved_checkpoint = clearml_saver.dirname / saved_objects[0]
+ 
+     if idist.has_xla_support:
+         device = "cpu"
+ 
+-    loaded_obj = torch.load(saved_checkpoint, map_location=device)
++    loaded_obj = torch.load(saved_checkpoint, map_location=device, weights_only=True)
+     for f in ["model", "optimizer", "lr_scheduler"]:
+         assert f in loaded_obj
+     loaded_model_state_dict = loaded_obj["model"]
+     loaded_optimizer_state_dict = loaded_obj["optimizer"]
+     loaded_lr_scheduler_state_dict = loaded_obj["lr_scheduler"]
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ignite/tests/ignite/handlers/test_state_param_scheduler.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ignite/tests/ignite/handlers/test_state_param_scheduler.py
+@@ -297,11 +297,11 @@
+     torch.save(lambda_state_parameter_scheduler, filepath)
+     if Version(torch.__version__) >= Version("1.13.0"):
+         kwargs = {"weights_only": False}
+     else:
+         kwargs = {}
+-    loaded_lambda_state_parameter_scheduler = torch.load(filepath, **kwargs)
++    loaded_lambda_state_parameter_scheduler = torch.load(filepath, **kwargs, weights_only=True)
+ 
+     engine1 = Engine(lambda e, b: None)
+     lambda_state_parameter_scheduler.attach(engine1, Events.EPOCH_COMPLETED)
+     engine1.run([0] * 8, max_epochs=2)
+     torch_testing_assert_close(
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ignite/tests/ignite/engine/test_engine_state_dict.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ignite/tests/ignite/engine/test_engine_state_dict.py
+@@ -196,11 +196,11 @@
+         torch.save(state_dict, fp)
+ 
+     engine.run([0, 1])
+ 
+     assert fp.exists()
+-    state_dict = torch.load(fp)
++    state_dict = torch.load(fp, weights_only=True)
+     assert "alpha" in state_dict and state_dict["alpha"] == 0.1
+ 
+ 
+ def test_epoch_length():
+     def _test(data, max_epochs, num_iters):
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ignite/tests/ignite/handlers/test_checkpoint.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ignite/tests/ignite/handlers/test_checkpoint.py
+@@ -579,11 +579,11 @@
+ 
+     fname = h.last_checkpoint
+     assert isinstance(fname, Path)
+     assert str(dirname / _PREFIX) in str(fname)
+     assert fname.exists()
+-    loaded_objects = torch.load(fname)
++    loaded_objects = torch.load(fname, weights_only=True)
+     assert loaded_objects == model.state_dict()
+     to_load = {"model": DummyModel()}
+     h.reload_objects(to_load=to_load, global_step=1)
+     assert to_load["model"].state_dict() == model.state_dict()
+ 
+@@ -605,11 +605,11 @@
+     ext = ".pt"
+     assert isinstance(fname, Path)
+     assert dirname / f"{_PREFIX}_model_{1}{ext}" == fname
+     assert fname.exists()
+     assert previous_fname.exists()
+-    loaded_objects = torch.load(fname)
++    loaded_objects = torch.load(fname, weights_only=True)
+     assert loaded_objects == model.state_dict()
+     to_load = {"model": DummyModel()}
+     h.reload_objects(to_load=to_load, global_step=1)
+     assert to_load["model"].state_dict() == model.state_dict()
+     fname.unlink()
+@@ -822,11 +822,11 @@
+     to_save = {"model": model}
+     engine.add_event_handler(Events.EPOCH_COMPLETED, handler, to_save)
+     engine.run([0, 1, 2], max_epochs=4)
+ 
+     saved_model = dirname / os.listdir(dirname)[0]
+-    load_model = torch.load(saved_model)
++    load_model = torch.load(saved_model, weights_only=True)
+ 
+     assert not isinstance(load_model, DummyModel)
+     assert isinstance(load_model, dict)
+ 
+     model_state_dict = model.state_dict()
+@@ -900,11 +900,11 @@
+     saved_checkpoint = dirname / saved_objects[0]
+ 
+     if idist.has_xla_support:
+         device = "cpu"
+ 
+-    loaded_obj = torch.load(saved_checkpoint, map_location=device)
++    loaded_obj = torch.load(saved_checkpoint, map_location=device, weights_only=True)
+     for f in ["model", "optimizer", "lr_scheduler"]:
+         assert f in loaded_obj
+     loaded_model_state_dict = loaded_obj["model"]
+     loaded_optimizer_state_dict = loaded_obj["optimizer"]
+     loaded_lr_scheduler_state_dict = loaded_obj["lr_scheduler"]
+@@ -1003,11 +1003,11 @@
+     trainer.run([0, 1, 2], max_epochs=3)
+ 
+     saved_objects = sorted(os.listdir(dirname))
+     saved_checkpoint = dirname / saved_objects[0]
+ 
+-    loaded_obj = torch.load(saved_checkpoint, map_location=device)
++    loaded_obj = torch.load(saved_checkpoint, map_location=device, weights_only=True)
+     for f in ["trainer", "model", "optim", "lr_scheduler", "early_stop", "checkpointer"]:
+         assert f in loaded_obj
+ 
+     trainer2, evaluator2, model2, optim2, scheduler2, early2, checkpointer2 = _build_objects([0.1, 0.1, 0.1])
+     Checkpoint.load_objects(
+@@ -1140,11 +1140,11 @@
+     handler(trainer, to_save)
+     fname = handler.last_checkpoint
+     assert isinstance(fname, Path)
+     assert str(dirname / _PREFIX) in str(fname)
+     assert fname.exists()
+-    loaded_objects = torch.load(fname)
++    loaded_objects = torch.load(fname, weights_only=True)
+     Checkpoint.load_objects(to_save, loaded_objects)
+     fname.unlink()
+ 
+     # case: saved multiple objects, loaded single object
+     handler = ModelCheckpoint(dirname, _PREFIX, create_dir=False, n_saved=1)
+@@ -1152,11 +1152,11 @@
+     handler(trainer, to_save)
+     fname = handler.last_checkpoint
+     assert isinstance(fname, Path)
+     assert str(dirname / _PREFIX) in str(fname)
+     assert fname.exists()
+-    loaded_objects = torch.load(fname)
++    loaded_objects = torch.load(fname, weights_only=True)
+     to_load = {"model": to_save["model"]}
+     Checkpoint.load_objects(to_load, loaded_objects)
+     fname.unlink()
+ 
+     # case: single object
+@@ -1165,11 +1165,11 @@
+     handler(trainer, to_save)
+     fname = handler.last_checkpoint
+     assert isinstance(fname, Path)
+     assert str(dirname / _PREFIX) in str(fname)
+     assert fname.exists()
+-    loaded_objects = torch.load(fname)
++    loaded_objects = torch.load(fname, weights_only=True)
+     Checkpoint.load_objects(to_save, loaded_objects)
+     fname.unlink()
+ 
+ 
+ def test_load_checkpoint_with_different_num_classes(dirname):
+@@ -1181,11 +1181,11 @@
+ 
+     handler = ModelCheckpoint(dirname, _PREFIX, create_dir=False, n_saved=1)
+     handler(trainer, to_save_single_object)
+ 
+     fname = handler.last_checkpoint
+-    loaded_checkpoint = torch.load(fname)
++    loaded_checkpoint = torch.load(fname, weights_only=True)
+ 
+     to_load_single_object = {"pretrained_features": model.features}
+ 
+     with pytest.raises(RuntimeError):
+         Checkpoint.load_objects(to_load_single_object, loaded_checkpoint)
+@@ -1268,11 +1268,11 @@
+     checkpointer(engine)
+ 
+     mocked_opt.consolidate_state_dict.assert_called_once_with(to=1)
+ 
+     if local_rank == 1:
+-        loaded_state_dict = torch.load(dirname / "checkpoint_0.pt", map_location=device)["optim"]
++        loaded_state_dict = torch.load(dirname / "checkpoint_0.pt", map_location=device, weights_only=True)["optim"]
+         state_dict = opt.state_dict()
+         assert loaded_state_dict == state_dict
+ 
+ 
+ @pytest.mark.distributed
+@@ -1341,11 +1341,11 @@
+ 
+     fname = h.last_checkpoint
+     assert isinstance(fname, Path)
+     assert str(dirname / _PREFIX) in str(fname)
+     assert fname.exists()
+-    loaded_objects = torch.load(fname)
++    loaded_objects = torch.load(fname, weights_only=True)
+     assert loaded_objects == model.cpu().state_dict()
+ 
+ 
+ @pytest.mark.tpu
+ @pytest.mark.skipif("NUM_TPU_WORKERS" in os.environ, reason="Skip if NUM_TPU_WORKERS is in env vars")
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ignite/tests/ignite/engine/test_deterministic.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ignite/tests/ignite/engine/test_deterministic.py
+@@ -740,11 +740,11 @@
+         if sd is not None:
+             if Version(torch.__version__) >= Version("1.13.0"):
+                 kwargs = {"weights_only": False}
+             else:
+                 kwargs = {}
+-            sd = torch.load(sd, **kwargs)
++            sd = torch.load(sd, **kwargs, weights_only=True)
+             model.load_state_dict(sd[0])
+             opt.load_state_dict(sd[1])
+             from ignite.engine.deterministic import _repr_rng_state
+ 
+             if debug:
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ignite/tests/ignite/test_utils.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ignite/tests/ignite/test_utils.py
+@@ -291,11 +291,11 @@
+     model = squeezenet1_0()
+     torch.hub.download_url_to_file(
+         "https://download.pytorch.org/models/squeezenet1_0-b66bff10.pth", f"{tmp_path}/squeezenet1_0.pt"
+     )
+     hash_checkpoint_path, sha_hash = hash_checkpoint(f"{tmp_path}/squeezenet1_0.pt", str(tmp_path))
+-    model.load_state_dict(torch.load(str(hash_checkpoint_path), "cpu"), True)
++    model.load_state_dict(torch.load(str(hash_checkpoint_path), "cpu", weights_only=True), True)
+     assert sha_hash[:8] == "b66bff10"
+     assert hash_checkpoint_path.name == f"squeezenet1_0-{sha_hash[:8]}.pt"
+ 
+     # test non-existent checkpoint_path
+     with pytest.raises(FileNotFoundError, match=r"not_found.pt does not exist in *"):
+Repository: ignite

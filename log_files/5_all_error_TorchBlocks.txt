@@ -1,0 +1,140 @@
+Repository: TorchBlocks
+Checking root directory only to avoid duplication.
+src/torchblocks/models/model_base.py:86:30: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+src/torchblocks/callback/early_stopping.py:70:17: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+src/torchblocks/callback/swa.py:18:35: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+src/torchblocks/optims/shampoo.py:8:15: TOR101 Use of deprecated function torch.svd
+src/torchblocks/utils/ckpt_utils.py:21:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+src/torchblocks/callback/attacks/awp.py:30:25: TOR101 Use of deprecated function torch.norm
+src/torchblocks/callback/attacks/awp.py:31:25: TOR101 Use of deprecated function torch.norm
+src/torchblocks/callback/attacks/fgm.py:16:24: TOR101 Use of deprecated function torch.norm
+src/torchblocks/callback/attacks/pgd.py:20:24: TOR101 Use of deprecated function torch.norm
+src/torchblocks/callback/attacks/pgd.py:35:12: TOR101 Use of deprecated function torch.norm
+src/torchblocks/callback/attacks/pgd.py:36:31: TOR101 Use of deprecated function torch.norm
+src/torchblocks/core/train_base.py:49:5: TOR103 Import of deprecated function torch.cuda.amp.autocast
+src/torchblocks/core/train_base.py:526:18: TOR101 [*] Use of deprecated function torch.cuda.amp.autocast
+src/torchblocks/core/train_base.py:494:48: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+src/torchblocks/core/train_base.py:496:48: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+src/torchblocks/core/train_base.py:498:25: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+src/torchblocks/core/train_base.py:505:49: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+src/torchblocks/data/dataset_builder.py:45:29: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+Finished checking 104 files.
+[*] 6 potentially fixable with the --fix option
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TorchBlocks/src/torchblocks/callback/early_stopping.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TorchBlocks/src/torchblocks/callback/early_stopping.py
+@@ -65,11 +65,11 @@
+             'patience': self.patience
+         }
+         torch.save(state, save_path)
+ 
+     def load_state(self, state_path):
+-        state = torch.load(state_path)
++        state = torch.load(state_path, weights_only=True)
+         self.wait_count = state['wait_count']
+         self.best_score = state['best_score']
+         self.patience = state['patience']
+ 
+     def step(self, current):
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TorchBlocks/src/torchblocks/callback/swa.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TorchBlocks/src/torchblocks/callback/swa.py
+@@ -13,11 +13,11 @@
+     swa_model = copy.deepcopy(model)
+     swa_n = 0.
+     with torch.no_grad():
+         for _ckpt in model_path_list[swa_start:]:
+             print(_ckpt)
+-            model.load_state_dict(torch.load(_ckpt, map_location=torch.device('cpu')))
++            model.load_state_dict(torch.load(_ckpt, map_location=torch.device('cpu'), weights_only=True))
+             tmp_para_dict = dict(model.named_parameters())
+             alpha = 1. / (swa_n + 1.)
+             for name, para in swa_model.named_parameters():
+                 para.copy_(tmp_para_dict[name].data.clone() * alpha + para.data.clone() * (1. - alpha))
+             swa_n += 1
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TorchBlocks/src/torchblocks/core/train_base.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TorchBlocks/src/torchblocks/core/train_base.py
+@@ -489,22 +489,22 @@
+             scheduler_path = os.path.join(resume_path, SCHEDULER_NAME)
+             state_path = os.path.join(resume_path, TRAINER_STATE_NAME)
+             model_path = os.path.join(resume_path, WEIGHTS_NAME)
+             scaler_path = os.path.join(resume_path, SCALER_NAME)
+             if is_file(optimizer_path):
+-                self.optimizer.load_state_dict(torch.load(optimizer_path, map_location=self.device))
++                self.optimizer.load_state_dict(torch.load(optimizer_path, map_location=self.device, weights_only=True))
+             if is_file(scheduler_path):
+-                self.scheduler.load_state_dict(torch.load(scheduler_path))
++                self.scheduler.load_state_dict(torch.load(scheduler_path, weights_only=True))
+             if is_file(state_path):
+-                state = torch.load(state_path)
++                state = torch.load(state_path, weights_only=True)
+                 if self.model_checkpoint and hasattr(state, 'best_score'):
+                     self.model_checkpoint.best = state['best_score']
+                 del state
+                 gc.collect()
+             if is_file(model_path):
+                 if self.use_amp and is_file(scaler_path):
+-                    self.scaler.load_state_dict(torch.load(scaler_path))
++                    self.scaler.load_state_dict(torch.load(scaler_path, weights_only=True))
+                 load_model(self.model, model_path, device=self.device)
+ 
+     def train_rdrop_forward(self, inputs, epoch):
+         # rdrop training forward
+         rdrop_fct = BKL()
+@@ -521,11 +521,11 @@
+         '''
+         common training forward
+         '''
+         self.model.train()
+         if self.use_amp:
+-            with autocast():
++            with torch.amp.autocast("cuda"):
+                 outputs = self.model(inputs)
+         else:
+             outputs = self.model(inputs)
+         check_object_type(object=outputs, check_type=dict, name='outputs')
+         if self.device_num > 1: outputs['loss'] = outputs['loss'].mean()
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TorchBlocks/src/torchblocks/data/dataset_builder.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TorchBlocks/src/torchblocks/data/dataset_builder.py
+@@ -40,11 +40,11 @@
+                 prefix = f'{opts.task_name}_{opts.model_type}_{self.data_type}_{opts.experiment_name}'
+                 self.cached_feature_file = prefix + '_feature.cache'
+             self.cached_feature_file = os.path.join(self.data_dir, self.cached_feature_file)
+         if not opts.overwrite_data_cache:
+             logger.info(f"Loading features from cached file: {self.cached_feature_file}")
+-            self.features = torch.load(self.cached_feature_file)
++            self.features = torch.load(self.cached_feature_file, weights_only=True)
+         else:
+             logger.info(f"Creating features from dataset file: {self.data_dir}")
+             self.features = [
+                 self.process_example(example) for example in
+                 tqdm(self.examples, total=len(self.examples), desc="Converting examples to features......")]
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TorchBlocks/src/torchblocks/models/model_base.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TorchBlocks/src/torchblocks/models/model_base.py
+@@ -81,11 +81,11 @@
+             archive_file = model_path
+         # Instantiate model.
+         model = cls(config, *model_args, **model_kwargs)
+         if state_dict is None:
+             try:
+-                state_dict = torch.load(archive_file, map_location="cpu")
++                state_dict = torch.load(archive_file, map_location="cpu", weights_only=True)
+             except Exception:
+                 logger.warning(
+                     "Unable to load weights from pytorch checkpoint file. ")
+         if state_dict:
+             model.load_state_dict(state_dict)
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TorchBlocks/src/torchblocks/utils/ckpt_utils.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TorchBlocks/src/torchblocks/utils/ckpt_utils.py
+@@ -16,11 +16,11 @@
+ 
+ 
+ def load_model(model, file_path, device=None):
+     check_file(file_path)
+     logger.info(f"loading model from {str(file_path)} .")
+-    state_dict = torch.load(file_path, map_location="cpu" if device is None else device)
++    state_dict = torch.load(file_path, map_location="cpu" if device is None else device, weights_only=True)
+     if isinstance(model, nn.DataParallel) or hasattr(model, "module"):
+         model.module.load_state_dict(state_dict, strict=False)
+     else:
+         model.load_state_dict(state_dict, strict=False)
+ 
+Repository: TorchBlocks

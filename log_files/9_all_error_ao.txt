@@ -1,0 +1,432 @@
+Repository: ao
+Checking root directory only to avoid duplication.
+torchao/float8/float8_linear.py:330:32: TOR003 [*] Please pass `use_reentrant` explicitly to `checkpoint`. To maintain old behavior, pass `use_reentrant=True`. It is recommended to use `use_reentrant=False`.
+torchao/ops.py:6:7: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+torchao/prototype/quantized_training/int8_mm.py:8:7: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+torchao/prototype/spinquant/spinquant.py:87:14: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchao/prototype/spinquant/spinquant.py:106:20: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/prototype/test_awq.py:99:20: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/prototype/test_awq.py:158:9: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/quantization/test_quant_api.py:230:26: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/quantization/test_quant_api.py:680:26: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/quantization/test_quant_api.py:730:26: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchao/prototype/sparsity/superblock/benchmark.py:74:26: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchao/prototype/sparsity/superblock/evaluate.py:51:26: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/integration/test_integration.py:1327:22: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/kernel/test_autotuner.py:50:9: TOR101 Use of deprecated function torch.testing.assert_allclose
+test/kernel/test_autotuner.py:96:9: TOR101 Use of deprecated function torch.testing.assert_allclose
+torchao/_models/sam2/modeling/sam/transformer.py:39:12: TOR101 Use of deprecated function torch.backends.cuda.sdp_kernel: https://github.com/pytorch-labs/torchfix#torchbackendscudasdp_kernel
+torchao/float8/stateful_float8_linear.py:342:28: TOR003 [*] Please pass `use_reentrant` explicitly to `checkpoint`. To maintain old behavior, pass `use_reentrant=True`. It is recommended to use `use_reentrant=False`.
+torchao/prototype/quantization/mixed_precision/scripts/BO_acc_throughput.py:44:14: TOR101 Use of deprecated function torch.backends.cuda.sdp_kernel: https://github.com/pytorch-labs/torchfix#torchbackendscudasdp_kernel
+test/dtypes/test_nf4.py:182:35: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/dtypes/test_nf4.py:195:35: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/dtypes/test_nf4.py:204:9: TOR101 Use of deprecated function torch.testing.assert_allclose
+test/dtypes/test_nf4.py:210:13: TOR101 Use of deprecated function torch.testing.assert_allclose
+test/dtypes/test_uint4.py:90:13: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tutorials/developer_api_guide/export_to_executorch.py:20:13: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+test/prototype/test_low_bit_optim.py:135:26: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/prototype/test_low_bit_optim.py:342:26: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchao/float8/float8_utils.py:168:10: TOR101 Use of deprecated function torch.norm
+torchao/float8/float8_utils.py:169:10: TOR101 Use of deprecated function torch.norm
+torchao/quantization/quant_primitives.py:200:13: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+examples/sam2_amg_server/amg_example.py:119:14: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/sam2_amg_server/amg_example.py:107:6: TOR101 Use of deprecated function torch.backends.cuda.sdp_kernel: https://github.com/pytorch-labs/torchfix#torchbackendscudasdp_kernel
+examples/sam2_amg_server/amg_example.py:120:5: TOR101 Use of deprecated function torch.testing.assert_allclose
+examples/sam2_vos_example/video_profile.py:364:22: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchao/sparsity/utils.py:75:16: TOR101 Use of deprecated function torch.norm
+torchao/_models/sam2/modeling/backbones/hieradet.py:285:25: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchao/dtypes/uintx/uint4_layout.py:40:15: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+torchao/kernel/intmm_triton.py:314:7: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+torchao/prototype/sparsity/superblock/train.py:46:14: TOR101 [*] Use of deprecated function torch.cuda.amp.autocast
+torchao/prototype/sparsity/superblock/train.py:188:26: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchao/prototype/sparsity/superblock/train.py:229:38: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchao/prototype/sparsity/superblock/train.py:329:14: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchao/prototype/sparsity/superblock/train.py:464:30: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchao/prototype/sparsity/superblock/utils.py:756:21: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchao/prototype/sparsity/superblock/utils.py:839:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+Finished checking 376 files.
+[*] 16 potentially fixable with the --fix option
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ao/examples/sam2_amg_server/amg_example.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ao/examples/sam2_amg_server/amg_example.py
+@@ -114,11 +114,11 @@
+ 
+     # Save an example
+     plt.figure(figsize=(image.shape[1] / 100.0, image.shape[0] / 100.0), dpi=100)
+     plt.imshow(image)
+     ms = show_anns(masks)
+-    ms_ref = torch.load("dog_mask_fast.pt")
++    ms_ref = torch.load("dog_mask_fast.pt", weights_only=True)
+     torch.testing.assert_allclose(ms, ms_ref)
+     print("Masks match reference")
+     # # torch.save(ms, "dog_mask_fast.pt")
+     plt.axis("off")
+     plt.tight_layout()
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ao/test/dtypes/test_nf4.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ao/test/dtypes/test_nf4.py
+@@ -177,11 +177,11 @@
+         base_mod = self.TestMod(input_tensor, 32, 2)
+         state_dict = base_mod.state_dict()
+         saved_state_dict = self.save_state_dict_to_buffer(state_dict)
+ 
+         other_mod = self.TestMod(input_tensor, 32, 2)
+-        other_mod.load_state_dict(torch.load(saved_state_dict))
++        other_mod.load_state_dict(torch.load(saved_state_dict, weights_only=True))
+         assert other_mod.param.block_size == 32
+         assert other_mod.param.scaler_block_size == 2
+ 
+     @parametrize("dtype", [torch.bfloat16, torch.float16, torch.float32])
+     def test_load_from_nf4_diff_meta(self, dtype: torch.dtype):
+@@ -190,11 +190,11 @@
+         base_mod = self.TestMod(input_tensor, 32, 2)
+         state_dict = base_mod.state_dict()
+         saved_state_dict = self.save_state_dict_to_buffer(state_dict)
+ 
+         other_mod = self.TestMod(input_tensor, 64, 1)
+-        other_mod.load_state_dict(torch.load(saved_state_dict))
++        other_mod.load_state_dict(torch.load(saved_state_dict, weights_only=True))
+         assert other_mod.param.block_size == 64
+         assert other_mod.param.scaler_block_size == 1
+ 
+     @parametrize("dtype", [torch.bfloat16, torch.float16, torch.float32])
+     def test_to_copy(self, dtype: torch.dtype):
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ao/test/dtypes/test_uint4.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ao/test/dtypes/test_uint4.py
+@@ -85,11 +85,11 @@
+                 dtype=torch.uint8,
+             )
+         )
+         self.assertEqual(x[:, 2:6], expected)
+         torch.save(x, "uint4_tensor.pt")
+-        x = torch.load("uint4_tensor.pt")
++        x = torch.load("uint4_tensor.pt", weights_only=True)
+         self.assertEqual(x[:, 2:6], expected)
+         # only test locally
+         # print("x:", x[0])
+ 
+     def test_gpu_quant(self):
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ao/examples/sam2_vos_example/video_profile.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ao/examples/sam2_vos_example/video_profile.py
+@@ -359,11 +359,11 @@
+     if store_output:
+         print(f"Writing results to {store_output}")
+         torch.save(result, store_output)
+     if compare_output:
+         print(f"Comparing to results from {compare_output}")
+-        ref_result = torch.load(compare_output)
++        ref_result = torch.load(compare_output, weights_only=True)
+         torch.testing.assert_close(result, ref_result)
+         print("Passed comparison!")
+     if print_all_timings:
+         global_timer.print_all_timings()
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ao/test/prototype/test_awq.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ao/test/prototype/test_awq.py
+@@ -94,11 +94,11 @@
+         m, awq_uintx(quant_dtype=quant_dtype, group_size=group_size), is_observed_linear
+     )
+ 
+     model_save_path = "awq_model.pth"
+     torch.save(m, model_save_path)
+-    loaded_model = torch.load(model_save_path)
++    loaded_model = torch.load(model_save_path, weights_only=True)
+     os.remove(model_save_path)
+ 
+     if torch.cuda.is_available():
+         m = torch.compile(m, fullgraph=True)
+         loaded_model = torch.compile(loaded_model, fullgraph=True)
+@@ -153,11 +153,11 @@
+     )
+ 
+     model_save_path = "awq_model.pth"
+     torch.save(m.state_dict(), model_save_path)
+     m2.load_state_dict(
+-        torch.load(model_save_path), assign=True
++        torch.load(model_save_path, weights_only=True), assign=True
+     )  # load weights only.torch.load(model_save_path)
+     os.remove(model_save_path)
+ 
+     m = torch.compile(m, fullgraph=True)
+     m2 = torch.compile(m2, fullgraph=True)
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ao/test/prototype/test_low_bit_optim.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ao/test/prototype/test_low_bit_optim.py
+@@ -130,11 +130,11 @@
+         optim.zero_grad()
+ 
+         # test serialization. also test the case CUDA optim loads CPU state dict
+         with tempfile.NamedTemporaryFile() as f:
+             torch.save(optim.state_dict(), f.name)
+-            state_dict = torch.load(f.name, map_location="cpu")
++            state_dict = torch.load(f.name, map_location="cpu", weights_only=True)
+ 
+         model2 = copy.deepcopy(model)
+         optim2 = getattr(low_bit_optim, optim_name)(model2.parameters())
+         optim2.load_state_dict(state_dict)
+ 
+@@ -337,11 +337,11 @@
+             optim1.zero_grad()
+ 
+         # save checkpoint. make sure it can be serialized by torch.save()
+         with tempfile.NamedTemporaryFile() as file:
+             torch.save(optim1.state_dict(), file.name)
+-            state_dict = torch.load(file.name, map_location="cpu")
++            state_dict = torch.load(file.name, map_location="cpu", weights_only=True)
+ 
+         # resume training
+         model2 = copy.deepcopy(model1)
+         optim2 = low_bit_optim.CPUOffloadOptimizer(
+             model2.parameters(), torch.optim.AdamW
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ao/test/integration/test_integration.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ao/test/integration/test_integration.py
+@@ -1322,11 +1322,11 @@
+         with torch.device("meta"):
+             model = test_model().to(dtype=test_dtype)
+         api(model)
+ 
+         # load quantized state_dict
+-        state_dict = torch.load("test.pth", mmap=True)
++        state_dict = torch.load("test.pth", mmap=True, weights_only=True)
+         os.remove("test.pth")
+ 
+         model.load_state_dict(state_dict, assign=True)
+         model = model.to(device=test_device, dtype=test_dtype).eval()
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ao/test/quantization/test_quant_api.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ao/test/quantization/test_quant_api.py
+@@ -225,11 +225,11 @@
+         example_inputs = m.example_inputs()
+         ref = m(*example_inputs)
+         with tempfile.NamedTemporaryFile() as f:
+             torch.save(m.state_dict(), f)
+             f.seek(0)
+-            state_dict = torch.load(f)
++            state_dict = torch.load(f, weights_only=True)
+ 
+         m2 = ToyLinearModel().eval().cpu()
+         api(m2)
+ 
+         m2.load_state_dict(state_dict)
+@@ -675,11 +675,11 @@
+         quantize_(m, int8_weight_only())
+         ref = m(*example_inputs)
+         with tempfile.NamedTemporaryFile() as f:
+             torch.save(m.state_dict(), f)
+             f.seek(0)
+-            state_dict = torch.load(f)
++            state_dict = torch.load(f, weights_only=True)
+ 
+         m_copy.load_state_dict(state_dict, assign=True)
+ 
+         res = m_copy(*example_inputs)
+         self.assertEqual(res, ref)
+@@ -725,11 +725,11 @@
+         quantize_(m, int8_weight_only())
+         ref = m(*example_inputs)
+         with tempfile.NamedTemporaryFile() as f:
+             torch.save(m.state_dict(), f)
+             f.seek(0)
+-            state_dict = torch.load(f.name, map_location="cpu", mmap=True)
++            state_dict = torch.load(f.name, map_location="cpu", mmap=True, weights_only=True)
+ 
+         with torch.device("meta"):
+             m_copy = ToyLinearModel().eval()
+ 
+         m_copy.load_state_dict(state_dict, assign=True)
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ao/torchao/_models/sam2/modeling/backbones/hieradet.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ao/torchao/_models/sam2/modeling/backbones/hieradet.py
+@@ -280,11 +280,11 @@
+             else [self.blocks[-1].dim_out]
+         )
+ 
+         if weights_path is not None:
+             with g_pathmgr.open(weights_path, "rb") as f:
+-                chkpt = torch.load(f, map_location="cpu")
++                chkpt = torch.load(f, map_location="cpu", weights_only=True)
+             logging.info("loading Hiera", self.load_state_dict(chkpt, strict=False))
+ 
+     def _get_pos_embed(self, hw: Tuple[int, int]) -> torch.Tensor:
+         h, w = hw
+         window_embed = self.pos_embed_window
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ao/torchao/float8/float8_linear.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ao/torchao/float8/float8_linear.py
+@@ -331,11 +331,11 @@
+                     _cast_weight_to_float8_t,
+                     self.weight,
+                     self.config,
+                     self.linear_mm_config,
+                     weight_scale,
+-                )
++                use_reentrant=False)
+             else:
+                 weight_fp8_t = _cast_weight_to_float8_t(
+                     self.weight,
+                     self.config,
+                     self.linear_mm_config,
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ao/torchao/float8/stateful_float8_linear.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ao/torchao/float8/stateful_float8_linear.py
+@@ -341,11 +341,11 @@
+         if self.config.force_recompute_fp8_weight_in_bwd:
+             weight_fp8_t = checkpoint.checkpoint(
+                 self.cast_weight_to_float8_t,
+                 self.weight,
+                 weight_scale,
+-            )
++            use_reentrant=False)
+         else:
+             weight_fp8_t = self.cast_weight_to_float8_t(self.weight, weight_scale)
+ 
+         output = manual_float8_matmul_with_args_in_float8.apply(input_fp8, weight_fp8_t)
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ao/torchao/prototype/sparsity/superblock/benchmark.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ao/torchao/prototype/sparsity/superblock/benchmark.py
+@@ -69,11 +69,11 @@
+     if sparsifier_or_none is not None:
+         sparsifier_or_none.squash_mask()
+ 
+     if args.weights_path:
+         try:
+-            checkpoint = torch.load(args.weights_path, map_location="cpu")
++            checkpoint = torch.load(args.weights_path, map_location="cpu", weights_only=True)
+             model.load_state_dict(checkpoint["model"])
+         except FileNotFoundError:
+             raise FileNotFoundError(f"No checkpoint found at {args.weights_path}.")
+ 
+     model.to(device).to(dtype)
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ao/torchao/prototype/sparsity/superblock/evaluate.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ao/torchao/prototype/sparsity/superblock/evaluate.py
+@@ -46,11 +46,11 @@
+ 
+     sparsifier_or_none = simulate_sparsity(model, args)
+ 
+     if args.weights_path:
+         try:
+-            checkpoint = torch.load(args.weights_path, map_location="cpu")
++            checkpoint = torch.load(args.weights_path, map_location="cpu", weights_only=True)
+             model.load_state_dict(checkpoint["model"])
+             print(f"Loaded checkpoint successfully from: {args.weights_path}")
+         except FileNotFoundError:
+             raise FileNotFoundError(f"No checkpoint found at {args.weights_path}")
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ao/torchao/prototype/spinquant/spinquant.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ao/torchao/prototype/spinquant/spinquant.py
+@@ -82,11 +82,11 @@
+ 
+ def apply_spinquant_r1(model, device, pretrained_rotation_path=None):
+     """Apply the SpinQuant R1 rotation matrix to the model."""
+ 
+     if pretrained_rotation_path is not None:
+-        R1 = torch.load(pretrained_rotation_path)["R1"].to(device).to(torch.float64)
++        R1 = torch.load(pretrained_rotation_path, weights_only=True)["R1"].to(device).to(torch.float64)
+         assert R1.shape == (
+             model.config.dim,
+             model.config.dim,
+         ), f"{R1.shape} vs {model.config.dim}"
+     else:
+@@ -101,11 +101,11 @@
+     R2s = []  # note that unlike R1, there are multiple R2 matrices (one per layer)
+     head_dim = model.config.head_dim
+     for i, _ in enumerate(model.layers):
+         if pretrained_rotation_path is not None:
+             key = f"model.layers.{i}.self_attn.R2"
+-            R2s_ = torch.load(pretrained_rotation_path)
++            R2s_ = torch.load(pretrained_rotation_path, weights_only=True)
+             R2 = R2s_[key].to(device).to(torch.float64)
+             assert R2.shape == (
+                 head_dim,
+                 head_dim,
+             ), f"{R2.shape} != ({head_dim}, {head_dim})"
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ao/torchao/prototype/sparsity/superblock/train.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ao/torchao/prototype/sparsity/superblock/train.py
+@@ -41,11 +41,11 @@
+         metric_logger.log_every(data_loader, args.print_freq, header)
+     ):
+         start_time = time.time()
+         image, target = image.to(device), target.to(device)
+ 
+-        with torch.cuda.amp.autocast(enabled=scaler is not None):
++        with torch.amp.autocast("cuda", enabled=scaler is not None):
+             output = model(image)
+             loss = criterion(output, target) / args.accumulation_steps  # Scale loss
+ 
+         if scaler is not None:
+             scaler.scale(loss).backward()
+@@ -183,11 +183,11 @@
+         st = time.time()
+         cache_path = _get_cache_path(traindir)
+         if args.cache_dataset and os.path.exists(cache_path):
+             # Attention, as the transforms are also cached!
+             print(f"Loading dataset_train from {cache_path}")
+-            dataset, _ = torch.load(cache_path)
++            dataset, _ = torch.load(cache_path, weights_only=True)
+         else:
+             auto_augment_policy = getattr(args, "auto_augment", None)
+             random_erase_prob = getattr(args, "random_erase", 0.0)
+             ra_magnitude = args.ra_magnitude
+             augmix_severity = args.augmix_severity
+@@ -224,11 +224,11 @@
+     print("Loading validation data")
+     cache_path = _get_cache_path(valdir)
+     if args.cache_dataset and os.path.exists(cache_path):
+         # Attention, as the transforms are also cached!
+         print(f"Loading dataset_test from {cache_path}")
+-        dataset_test, test_sampler = torch.load(cache_path)
++        dataset_test, test_sampler = torch.load(cache_path, weights_only=True)
+     else:
+         if args.weights:
+             weights = torchvision.models.get_weight(args.weights)
+             preprocessing = weights.transforms()
+         else:
+@@ -324,11 +324,11 @@
+     model = torchvision.models.get_model(
+         args.model, weights=args.weights, num_classes=num_classes
+     )
+ 
+     if args.weights_path is not None:
+-        sd = torch.load(args.weights_path, map_location="cpu")
++        sd = torch.load(args.weights_path, map_location="cpu", weights_only=True)
+         model.load_state_dict(sd)
+ 
+     model.to(device)
+     if args.distributed and args.sync_bn:
+         model = torch.nn.SyncBatchNorm.convert_sync_batchnorm(model)
+@@ -459,11 +459,11 @@
+             latest_epoch = max(epochs)
+             latest_checkpoint = os.path.join(
+                 args.output_dir, f"model_{latest_epoch}.pth"
+             )
+             try:
+-                checkpoint = torch.load(latest_checkpoint, map_location="cpu")
++                checkpoint = torch.load(latest_checkpoint, map_location="cpu", weights_only=True)
+                 model_without_ddp.load_state_dict(checkpoint["model"])
+                 optimizer.load_state_dict(checkpoint["optimizer"])
+                 lr_scheduler.load_state_dict(checkpoint["lr_scheduler"])
+                 args.start_epoch = checkpoint["epoch"] + 1
+                 if model_ema:
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ao/torchao/prototype/sparsity/superblock/utils.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ao/torchao/prototype/sparsity/superblock/utils.py
+@@ -756,11 +756,11 @@
+             state = torch.load(
+                 f,
+                 map_location=(
+                     lambda s, _: torch.serialization.default_restore_location(s, "cpu")
+                 ),
+-            )
++            weights_only=True)
+         # Copies over the settings from the first checkpoint
+         if new_state is None:
+             new_state = state
+         model_params = state["model"]
+         model_params_keys = list(model_params.keys())
+@@ -834,11 +834,11 @@
+     checkpoint_path = os.path.abspath(checkpoint_path)
+     output_dir = os.path.dirname(checkpoint_path)
+ 
+     # Deep copy to avoid side-effects on the model object.
+     model = copy.deepcopy(model)
+-    checkpoint = torch.load(checkpoint_path, map_location="cpu")
++    checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=True)
+ 
+     # Load the weights to the model to validate that everything works
+     # and remove unnecessary weights (such as auxiliaries, etc)
+     if checkpoint_key == "model_ema":
+         del checkpoint[checkpoint_key]["n_averaged"]
+Repository: ao

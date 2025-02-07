@@ -1,0 +1,37 @@
+Repository: PiPPy
+Checking root directory only to avoid duplication.
+pippy/utilities/hf_checkpoint.py:113:22: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+pippy/utilities/hf_checkpoint.py:136:13: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+Finished checking 65 files.
+[*] 1 potentially fixable with the --fix option
+--- /Users/anuragagarwal/Desktop/torchfix/examples/PiPPy/pippy/utilities/hf_checkpoint.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/PiPPy/pippy/utilities/hf_checkpoint.py
+@@ -108,11 +108,11 @@
+         f"Timestamp {time.time():.2f} " f"Opening checkpoint: {used_files}"
+     )
+ 
+     for file in used_files:
+         file_path = os.path.join(checkpoint_folder, file)
+-        checkpoint = torch.load(file_path)
++        checkpoint = torch.load(file_path, weights_only=True)
+ 
+         if file in file_to_weights:
+             weights = file_to_weights[file]
+             for new_name, old_name, clone in weights:
+                 assert (
+@@ -135,12 +135,12 @@
+         optim.load_state_dict(
+             torch.load(
+                 os.path.join(
+                     checkpoint_folder,
+                     _get_binary_filename(dist.get_rank(), is_optim=True),
+-                )
+-            )
++                ), 
++            weights_only=True)
+         )
+ 
+     if optim:
+         return model, optim
+     return model
+Repository: PiPPy

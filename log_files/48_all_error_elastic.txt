@@ -1,0 +1,55 @@
+Repository: elastic
+Checking root directory only to avoid duplication.
+examples/imagenet/main.py:245:20: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/imagenet/main.py:386:28: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/imagenet/main.py:64:1: TOR203 [*] Consider replacing 'import torchvision.datasets as datasets' with 'from torchvision import datasets'.
+examples/imagenet/main.py:65:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+examples/imagenet/main.py:66:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+Finished checking 12 files.
+[*] 1 potentially fixable with the --fix option
+--- /Users/anuragagarwal/Desktop/torchfix/examples/elastic/examples/imagenet/main.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/elastic/examples/imagenet/main.py
+@@ -59,13 +59,13 @@
+ import torch.nn as nn
+ import torch.nn.parallel
+ import torch.optim
+ import torch.utils.data
+ import torch.utils.data.distributed
+-import torchvision.datasets as datasets
+-import torchvision.models as models
+-import torchvision.transforms as transforms
++from torchvision import datasets
++from torchvision import models
++from torchvision import transforms
+ from torch.distributed.elastic.utils.data import ElasticDistributedSampler
+ from torch.nn.parallel import DistributedDataParallel
+ from torch.optim import SGD
+ from torch.utils.data import DataLoader
+ 
+@@ -240,11 +240,11 @@
+     def save(self, f):
+         torch.save(self.capture_snapshot(), f)
+ 
+     def load(self, f, device_id):
+         # Map model to be loaded to specified single gpu.
+-        snapshot = torch.load(f, map_location=f"cuda:{device_id}")
++        snapshot = torch.load(f, map_location=f"cuda:{device_id}", weights_only=True)
+         self.apply_snapshot(snapshot, device_id)
+ 
+ 
+ def initialize_model(
+     arch: str, lr: float, momentum: float, weight_decay: float, device_id: int
+@@ -381,11 +381,11 @@
+         dist.broadcast(blob, src=max_rank, group=pg)
+         print(f"=> done broadcasting checkpoint")
+ 
+         if rank != max_rank:
+             with io.BytesIO(blob.numpy()) as f:
+-                snapshot = torch.load(f)
++                snapshot = torch.load(f, weights_only=True)
+             state.apply_snapshot(snapshot, device_id)
+ 
+         # wait till everyone has loaded the checkpoint
+         dist.barrier(group=pg)
+ 
+Repository: elastic

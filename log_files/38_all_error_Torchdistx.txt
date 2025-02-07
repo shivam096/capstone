@@ -1,0 +1,35 @@
+Repository: Torchdistx
+Checking root directory only to avoid duplication.
+tests/python/test_comm_hooks_fsdp.py:298:22: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tests/python/test_comm_hooks_fsdp.py:326:22: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+Finished checking 12 files.
+[*] 1 potentially fixable with the --fix option
+--- /Users/anuragagarwal/Desktop/torchfix/examples/torchdistx/tests/python/test_comm_hooks_fsdp.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/torchdistx/tests/python/test_comm_hooks_fsdp.py
+@@ -293,11 +293,11 @@
+             torch.save(state, chkpt)
+ 
+         dist.barrier()
+ 
+         map_location = {"cuda:%d" % 0: "cuda:%d" % self.rank}
+-        checkpoint = torch.load(chkpt, map_location=map_location)
++        checkpoint = torch.load(chkpt, map_location=map_location, weights_only=True)
+ 
+         # initialize dummy optimizer with different parameters
+         slowmo_optim_dummy = slowmo_optimizer.SlowMomentumOptimizer(
+             base_optim=torch.optim.SGD(fsdp_net_slowmo.parameters(), lr=1e-2),
+             slowmo_freq=2,
+@@ -321,11 +321,11 @@
+             self._train_step(inpt, fsdp_net_slowmo, slowmo_optim_dummy)
+ 
+         self.assertEqual(slowmo_optim_dummy.averager.step, 2 * n_steps)
+ 
+         # Check abscent learning rate in a checkpoint
+-        checkpoint = torch.load(chkpt, map_location=map_location)
++        checkpoint = torch.load(chkpt, map_location=map_location, weights_only=True)
+         del checkpoint["optim_state_dict"]["param_groups"][0]["lr"]
+         with self.assertRaisesRegex(
+             ValueError, "All parameter groups should have learning rate specified."
+         ):
+             slowmo_optim_dummy.load_state_dict(checkpoint["optim_state_dict"])
+Repository: Torchdistx

@@ -1,0 +1,9 @@
+Repository: torchx
+Checking root directory only to avoid duplication.
+torchx/examples/apps/lightning/data.py:112:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchx/examples/apps/lightning/data.py:115:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchx/examples/apps/lightning/data.py:118:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchx/examples/apps/tracker/main.py:226:20: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchx/examples/apps/tracker/main.py:227:19: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+Finished checking 166 files.
+Repository: torchx

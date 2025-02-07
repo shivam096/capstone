@@ -1,0 +1,31 @@
+Repository: pytorch-seq2seq
+Checking root directory only to avoid duplication.
+seq2seq/util/checkpoint.py:95:33: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+seq2seq/util/checkpoint.py:96:21: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+seq2seq/util/checkpoint.py:98:33: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+seq2seq/util/checkpoint.py:99:21: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+Finished checking 27 files.
+[*] 1 potentially fixable with the --fix option
+--- /Users/anuragagarwal/Desktop/torchfix/examples/pytorch-seq2seq/seq2seq/util/checkpoint.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/pytorch-seq2seq/seq2seq/util/checkpoint.py
+@@ -90,15 +90,15 @@
+             path (str): path to the checkpoint subdirectory
+         Returns:
+             checkpoint (Checkpoint): checkpoint object with fields copied from those stored on disk
+         """
+         if torch.cuda.is_available():
+-            resume_checkpoint = torch.load(os.path.join(path, cls.TRAINER_STATE_NAME))
+-            model = torch.load(os.path.join(path, cls.MODEL_NAME))
++            resume_checkpoint = torch.load(os.path.join(path, cls.TRAINER_STATE_NAME), weights_only=True)
++            model = torch.load(os.path.join(path, cls.MODEL_NAME), weights_only=True)
+         else:
+-            resume_checkpoint = torch.load(os.path.join(path, cls.TRAINER_STATE_NAME), map_location=lambda storage, loc: storage)
+-            model = torch.load(os.path.join(path, cls.MODEL_NAME), map_location=lambda storage, loc: storage)
++            resume_checkpoint = torch.load(os.path.join(path, cls.TRAINER_STATE_NAME), map_location=lambda storage, loc: storage, weights_only=True)
++            model = torch.load(os.path.join(path, cls.MODEL_NAME), map_location=lambda storage, loc: storage, weights_only=True)
+ 
+         model.flatten_parameters() # make RNN parameters contiguous
+         with open(os.path.join(path, cls.INPUT_VOCAB_FILE), 'rb') as fin:
+             input_vocab = dill.load(fin)
+         with open(os.path.join(path, cls.OUTPUT_VOCAB_FILE), 'rb') as fin:
+Repository: pytorch-seq2seq

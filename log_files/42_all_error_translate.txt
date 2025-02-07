@@ -1,0 +1,67 @@
+Repository: translate
+Checking root directory only to avoid duplication.
+pytorch_translate/checkpoint.py:78:17: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+pytorch_translate/checkpoint.py:92:17: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+pytorch_translate/utils.py:108:17: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+pytorch_translate/multi_model.py:813:21: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+Finished checking 86 files.
+[*] 3 potentially fixable with the --fix option
+--- /Users/anuragagarwal/Desktop/torchfix/examples/translate/pytorch_translate/checkpoint.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/translate/pytorch_translate/checkpoint.py
+@@ -78,11 +78,11 @@
+         state = torch.load(
+             f,
+             map_location=(
+                 lambda s, _: torch.serialization.default_restore_location(s, "cpu")
+             ),
+-        )
++        weights_only=True)
+     return state
+ 
+ 
+ def load_to_gpu(path: str) -> Dict[str, Any]:
+     """
+@@ -92,11 +92,11 @@
+         state = torch.load(
+             f,
+             map_location=(
+                 lambda s, _: torch.serialization.default_restore_location(s, "cuda")
+             ),
+-        )
++        weights_only=True)
+     return state
+ 
+ 
+ def is_integer_tensor(tensor: torch.Tensor) -> bool:
+     return (
+--- /Users/anuragagarwal/Desktop/torchfix/examples/translate/pytorch_translate/multi_model.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/translate/pytorch_translate/multi_model.py
+@@ -813,11 +813,11 @@
+         sub_state = torch.load(
+             filename,
+             map_location=lambda s, l: default_restore_location(
+                 s, "cuda:{}".format(cuda_device)
+             ),
+-        )
++        weights_only=True)
+         for name, value in sub_state["model"].items():
+             new_name = None
+             if name.startswith("encoder."):
+                 subname = name[8:]
+                 new_name = f"encoder.encoders.{idx}.{subname}"
+--- /Users/anuragagarwal/Desktop/torchfix/examples/translate/pytorch_translate/utils.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/translate/pytorch_translate/utils.py
+@@ -108,11 +108,11 @@
+                 torch.load(
+                     f,
+                     map_location=lambda s, l: torch.serialization.default_restore_location(
+                         s, "cpu"
+                     ),
+-                )
++                weights_only=True)
+             )
+ 
+     def get_cfg(cp, key):
+         if "cfg" in cp:
+             return cp["cfg"][key]
+Repository: translate

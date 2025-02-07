@@ -1,0 +1,5 @@
+Repository: torchtune
+Total Python lines:    79741
+Total TorchFix errors (TOR***): 12
+Individual TorchFix error counts:
+TOR401: 12

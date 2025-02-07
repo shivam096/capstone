@@ -1,0 +1,9 @@
+Repository: tutorials
+Total Python lines:    50525
+Total TorchFix errors (TOR***): 65
+Individual TorchFix error counts:
+TOR101: 12
+TOR102: 5
+TOR108: 1
+TOR203: 21
+TOR401: 26

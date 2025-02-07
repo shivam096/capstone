@@ -1,0 +1,11 @@
+Repository: audio
+Total Python lines:    93520
+Total TorchFix errors (TOR***): 59
+Individual TorchFix error counts:
+TOR101: 13
+TOR102: 24
+TOR103: 1
+TOR106: 1
+TOR107: 1
+TOR108: 1
+TOR401: 18

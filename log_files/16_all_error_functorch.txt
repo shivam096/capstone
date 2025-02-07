@@ -1,0 +1,101 @@
+Repository: functorch
+Checking root directory only to avoid duplication.
+Finished checking 4 files.
+[*] 1 potentially fixable with the --fix option
+notebooks/colab/jacobians_hessians_colab.py:85:1: TOR103 [*] Import of deprecated function functorch.vmap
+notebooks/colab/jacobians_hessians_colab.py:85:1: TOR103 [*] Import of deprecated function functorch.vjp
+notebooks/colab/jacobians_hessians_colab.py:87:13: TOR101 Use of deprecated function functorch.vjp
+notebooks/colab/jacobians_hessians_colab.py:89:16: TOR101 Use of deprecated function functorch.vmap
+notebooks/colab/jacobians_hessians_colab.py:106:1: TOR103 [*] Import of deprecated function functorch.jacrev
+notebooks/colab/jacobians_hessians_colab.py:108:15: TOR101 Use of deprecated function functorch.jacrev
+notebooks/colab/jacobians_hessians_colab.py:169:30: TOR101 Use of deprecated function functorch.jacrev
+notebooks/colab/jacobians_hessians_colab.py:190:1: TOR103 [*] Import of deprecated function functorch.jacrev
+notebooks/colab/jacobians_hessians_colab.py:190:1: TOR103 [*] Import of deprecated function functorch.jacfwd
+notebooks/colab/jacobians_hessians_colab.py:275:1: TOR103 [*] Import of deprecated function functorch.hessian
+notebooks/colab/jacobians_hessians_colab.py:284:12: TOR101 Use of deprecated function functorch.hessian
+notebooks/colab/jacobians_hessians_colab.py:285:15: TOR101 Use of deprecated function functorch.jacfwd
+notebooks/colab/jacobians_hessians_colab.py:285:22: TOR101 Use of deprecated function functorch.jacfwd
+notebooks/colab/jacobians_hessians_colab.py:322:26: TOR101 Use of deprecated function functorch.vmap
+notebooks/colab/jacobians_hessians_colab.py:322:31: TOR101 Use of deprecated function functorch.jacrev
+notebooks/colab/jacobians_hessians_colab.py:336:19: TOR101 Use of deprecated function functorch.jacrev
+notebooks/colab/jacobians_hessians_colab.py:349:25: TOR101 Use of deprecated function functorch.vmap
+notebooks/colab/jacobians_hessians_colab.py:349:30: TOR101 Use of deprecated function functorch.hessian
+notebooks/colab/jacobians_hessians_colab.py:366:1: TOR103 [*] Import of deprecated function functorch.jvp
+notebooks/colab/jacobians_hessians_colab.py:366:1: TOR103 [*] Import of deprecated function functorch.grad
+notebooks/colab/jacobians_hessians_colab.py:366:1: TOR103 [*] Import of deprecated function functorch.vjp
+notebooks/colab/jacobians_hessians_colab.py:369:10: TOR101 Use of deprecated function functorch.jvp
+notebooks/colab/jacobians_hessians_colab.py:369:14: TOR101 Use of deprecated function functorch.grad
+notebooks/colab/jacobians_hessians_colab.py:392:15: TOR101 Use of deprecated function functorch.vjp
+notebooks/colab/jacobians_hessians_colab.py:392:19: TOR101 Use of deprecated function functorch.grad
+--- /Users/anuragagarwal/Desktop/torchfix/examples/functorch/notebooks/colab/jacobians_hessians_colab.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/functorch/notebooks/colab/jacobians_hessians_colab.py
+@@ -80,11 +80,11 @@
+ # 
+ 
+ # In[ ]:
+ 
+ 
+-from functorch import vmap, vjp
++from torch.func import vmap, vjp
+ 
+ _, vjp_fn = vjp(partial(predict, weight, bias), x)
+ 
+ ft_jacobian, = vmap(vjp_fn)(unit_vectors)
+ 
+@@ -101,11 +101,11 @@
+ # 
+ 
+ # In[ ]:
+ 
+ 
+-from functorch import jacrev
++from torch.func import jacrev
+ 
+ ft_jacobian = jacrev(predict, argnums=2)(weight, bias, x)
+ 
+ # confirm 
+ assert torch.allclose(ft_jacobian, jacobian)
+@@ -185,11 +185,11 @@
+ # 
+ 
+ # In[ ]:
+ 
+ 
+-from functorch import jacrev, jacfwd
++from torch.func import jacrev, jacfwd
+ 
+ 
+ # First, let's benchmark with more inputs than outputs:
+ # 
+ # 
+@@ -270,11 +270,11 @@
+ # 
+ 
+ # In[ ]:
+ 
+ 
+-from functorch import hessian
++from torch.func import hessian
+ 
+ # lets reduce the size in order not to blow out colab. Hessians require significant memory:
+ Din = 512
+ Dout = 32
+ weight = torch.randn(Dout, Din)
+@@ -361,11 +361,11 @@
+ # Composing reverse-mode AD with forward-mode AD (as opposed to reverse-mode with reverse-mode) is generally the more memory efficient way to compute a hvp because forward-mode AD doesn't need to construct an Autograd graph and save intermediates for backward:
+ 
+ # In[ ]:
+ 
+ 
+-from functorch import jvp, grad, vjp
++from torch.func import jvp, grad, vjp
+ 
+ def hvp(f, primals, tangents):
+   return jvp(grad(f), primals, tangents)[1]
+ 
+ 
+notebooks/colab/per_sample_grads_colab.py:148:1: TOR103 Import of deprecated function functorch.vmap
+notebooks/colab/per_sample_grads_colab.py:148:1: TOR103 Import of deprecated function functorch.grad
+notebooks/colab/per_sample_grads_colab.py:195:19: TOR101 Use of deprecated function functorch.grad
+notebooks/colab/per_sample_grads_colab.py:205:26: TOR101 Use of deprecated function functorch.vmap
+Repository: functorch

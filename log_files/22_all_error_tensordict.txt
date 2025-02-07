@@ -1,0 +1,64 @@
+Repository: tensordict
+Checking root directory only to avoid duplication.
+test/test_functorch.py:27:9: TOR103 [*] Import of deprecated function functorch.vmap
+test/test_functorch.py:64:22: TOR101 Use of deprecated function functorch.vmap
+test/test_functorch.py:66:22: TOR101 Use of deprecated function functorch.vmap
+test/test_functorch.py:77:22: TOR101 Use of deprecated function functorch.vmap
+test/test_functorch.py:113:22: TOR101 Use of deprecated function functorch.vmap
+test/test_functorch.py:115:22: TOR101 Use of deprecated function functorch.vmap
+test/test_functorch.py:128:22: TOR101 Use of deprecated function functorch.vmap
+test/test_functorch.py:145:13: TOR101 Use of deprecated function functorch.vmap
+test/test_functorch.py:154:13: TOR101 Use of deprecated function functorch.vmap
+test/test_functorch.py:169:15: TOR101 Use of deprecated function functorch.vmap
+test/test_functorch.py:209:15: TOR101 Use of deprecated function functorch.vmap
+test/test_functorch.py:226:15: TOR101 Use of deprecated function functorch.vmap
+test/test_functorch.py:245:15: TOR101 Use of deprecated function functorch.vmap
+tutorials/sphinx_tuto/data_fashion.py:101:20: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/sphinx_tuto/data_fashion.py:102:19: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/sphinx_tuto/data_fashion.py:104:23: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/sphinx_tuto/data_fashion.py:107:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/sphinx_tuto/tensorclass_fashion.py:103:20: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/sphinx_tuto/tensorclass_fashion.py:104:19: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/sphinx_tuto/tensorclass_fashion.py:106:23: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/sphinx_tuto/tensorclass_fashion.py:109:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/sphinx_tuto/tensorclass_imagenet.py:313:27: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/sphinx_tuto/tensorclass_imagenet.py:318:25: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tensordict/_pytree.py:18:5: TOR103 Import of deprecated function torch.utils._pytree._register_pytree_node
+tensordict/_pytree.py:180:5: TOR101 Use of deprecated function torch.utils._pytree._register_pytree_node
+tensordict/_pytree.py:189:5: TOR101 Use of deprecated function torch.utils._pytree._register_pytree_node
+tensordict/_pytree.py:199:5: TOR101 Use of deprecated function torch.utils._pytree._register_pytree_node
+tensordict/_pytree.py:208:5: TOR101 Use of deprecated function torch.utils._pytree._register_pytree_node
+test/test_nn.py:68:9: TOR103 [*] Import of deprecated function functorch.vmap
+Finished checking 68 files.
+[*] 2 potentially fixable with the --fix option
+--- /Users/anuragagarwal/Desktop/torchfix/examples/tensordict/test/test_functorch.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/tensordict/test/test_functorch.py
+@@ -22,11 +22,11 @@
+     )
+ 
+     try:
+         from torch import vmap
+     except ImportError:
+-        from functorch import vmap  # noqa: TOR103
++        from torch.func import vmap  # noqa: TOR103
+ 
+     _has_functorch = True
+     FUNCTORCH_ERR = ""
+ except ImportError as err:
+     _has_functorch = False
+--- /Users/anuragagarwal/Desktop/torchfix/examples/tensordict/test/test_nn.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/tensordict/test/test_nn.py
+@@ -63,11 +63,11 @@
+     from functorch import make_functional_with_buffers as make_functional_functorch
+ 
+     try:
+         from torch import vmap
+     except ImportError:
+-        from functorch import vmap  # noqa: TOR103
++        from torch.func import vmap  # noqa: TOR103
+ 
+     _has_functorch = True
+     FUNCTORCH_ERR = ""
+ except ImportError as err:
+     _has_functorch = False
+Repository: tensordict

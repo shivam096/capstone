@@ -1,0 +1,583 @@
+Repository: captum
+Checking root directory only to avoid duplication.
+captum/_utils/av.py:84:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tutorials/CIFAR_Captum_Robustness.py:20:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+tutorials/CIFAR_Captum_Robustness.py:106:21: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tutorials/CIFAR_TorchVision_Captum_Insights.py:20:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+tutorials/CIFAR_TorchVision_Captum_Insights.py:73:25: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tutorials/CIFAR_TorchVision_Interpret.py:25:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+tutorials/CIFAR_TorchVision_Interpret.py:117:25: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+captum/influence/_core/influence_function.py:216:37: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+captum/influence/_core/influence_function.py:228:39: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+captum/influence/_core/similarity_influence.py:158:41: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+captum/influence/_core/similarity_influence.py:223:13: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+captum/influence/_core/similarity_influence.py:254:26: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+captum/influence/_core/tracincp.py:175:37: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/concept/test_tcav.py:955:25: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/DLRM_Tutorial.py:108:12: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tutorials/DLRM_Tutorial.py:125:25: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tutorials/DLRM_Tutorial.py:126:14: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tutorials/Distributed_Attribution.py:267:25: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tutorials/Distributed_Attribution.py:271:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/House_Prices_Regression_Interpret.py:228:35: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tutorials/House_Prices_Regression_Interpret.py:134:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/IMDB_TorchText_Interpret.py:114:9: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tutorials/IMDB_TorchText_Interpret.py:245:35: TOR101 Use of deprecated function torch.norm
+captum/insights/attr_vis/attribution_calculation.py:181:16: TOR101 Use of deprecated function torch.norm
+captum/insights/attr_vis/example.py:10:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+captum/insights/attr_vis/example.py:62:25: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tests/influence/_core/test_tracin_self_influence.py:210:25: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/influence/_core/test_tracin_self_influence.py:255:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/influence/_core/test_tracin_self_influence.py:259:26: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/influence/_core/test_tracin_show_progress.py:147:25: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/influence/_core/test_tracin_show_progress.py:181:25: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/utils/test_av.py:244:36: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/utils/test_av.py:248:28: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/utils/test_av.py:259:26: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/utils/test_av.py:275:26: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/utils/test_av.py:284:32: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/utils/test_av.py:299:26: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/utils/test_av.py:324:26: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/utils/test_av.py:335:26: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/utils/test_av.py:339:32: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/utils/test_av.py:348:32: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/utils/test_av.py:453:17: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/utils/test_av.py:477:17: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/utils/test_av.py:501:21: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/utils/test_av.py:526:53: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+captum/_utils/models/linear_model/train.py:227:27: TOR101 Use of deprecated function torch.norm
+captum/concept/_core/tcav.py:178:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+captum/concept/_utils/classifier.py:192:21: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+captum/concept/_utils/data_iterator.py:63:12: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+captum/testing/helpers/influence/common.py:468:27: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/attr/test_dataloader_attr.py:82:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/attr/test_dataloader_attr.py:116:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/attr/test_dataloader_attr.py:148:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/attr/test_dataloader_attr.py:196:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/attr/test_dataloader_attr.py:251:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/attr/test_dataloader_attr.py:290:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/attr/test_dataloader_attr.py:328:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/attr/test_dataloader_attr.py:350:26: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/influence/_core/test_tracin_aggregate_influence.py:58:29: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/influence/_core/test_tracin_aggregate_influence.py:119:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/influence/_core/test_tracin_aggregate_influence.py:123:26: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/influence/_core/test_tracin_intermediate_quantities.py:59:29: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/influence/_core/test_tracin_intermediate_quantities.py:120:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/influence/_core/test_tracin_intermediate_quantities.py:124:26: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/influence/_core/test_tracin_intermediate_quantities.py:224:29: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/influence/_core/test_tracin_intermediate_quantities.py:319:38: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+captum/attr/_core/lime.py:666:24: TOR101 Use of deprecated function torch.norm
+captum/attr/_core/lime.py:515:38: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+captum/metrics/_core/sensitivity.py:293:37: TOR101 Use of deprecated function torch.norm
+captum/metrics/_core/sensitivity.py:314:13: TOR101 Use of deprecated function torch.norm
+tutorials/Image_and_Text_Classification_LIME.py:492:12: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tutorials/Image_and_Text_Classification_LIME.py:434:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/Image_and_Text_Classification_LIME.py:436:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/Image_and_Text_Classification_LIME.py:45:10: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tutorials/Multimodal_VQA_Captum_Insights.py:87:15: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tutorials/Multimodal_VQA_Captum_Insights.py:54:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+tutorials/Multimodal_VQA_Interpret.py:76:15: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tutorials/Multimodal_VQA_Interpret.py:39:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+captum/influence/_utils/common.py:181:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+captum/influence/_utils/common.py:348:26: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/utils/test_linear_model.py:44:24: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/Bert_SQUAD_Interpret.py:215:35: TOR101 Use of deprecated function torch.norm
+tests/influence/_core/test_arnoldi_influence.py:465:29: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/influence/_core/test_arnoldi_influence.py:473:31: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/influence/_core/test_arnoldi_influence.py:207:24: TOR101 Use of deprecated function torch.norm
+tests/influence/_core/test_arnoldi_influence.py:224:47: TOR101 Use of deprecated function torch.norm
+tests/influence/_core/test_dataloader.py:109:17: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/influence/_core/test_naive_influence.py:154:29: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/influence/_core/test_naive_influence.py:162:31: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/insights/test_contribution.py:165:35: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tests/insights/test_contribution.py:209:35: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/Resnet_TorchVision_Ablation.py:49:10: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tutorials/Segmentation_Interpret.py:35:7: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tutorials/TCAV_Image.py:171:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tutorials/TCAV_NLP.py:245:9: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+captum/concept/_core/cav.py:193:29: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tests/robust/test_PGD.py:116:16: TOR101 Use of deprecated function torch.norm
+tests/robust/test_PGD.py:185:16: TOR101 Use of deprecated function torch.norm
+tutorials/Titanic_Basic_Interpret.py:135:25: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tutorials/TorchVision_Interpret.py:46:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tutorials/TorchVision_Interpret.py:248:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tutorials/TracInCP_Tutorial.py:253:15: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tutorials/TracInCP_Tutorial.py:228:28: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/TracInCP_Tutorial.py:228:87: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/TracInCP_Tutorial.py:532:30: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/TracInCP_Tutorial.py:609:28: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/TracInCP_Tutorial.py:609:91: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/TracInCP_Tutorial.py:47:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+Finished checking 203 files.
+[*] 21 potentially fixable with the --fix option
+--- /Users/anuragagarwal/Desktop/torchfix/examples/captum/captum/_utils/av.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/captum/captum/_utils/av.py
+@@ -79,11 +79,11 @@
+             self.files = AV.sort_files(files)
+ 
+         def __getitem__(self, idx: int) -> Union[Tensor, Tuple[Tensor, ...]]:
+             assert idx < len(self.files), "Layer index is out of bounds!"
+             fl = self.files[idx]
+-            av = torch.load(fl)
++            av = torch.load(fl, weights_only=True)
+             return av
+ 
+         def __len__(self) -> int:
+             return len(self.files)
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/captum/captum/concept/_core/cav.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/captum/captum/concept/_core/cav.py
+@@ -188,11 +188,11 @@
+             else:
+                 # safe globals not in existence in this version of torch yet. Use a
+                 # dummy context manager instead
+                 ctx = nullcontext()
+             with ctx:
+-                save_dict = torch.load(cavs_path)
++                save_dict = torch.load(cavs_path, weights_only=True)
+ 
+             concept_names = save_dict["concept_names"]
+             concept_ids = save_dict["concept_ids"]
+             concepts = [
+                 Concept(concept_id, concept_name, None)
+--- /Users/anuragagarwal/Desktop/torchfix/examples/captum/captum/insights/attr_vis/example.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/captum/captum/insights/attr_vis/example.py
+@@ -5,11 +5,11 @@
+ from typing import List
+ 
+ import torch
+ import torch.nn as nn
+ import torchvision
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ from captum.insights import AttributionVisualizer, Batch
+ 
+ from captum.insights.attr_vis.features import ImageFeature
+ 
+ 
+@@ -57,11 +57,11 @@
+ def get_pretrained_model() -> Net:
+     net = Net()
+     pt_path = os.path.abspath(
+         os.path.join(os.path.dirname(__file__), "models/cifar_torchvision.pt")
+     )
+-    net.load_state_dict(torch.load(pt_path))
++    net.load_state_dict(torch.load(pt_path, weights_only=True))
+     return net
+ 
+ 
+ # pyre-fixme[3]: Return type must be annotated.
+ # pyre-fixme[2]: Parameter must be annotated.
+--- /Users/anuragagarwal/Desktop/torchfix/examples/captum/captum/influence/_utils/common.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/captum/captum/influence/_utils/common.py
+@@ -176,11 +176,11 @@
+         path (str): The filepath to the checkpoint
+ 
+     The module state_dict is modified in-place, and the learning rate is returned.
+     """
+ 
+-    checkpoint = torch.load(path)
++    checkpoint = torch.load(path, weights_only=True)
+ 
+     learning_rate = checkpoint.get("learning_rate", 1.0)
+     # can get learning rate from optimizer state_dict?
+ 
+     if "module." in next(iter(checkpoint)):
+--- /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/CIFAR_Captum_Robustness.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/CIFAR_Captum_Robustness.py
+@@ -15,11 +15,11 @@
+ import matplotlib.pyplot as plt
+ import numpy as np
+ 
+ import torch
+ import torchvision
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ import torchvision.transforms.functional as TF
+ 
+ from captum.robust import FGSM
+ from captum.robust import PGD
+ 
+@@ -101,11 +101,11 @@
+ # To save training time, we will load the pretrained weights from `models/cifar_torchvision.pt` instead of training the model from scratch. You may also train your own CIFAR model.
+ 
+ # In[6]:
+ 
+ 
+-net.load_state_dict(torch.load('models/cifar_torchvision.pt'))
++net.load_state_dict(torch.load('models/cifar_torchvision.pt', weights_only=True))
+ 
+ 
+ # Now we are ready for the central part of this tutorial - generating adversarial examples with FGSM and PGD from Captum and then applying robustness metrics to better understand model vulnerabilities and the decision boundary. 
+ # 
+ # We will pick one image from the test set to use as an example and generate a perturbed image (adversarial example) that is very similar to the original image but causes the model to make a false prediction.
+--- /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/CIFAR_TorchVision_Captum_Insights.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/CIFAR_TorchVision_Captum_Insights.py
+@@ -15,11 +15,11 @@
+ import os
+ 
+ import torch
+ import torch.nn as nn
+ import torchvision
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ from captum.insights import AttributionVisualizer, Batch
+ from captum.insights.attr_vis.features import ImageFeature
+ 
+ 
+@@ -68,11 +68,11 @@
+             x = self.relu4(self.fc2(x))
+             x = self.fc3(x)
+             return x
+ 
+     net = Net()
+-    net.load_state_dict(torch.load("models/cifar_torchvision.pt"))
++    net.load_state_dict(torch.load("models/cifar_torchvision.pt", weights_only=True))
+     return net
+ 
+ 
+ def baseline_func(input):
+     return input * 0
+--- /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/CIFAR_TorchVision_Interpret.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/CIFAR_TorchVision_Interpret.py
+@@ -20,11 +20,11 @@
+ 
+ get_ipython().run_line_magic('matplotlib', 'inline')
+ 
+ import torch
+ import torchvision
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ import torchvision.transforms.functional as TF
+ 
+ from torchvision import models
+ 
+ from captum.attr import IntegratedGradients
+@@ -112,11 +112,11 @@
+ 
+ USE_PRETRAINED_MODEL = True
+ 
+ if USE_PRETRAINED_MODEL:
+     print("Using existing trained model")
+-    net.load_state_dict(torch.load('models/cifar_torchvision.pt'))
++    net.load_state_dict(torch.load('models/cifar_torchvision.pt', weights_only=True))
+ else:
+     for epoch in range(5):  # loop over the dataset multiple times
+ 
+         running_loss = 0.0
+         for i, data in enumerate(trainloader, 0):
+--- /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/DLRM_Tutorial.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/DLRM_Tutorial.py
+@@ -103,11 +103,11 @@
+ 
+ # In[7]:
+ 
+ 
+ model_path = 'models/kg.pt'
+-ld_model = torch.load(model_path)
++ld_model = torch.load(model_path, weights_only=True)
+ 
+ dlrm.load_state_dict(ld_model["state_dict"])
+ dlrm = dlrm.to(device)
+ 
+ 
+@@ -120,12 +120,12 @@
+ # 
+ 
+ # In[8]:
+ 
+ 
+-S_T_Z_test_above_0999 = torch.load('data/dlrm/X_S_T_test_above_0999')
+-S_T_Z_test = torch.load('data/dlrm/X_S_T_test')
++S_T_Z_test_above_0999 = torch.load('data/dlrm/X_S_T_test_above_0999', weights_only=True)
++S_T_Z_test = torch.load('data/dlrm/X_S_T_test', weights_only=True)
+ 
+ 
+ # Re-defining forwad pass for the DLRM model so that it accepts sparse embeddings instead of feature indices and offsets. This is done this way because `apply_emb` cannot be easily replaced by model hooks. https://github.com/facebookresearch/dlrm/blob/52b77f80a24303294a02c86b574529cdc420aac5/dlrm_s_pytorch.py#L276 
+ 
+ # In[9]:
+--- /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/Distributed_Attribution.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/Distributed_Attribution.py
+@@ -262,11 +262,11 @@
+     # Load Dataset
+     dataset = load_dataset()
+     
+     # Create TitanicSimpleNNModel and load saved weights.
+     net = TitanicSimpleNNModel()
+-    net.load_state_dict(torch.load('models/titanic_model.pt'))
++    net.load_state_dict(torch.load('models/titanic_model.pt', weights_only=True))
+     
+     # Create sampler which divides dataset among processes.
+     sampler = DistributedSampler(dataset,num_replicas=size, rank=rank, shuffle=False)
+     loader = DataLoader(dataset, batch_size=50, sampler=sampler)
+     
+--- /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/House_Prices_Regression_Interpret.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/House_Prices_Regression_Interpret.py
+@@ -223,11 +223,11 @@
+ 
+ def train_load_save_model(model_obj, model_path):
+     if path.isfile(model_path):
+         # load model
+         print('Loading pre-trained model from: {}'.format(model_path))
+-        model_obj.load_state_dict(torch.load(model_path))
++        model_obj.load_state_dict(torch.load(model_path, weights_only=True))
+     else:    
+         # train model
+         train(model_obj)
+         print('Finished training the model. Saving the model to the path: {}'.format(model_path))
+         torch.save(model_obj.state_dict(), model_path)
+--- /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/IMDB_TorchText_Interpret.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/IMDB_TorchText_Interpret.py
+@@ -109,11 +109,11 @@
+ # The model can be downloaded here: https://github.com/pytorch/captum/blob/master/tutorials/models/imdb-model-cnn-large.pt
+ 
+ # In[ ]:
+ 
+ 
+-model = torch.load('models/imdb-model-cnn-large.pt')
++model = torch.load('models/imdb-model-cnn-large.pt', weights_only=True)
+ model.eval()
+ model = model.to(device)
+ 
+ 
+ # Forward function that supports sigmoid
+--- /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/Image_and_Text_Classification_LIME.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/Image_and_Text_Classification_LIME.py
+@@ -31,20 +31,21 @@
+ import torchvision.transforms as T
+ from captum.attr._core.lime import get_exp_kernel_similarity_function
+ 
+ from PIL import Image
+ import matplotlib.pyplot as plt
++from torchvision import models
+ 
+ 
+ # ### 1.1 Load the model and dataset
+ 
+ # We can directly load the pretrained Resnet from torchvision and set it to evaluation mode as our target image classifier to inspect. 
+ 
+ # In[3]:
+ 
+ 
+-resnet = resnet18(pretrained=True)
++resnet = resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1)
+ resnet = resnet.eval()
+ 
+ 
+ # This model predicts ImageNet-1k labels for given sample images. To better present the results, we also load the mapping of label index and text.
+ 
+@@ -487,11 +488,11 @@
+         print('-' * 59)
+     
+     torch.save(model, CHECKPOINT)
+     return model
+         
+-eb_model = torch.load(CHECKPOINT) if USE_PRETRAINED else train_model(train_loader, val_loader)
++eb_model = torch.load(CHECKPOINT, weights_only=True) if USE_PRETRAINED else train_model(train_loader, val_loader)
+ 
+ 
+ # Now, let us take the following sports news and test how our model performs.
+ 
+ # In[26]:
+--- /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/Multimodal_VQA_Captum_Insights.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/Multimodal_VQA_Captum_Insights.py
+@@ -49,11 +49,11 @@
+ from matplotlib.colors import LinearSegmentedColormap
+ from PIL import Image
+ 
+ import torch
+ import torchvision
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ import torch.nn.functional as F
+ 
+ try:
+     import resnet  # from pytorch-resnet
+ except:
+@@ -82,11 +82,11 @@
+ # Let's load the VQA model (again, please refer to the [model interpretation tutorial on VQA](https://captum.ai/tutorials/Multimodal_VQA_Interpret) if you want details)
+ 
+ # In[4]:
+ 
+ 
+-saved_state = torch.load(VQA_MODEL_PATH, map_location=device)
++saved_state = torch.load(VQA_MODEL_PATH, map_location=device, weights_only=True)
+ 
+ # reading vocabulary from saved model
+ vocab = saved_state["vocab"]
+ 
+ # reading word tokens from saved model
+--- /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/Multimodal_VQA_Interpret.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/Multimodal_VQA_Interpret.py
+@@ -34,11 +34,11 @@
+ import threading
+ import numpy as np
+ 
+ import torch
+ import torchvision
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ import torch.nn.functional as F
+ 
+ import resnet  # from pytorch-resnet
+ 
+ import matplotlib.pyplot as plt
+@@ -71,11 +71,11 @@
+ # https://github.com/Cyanogenoid/pytorch-vqa/releases/download/v1.0/2017-08-04_00.55.19.pth
+ 
+ # In[ ]:
+ 
+ 
+-saved_state = torch.load('models/2017-08-04_00.55.19.pth', map_location=device)
++saved_state = torch.load('models/2017-08-04_00.55.19.pth', map_location=device, weights_only=True)
+ 
+ # reading vocabulary from saved model
+ vocab = saved_state['vocab']
+ 
+ # reading word tokens from saved model
+--- /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/Resnet_TorchVision_Ablation.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/Resnet_TorchVision_Ablation.py
+@@ -44,11 +44,11 @@
+ # This model will serve as a classifier into the ImageNet-1k categories.
+ 
+ # In[2]:
+ 
+ 
+-resnet = models.resnet18(pretrained=True)
++resnet = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1)
+ resnet = resnet.eval()
+ 
+ 
+ # A straightforward way to demonstrate feature ablation on images is to ablate semantic image areas.
+ # 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/Segmentation_Interpret.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/Segmentation_Interpret.py
+@@ -30,11 +30,11 @@
+ # We can now load the pre-trained segmentation model from torchvision, which is trained on a subset of COCO Train 2017 and define input preprocessing transforms.
+ 
+ # In[2]:
+ 
+ 
+-fcn = models.segmentation.fcn_resnet101(pretrained=True).to(device).eval()
++fcn = models.segmentation.fcn_resnet101(weights=models.segmentation.FCN_ResNet101_Weights.COCO_WITH_VOC_LABELS_V1).to(device).eval()
+ 
+ 
+ # In[3]:
+ 
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/TCAV_Image.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/TCAV_Image.py
+@@ -36,11 +36,11 @@
+ # ..........torch imports............
+ import torch
+ import torchvision
+ 
+ from torch.utils.data import IterableDataset, DataLoader
+-from torchvision import transforms
++from torchvision import models, transforms
+ 
+ #.... Captum imports..................
+ from captum.attr import LayerGradientXActivation, LayerIntegratedGradients
+ 
+ from captum.concept import TCAV
+@@ -166,11 +166,11 @@
+ # For this tutorial, we will load GoogleNet model and set in eval mode.
+ 
+ # In[7]:
+ 
+ 
+-model = torchvision.models.googlenet(pretrained=True)
++model = torchvision.models.googlenet(weights=models.GoogLeNet_Weights.IMAGENET1K_V1)
+ model = model.eval()
+ 
+ 
+ # # Computing TCAV Scores
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/TCAV_NLP.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/TCAV_NLP.py
+@@ -240,11 +240,11 @@
+ 
+ 
+ # In[13]:
+ 
+ 
+-model = torch.load('models/imdb-model-cnn-large.pt')
++model = torch.load('models/imdb-model-cnn-large.pt', weights_only=True)
+ model.eval()
+ 
+ 
+ # # Computing TCAV Scores
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/Titanic_Basic_Interpret.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/Titanic_Basic_Interpret.py
+@@ -130,11 +130,11 @@
+ 
+ net = TitanicSimpleNNModel()
+ USE_PRETRAINED_MODEL = True
+ 
+ if USE_PRETRAINED_MODEL:
+-    net.load_state_dict(torch.load('models/titanic_model.pt'))
++    net.load_state_dict(torch.load('models/titanic_model.pt', weights_only=True))
+     print("Model Loaded!")
+     input_tensor = torch.from_numpy(train_features).type(torch.FloatTensor)
+     label_tensor = torch.from_numpy(train_labels)
+ else:
+     criterion = nn.CrossEntropyLoss()
+--- /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/TorchVision_Interpret.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/TorchVision_Interpret.py
+@@ -41,11 +41,11 @@
+ # Loads pretrained Resnet model and sets it to eval mode
+ 
+ # In[4]:
+ 
+ 
+-model = models.resnet18(pretrained=True)
++model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1)
+ model = model.eval()
+ 
+ 
+ # Downloads the list of classes/labels for ImageNet dataset and reads them into the memory
+ 
+@@ -243,11 +243,11 @@
+ # Note: We use the VGG16 model instead here since the default rules for LRP are not fine-tuned for ResNet currently.
+ 
+ # In[22]:
+ 
+ 
+-model = models.vgg16(pretrained=True)
++model = models.vgg16(weights=models.VGG16_Weights.IMAGENET1K_V1)
+ model.eval()
+ lrp = LRP(model)
+ 
+ attributions_lrp = lrp.attribute(input, 
+                                 target=pred_label_idx)
+--- /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/TracInCP_Tutorial.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/captum/tutorials/TracInCP_Tutorial.py
+@@ -42,11 +42,11 @@
+ import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+ import torch.optim as optim
+ import torchvision
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ from captum.influence import TracInCP, TracInCPFast, TracInCPFastRandProj
+ from sklearn.metrics import auc, roc_curve
+ from torch.utils.data import DataLoader, Dataset, Subset
+ 
+ 
+@@ -248,11 +248,11 @@
+ 
+ # In[11]:
+ 
+ 
+ def checkpoints_load_func(net, path):
+-    weights = torch.load(path)
++    weights = torch.load(path, weights_only=True)
+     net.load_state_dict(weights["model_state_dict"])
+     return 1.
+ 
+ 
+ # We first load `net` with the last checkpoint so that the predictions we make in the next cell will be for the trained model.  We save this last checkpoint as `correct_dataset_final_checkpoint`, because it turns out we will re-use this checkpoint later on.
+Repository: captum

@@ -1,0 +1,9 @@
+Repository: xla
+Total Python lines:    87628
+Total TorchFix errors (TOR***): 41
+Individual TorchFix error counts:
+TOR101: 8
+TOR102: 14
+TOR203: 7
+TOR401: 9
+TOR901: 3

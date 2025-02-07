@@ -1,0 +1,9 @@
+Repository: ignite
+Total Python lines:    81963
+Total TorchFix errors (TOR***): 76
+Individual TorchFix error counts:
+TOR101: 3
+TOR102: 33
+TOR201: 4
+TOR203: 4
+TOR401: 32

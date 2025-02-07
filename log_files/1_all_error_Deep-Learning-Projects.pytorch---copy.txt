@@ -1,0 +1,117 @@
+Repository: Deep-Learning-Projects.pytorch---copy
+Checking root directory only to avoid duplication.
+5-Captcha-Text-Recognition-With-CRNN.py:181:10: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+6-Image-Segmentation-with-UNet.py:350:24: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+6-Image-Segmentation-with-UNet.py:264:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+6-Image-Segmentation-with-UNet.py:293:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+6-Image-Segmentation-with-UNet.py:358:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+1-Multi-Class-Image-Classification-Fashion-MNIST.py:465:23: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+2-Multi-Class-Word-Language-Classification.py:516:23: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+3-Baby-Name-Generation.py:519:23: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+4-Neural-Style-Transfer.py:128:7: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+Finished checking 6 files.
+[*] 6 potentially fixable with the --fix option
+--- /Users/anuragagarwal/Desktop/torchfix/examples/Deep-Learning-Projects.pytorch---copy/5-Captcha-Text-Recognition-With-CRNN.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/Deep-Learning-Projects.pytorch---copy/5-Captcha-Text-Recognition-With-CRNN.py
+@@ -19,11 +19,11 @@
+ import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+ import torch.optim as optim
+ from torch.utils.data import Dataset, DataLoader
+-from torchvision import transforms
++from torchvision import models, transforms
+ from torchvision.models import resnet18
+ 
+ import string
+ from tqdm.notebook import tqdm
+ import cv2
+@@ -176,11 +176,11 @@
+ 
+ 
+ # In[16]:
+ 
+ 
+-resnet = resnet18(pretrained=True)
++resnet = resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1)
+ #print(resnet)
+ 
+ 
+ # In[17]:
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/Deep-Learning-Projects.pytorch---copy/6-Image-Segmentation-with-UNet.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/Deep-Learning-Projects.pytorch---copy/6-Image-Segmentation-with-UNet.py
+@@ -345,11 +345,11 @@
+ # In[26]:
+ 
+ 
+ model_path = "/kaggle/working/U-Net.pth"
+ model_ = UNet(num_classes=num_classes).to(device)
+-model_.load_state_dict(torch.load(model_path))
++model_.load_state_dict(torch.load(model_path, weights_only=True))
+ 
+ 
+ # In[27]:
+ 
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/Deep-Learning-Projects.pytorch---copy/1-Multi-Class-Image-Classification-Fashion-MNIST.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/Deep-Learning-Projects.pytorch---copy/1-Multi-Class-Image-Classification-Fashion-MNIST.py
+@@ -460,11 +460,11 @@
+ 
+ 
+ path = os.path.join("storage", "models", "fashion-mnist", "classifier.pth")
+ model = Model()
+ model = nn.DataParallel(model)
+-model.load_state_dict(torch.load(path))
++model.load_state_dict(torch.load(path, weights_only=True))
+ #model = model.to("cpu")
+ 
+ 
+ # In[36]:
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/Deep-Learning-Projects.pytorch---copy/2-Multi-Class-Word-Language-Classification.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/Deep-Learning-Projects.pytorch---copy/2-Multi-Class-Word-Language-Classification.py
+@@ -511,11 +511,11 @@
+ 
+ 
+ path = os.path.join("storage", "models", "language-words", "classifier.pth")
+ model = Model(input_size=num_chars, output_size=num_langs, hidden_size=hidden_size, num_layers=num_layers)
+ model = nn.DataParallel(model)
+-model.load_state_dict(torch.load(path))
++model.load_state_dict(torch.load(path, weights_only=True))
+ #model = model.to("cpu")
+ 
+ 
+ # In[242]:
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/Deep-Learning-Projects.pytorch---copy/3-Baby-Name-Generation.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/Deep-Learning-Projects.pytorch---copy/3-Baby-Name-Generation.py
+@@ -514,11 +514,11 @@
+ 
+ 
+ path = os.path.join("models", "language-words", "classifier.pth")
+ model = Model(input_size=num_chars, hidden_size=hidden_size, output_size=output_size, num_layers=num_layers)
+ model = nn.DataParallel(model)
+-model.load_state_dict(torch.load(path))
++model.load_state_dict(torch.load(path, weights_only=True))
+ 
+ 
+ # In[48]:
+ 
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/Deep-Learning-Projects.pytorch---copy/4-Neural-Style-Transfer.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/Deep-Learning-Projects.pytorch---copy/4-Neural-Style-Transfer.py
+@@ -123,11 +123,11 @@
+ # ## 2. Load model
+ 
+ # In[9]:
+ 
+ 
+-vgg = models.vgg19(pretrained=True)
++vgg = models.vgg19(weights=models.VGG19_Weights.IMAGENET1K_V1)
+ 
+ 
+ # In[10]:
+ 
+ 
+Repository: Deep-Learning-Projects.pytorch---copy

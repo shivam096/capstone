@@ -1,0 +1,117 @@
+Repository: torchsnapshot
+Checking root directory only to avoid duplication.
+tests/test_gcs_storage_plugin.py:106:14: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+benchmarks/fsdp/main.py:129:35: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+benchmarks/load_tensor/main.py:76:22: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tests/test_s3_storage_plugin.py:86:14: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tests/test_fs_storage_plugin.py:55:14: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchsnapshot/io_preparers/object.py:91:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchsnapshot/serialization.py:275:12: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+Finished checking 73 files.
+[*] 7 potentially fixable with the --fix option
+--- /Users/anuragagarwal/Desktop/torchfix/examples/torchsnapshot/benchmarks/fsdp/main.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/torchsnapshot/benchmarks/fsdp/main.py
+@@ -124,11 +124,11 @@
+     )
+ 
+     if benchmark_load:
+         begin_ts = time.monotonic()
+         with FSDP.state_dict_type(model, StateDictType.LOCAL_STATE_DICT):
+-            model.load_state_dict(torch.load(save_file))
++            model.load_state_dict(torch.load(save_file, weights_only=True))
+         dist.barrier()
+         end_ts = time.monotonic()
+         rank_0_print(
+             f"Completed loading with torch.save.\n"
+             f"Took {end_ts - begin_ts:.2f} seconds."
+--- /Users/anuragagarwal/Desktop/torchfix/examples/torchsnapshot/benchmarks/load_tensor/main.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/torchsnapshot/benchmarks/load_tensor/main.py
+@@ -71,11 +71,11 @@
+     ts_begin = time.monotonic()
+     rss_deltas = []
+     logger.info("Loading the tensor with torch.load()...")
+     with measure_rss_deltas(rss_deltas=rss_deltas):
+         with fsspec.open(path, "rb") as f:
+-            loaded = torch.load(f, map_location="cpu")
++            loaded = torch.load(f, map_location="cpu", weights_only=True)
+         gpu_tensor.copy_(loaded)
+ 
+     logger.info(
+         f"Took {time.monotonic() - ts_begin:.2f}. "
+         f"Peak RSS delta: {max(rss_deltas) // 1024**2}MB"
+--- /Users/anuragagarwal/Desktop/torchfix/examples/torchsnapshot/tests/test_fs_storage_plugin.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/torchsnapshot/tests/test_fs_storage_plugin.py
+@@ -50,11 +50,11 @@
+ 
+     await plugin.write(write_io=write_io)
+ 
+     read_io = ReadIO(path="tensor")
+     await plugin.read(read_io=read_io)
+-    loaded = torch.load(read_io.buf)
++    loaded = torch.load(read_io.buf, weights_only=True)
+     assert torch.allclose(tensor, loaded)
+ 
+     await plugin.delete(path="tensor")
+     await plugin.close()
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/torchsnapshot/tests/test_s3_storage_plugin.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/torchsnapshot/tests/test_s3_storage_plugin.py
+@@ -81,11 +81,11 @@
+ 
+     await plugin.write(write_io=write_io)
+ 
+     read_io = ReadIO(path="tensor")
+     await plugin.read(read_io=read_io)
+-    loaded = torch.load(read_io.buf)
++    loaded = torch.load(read_io.buf, weights_only=True)
+     assert torch.allclose(tensor, loaded)
+ 
+     await plugin.delete(path="tensor")
+     await plugin.close()
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/torchsnapshot/tests/test_gcs_storage_plugin.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/torchsnapshot/tests/test_gcs_storage_plugin.py
+@@ -101,11 +101,11 @@
+     write_io = WriteIO(path="tensor", buf=memoryview(buf.getvalue()))
+     await plugin.write(write_io=write_io)
+ 
+     read_io = ReadIO(path="tensor")
+     await plugin.read(read_io=read_io)
+-    loaded = torch.load(read_io.buf)
++    loaded = torch.load(read_io.buf, weights_only=True)
+     assert torch.allclose(tensor, loaded)
+ 
+     # TODO: bring this back
+     # await plugin.delete(path="tensor")
+     await plugin.close()
+--- /Users/anuragagarwal/Desktop/torchfix/examples/torchsnapshot/torchsnapshot/io_preparers/object.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/torchsnapshot/torchsnapshot/io_preparers/object.py
+@@ -86,11 +86,11 @@
+ 
+     async def consume_buffer(
+         self, buf: bytes, executor: Optional[Executor] = None
+     ) -> None:
+         map_location = None if torch.cuda.is_available() else torch.device("cpu")
+-        obj: T = torch.load(io.BytesIO(buf), map_location=map_location)
++        obj: T = torch.load(io.BytesIO(buf), map_location=map_location, weights_only=True)
+         self.fut.obj = obj
+ 
+     def get_consuming_cost_bytes(self) -> int:
+         return sys.getsizeof(self.fut.obj)
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/torchsnapshot/torchsnapshot/serialization.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/torchsnapshot/torchsnapshot/serialization.py
+@@ -270,11 +270,11 @@
+     torch.save(tensor, buf)
+     return buf.getvalue()
+ 
+ 
+ def torch_load_from_bytes(buf: bytes) -> torch.Tensor:
+-    return torch.load(io.BytesIO(buf))
++    return torch.load(io.BytesIO(buf), weights_only=True)
+ 
+ 
+ def per_tensor_qtensor_as_bytes(tensor: torch.Tensor) -> bytes:
+     """
+     Serialize a per-tensor quantized tensor.
+Repository: torchsnapshot

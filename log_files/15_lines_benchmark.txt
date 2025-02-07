@@ -1,0 +1,11 @@
+Repository: benchmark
+Total Python lines:   112594
+Total TorchFix errors (TOR***): 170
+Individual TorchFix error counts:
+TOR101: 59
+TOR102: 63
+TOR103: 6
+TOR106: 4
+TOR201: 1
+TOR203: 12
+TOR401: 25

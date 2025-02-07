@@ -1,0 +1,5 @@
+Repository: torchrec
+Total Python lines:   144383
+Total TorchFix errors (TOR***): 7
+Individual TorchFix error counts:
+TOR401: 7

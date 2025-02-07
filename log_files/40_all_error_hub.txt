@@ -1,0 +1,4 @@
+Repository: hub
+Checking root directory only to avoid duplication.
+Finished checking 2 files.
+Repository: hub

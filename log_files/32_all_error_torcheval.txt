@@ -1,0 +1,6 @@
+Repository: torcheval
+Checking root directory only to avoid duplication.
+examples/distributed_example.py:65:12: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/simple_example.py:40:12: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+Finished checking 193 files.
+Repository: torcheval

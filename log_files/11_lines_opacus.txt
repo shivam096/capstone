@@ -1,0 +1,10 @@
+Repository: opacus
+Total Python lines:    25274
+Total TorchFix errors (TOR***): 48
+Individual TorchFix error counts:
+TOR101: 7
+TOR102: 3
+TOR105: 1
+TOR201: 1
+TOR203: 3
+TOR401: 33

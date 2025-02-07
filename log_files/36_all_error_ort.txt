@@ -1,0 +1,74 @@
+Repository: ort
+Checking root directory only to avoid duplication.
+torch_ort_inference/demos/resnet_image_classification.py:146:13: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+torch_ort_inference/demos/resnet_image_classification.py:13:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+torch_ort/tests/bert_for_sequence_classification.py:291:24: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torch_ort/tests/bert_for_sequence_classification.py:296:29: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+ort_moe/ort_moe/loss_functions.py:30:22: TOR101 Use of deprecated function torch.norm
+ort_moe/ort_moe/loss_functions.py:30:42: TOR101 Use of deprecated function torch.norm
+ort_moe/ort_moe/moe.py:278:40: TOR003 [*] Please pass `use_reentrant` explicitly to `checkpoint`. To maintain old behavior, pass `use_reentrant=True`. It is recommended to use `use_reentrant=False`.
+ort_moe/ort_moe/topKgate.py:27:1: TOR103 Import of deprecated function torch.cuda.amp.autocast
+ort_moe/ort_moe/topKgate.py:332:14: TOR101 [*] Use of deprecated function torch.cuda.amp.autocast
+ort_moe/tests/topKgate_old.py:215:24: TOR101 Use of deprecated function torch.norm
+ort_moe/tests/topKgate_old.py:215:44: TOR101 Use of deprecated function torch.norm
+Finished checking 42 files.
+[*] 3 potentially fixable with the --fix option
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ort/torch_ort_inference/demos/resnet_image_classification.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ort/torch_ort_inference/demos/resnet_image_classification.py
+@@ -8,11 +8,11 @@
+ import torch
+ import wget
+ import argparse
+ from PIL import Image
+ from torchvision import transforms
+-import torchvision.models as models
++from torchvision import models
+ from torch_ort import ORTInferenceModule, OpenVINOProviderOptions
+ 
+ ov_backend_precisions = {"CPU": ["FP32"], "GPU": ["FP32", "FP16"], "MYRIAD": ["FP16"]}
+ inference_execution_providers = ["openvino"]
+ 
+@@ -141,11 +141,11 @@
+     img_trans = preprocess(img)
+     # Adding batch dimension (size 1)
+     img_trans = torch.unsqueeze(img_trans, 0)
+ 
+     # 3. Download and load the model
+-    model = models.resnet50(pretrained=True)
++    model = models.resnet50(weights=models.ResNet50_Weights.IMAGENET1K_V1)
+     if not args.pytorch_only:
+         if args.provider == "openvino" and (args.backend and args.precision):
+             provider_options = OpenVINOProviderOptions(
+                 backend=args.backend, precision=args.precision
+             )
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ort/ort_moe/ort_moe/moe.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ort/ort_moe/ort_moe/moe.py
+@@ -273,11 +273,11 @@
+         if not self.is_mergedFFNExpert:
+             chunks = dispatched_input.chunk(self.num_experts, dim=1)
+             expert_outputs = []
+             for chunk, expert, e in zip(chunks, self.moe_experts, range(self.num_experts)):
+                 if self._options.checkpoint_experts() is True:
+-                    expert_outputs += [checkpoint.checkpoint(expert, chunk)]
++                    expert_outputs += [checkpoint.checkpoint(expert, chunk, use_reentrant=False)]
+                 elif self._options.enable_expert_weight_calculation_optimization() is True:
+                     # Only process input chunk for the selected experts. The input chunk is padded upto the capacity factor
+                     z = torch.min(dispatch_mask[e], dim=0)
+                     truncated_chunk = None
+                     if z.values == -1:
+--- /Users/anuragagarwal/Desktop/torchfix/examples/ort/ort_moe/ort_moe/topKgate.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/ort/ort_moe/ort_moe/topKgate.py
+@@ -327,11 +327,11 @@
+         In topokgate, we cast several tensors to float32 to ensure better quality.
+         However, if a module' forward (which contain topkgate) is wrapped by autocast(),
+         tensors may be casted to other types automatically for some computation.
+         For the quality reason, we disable autocast() for the topkgate
+         """
+-        with autocast(enabled=False):
++        with torch.amp.autocast("cuda", enabled=False):
+             if self.options.fp16_mode() is True:
+                 input = input.to(torch.float32)
+                 self.wg = self.wg.to(torch.float32)
+             if self.training and self.k == 1:
+                 if self.switch_jitter > 0:
+Repository: ort

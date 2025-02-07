@@ -1,0 +1,5 @@
+Repository: pytorch-seq2seq
+Total Python lines:     2750
+Total TorchFix errors (TOR***): 4
+Individual TorchFix error counts:
+TOR102: 4

@@ -1,0 +1,9 @@
+Repository: vision
+Total Python lines:   110573
+Total TorchFix errors (TOR***): 38
+Individual TorchFix error counts:
+TOR101: 18
+TOR202: 6
+TOR203: 6
+TOR401: 7
+TOR901: 1

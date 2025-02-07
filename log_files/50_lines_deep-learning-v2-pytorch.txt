@@ -1,0 +1,8 @@
+Repository: deep-learning-v2-pytorch
+Total Python lines:    29816
+Total TorchFix errors (TOR***): 47
+Individual TorchFix error counts:
+TOR102: 6
+TOR201: 6
+TOR203: 17
+TOR401: 18

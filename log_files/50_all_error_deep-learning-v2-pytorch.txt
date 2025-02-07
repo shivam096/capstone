@@ -1,0 +1,501 @@
+Repository: deep-learning-v2-pytorch
+Checking root directory only to avoid duplication.
+gan-mnist/MNIST_GAN_Solution.py:40:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+intro-to-pytorch/Part 8 - Transfer Learning (Solution).py:63:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+intro-to-pytorch/Part 8 - Transfer Learning (Solution).py:151:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+intro-to-pytorch/Part 8 - Transfer Learning (Solution).py:54:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+intro-to-pytorch/Part 8 - Transfer Learning (Solution).py:55:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+cycle-gan/CycleGAN_Solution.py:52:1: TOR203 [*] Consider replacing 'import torchvision.datasets as datasets' with 'from torchvision import datasets'.
+cycle-gan/CycleGAN_Solution.py:53:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+convolutional-neural-networks/mnist-mlp/mnist_mlp_exercise.py:48:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+convolutional-neural-networks/mnist-mlp/mnist_mlp_solution.py:48:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+convolutional-neural-networks/mnist-mlp/mnist_mlp_solution_with_validation.py:277:23: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+convolutional-neural-networks/mnist-mlp/mnist_mlp_solution_with_validation.py:48:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+intro-to-pytorch/Part 4 - Fashion-MNIST (Solution).py:26:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+intro-to-pytorch/Part 4 - Fashion-MNIST (Solution).py:30:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+intro-to-pytorch/Part 5 - Inference and Validation (Exercises).py:27:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+intro-to-pytorch/Part 5 - Inference and Validation (Exercises).py:31:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+intro-to-pytorch/Part 5 - Inference and Validation (Solution).py:27:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+intro-to-pytorch/Part 5 - Inference and Validation (Solution).py:31:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+project-tv-script-generation/helper.py:55:12: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+autoencoder/convolutional-autoencoder/Convolutional_Autoencoder_Exercise.py:38:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+autoencoder/convolutional-autoencoder/Convolutional_Autoencoder_Solution.py:38:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+autoencoder/convolutional-autoencoder/Upsampling_Solution.py:38:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+autoencoder/denoising-autoencoder/Denoising_Autoencoder_Exercise.py:30:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+recurrent-neural-networks/char-rnn/Character_Level_RNN_Solution.py:629:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+convolutional-neural-networks/cifar-cnn/cifar10_cnn_solution.py:366:23: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+convolutional-neural-networks/cifar-cnn/cifar10_cnn_solution.py:27:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+sentiment-rnn/Sentiment_RNN_Solution.py:307:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+sentiment-rnn/Sentiment_RNN_Solution.py:308:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+sentiment-rnn/Sentiment_RNN_Solution.py:309:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+style-transfer/Style_Transfer_Exercise.py:54:7: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+style-transfer/Style_Transfer_Solution.py:54:7: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+autoencoder/denoising-autoencoder/Denoising_Autoencoder_Solution.py:30:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+autoencoder/linear-autoencoder/Simple_Autoencoder_Exercise.py:36:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+autoencoder/linear-autoencoder/Simple_Autoencoder_Solution.py:36:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+batch-norm/Batch_Normalization.py:29:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+weight-initialization/weight_initialization_solution.py:33:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+intro-to-pytorch/Part 2 - Neural Networks in PyTorch (Solution).py:59:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+intro-to-pytorch/Part 3 - Training Neural Networks (Solution).py:89:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+intro-to-pytorch/Part 6 - Saving and Loading Models.py:96:14: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+intro-to-pytorch/Part 6 - Saving and Loading Models.py:138:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+intro-to-pytorch/Part 6 - Saving and Loading Models.py:34:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+intro-to-pytorch/Part 6 - Saving and Loading Models.py:38:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+intro-to-pytorch/Part 7 - Loading Image Data (Solution).py:90:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+intro-to-pytorch/Part 7 - Loading Image Data (Solution).py:150:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+intro-to-pytorch/Part 7 - Loading Image Data (Solution).py:151:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+transfer-learning/Transfer_Learning_Exercise.py:152:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+transfer-learning/Transfer_Learning_Solution.py:152:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+weight-initialization/weight_initialization_exercise.py:38:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+Finished checking 61 files.
+[*] 24 potentially fixable with the --fix option
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/gan-mnist/MNIST_GAN_Solution.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/gan-mnist/MNIST_GAN_Solution.py
+@@ -35,11 +35,11 @@
+ 
+ # In[2]:
+ 
+ 
+ from torchvision import datasets
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ # number of subprocesses to use for data loading
+ num_workers = 0
+ # how many samples per batch to load
+ batch_size = 64
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/autoencoder/convolutional-autoencoder/Convolutional_Autoencoder_Exercise.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/autoencoder/convolutional-autoencoder/Convolutional_Autoencoder_Exercise.py
+@@ -33,11 +33,11 @@
+ 
+ 
+ import torch
+ import numpy as np
+ from torchvision import datasets
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ # convert data to torch.FloatTensor
+ transform = transforms.ToTensor()
+ 
+ # load the training and test datasets
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/autoencoder/convolutional-autoencoder/Convolutional_Autoencoder_Solution.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/autoencoder/convolutional-autoencoder/Convolutional_Autoencoder_Solution.py
+@@ -33,11 +33,11 @@
+ 
+ 
+ import torch
+ import numpy as np
+ from torchvision import datasets
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ # convert data to torch.FloatTensor
+ transform = transforms.ToTensor()
+ 
+ # load the training and test datasets
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/autoencoder/convolutional-autoencoder/Upsampling_Solution.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/autoencoder/convolutional-autoencoder/Upsampling_Solution.py
+@@ -33,11 +33,11 @@
+ 
+ 
+ import torch
+ import numpy as np
+ from torchvision import datasets
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ # convert data to torch.FloatTensor
+ transform = transforms.ToTensor()
+ 
+ # load the training and test datasets
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/autoencoder/denoising-autoencoder/Denoising_Autoencoder_Exercise.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/autoencoder/denoising-autoencoder/Denoising_Autoencoder_Exercise.py
+@@ -25,11 +25,11 @@
+ 
+ 
+ import torch
+ import numpy as np
+ from torchvision import datasets
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ # convert data to torch.FloatTensor
+ transform = transforms.ToTensor()
+ 
+ # load the training and test datasets
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/convolutional-neural-networks/cifar-cnn/cifar10_cnn_solution.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/convolutional-neural-networks/cifar-cnn/cifar10_cnn_solution.py
+@@ -22,11 +22,11 @@
+ import matplotlib.pyplot as plt
+ get_ipython().run_line_magic('matplotlib', 'inline')
+ 
+ # PyTorch dataset
+ from torchvision import datasets
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ from torch.utils.data.sampler import SubsetRandomSampler
+ 
+ # PyTorch model
+ import torch.nn as nn
+ import torch.nn.functional as F
+@@ -361,11 +361,11 @@
+ # ###  Load the Model with the Lowest Validation Loss
+ 
+ # In[40]:
+ 
+ 
+-model.load_state_dict(torch.load('model_cifar.pt'))
++model.load_state_dict(torch.load('model_cifar.pt', weights_only=True))
+ 
+ 
+ # ---
+ # ## Test the Trained Network
+ # 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/intro-to-pytorch/Part 6 - Saving and Loading Models.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/intro-to-pytorch/Part 6 - Saving and Loading Models.py
+@@ -91,11 +91,11 @@
+ # Then we can load the state dict with `torch.load`.
+ 
+ # In[ ]:
+ 
+ 
+-state_dict = torch.load('checkpoint.pth')
++state_dict = torch.load('checkpoint.pth', weights_only=True)
+ print(state_dict.keys())
+ 
+ 
+ # And to load the state dict in to the network, you do `model.load_state_dict(state_dict)`.
+ 
+@@ -133,11 +133,11 @@
+ 
+ # In[ ]:
+ 
+ 
+ def load_checkpoint(filepath):
+-    checkpoint = torch.load(filepath)
++    checkpoint = torch.load(filepath, weights_only=True)
+     model = fc_model.Network(checkpoint['input_size'],
+                              checkpoint['output_size'],
+                              checkpoint['hidden_layers'])
+     model.load_state_dict(checkpoint['state_dict'])
+     
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/autoencoder/denoising-autoencoder/Denoising_Autoencoder_Solution.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/autoencoder/denoising-autoencoder/Denoising_Autoencoder_Solution.py
+@@ -25,11 +25,11 @@
+ 
+ 
+ import torch
+ import numpy as np
+ from torchvision import datasets
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ # convert data to torch.FloatTensor
+ transform = transforms.ToTensor()
+ 
+ # load the training and test datasets
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/autoencoder/linear-autoencoder/Simple_Autoencoder_Exercise.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/autoencoder/linear-autoencoder/Simple_Autoencoder_Exercise.py
+@@ -31,11 +31,11 @@
+ 
+ 
+ import torch
+ import numpy as np
+ from torchvision import datasets
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ # convert data to torch.FloatTensor
+ transform = transforms.ToTensor()
+ 
+ # load the training and test datasets
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/autoencoder/linear-autoencoder/Simple_Autoencoder_Solution.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/autoencoder/linear-autoencoder/Simple_Autoencoder_Solution.py
+@@ -31,11 +31,11 @@
+ 
+ 
+ import torch
+ import numpy as np
+ from torchvision import datasets
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ # convert data to torch.FloatTensor
+ transform = transforms.ToTensor()
+ 
+ # load the training and test datasets
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/batch-norm/Batch_Normalization.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/batch-norm/Batch_Normalization.py
+@@ -24,11 +24,11 @@
+ 
+ # In[ ]:
+ 
+ 
+ from torchvision import datasets
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ # number of subprocesses to use for data loading
+ num_workers = 0
+ # how many samples per batch to load
+ batch_size = 64
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/project-tv-script-generation/helper.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/project-tv-script-generation/helper.py
+@@ -50,7 +50,7 @@
+     torch.save(decoder, save_filename)
+ 
+ 
+ def load_model(filename):
+     save_filename = os.path.splitext(os.path.basename(filename))[0] + '.pt'
+-    return torch.load(save_filename)
++    return torch.load(save_filename, weights_only=True)
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/convolutional-neural-networks/mnist-mlp/mnist_mlp_exercise.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/convolutional-neural-networks/mnist-mlp/mnist_mlp_exercise.py
+@@ -43,11 +43,11 @@
+ 
+ # In[ ]:
+ 
+ 
+ from torchvision import datasets
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ # number of subprocesses to use for data loading
+ num_workers = 0
+ # how many samples per batch to load
+ batch_size = 20
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/convolutional-neural-networks/mnist-mlp/mnist_mlp_solution.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/convolutional-neural-networks/mnist-mlp/mnist_mlp_solution.py
+@@ -43,11 +43,11 @@
+ 
+ # In[3]:
+ 
+ 
+ from torchvision import datasets
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ # number of subprocesses to use for data loading
+ num_workers = 0
+ # how many samples per batch to load
+ batch_size = 20
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/convolutional-neural-networks/mnist-mlp/mnist_mlp_solution_with_validation.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/convolutional-neural-networks/mnist-mlp/mnist_mlp_solution_with_validation.py
+@@ -43,11 +43,11 @@
+ 
+ # In[3]:
+ 
+ 
+ from torchvision import datasets
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ from torch.utils.data.sampler import SubsetRandomSampler
+ 
+ # number of subprocesses to use for data loading
+ num_workers = 0
+ # how many samples per batch to load
+@@ -272,11 +272,11 @@
+ # ###  Load the Model with the Lowest Validation Loss
+ 
+ # In[9]:
+ 
+ 
+-model.load_state_dict(torch.load('model.pt'))
++model.load_state_dict(torch.load('model.pt', weights_only=True))
+ 
+ 
+ # ---
+ # ## Test the Trained Network
+ # 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/intro-to-pytorch/Part 8 - Transfer Learning (Solution).py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/intro-to-pytorch/Part 8 - Transfer Learning (Solution).py
+@@ -11,10 +11,12 @@
+ # 
+ # With `torchvision.models` you can download these pre-trained networks and use them in your applications. We'll include `models` in our imports now.
+ 
+ # In[ ]:
+ 
++
++from torchvision import models
+ 
+ get_ipython().run_line_magic('matplotlib', 'inline')
+ get_ipython().run_line_magic('config', "InlineBackend.figure_format = 'retina'")
+ 
+ import matplotlib.pyplot as plt
+@@ -58,11 +60,11 @@
+ # We can load in a model such as [DenseNet](http://pytorch.org/docs/0.3.0/torchvision/models.html#id5). Let's print out the model architecture so we can see what's going on.
+ 
+ # In[ ]:
+ 
+ 
+-model = models.densenet121(pretrained=True)
++model = models.densenet121(weights=models.DenseNet121_Weights.IMAGENET1K_V1)
+ model
+ 
+ 
+ # This model is built out of two main parts, the features and the classifier. The features part is a stack of convolutional layers and overall works as a feature detector that can be fed into a classifier. The classifier part is a single fully-connected layer `(classifier): Linear(in_features=1024, out_features=1000)`. This layer was trained on the ImageNet dataset, so it won't work for our specific problem. That means we need to replace the classifier, but the features will work perfectly on their own. In general, I think about pre-trained networks as amazingly good feature detectors that can be used as the input for simple feed-forward classifiers.
+ 
+@@ -146,11 +148,11 @@
+ 
+ 
+ # Use GPU if it's available
+ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+ 
+-model = models.densenet121(pretrained=True)
++model = models.densenet121(weights=models.DenseNet121_Weights.IMAGENET1K_V1)
+ 
+ # Freeze parameters so we don't backprop through them
+ for param in model.parameters():
+     param.requires_grad = False
+     
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/cycle-gan/CycleGAN_Solution.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/cycle-gan/CycleGAN_Solution.py
+@@ -47,12 +47,12 @@
+ # loading in and transforming data
+ import os
+ import torch
+ from torch.utils.data import DataLoader
+ import torchvision
+-import torchvision.datasets as datasets
+-import torchvision.transforms as transforms
++from torchvision import datasets
++from torchvision import transforms
+ 
+ # visualizing data
+ import matplotlib.pyplot as plt
+ import numpy as np
+ import warnings
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/recurrent-neural-networks/char-rnn/Character_Level_RNN_Solution.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/recurrent-neural-networks/char-rnn/Character_Level_RNN_Solution.py
+@@ -624,11 +624,11 @@
+ # In[20]:
+ 
+ 
+ # Here we have loaded in a model that trained over 20 epochs `rnn_20_epoch.net`
+ with open('rnn_20_epoch.net', 'rb') as f:
+-    checkpoint = torch.load(f)
++    checkpoint = torch.load(f, weights_only=True)
+     
+ loaded = CharRNN(checkpoint['tokens'], n_hidden=checkpoint['n_hidden'], n_layers=checkpoint['n_layers'])
+ loaded.load_state_dict(checkpoint['state_dict'])
+ 
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/style-transfer/Style_Transfer_Exercise.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/style-transfer/Style_Transfer_Exercise.py
+@@ -24,10 +24,12 @@
+ 
+ # In[ ]:
+ 
+ 
+ # import resources
++from torchvision import models
++
+ get_ipython().run_line_magic('matplotlib', 'inline')
+ 
+ from PIL import Image
+ from io import BytesIO
+ import matplotlib.pyplot as plt
+@@ -49,11 +51,11 @@
+ 
+ # In[ ]:
+ 
+ 
+ # get the "features" portion of VGG19 (we will not need the "classifier" portion)
+-vgg = models.vgg19(pretrained=True).features
++vgg = models.vgg19(weights=models.VGG19_Weights.IMAGENET1K_V1).features
+ 
+ # freeze all VGG parameters since we're only optimizing the target image
+ for param in vgg.parameters():
+     param.requires_grad_(False)
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/style-transfer/Style_Transfer_Solution.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/style-transfer/Style_Transfer_Solution.py
+@@ -24,10 +24,12 @@
+ 
+ # In[1]:
+ 
+ 
+ # import resources
++from torchvision import models
++
+ get_ipython().run_line_magic('matplotlib', 'inline')
+ 
+ from PIL import Image
+ from io import BytesIO
+ import matplotlib.pyplot as plt
+@@ -49,11 +51,11 @@
+ 
+ # In[2]:
+ 
+ 
+ # get the "features" portion of VGG19 (we will not need the "classifier" portion)
+-vgg = models.vgg19(pretrained=True).features
++vgg = models.vgg19(weights=models.VGG19_Weights.IMAGENET1K_V1).features
+ 
+ # freeze all VGG parameters since we're only optimizing the target image
+ for param in vgg.parameters():
+     param.requires_grad_(False)
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/transfer-learning/Transfer_Learning_Exercise.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/transfer-learning/Transfer_Learning_Exercise.py
+@@ -147,11 +147,11 @@
+ 
+ # In[ ]:
+ 
+ 
+ # Load the pretrained model from pytorch
+-vgg16 = models.vgg16(pretrained=True)
++vgg16 = models.vgg16(weights=models.VGG16_Weights.IMAGENET1K_V1)
+ 
+ # print out the model structure
+ print(vgg16)
+ 
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/transfer-learning/Transfer_Learning_Solution.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/transfer-learning/Transfer_Learning_Solution.py
+@@ -147,11 +147,11 @@
+ 
+ # In[7]:
+ 
+ 
+ # Load the pretrained model from pytorch
+-vgg16 = models.vgg16(pretrained=True)
++vgg16 = models.vgg16(weights=models.VGG16_Weights.IMAGENET1K_V1)
+ 
+ # print out the model structure
+ print(vgg16)
+ 
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/weight-initialization/weight_initialization_exercise.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/weight-initialization/weight_initialization_exercise.py
+@@ -33,11 +33,11 @@
+ 
+ 
+ import torch
+ import numpy as np
+ from torchvision import datasets
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ from torch.utils.data.sampler import SubsetRandomSampler
+ 
+ # number of subprocesses to use for data loading
+ num_workers = 0
+ # how many samples per batch to load
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/weight-initialization/weight_initialization_solution.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-v2-pytorch/weight-initialization/weight_initialization_solution.py
+@@ -28,11 +28,11 @@
+ 
+ 
+ import torch
+ import numpy as np
+ from torchvision import datasets
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ from torch.utils.data.sampler import SubsetRandomSampler
+ 
+ # number of subprocesses to use for data loading
+ num_workers = 0
+ # how many samples per batch to load
+Repository: deep-learning-v2-pytorch

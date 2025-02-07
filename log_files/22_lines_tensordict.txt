@@ -1,0 +1,7 @@
+Repository: tensordict
+Total Python lines:    73427
+Total TorchFix errors (TOR***): 33
+Individual TorchFix error counts:
+TOR101: 16
+TOR103: 7
+TOR401: 10

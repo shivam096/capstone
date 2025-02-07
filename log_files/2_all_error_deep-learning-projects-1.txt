@@ -1,0 +1,547 @@
+Repository: deep-learning-projects-1
+Checking root directory only to avoid duplication.
+exercises/P3-Convolutional Neural Networks/style_transfer/Style_Transfer_Exercise.py:52:7: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+exercises/P3-Convolutional Neural Networks/transfer_learning/transfer_learning/Transfer_Learning_Exercise.py:152:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+exercises/P3-Convolutional Neural Networks/weight_initialization/weight_initialization_exercise.py:38:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+exercises/P3-Convolutional Neural Networks/convolutional_neural_networks/mlp_classification/mnist_mlp_exercise.py:35:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+exercises/P3-Convolutional Neural Networks/convolutional_neural_networks/mlp_classification/mnist_mlp_solution_with_validation.py:35:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+exercises/P3-Convolutional Neural Networks/convolutional_neural_networks/mlp_classification/mnist_mlp_solution_with_validation.py:264:23: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+exercises/P3-Convolutional Neural Networks/autoencoders/de-noising_autoencoder/Denoising_Autoencoder_Exercise.py:18:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+exercises/P3-Convolutional Neural Networks/autoencoders/linear_autoencoder/Simple_Autoencoder_Exercise.py:24:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+exercises/P3-Convolutional Neural Networks/convolutional_neural_networks/cnn_classification/cifar10_cnn_augmentation.py:322:23: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+exercises/P3-Convolutional Neural Networks/convolutional_neural_networks/cnn_classification/cifar10_cnn_augmentation.py:48:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+exercises/P3-Convolutional Neural Networks/convolutional_neural_networks/cnn_classification/cifar10_cnn_exercise.py:313:23: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+exercises/P3-Convolutional Neural Networks/convolutional_neural_networks/cnn_classification/cifar10_cnn_exercise.py:40:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+exercises/P3-Convolutional Neural Networks/autoencoders/convolutional_autoencoder/Convolutional_Autoencoder_Exercise.py:26:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+exercises/P3-Convolutional Neural Networks/autoencoders/convolutional_autoencoder/Upsampling_Solution.py:26:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+project-deploying-a-sentiment-analysis-model/SageMaker Project.py:451:19: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+project-deploying-a-sentiment-analysis-model/serve/predict.py:26:22: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+project-deploying-a-sentiment-analysis-model/serve/predict.py:37:31: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+exercises/P4-Recurrent Neural Networks/implementation_of_rnn_lstm/character-level_rnn/Character_Level_RNN_Exercise.py:630:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+exercises/P4-Recurrent Neural Networks/sentiment_predicition_rnn/Sentiment_RNN_Exercise.py:314:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+exercises/P4-Recurrent Neural Networks/sentiment_predicition_rnn/Sentiment_RNN_Exercise.py:315:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+exercises/P4-Recurrent Neural Networks/sentiment_predicition_rnn/Sentiment_RNN_Exercise.py:316:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+exercises/P5-Generative Adversarial Networks/deep_convolutional_gans/batch_norm/Batch_Normalization.py:29:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+exercises/P5-Generative Adversarial Networks/generative_adversarial_networks/minst_gan/MNIST_GAN_Exercise.py:40:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+exercises/P5-Generative Adversarial Networks/implementing_a_cyclegan/CycleGAN_Exercise.py:54:1: TOR203 [*] Consider replacing 'import torchvision.datasets as datasets' with 'from torchvision import datasets'.
+exercises/P5-Generative Adversarial Networks/implementing_a_cyclegan/CycleGAN_Exercise.py:55:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+exercises/P2-Neural Networks/deep-learning-with-pytorch/Part 2 - Neural Networks in PyTorch (Exercises).py:47:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+exercises/P2-Neural Networks/deep-learning-with-pytorch/Part 3 - Training Neural Networks (Exercises).py:76:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+exercises/P2-Neural Networks/deep-learning-with-pytorch/Part 4 - Fashion-MNIST (Exercises).py:27:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+exercises/P2-Neural Networks/deep-learning-with-pytorch/Part 4 - Fashion-MNIST (Exercises).py:31:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+project-deploying-a-sentiment-analysis-model/train/train.py:22:22: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+project-deploying-a-sentiment-analysis-model/train/train.py:33:31: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+project-deploying-a-sentiment-analysis-model/train/train.py:55:12: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+project-dog/dog_app.py:564:31: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+project-dog/dog_app.py:698:32: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+project-dog/dog_app.py:197:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+project-dog/dog_app.py:637:18: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+project-dog/dog_app.py:194:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+project-dog/dog_app.py:219:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+project-dog/dog_app.py:633:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+project-face-generation/dlnd_face_generation.py:103:19: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+exercises/P2-Neural Networks/deep-learning-with-pytorch/Part 5 - Inference and Validation (Exercises).py:27:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+exercises/P2-Neural Networks/deep-learning-with-pytorch/Part 5 - Inference and Validation (Exercises).py:31:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+exercises/P2-Neural Networks/deep-learning-with-pytorch/Part 6 - Saving and Loading Models.py:96:14: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+exercises/P2-Neural Networks/deep-learning-with-pytorch/Part 6 - Saving and Loading Models.py:138:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+exercises/P2-Neural Networks/deep-learning-with-pytorch/Part 6 - Saving and Loading Models.py:34:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+exercises/P2-Neural Networks/deep-learning-with-pytorch/Part 6 - Saving and Loading Models.py:38:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+exercises/P2-Neural Networks/deep-learning-with-pytorch/Part 7 - Loading Image Data (Exercises).py:90:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+exercises/P2-Neural Networks/deep-learning-with-pytorch/Part 7 - Loading Image Data (Exercises).py:150:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+exercises/P2-Neural Networks/deep-learning-with-pytorch/Part 7 - Loading Image Data (Exercises).py:151:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+exercises/P2-Neural Networks/deep-learning-with-pytorch/Part 8 - Transfer Learning (Exercises).py:54:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+exercises/P2-Neural Networks/deep-learning-with-pytorch/Part 8 - Transfer Learning (Exercises).py:55:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+exercises/P2-Neural Networks/deep-learning-with-pytorch/Part 8 - Transfer Learning (Exercises).py:63:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+project-generate-tv-scripts/dlnd_tv_script_generation.py:253:19: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+project-generate-tv-scripts/helper.py:55:12: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+Finished checking 44 files.
+[*] 21 potentially fixable with the --fix option
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P3-Convolutional Neural Networks/autoencoders/convolutional_autoencoder/Convolutional_Autoencoder_Exercise.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P3-Convolutional Neural Networks/autoencoders/convolutional_autoencoder/Convolutional_Autoencoder_Exercise.py
+@@ -21,11 +21,11 @@
+ 
+ 
+ import torch
+ import numpy as np
+ from torchvision import datasets
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ # convert data to torch.FloatTensor
+ transform = transforms.ToTensor()
+ 
+ # load the training and test datasets
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P3-Convolutional Neural Networks/autoencoders/convolutional_autoencoder/Upsampling_Solution.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P3-Convolutional Neural Networks/autoencoders/convolutional_autoencoder/Upsampling_Solution.py
+@@ -21,11 +21,11 @@
+ 
+ 
+ import torch
+ import numpy as np
+ from torchvision import datasets
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ # convert data to torch.FloatTensor
+ transform = transforms.ToTensor()
+ 
+ # load the training and test datasets
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P2-Neural Networks/deep-learning-with-pytorch/Part 6 - Saving and Loading Models.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P2-Neural Networks/deep-learning-with-pytorch/Part 6 - Saving and Loading Models.py
+@@ -91,11 +91,11 @@
+ # Then we can load the state dict with `torch.load`.
+ 
+ # In[24]:
+ 
+ 
+-state_dict = torch.load('checkpoint.pth')
++state_dict = torch.load('checkpoint.pth', weights_only=True)
+ print(state_dict.keys())
+ 
+ 
+ # And to load the state dict in to the network, you do `model.load_state_dict(state_dict)`.
+ 
+@@ -133,11 +133,11 @@
+ 
+ # In[28]:
+ 
+ 
+ def load_checkpoint(filepath):
+-    checkpoint = torch.load(filepath)
++    checkpoint = torch.load(filepath, weights_only=True)
+     model = fc_model.Network(checkpoint['input_size'],
+                              checkpoint['output_size'],
+                              checkpoint['hidden_layers'])
+     model.load_state_dict(checkpoint['state_dict'])
+     
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P2-Neural Networks/deep-learning-with-pytorch/Part 8 - Transfer Learning (Exercises).py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P2-Neural Networks/deep-learning-with-pytorch/Part 8 - Transfer Learning (Exercises).py
+@@ -11,10 +11,12 @@
+ # 
+ # With `torchvision.models` you can download these pre-trained networks and use them in your applications. We'll include `models` in our imports now.
+ 
+ # In[ ]:
+ 
++
++from torchvision import models
+ 
+ get_ipython().run_line_magic('matplotlib', 'inline')
+ get_ipython().run_line_magic('config', "InlineBackend.figure_format = 'retina'")
+ 
+ import matplotlib.pyplot as plt
+@@ -58,11 +60,11 @@
+ # We can load in a model such as [DenseNet](http://pytorch.org/docs/0.3.0/torchvision/models.html#id5). Let's print out the model architecture so we can see what's going on.
+ 
+ # In[ ]:
+ 
+ 
+-model = models.densenet121(pretrained=True)
++model = models.densenet121(weights=models.DenseNet121_Weights.IMAGENET1K_V1)
+ model
+ 
+ 
+ # This model is built out of two main parts, the features and the classifier. The features part is a stack of convolutional layers and overall works as a feature detector that can be fed into a classifier. The classifier part is a single fully-connected layer `(classifier): Linear(in_features=1024, out_features=1000)`. This layer was trained on the ImageNet dataset, so it won't work for our specific problem. That means we need to replace the classifier, but the features will work perfectly on their own. In general, I think about pre-trained networks as amazingly good feature detectors that can be used as the input for simple feed-forward classifiers.
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P3-Convolutional Neural Networks/style_transfer/Style_Transfer_Exercise.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P3-Convolutional Neural Networks/style_transfer/Style_Transfer_Exercise.py
+@@ -24,10 +24,12 @@
+ 
+ # In[1]:
+ 
+ 
+ # import resources
++from torchvision import models
++
+ get_ipython().run_line_magic('matplotlib', 'inline')
+ 
+ from PIL import Image
+ import matplotlib.pyplot as plt
+ import numpy as np
+@@ -47,11 +49,11 @@
+ 
+ # In[2]:
+ 
+ 
+ # get the "features" portion of VGG19 (we will not need the "classifier" portion)
+-vgg = models.vgg19(pretrained=True).features
++vgg = models.vgg19(weights=models.VGG19_Weights.IMAGENET1K_V1).features
+ 
+ # freeze all VGG parameters since we're only optimizing the target image
+ for param in vgg.parameters():
+     param.requires_grad_(False)
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P3-Convolutional Neural Networks/transfer_learning/transfer_learning/Transfer_Learning_Exercise.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P3-Convolutional Neural Networks/transfer_learning/transfer_learning/Transfer_Learning_Exercise.py
+@@ -147,11 +147,11 @@
+ 
+ # In[7]:
+ 
+ 
+ # Load the pretrained model from pytorch
+-vgg16 = models.vgg16(pretrained=True)
++vgg16 = models.vgg16(weights=models.VGG16_Weights.IMAGENET1K_V1)
+ 
+ # print out the model structure
+ print(vgg16)
+ 
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P3-Convolutional Neural Networks/weight_initialization/weight_initialization_exercise.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P3-Convolutional Neural Networks/weight_initialization/weight_initialization_exercise.py
+@@ -33,11 +33,11 @@
+ 
+ 
+ import torch
+ import numpy as np
+ from torchvision import datasets
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ from torch.utils.data.sampler import SubsetRandomSampler
+ 
+ # number of subprocesses to use for data loading
+ num_workers = 0
+ # how many samples per batch to load
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P3-Convolutional Neural Networks/convolutional_neural_networks/mlp_classification/mnist_mlp_exercise.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P3-Convolutional Neural Networks/convolutional_neural_networks/mlp_classification/mnist_mlp_exercise.py
+@@ -30,11 +30,11 @@
+ 
+ # In[2]:
+ 
+ 
+ from torchvision import datasets
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ # number of subprocesses to use for data loading
+ num_workers = 0
+ # how many samples per batch to load
+ batch_size = 20
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P3-Convolutional Neural Networks/convolutional_neural_networks/mlp_classification/mnist_mlp_solution_with_validation.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P3-Convolutional Neural Networks/convolutional_neural_networks/mlp_classification/mnist_mlp_solution_with_validation.py
+@@ -30,11 +30,11 @@
+ 
+ # In[2]:
+ 
+ 
+ from torchvision import datasets
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ from torch.utils.data.sampler import SubsetRandomSampler
+ 
+ # number of subprocesses to use for data loading
+ num_workers = 0
+ # how many samples per batch to load
+@@ -259,11 +259,11 @@
+ # ###  Load the Model with the Lowest Validation Loss
+ 
+ # In[8]:
+ 
+ 
+-model.load_state_dict(torch.load('model.pt'))
++model.load_state_dict(torch.load('model.pt', weights_only=True))
+ 
+ 
+ # ---
+ # ## Test the Trained Network
+ # 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P3-Convolutional Neural Networks/autoencoders/de-noising_autoencoder/Denoising_Autoencoder_Exercise.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P3-Convolutional Neural Networks/autoencoders/de-noising_autoencoder/Denoising_Autoencoder_Exercise.py
+@@ -13,11 +13,11 @@
+ 
+ 
+ import torch
+ import numpy as np
+ from torchvision import datasets
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ # convert data to torch.FloatTensor
+ transform = transforms.ToTensor()
+ 
+ # load the training and test datasets
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P3-Convolutional Neural Networks/autoencoders/linear_autoencoder/Simple_Autoencoder_Exercise.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P3-Convolutional Neural Networks/autoencoders/linear_autoencoder/Simple_Autoencoder_Exercise.py
+@@ -19,11 +19,11 @@
+ 
+ 
+ import torch
+ import numpy as np
+ from torchvision import datasets
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ # convert data to torch.FloatTensor
+ transform = transforms.ToTensor()
+ 
+ # load the training and test datasets
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P3-Convolutional Neural Networks/convolutional_neural_networks/cnn_classification/cifar10_cnn_augmentation.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P3-Convolutional Neural Networks/convolutional_neural_networks/cnn_classification/cifar10_cnn_augmentation.py
+@@ -43,11 +43,11 @@
+ 
+ # In[2]:
+ 
+ 
+ from torchvision import datasets
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ from torch.utils.data.sampler import SubsetRandomSampler
+ 
+ # number of subprocesses to use for data loading
+ num_workers = 0
+ # how many samples per batch to load
+@@ -317,11 +317,11 @@
+ # ###  Load the Model with the Lowest Validation Loss
+ 
+ # In[9]:
+ 
+ 
+-model.load_state_dict(torch.load('model_augmented.pt'))
++model.load_state_dict(torch.load('model_augmented.pt', weights_only=True))
+ 
+ 
+ # ---
+ # ## Test the Trained Network
+ # 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P3-Convolutional Neural Networks/convolutional_neural_networks/cnn_classification/cifar10_cnn_exercise.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P3-Convolutional Neural Networks/convolutional_neural_networks/cnn_classification/cifar10_cnn_exercise.py
+@@ -35,11 +35,11 @@
+ 
+ # In[3]:
+ 
+ 
+ from torchvision import datasets
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ from torch.utils.data.sampler import SubsetRandomSampler
+ 
+ # number of subprocesses to use for data loading
+ num_workers = 0
+ # how many samples per batch to load
+@@ -308,11 +308,11 @@
+ # ###  Load the Model with the Lowest Validation Loss
+ 
+ # In[13]:
+ 
+ 
+-model.load_state_dict(torch.load('model_cifar.pt', map_location={'cuda:0': 'cpu'}))
++model.load_state_dict(torch.load('model_cifar.pt', map_location={'cuda:0': 'cpu'}, weights_only=True))
+ 
+ 
+ # ---
+ # ## Test the Trained Network
+ # 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/project-deploying-a-sentiment-analysis-model/serve/predict.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/project-deploying-a-sentiment-analysis-model/serve/predict.py
+@@ -21,22 +21,22 @@
+ 
+     # First, load the parameters used to create the model.
+     model_info = {}
+     model_info_path = os.path.join(model_dir, 'model_info.pth')
+     with open(model_info_path, 'rb') as f:
+-        model_info = torch.load(f)
++        model_info = torch.load(f, weights_only=True)
+ 
+     print("model_info: {}".format(model_info))
+ 
+     # Determine the device and construct the model.
+     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+     model = LSTMClassifier(model_info['embedding_dim'], model_info['hidden_dim'], model_info['vocab_size'])
+ 
+     # Load the store model parameters.
+     model_path = os.path.join(model_dir, 'model.pth')
+     with open(model_path, 'rb') as f:
+-        model.load_state_dict(torch.load(f))
++        model.load_state_dict(torch.load(f, weights_only=True))
+ 
+     # Load the saved word_dict.
+     word_dict_path = os.path.join(model_dir, 'word_dict.pkl')
+     with open(word_dict_path, 'rb') as f:
+         model.word_dict = pickle.load(f)
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P4-Recurrent Neural Networks/implementation_of_rnn_lstm/character-level_rnn/Character_Level_RNN_Exercise.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P4-Recurrent Neural Networks/implementation_of_rnn_lstm/character-level_rnn/Character_Level_RNN_Exercise.py
+@@ -625,11 +625,11 @@
+ # In[19]:
+ 
+ 
+ # Here we have loaded in a model that trained over 20 epochs `rnn_20_epoch.net`
+ with open('rnn_20_epoch.net', 'rb') as f:
+-    checkpoint = torch.load(f)
++    checkpoint = torch.load(f, weights_only=True)
+     
+ loaded = CharRNN(checkpoint['tokens'], n_hidden=checkpoint['n_hidden'], n_layers=checkpoint['n_layers'])
+ loaded.load_state_dict(checkpoint['state_dict'])
+ 
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P5-Generative Adversarial Networks/deep_convolutional_gans/batch_norm/Batch_Normalization.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P5-Generative Adversarial Networks/deep_convolutional_gans/batch_norm/Batch_Normalization.py
+@@ -24,11 +24,11 @@
+ 
+ # In[3]:
+ 
+ 
+ from torchvision import datasets
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ # number of subprocesses to use for data loading
+ num_workers = 0
+ # how many samples per batch to load
+ batch_size = 64
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P5-Generative Adversarial Networks/generative_adversarial_networks/minst_gan/MNIST_GAN_Exercise.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P5-Generative Adversarial Networks/generative_adversarial_networks/minst_gan/MNIST_GAN_Exercise.py
+@@ -35,11 +35,11 @@
+ 
+ # In[2]:
+ 
+ 
+ from torchvision import datasets
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ # number of subprocesses to use for data loading
+ num_workers = 0
+ # how many samples per batch to load
+ batch_size = 64
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P5-Generative Adversarial Networks/implementing_a_cyclegan/CycleGAN_Exercise.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/exercises/P5-Generative Adversarial Networks/implementing_a_cyclegan/CycleGAN_Exercise.py
+@@ -49,12 +49,12 @@
+ # loading in and transforming data
+ import os
+ import torch
+ from torch.utils.data import DataLoader
+ import torchvision
+-import torchvision.datasets as datasets
+-import torchvision.transforms as transforms
++from torchvision import datasets
++from torchvision import transforms
+ 
+ # visualizing data
+ import matplotlib.pyplot as plt
+ import numpy as np
+ import warnings
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/project-generate-tv-scripts/helper.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/project-generate-tv-scripts/helper.py
+@@ -50,7 +50,7 @@
+     torch.save(decoder, save_filename)
+ 
+ 
+ def load_model(filename):
+     save_filename = os.path.splitext(os.path.basename(filename))[0] + '.pt'
+-    return torch.load(save_filename)
++    return torch.load(save_filename, weights_only=True)
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/project-deploying-a-sentiment-analysis-model/train/train.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/project-deploying-a-sentiment-analysis-model/train/train.py
+@@ -17,22 +17,22 @@
+ 
+     # First, load the parameters used to create the model.
+     model_info = {}
+     model_info_path = os.path.join(model_dir, 'model_info.pth')
+     with open(model_info_path, 'rb') as f:
+-        model_info = torch.load(f)
++        model_info = torch.load(f, weights_only=True)
+ 
+     print("model_info: {}".format(model_info))
+ 
+     # Determine the device and construct the model.
+     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+     model = LSTMClassifier(model_info['embedding_dim'], model_info['hidden_dim'], model_info['vocab_size'])
+ 
+     # Load the stored model parameters.
+     model_path = os.path.join(model_dir, 'model.pth')
+     with open(model_path, 'rb') as f:
+-        model.load_state_dict(torch.load(f))
++        model.load_state_dict(torch.load(f, weights_only=True))
+ 
+     # Load the saved word_dict.
+     word_dict_path = os.path.join(model_dir, 'word_dict.pkl')
+     with open(word_dict_path, 'rb') as f:
+         model.word_dict = pickle.load(f)
+--- /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/project-dog/dog_app.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/deep-learning-projects-1/project-dog/dog_app.py
+@@ -59,10 +59,11 @@
+ # In[15]:
+ 
+ 
+ import numpy as np
+ from glob import glob
++from torchvision import models
+ 
+ # load filenames for human and dog images
+ human_files = np.array(glob("/data/lfw/*/*"))
+ dog_files = np.array(glob("/data/dog_images/*/*/*"))
+ 
+@@ -189,14 +190,14 @@
+ 
+ # In[20]:
+ 
+ 
+ import torch
+-import torchvision.models as models
++from torchvision import models
+ 
+ # define VGG16 model
+-VGG16 = models.vgg16(pretrained=True)
++VGG16 = models.vgg16(weights=models.VGG16_Weights.IMAGENET1K_V1)
+ 
+ # check if CUDA is available
+ use_cuda = torch.cuda.is_available()
+ 
+ # move model to GPU if CUDA is available
+@@ -214,11 +215,11 @@
+ 
+ # In[21]:
+ 
+ 
+ from PIL import Image
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ def VGG16_predict(img_path):
+     '''
+     Use pre-trained VGG-16 model to obtain index corresponding to 
+     predicted ImageNet class for image at specified path
+@@ -559,11 +560,11 @@
+ # train the model
+ model_scratch = train(20, loaders_scratch, model_scratch, optimizer_scratch, 
+                       criterion_scratch, use_cuda, 'model_scratch.pt')
+ 
+ # load the model that got the best validation accuracy
+-model_scratch.load_state_dict(torch.load('model_scratch.pt'))
++model_scratch.load_state_dict(torch.load('model_scratch.pt', weights_only=True))
+ 
+ 
+ # ### (IMPLEMENTATION) Test the Model
+ # 
+ # Try out your model on the test dataset of dog images.  Use the code cell below to calculate and print the test loss and accuracy.  Ensure that your test accuracy is greater than 10%.
+@@ -628,15 +629,15 @@
+ # Use transfer learning to create a CNN to classify dog breed.  Use the code cell below, and save your initialized model as the variable `model_transfer`.
+ 
+ # In[30]:
+ 
+ 
+-import torchvision.models as models
++from torchvision import models
+ import torch.nn as nn
+ 
+ ## TODO: Specify model architecture 
+-model_transfer = models.vgg16(pretrained=True)
++model_transfer = models.vgg16(weights=models.VGG16_Weights.IMAGENET1K_V1)
+ 
+ if use_cuda:
+     model_transfer = model_transfer.cuda()
+ 
+ 
+@@ -693,11 +694,11 @@
+ 
+ # In[39]:
+ 
+ 
+ # load the model that got the best validation accuracy (uncomment the line below)
+-model_transfer.load_state_dict(torch.load('model_transfer.pt'))
++model_transfer.load_state_dict(torch.load('model_transfer.pt', weights_only=True))
+ 
+ 
+ # ### (IMPLEMENTATION) Test the Model
+ # 
+ # Try out your model on the test dataset of dog images. Use the code cell below to calculate and print the test loss and accuracy.  Ensure that your test accuracy is greater than 60%.
+Repository: deep-learning-projects-1

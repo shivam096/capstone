@@ -1,0 +1,93 @@
+Repository: executorch
+Checking root directory only to avoid duplication.
+backends/arm/_passes/annotate_channels_last_dim_order_pass.py:27:7: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+examples/portable/custom_ops/custom_ops_1.py:14:13: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+exir/passes/dim_order_ops_registry.py:13:7: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+exir/serde/upgrade.py:19:7: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+exir/serde/upgrade.py:20:12: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+examples/mediatek/model_export_scripts/mobilenet_v2.py:44:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/mediatek/model_export_scripts/mobilenet_v3.py:44:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/mediatek/model_export_scripts/resnet18.py:44:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/qualcomm/oss_scripts/retinanet.py:105:19: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/qualcomm/oss_scripts/ssd300_vgg16.py:87:19: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+extension/pytree/__init__.py:40:5: TOR103 Import of deprecated function torch.utils._pytree._register_pytree_node
+backends/arm/_passes/insert_table_ops.py:21:7: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+backends/qualcomm/utils/utils.py:664:21: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+exir/passes/executorch_prim_ops_registry.py:22:24: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+exir/tests/test_passes.py:101:7: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+backends/arm/util/arm_model_evaluator.py:166:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+backends/arm/util/arm_model_evaluator.py:174:26: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+backends/vulkan/custom_ops_lib.py:10:7: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+examples/mediatek/model_export_scripts/inception_v3.py:44:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/mediatek/model_export_scripts/inception_v4.py:43:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+exir/dialects/backend/test/test_backend_ops.py:19:7: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+exir/serde/export_serialize.py:330:16: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+backends/cadence/aot/ops_registrations.py:18:7: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+backends/cadence/aot/ops_registrations.py:233:12: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+backends/cadence/aot/ops_registrations.py:261:17: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+backends/cadence/aot/ops_registrations.py:266:5: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+examples/models/llama/model.py:76:21: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/models/llama/model.py:97:26: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/qualcomm/scripts/wav2letter.py:61:19: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+exir/verification/interpreter.py:64:18: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+backends/arm/test/ops/test_upsample_nearest2d.py:45:29: TOR101 Use of deprecated function torch.nn.UpsamplingNearest2d
+examples/mediatek/model_export_scripts/resnet50.py:44:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/qualcomm/utils.py:415:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+extension/llm/custom_ops/custom_ops.py:50:18: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+extension/llm/custom_ops/model_sharding.py:19:19: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+extension/llm/custom_ops/op_tile_crop_aot.py:23:22: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+examples/qualcomm/scripts/mobilebert_fine_tune.py:173:24: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/qualcomm/scripts/mobilebert_fine_tune.py:178:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+exir/dialects/edge/test/test_edge_ops.py:24:7: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+exir/dialects/edge/test/test_edge_ops.py:432:19: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+exir/program/_program.py:111:7: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+exir/program/test/test_program.py:129:7: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+extension/llm/custom_ops/preprocess_custom_ops.py:14:21: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+examples/llm_pte_finetuning/training_lib.py:134:18: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+exir/backend/test/test_utils.py:183:16: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+Finished checking 995 files.
+[*] 2 potentially fixable with the --fix option
+--- /Users/anuragagarwal/Desktop/torchfix/examples/executorch/examples/models/llama/model.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/executorch/examples/models/llama/model.py
+@@ -75,11 +75,11 @@
+                 cps.append(
+                     torch.load(
+                         os.path.join(checkpoint_dir, cp_name),
+                         map_location=device,
+                         mmap=True,
+-                    )
++                    weights_only=True)
+                 )
+             checkpoint = {}
+             for key in cps[0].keys():
+                 if not torch.allclose(cps[0][key], cps[1][key]):
+                     values = (cps[0][key], cps[1][key], cps[2][key], cps[3][key])
+@@ -92,11 +92,11 @@
+                 else:
+                     # Do not duplicate layers shared between each checkpoint.
+                     checkpoint[key] = cps[0][key]
+         # Load single checkpoint.
+         else:
+-            checkpoint = torch.load(checkpoint_path, map_location=device, mmap=True)
++            checkpoint = torch.load(checkpoint_path, map_location=device, mmap=True, weights_only=True)
+ 
+         # If given checkpoint is fairseq, convert to llama checkpoint.
+         fairseq2_checkpoint = kwargs.get("fairseq2", False)
+         if fairseq2_checkpoint:
+             print("Using fairseq2 checkpoint")
+--- /Users/anuragagarwal/Desktop/torchfix/examples/executorch/exir/serde/export_serialize.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/executorch/exir/serde/export_serialize.py
+@@ -325,11 +325,11 @@
+         return serialized
+     if len(serialized) == 0:
+         return {}
+     buffer = io.BytesIO(serialized)
+     buffer.seek(0)
+-    artifact = torch.load(buffer)
++    artifact = torch.load(buffer, weights_only=True)
+     assert isinstance(artifact, (tuple, dict))
+     return artifact
+ 
+ 
+ def _sympy_int_to_int(val: sympy.Expr, adjust: str):
+Repository: executorch

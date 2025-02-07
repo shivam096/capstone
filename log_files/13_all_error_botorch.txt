@@ -1,0 +1,9 @@
+Repository: botorch
+Checking root directory only to avoid duplication.
+botorch/optim/utils/model_utils.py:35:12: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/cost_aware_bayesian_optimization/cost_aware_bayesian_optimization.py:249:20: TOR101 Use of deprecated function torch.norm
+test/optim/closures/test_model_closures.py:105:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+test/optim/closures/test_model_closures.py:118:18: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/scalable_constrained_bo/scalable_constrained_bo.py:100:12: TOR101 Use of deprecated function torch.norm
+Finished checking 408 files.
+Repository: botorch

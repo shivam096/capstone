@@ -1,0 +1,21 @@
+Repository: torchft
+Checking root directory only to avoid duplication.
+train_ddp.py:15:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+Finished checking 28 files.
+[*] 1 potentially fixable with the --fix option
+--- /Users/anuragagarwal/Desktop/torchfix/examples/torchft/train_ddp.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/torchft/train_ddp.py
+@@ -10,11 +10,11 @@
+ from datetime import timedelta
+ 
+ import torch
+ import torch.nn.functional as F
+ import torchvision
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ from torch import nn, optim
+ from torch.distributed.elastic.multiprocessing.errors import record
+ from torchdata.stateful_dataloader import StatefulDataLoader
+ 
+ from torchft import (
+Repository: torchft

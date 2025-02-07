@@ -1,0 +1,169 @@
+Repository: opacus
+Checking root directory only to avoid duplication.
+opacus/tests/dpdataloader_test.py:53:23: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+opacus/tests/grad_sample_module_fast_gradient_clipping_test.py:102:19: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+opacus/tests/grad_sample_module_test.py:86:19: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+opacus/tests/batch_memory_manager_test.py:50:23: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+opacus/tests/ddp_hook_check.py:273:25: TOR101 Use of deprecated function torch.norm
+opacus/tests/ddp_hook_check.py:296:13: TOR101 Use of deprecated function torch.norm
+opacus/tests/distributed_poisson_test.py:38:26: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+opacus/tests/dp_layers/common.py:42:23: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tutorials/intro_to_advanced_features.py:81:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/intro_to_advanced_features.py:121:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+conftest.py:36:18: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/cifar10.py:33:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+examples/dcgan.py:220:26: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/dcgan.py:261:26: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/dcgan.py:31:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+opacus/tests/schedulers/noise_scheduler_test.py:31:23: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+research/disk_optimizer/optimizers/KFddp_perlayeroptimizer.py:71:25: TOR101 Use of deprecated function torch.norm
+opacus/data_loader.py:25:1: TOR105 [*] Import of non-public function `torch.utils.data._utils.collate.default_collate`, please use `torch.utils.data.dataloader.default_collate` instead
+opacus/optimizers/perlayeroptimizer.py:46:25: TOR101 Use of deprecated function torch.norm
+opacus/tests/gradient_accumulation_test.py:85:19: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+research/disk_optimizer/optimizers/KFperlayeroptimizer.py:34:25: TOR101 Use of deprecated function torch.norm
+examples/mnist.py:212:20: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/mnist.py:228:19: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+opacus/tests/multigpu_adaptive_clipping.py:94:19: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+opacus/tests/multigpu_gradcheck.py:145:19: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+opacus/tests/poisson_test.py:32:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/building_image_classifier.py:60:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+tutorials/building_image_classifier.py:85:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/building_image_classifier.py:93:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/building_lstm_name_classifier.py:220:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/building_lstm_name_classifier.py:227:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/building_text_classifier.py:271:20: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+tutorials/building_text_classifier.py:272:19: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+opacus/optimizers/ddp_perlayeroptimizer.py:88:25: TOR101 Use of deprecated function torch.norm
+opacus/tests/grad_samples/conv2d_test.py:171:13: TOR101 Use of deprecated function torch.norm
+opacus/tests/privacy_engine_test.py:495:17: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+opacus/tests/privacy_engine_test.py:803:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+opacus/tests/privacy_engine_test.py:833:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+opacus/tests/privacy_engine_test.py:931:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+opacus/tests/privacy_engine_test.py:987:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+opacus/tests/privacy_engine_test.py:1019:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+opacus/tests/privacy_engine_validation_test.py:41:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+opacus/tests/randomness_test.py:57:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+opacus/tests/randomness_test.py:116:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+opacus/tests/randomness_test.py:125:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+opacus/tests/randomness_test.py:180:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+opacus/tests/randomness_test.py:272:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+opacus/tests/schedulers/grad_clip_scheduler_test.py:31:23: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+Finished checking 116 files.
+[*] 6 potentially fixable with the --fix option
+--- /Users/anuragagarwal/Desktop/torchfix/examples/opacus/opacus/data_loader.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/opacus/opacus/data_loader.py
+@@ -20,11 +20,11 @@
+ from opacus.utils.uniform_sampler import (
+     DistributedUniformWithReplacementSampler,
+     UniformWithReplacementSampler,
+ )
+ from torch.utils.data import BatchSampler, DataLoader, Dataset, IterableDataset, Sampler
+-from torch.utils.data._utils.collate import default_collate
++from torch.utils.data.dataloader import default_collate
+ from torch.utils.data.dataloader import _collate_fn_t
+ 
+ 
+ logger = logging.getLogger(__name__)
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/opacus/examples/cifar10.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/opacus/examples/cifar10.py
+@@ -28,11 +28,11 @@
+ import torch
+ import torch.nn as nn
+ import torch.optim as optim
+ import torch.utils.data
+ import torch.utils.data.distributed
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ from opacus import PrivacyEngine
+ from opacus.distributed import DifferentiallyPrivateDistributedDataParallel as DPDDP
+ from opacus.grad_sample.functorch import make_functional
+ from torch.func import grad_and_value, vmap
+ from torch.nn.parallel import DistributedDataParallel as DDP
+--- /Users/anuragagarwal/Desktop/torchfix/examples/opacus/examples/dcgan.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/opacus/examples/dcgan.py
+@@ -26,11 +26,11 @@
+ import torch.backends.cudnn as cudnn
+ import torch.nn as nn
+ import torch.optim as optim
+ import torch.utils.data
+ import torchvision.datasets as dset
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ import torchvision.utils as vutils
+ from opacus import PrivacyEngine
+ from tqdm import tqdm
+ 
+ 
+@@ -215,11 +215,11 @@
+ 
+ netG = Generator(ngpu)
+ netG = netG.to(device)
+ netG.apply(weights_init)
+ if opt.netG != "":
+-    netG.load_state_dict(torch.load(opt.netG))
++    netG.load_state_dict(torch.load(opt.netG, weights_only=True))
+ 
+ 
+ class Discriminator(nn.Module):
+     def __init__(self, ngpu):
+         super(Discriminator, self).__init__()
+@@ -256,11 +256,11 @@
+ 
+ netD = Discriminator(ngpu)
+ netD = netD.to(device)
+ netD.apply(weights_init)
+ if opt.netD != "":
+-    netD.load_state_dict(torch.load(opt.netD))
++    netD.load_state_dict(torch.load(opt.netD, weights_only=True))
+ 
+ criterion = nn.BCELoss()
+ 
+ FIXED_NOISE = torch.randn(opt.batch_size, nz, 1, 1, device=device)
+ REAL_LABEL = 1.0
+--- /Users/anuragagarwal/Desktop/torchfix/examples/opacus/opacus/tests/dp_layers/common.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/opacus/opacus/tests/dp_layers/common.py
+@@ -37,11 +37,11 @@
+         The clone of ``module``
+     """
+     with io.BytesIO() as bytesio:
+         torch.save(module, bytesio)
+         bytesio.seek(0)
+-        module_copy = torch.load(bytesio)
++        module_copy = torch.load(bytesio, weights_only=True)
+     return module_copy
+ 
+ 
+ def flatten(seq: Sequence) -> Sequence:
+     """
+--- /Users/anuragagarwal/Desktop/torchfix/examples/opacus/tutorials/building_image_classifier.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/opacus/tutorials/building_image_classifier.py
+@@ -55,11 +55,11 @@
+ # In[3]:
+ 
+ 
+ import torch
+ import torchvision
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ # These values, specific to the CIFAR10 dataset, are assumed to be known.
+ # If necessary, they can be computed with modest privacy budgets.
+ CIFAR10_MEAN = (0.4914, 0.4822, 0.4465)
+ CIFAR10_STD_DEV = (0.2023, 0.1994, 0.2010)
+--- /Users/anuragagarwal/Desktop/torchfix/examples/opacus/opacus/tests/privacy_engine_test.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/opacus/opacus/tests/privacy_engine_test.py
+@@ -490,11 +490,11 @@
+     def test_validator_weight_update_check(self) -> None:
+         """
+         Test that the privacy engine raises error if ModuleValidator.fix(model) is
+         called after the optimizer is created
+         """
+-        model = models.densenet121(pretrained=True)
++        model = models.densenet121(weights=models.DenseNet121_Weights.IMAGENET1K_V1)
+         num_ftrs = model.classifier.in_features
+         model.classifier = nn.Sequential(nn.Linear(num_ftrs, 10), nn.Sigmoid())
+         optimizer = torch.optim.SGD(
+             model.parameters(), lr=0.01, momentum=0, weight_decay=0
+         )
+Repository: opacus

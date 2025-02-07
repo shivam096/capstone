@@ -1,0 +1,340 @@
+Repository: xla
+Checking root directory only to avoid duplication.
+test/stablehlo/test_stablehlo_custom_call.py:16:5: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+torch_xla/core/xla_model.py:39:11: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+torch_xla/core/xla_model.py:1487:19: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/test_train_mp_imagenet_fsdp.py:101:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+test/test_train_mp_mnist_fsdp_with_ckpt.py:302:25: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torch_xla/distributed/fsdp/xla_fully_sharded_data_parallel.py:1769:18: TOR101 Use of deprecated function torch.norm
+torch_xla/distributed/fsdp/xla_fully_sharded_data_parallel.py:1770:22: TOR101 Use of deprecated function torch.norm
+torch_xla/utils/serialization.py:94:11: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/test_operations.py:2590:14: TOR101 Use of deprecated function torch.triangular_solve
+test/test_operations.py:1480:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/test_operations.py:1488:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/test_operations.py:1497:33: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/test_operations.py:1506:20: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchax/test/test_train.py:36:7: TOR101 Use of deprecated function torch.testing.assert_allclose
+test/test_inplace_update.py:69:15: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/eager/test_eager.py:119:15: TOR101 Use of deprecated function torch.svd
+torch_xla/_patched_functions.py:41:18: TOR101 Use of deprecated function torch.norm
+torch_xla/_patched_functions.py:43:14: TOR101 Use of deprecated function torch.norm
+torch_xla/debug/model_comparator.py:134:13: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torch_xla/debug/model_comparator.py:135:13: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchax/examples/lightning_training.py:77:51: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchax/examples/mnist_tpu.py:48:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchax/examples/mnist_tpu.py:53:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchax/examples/mnist_tpu.py:31:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+torchax/examples/train_gpt/train_ddp.py:77:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+test/test_devices.py:82:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+test/test_mp_save.py:45:9: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/test_mp_save.py:52:12: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/test_train_mp_imagenet.py:81:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+test/test_train_mp_imagenet_amp.py:62:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+torch_xla/distributed/fsdp/state_dict_utils.py:147:12: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torch_xla/experimental/distributed_checkpoint/planners.py:250:9: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/spmd/test_train_spmd_imagenet.py:75:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+test/test_autocast.py:384:10: TOR101 [*] Use of deprecated function torch.cuda.amp.autocast
+torchax/examples/basic_training.py:30:19: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchax/examples/basic_training.py:31:21: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchax/examples/basic_training.py:11:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+torchax/examples/basic_training_jax.py:34:19: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchax/examples/basic_training_jax.py:35:21: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchax/examples/basic_training_jax.py:11:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+torchax/test/test_libraries.py:12:5: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+Finished checking 344 files.
+[*] 17 potentially fixable with the --fix option
+--- /Users/anuragagarwal/Desktop/torchfix/examples/xla/test/spmd/test_train_spmd_imagenet.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/xla/test/spmd/test_train_spmd_imagenet.py
+@@ -70,11 +70,11 @@
+ import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+ import torch.optim as optim
+ import torchvision
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ import torch_xla
+ import torch_xla.debug.metrics as met
+ import torch_xla.distributed.parallel_loader as pl
+ from torch_xla.distributed.fsdp.wrap import (recursive_wrap,
+                                              transformer_auto_wrap_policy)
+--- /Users/anuragagarwal/Desktop/torchfix/examples/xla/test/test_inplace_update.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/xla/test/test_inplace_update.py
+@@ -64,11 +64,11 @@
+       # mark_step() causes t1 and t2 to be out of sync on the XLA side.
+ 
+       fobj = io.BytesIO()
+       xm.save({'t1': t1}, fobj)
+       fobj.seek(0)
+-      saved = torch.load(fobj)
++      saved = torch.load(fobj, weights_only=True)
+ 
+       self.assertEqual(t1.item(), saved['t1'].item())
+ 
+ 
+ if __name__ == '__main__':
+--- /Users/anuragagarwal/Desktop/torchfix/examples/xla/test/test_mp_save.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/xla/test/test_mp_save.py
+@@ -40,18 +40,18 @@
+   xm.save(dd, temp_file)
+   # User needs to manually rendezvous since only master process
+   # will perform the save and other processes needs to wait.
+   # This is also aligned with the `torch.save`
+   xm.rendezvous('torch_xla.core.xla_model.save')
+-  ldd = torch.load(temp_file)
++  ldd = torch.load(temp_file, weights_only=True)
+   pdd = _get_data_str(ldd)
+   data = xm.rendezvous('xm_save_test', pdd)
+   if xm.get_local_ordinal() == 0:
+     os.remove(temp_file)
+   for i in range(1, len(data)):
+     bio = io.BytesIO(data[i])
+-    ildd = torch.load(bio)
++    ildd = torch.load(bio, weights_only=True)
+     for k, v in ldd.items():
+       if isinstance(v, torch.Tensor):
+         assert v.allclose(ildd[k])
+       elif isinstance(v, (list, tuple)):
+         iv = ildd[k]
+--- /Users/anuragagarwal/Desktop/torchfix/examples/xla/test/test_autocast.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/xla/test/test_autocast.py
+@@ -379,11 +379,11 @@
+     with torch.backends.cudnn.flags(enabled=True, deterministic=True):
+       for op, args in TestAutocastCuda.get_autocast_list('methods_fp16'):
+         self._run_autocast_outofplace(op, args, torch.float16, module=None)
+ 
+   def test_autocast_banned(self):
+-    with torch.cuda.amp.autocast():
++    with torch.amp.autocast("cuda"):
+       for op, args, module in TestAutocastCuda.get_autocast_list('banned'):
+         with self.assertRaises(RuntimeError):
+           getattr(module, op)(*args)
+ 
+   def test_autocast_torch_fp32(self):
+--- /Users/anuragagarwal/Desktop/torchfix/examples/xla/test/test_train_mp_imagenet.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/xla/test/test_train_mp_imagenet.py
+@@ -76,11 +76,11 @@
+ import torch.nn as nn
+ import torch.nn.functional as F
+ from torch.nn.parallel import DistributedDataParallel as DDP
+ import torch.optim as optim
+ import torchvision
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ import torch_xla
+ import torch_xla.debug.metrics as met
+ import torch_xla.distributed.parallel_loader as pl
+ import torch_xla.debug.profiler as xp
+ import torch_xla.utils.utils as xu
+--- /Users/anuragagarwal/Desktop/torchfix/examples/xla/test/test_train_mp_imagenet_amp.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/xla/test/test_train_mp_imagenet_amp.py
+@@ -57,11 +57,11 @@
+ import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+ import torch.optim as optim
+ import torchvision
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ import torch_xla
+ from torch_xla import runtime as xr
+ import torch_xla.debug.metrics as met
+ import torch_xla.distributed.parallel_loader as pl
+ import torch_xla.utils.utils as xu
+--- /Users/anuragagarwal/Desktop/torchfix/examples/xla/test/test_train_mp_imagenet_fsdp.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/xla/test/test_train_mp_imagenet_fsdp.py
+@@ -96,11 +96,11 @@
+ import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+ import torch.optim as optim
+ import torchvision
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ import torch_xla
+ from torch_xla import runtime as xr
+ import torch_xla.debug.metrics as met
+ import torch_xla.distributed.parallel_loader as pl
+ import torch_xla.utils.utils as xu
+--- /Users/anuragagarwal/Desktop/torchfix/examples/xla/test/test_train_mp_mnist_fsdp_with_ckpt.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/xla/test/test_train_mp_mnist_fsdp_with_ckpt.py
+@@ -297,11 +297,11 @@
+     if xm.is_master_ordinal(local=False):
+       consolidate_sharded_model_checkpoints(
+           ckpt_prefix=flags.ckpt_prefix, ckpt_suffix="_rank-*-of-*.pth")
+     xm.rendezvous('ckpt_consolidation')
+     model = MNIST().to(device)
+-    ckpt_consolidated = torch.load(f'{flags.ckpt_prefix}_consolidated.pth')
++    ckpt_consolidated = torch.load(f'{flags.ckpt_prefix}_consolidated.pth', weights_only=True)
+     model.load_state_dict(ckpt_consolidated['model'])
+     accuracy = test_loop_fn(model, test_device_loader)
+     xm.master_print(
+         f'Checkpoint consolidated, Accuracy={accuracy:.2f} '
+         '(note: it can be slightly different from the final training accuracy '
+--- /Users/anuragagarwal/Desktop/torchfix/examples/xla/torch_xla/debug/model_comparator.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/xla/torch_xla/debug/model_comparator.py
+@@ -129,12 +129,12 @@
+   assert m, fname
+   return m.group(1), int(m.group(2)), step, rpath
+ 
+ 
+ def tensor_file_compare(path1, path2, rtol=1e-05, atol=1e-08, max_diffs=25):
+-  tensor1 = torch.load(path1)
+-  tensor2 = torch.load(path2)
++  tensor1 = torch.load(path1, weights_only=True)
++  tensor2 = torch.load(path2, weights_only=True)
+   report = compare_tensors(
+       tensor1, tensor2, rtol=rtol, atol=atol, max_diffs=max_diffs)
+   if report:
+     name, id, step, _ = _parse_path(path1)
+     lines = report.split('\n')
+--- /Users/anuragagarwal/Desktop/torchfix/examples/xla/torch_xla/distributed/fsdp/state_dict_utils.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/xla/torch_xla/distributed/fsdp/state_dict_utils.py
+@@ -142,11 +142,11 @@
+   assert len(
+       ckpt_paths) > 0, f"Cannot find any files matching {ckpt_path_pattern}."
+   print(f"found {len(ckpt_paths)} checkpoint files in {ckpt_path_pattern}")
+   checkpoints_and_paths = []
+   for path in ckpt_paths:
+-    ckpt = torch.load(path, map_location="cpu")
++    ckpt = torch.load(path, map_location="cpu", weights_only=True)
+     checkpoints_and_paths.append((ckpt, path))
+   checkpoints_and_paths.sort(key=lambda c: c[0]["shard_metadata"]["rank"])
+   checkpoints = [c[0] for c in checkpoints_and_paths]
+   for rank, (ckpt, path) in enumerate(checkpoints_and_paths):
+     assert ckpt["shard_metadata"]["world_size"] == len(checkpoints), (
+--- /Users/anuragagarwal/Desktop/torchfix/examples/xla/torch_xla/core/xla_model.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/xla/torch_xla/core/xla_model.py
+@@ -1482,11 +1482,11 @@
+   torch.save(cpu_data, bio)
+   xdata = rendezvous(tag, bio.getvalue())
+   xldata = []
+   for xd in xdata:
+     xbio = io.BytesIO(xd)
+-    xldata.append(torch.load(xbio))
++    xldata.append(torch.load(xbio, weights_only=True))
+   return reduce_fn(xldata) if xldata else cpu_data
+ 
+ 
+ def set_rng_state(seed: int, device: Optional[str] = None):
+   """Sets the random number generator state.
+--- /Users/anuragagarwal/Desktop/torchfix/examples/xla/torch_xla/utils/serialization.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/xla/torch_xla/utils/serialization.py
+@@ -89,11 +89,11 @@
+ 
+   def convert_fn(tensors):
+     rewritten_tensors = []
+     for t in tensors:
+       rewritten_tensors.append(
+-          torch.load(_get_tensor_file(tensor_folder, t.tid)))
++          torch.load(_get_tensor_file(tensor_folder, t.tid), weights_only=True))
+     return rewritten_tensors
+ 
+   def select_fn(v):
+     return type(v) == TensorReference
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/xla/torch_xla/experimental/distributed_checkpoint/planners.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/xla/torch_xla/experimental/distributed_checkpoint/planners.py
+@@ -245,11 +245,11 @@
+   def load_bytes(self, read_item: ReadItem, value: io.BytesIO) -> None:
+     # Write the value into the original state_dict to load in-place
+     set_element(
+         self.original_state_dict,
+         self.mappings[read_item.dest_index.fqn],
+-        torch.load(value),
++        torch.load(value, weights_only=True),
+     )
+ 
+   def resolve_tensor(self, read_item: ReadItem) -> torch.Tensor:
+     tensor = self.lookup_tensor(read_item.dest_index)
+     return self.transform_tensor(read_item, tensor)
+--- /Users/anuragagarwal/Desktop/torchfix/examples/xla/torchax/examples/basic_training.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/xla/torchax/examples/basic_training.py
+@@ -6,11 +6,11 @@
+ and optimizer
+ """
+ 
+ import torch
+ import torchvision
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ # PyTorch TensorBoard support
+ #from torch.utils.tensorboard import SummaryWriter
+ #from datetime import datetime
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/xla/torchax/examples/basic_training_jax.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/xla/torchax/examples/basic_training_jax.py
+@@ -6,11 +6,11 @@
+ import functools
+ from torchax import train, interop
+ import torch
+ from torch.utils import _pytree as pytree
+ import torchvision
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ import torchax
+ import torchax.interop
+ import jax 
+ import optax
+ import numpy as np
+--- /Users/anuragagarwal/Desktop/torchfix/examples/xla/test/test_operations.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/xla/test/test_operations.py
+@@ -1475,37 +1475,37 @@
+   def test_save(self):
+     xla_device = xm.xla_device()
+     x = torch.randn(5, device=xla_device)
+     with tempfile.NamedTemporaryFile() as tf:
+       torch.save(x, tf)
+-      x_loaded = torch.load(tf.name)
++      x_loaded = torch.load(tf.name, weights_only=True)
+       self.assertEqual(x, x_loaded)
+ 
+   def test_save_bf16(self):
+     xla_device = xm.xla_device()
+     x = torch.randn(5, dtype=torch.bfloat16, device=xla_device)
+     with tempfile.NamedTemporaryFile() as tf:
+       torch.save(x, tf)
+-      x_loaded = torch.load(tf.name)
++      x_loaded = torch.load(tf.name, weights_only=True)
+       self.assertEqual(x, x_loaded)
+ 
+   def test_save_tuple(self):
+     xla_device = xm.xla_device()
+     x = torch.randn(5, device=xla_device)
+     number = 3
+     with tempfile.NamedTemporaryFile() as tf:
+       torch.save((x, number), tf)
+-      x_loaded, number_loaded = torch.load(tf.name)
++      x_loaded, number_loaded = torch.load(tf.name, weights_only=True)
+       self.assertEqual(x, x_loaded)
+       self.assertEqual(number, number_loaded)
+ 
+   def test_save_api(self):
+     xla_device = xm.xla_device()
+     model = XlaMNIST().to(xla_device)
+     with tempfile.NamedTemporaryFile() as tf:
+       xm.save(model.state_dict(), tf)
+-      state_dict = torch.load(tf.name)
++      state_dict = torch.load(tf.name, weights_only=True)
+     cpu_model = XlaMNIST()
+     cpu_model.load_state_dict(state_dict)
+     loaded_model = cpu_model.to(xla_device)
+     self.assertEqual(model.state_dict(), loaded_model.state_dict())
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/xla/torchax/examples/mnist_tpu.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/xla/torchax/examples/mnist_tpu.py
+@@ -26,11 +26,11 @@
+ # In[2]:
+ 
+ 
+ import torch
+ import torchvision
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ train_dataset = torchvision.datasets.MNIST(
+     root='./data',
+     train=True,
+     download=True,
+Repository: xla

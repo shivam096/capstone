@@ -1,0 +1,7 @@
+Repository: TorchBlocks
+Total Python lines:    16125
+Total TorchFix errors (TOR***): 18
+Individual TorchFix error counts:
+TOR101: 8
+TOR102: 9
+TOR103: 1

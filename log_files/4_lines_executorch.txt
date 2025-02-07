@@ -1,0 +1,9 @@
+Repository: executorch
+Total Python lines:   208532
+Total TorchFix errors (TOR***): 45
+Individual TorchFix error counts:
+TOR101: 1
+TOR102: 3
+TOR103: 1
+TOR401: 15
+TOR901: 25

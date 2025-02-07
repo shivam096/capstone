@@ -1,0 +1,9 @@
+Repository: captum
+Total Python lines:    74448
+Total TorchFix errors (TOR***): 108
+Individual TorchFix error counts:
+TOR101: 11
+TOR102: 19
+TOR201: 6
+TOR203: 7
+TOR401: 65

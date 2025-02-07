@@ -1,0 +1,474 @@
+Repository: tutorials
+Checking root directory only to avoid duplication.
+beginner_source/fgsm_tutorial.py:175:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+beginner_source/flava_finetuning_tutorial.py:162:20: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+beginner_source/hyperparameter_tuning_tutorial.py:52:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+intermediate_source/autograd_saved_tensors_hooks_tutorial.py:489:12: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+prototype_source/numeric_suite_tutorial.py:32:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+prototype_source/numeric_suite_tutorial.py:80:10: TOR101 Use of deprecated function torch.norm
+prototype_source/numeric_suite_tutorial.py:81:10: TOR101 Use of deprecated function torch.norm
+advanced_source/neural_style_tutorial.py:58:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+beginner_source/vt_tutorial.py:75:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+beginner_source/basics/quickstart_tutorial.py:65:20: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+beginner_source/basics/quickstart_tutorial.py:66:19: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+beginner_source/basics/saveloadrun_tutorial.py:19:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+beginner_source/chatbot_tutorial.py:1263:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+beginner_source/data_loading_tutorial.py:376:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+beginner_source/dcgan_faces_tutorial.py:125:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+intermediate_source/seq2seq_translation_tutorial.py:581:24: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+advanced_source/super_resolution_with_onnxruntime.py:282:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+beginner_source/nn_tutorial.py:532:12: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+beginner_source/nn_tutorial.py:589:12: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+beginner_source/nn_tutorial.py:592:12: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+beginner_source/nn_tutorial.py:670:9: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+beginner_source/nn_tutorial.py:671:9: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+recipes_source/recipes/profiler_recipe.py:47:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+beginner_source/basics/data_tutorial.py:218:20: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+beginner_source/basics/data_tutorial.py:219:19: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+beginner_source/basics/optimization_tutorial.py:47:20: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+beginner_source/basics/optimization_tutorial.py:48:19: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+beginner_source/deploy_seq2seq_hybrid_frontend_tutorial.py:732:14: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+intermediate_source/custom_function_conv_bn_tutorial.py:347:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+intermediate_source/custom_function_conv_bn_tutorial.py:348:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+beginner_source/introyt/tensorboardyt_tutorial.py:62:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+beginner_source/introyt/trainingyt.py:68:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+beginner_source/introyt/trainingyt.py:84:19: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+beginner_source/introyt/trainingyt.py:85:21: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+intermediate_source/mnist_train_nas.py:125:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+intermediate_source/mnist_train_nas.py:128:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+recipes_source/recipes/zeroing_out_gradients.py:73:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+_static/tiatoolbox_tutorial.py:259:23: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+beginner_source/knowledge_distillation_tutorial.py:250:41: TOR101 Use of deprecated function torch.norm
+beginner_source/knowledge_distillation_tutorial.py:252:45: TOR101 Use of deprecated function torch.norm
+beginner_source/knowledge_distillation_tutorial.py:446:41: TOR101 Use of deprecated function torch.norm
+beginner_source/knowledge_distillation_tutorial.py:447:50: TOR101 Use of deprecated function torch.norm
+beginner_source/knowledge_distillation_tutorial.py:452:29: TOR101 Use of deprecated function torch.norm
+beginner_source/knowledge_distillation_tutorial.py:37:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+beginner_source/knowledge_distillation_tutorial.py:38:1: TOR203 [*] Consider replacing 'import torchvision.datasets as datasets' with 'from torchvision import datasets'.
+beginner_source/nlp/advanced_tutorial.py:146:9: TOR108 Use numerically stabilized `torch.logsumexp`.
+intermediate_source/tensorboard_profiler_tutorial.py:73:16: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+beginner_source/blitz/cifar10_tutorial.py:60:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+beginner_source/blitz/data_parallel_tutorial.py:82:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+beginner_source/introyt/captumyt.py:143:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+beginner_source/introyt/captumyt.py:144:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+beginner_source/introyt/introyt1_tutorial.py:120:7: TOR101 Use of deprecated function torch.svd
+beginner_source/introyt/introyt1_tutorial.py:287:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+beginner_source/introyt/introyt1_tutorial.py:419:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+intermediate_source/flask_rest_api_tutorial.py:103:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+intermediate_source/forward_ad_usage.py:203:27: TOR101 [*] Use of deprecated function functorch.jvp
+intermediate_source/forward_ad_usage.py:214:27: TOR101 [*] Use of deprecated function functorch.jvp
+intermediate_source/forward_ad_usage.py:242:25: TOR101 [*] Use of deprecated function functorch.jvp
+intermediate_source/fx_conv_bn_fuser.py:215:1: TOR101 Use of deprecated function torch.testing.assert_allclose
+intermediate_source/fx_conv_bn_fuser.py:223:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+intermediate_source/fx_profiling_tutorial.py:23:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+intermediate_source/torchvision_tutorial.py:387:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+intermediate_source/torchvision_tutorial.py:430:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+intermediate_source/torchvision_tutorial.py:437:20: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+prototype_source/fx_graph_mode_ptq_dynamic.py:255:5: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+Finished checking 142 files.
+[*] 24 potentially fixable with the --fix option
+--- /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/beginner_source/basics/saveloadrun_tutorial.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/beginner_source/basics/saveloadrun_tutorial.py
+@@ -14,11 +14,11 @@
+ 
+ In this section we will look at how to persist model state with saving, loading and running model predictions.
+ """
+ 
+ import torch
+-import torchvision.models as models
++from torchvision import models
+ 
+ 
+ #######################################################################
+ # Saving and Loading Model Weights
+ # --------------------------------
+--- /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/beginner_source/blitz/cifar10_tutorial.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/beginner_source/blitz/cifar10_tutorial.py
+@@ -55,11 +55,11 @@
+ 
+ Using ``torchvision``, it’s extremely easy to load CIFAR10.
+ """
+ import torch
+ import torchvision
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ ########################################################################
+ # The output of torchvision datasets are PILImage images of range [0, 1].
+ # We transform them to Tensors of normalized range [-1, 1].
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/_static/tiatoolbox_tutorial.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/_static/tiatoolbox_tutorial.py
+@@ -254,11 +254,11 @@
+ 
+ # In[ ]:
+ 
+ 
+ model = vanilla.CNNModel(backbone="resnet18", num_classes=9) # Importing model from torchvision.models.resnet18
+-model.load_state_dict(torch.load(weights_path, map_location="cpu"), strict=True)
++model.load_state_dict(torch.load(weights_path, map_location="cpu", weights_only=True), strict=True)
+ def preproc_func(img):
+     img = PIL.Image.fromarray(img)
+     img = transforms.ToTensor()(img)
+     return img.permute(1, 2, 0)
+ model.preproc_func = preproc_func
+--- /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/advanced_source/super_resolution_with_onnxruntime.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/advanced_source/super_resolution_with_onnxruntime.py
+@@ -277,11 +277,11 @@
+ # After extracting the Y component, we convert it to a tensor which
+ # will be the input of our model.
+ #
+ 
+ from PIL import Image
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ img = Image.open("./_static/img/cat.jpg")
+ 
+ resize = transforms.Resize([224, 224])
+ img = resize(img)
+--- /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/beginner_source/deploy_seq2seq_hybrid_frontend_tutorial.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/beginner_source/deploy_seq2seq_hybrid_frontend_tutorial.py
+@@ -727,11 +727,11 @@
+ # If you're loading the hosted model
+ loadFilename = 'data/4000_checkpoint.tar'
+ 
+ # Load model
+ # Force CPU device options (to match tensors in this tutorial)
+-checkpoint = torch.load(loadFilename, map_location=torch.device('cpu'))
++checkpoint = torch.load(loadFilename, map_location=torch.device('cpu'), weights_only=True)
+ encoder_sd = checkpoint['en']
+ decoder_sd = checkpoint['de']
+ encoder_optimizer_sd = checkpoint['en_opt']
+ decoder_optimizer_sd = checkpoint['de_opt']
+ embedding_sd = checkpoint['embedding']
+--- /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/advanced_source/neural_style_tutorial.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/advanced_source/neural_style_tutorial.py
+@@ -53,11 +53,11 @@
+ import torch.optim as optim
+ 
+ from PIL import Image
+ import matplotlib.pyplot as plt
+ 
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ from torchvision.models import vgg19, VGG19_Weights
+ 
+ import copy
+ 
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/beginner_source/hyperparameter_tuning_tutorial.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/beginner_source/hyperparameter_tuning_tutorial.py
+@@ -47,11 +47,11 @@
+ import torch.nn as nn
+ import torch.nn.functional as F
+ import torch.optim as optim
+ from torch.utils.data import random_split
+ import torchvision
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ # sphinx_gallery_start_ignore
+ # Fixes ``AttributeError: '_LoggingTee' object has no attribute 'fileno'``.
+ # This is only needed to run with sphinx-build.
+ import sys
+ if not hasattr(sys.stdout, "encoding"):
+--- /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/beginner_source/introyt/captumyt.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/beginner_source/introyt/captumyt.py
+@@ -138,12 +138,12 @@
+ 
+ """
+ 
+ import torch
+ import torch.nn.functional as F
+-import torchvision.transforms as transforms
+-import torchvision.models as models
++from torchvision import transforms
++from torchvision import models
+ 
+ import captum
+ from captum.attr import IntegratedGradients, Occlusion, LayerGradCam, LayerAttribution
+ from captum.attr import visualization as viz
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/beginner_source/introyt/introyt1_tutorial.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/beginner_source/introyt/introyt1_tutorial.py
+@@ -282,11 +282,11 @@
+ 
+ #%matplotlib inline
+ 
+ import torch
+ import torchvision
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ transform = transforms.Compose(
+     [transforms.ToTensor(),
+      transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2470, 0.2435, 0.2616))])
+ 
+@@ -414,11 +414,11 @@
+ import torch.nn as nn
+ import torch.nn.functional as F
+ import torch.optim as optim
+ 
+ import torchvision
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ import matplotlib
+ import matplotlib.pyplot as plt
+ import numpy as np
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/beginner_source/vt_tutorial.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/beginner_source/vt_tutorial.py
+@@ -70,11 +70,11 @@
+ 
+ from PIL import Image
+ import torch
+ import timm
+ import requests
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ from timm.data.constants import IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD
+ 
+ print(torch.__version__)
+ # should be 1.8.0
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/beginner_source/introyt/tensorboardyt_tutorial.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/beginner_source/introyt/tensorboardyt_tutorial.py
+@@ -57,11 +57,11 @@
+ import torch.nn.functional as F
+ import torch.optim as optim
+ 
+ # Image datasets and image manipulation
+ import torchvision
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ # Image display
+ import matplotlib.pyplot as plt
+ import numpy as np
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/beginner_source/introyt/trainingyt.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/beginner_source/introyt/trainingyt.py
+@@ -63,11 +63,11 @@
+ 
+ """ 
+ 
+ import torch
+ import torchvision
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ # PyTorch TensorBoard support
+ from torch.utils.tensorboard import SummaryWriter
+ from datetime import datetime
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/beginner_source/chatbot_tutorial.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/beginner_source/chatbot_tutorial.py
+@@ -1258,11 +1258,11 @@
+ #                        '{}_checkpoint.tar'.format(checkpoint_iter))
+ 
+ # Load model if a ``loadFilename`` is provided
+ if loadFilename:
+     # If loading on same machine the model was trained on
+-    checkpoint = torch.load(loadFilename)
++    checkpoint = torch.load(loadFilename, weights_only=True)
+     # If loading a model trained on GPU to CPU
+     #checkpoint = torch.load(loadFilename, map_location=torch.device('cpu'))
+     encoder_sd = checkpoint['en']
+     decoder_sd = checkpoint['de']
+     encoder_optimizer_sd = checkpoint['en_opt']
+--- /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/beginner_source/dcgan_faces_tutorial.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/beginner_source/dcgan_faces_tutorial.py
+@@ -120,11 +120,11 @@
+ import torch.nn as nn
+ import torch.nn.parallel
+ import torch.optim as optim
+ import torch.utils.data
+ import torchvision.datasets as dset
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ import torchvision.utils as vutils
+ import numpy as np
+ import matplotlib.pyplot as plt
+ import matplotlib.animation as animation
+ from IPython.display import HTML
+--- /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/beginner_source/knowledge_distillation_tutorial.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/beginner_source/knowledge_distillation_tutorial.py
+@@ -32,12 +32,12 @@
+ # * CIFAR-10 dataset (downloaded by the script and saved in a directory called ``/data``)
+ 
+ import torch
+ import torch.nn as nn
+ import torch.optim as optim
+-import torchvision.transforms as transforms
+-import torchvision.datasets as datasets
++from torchvision import transforms
++from torchvision import datasets
+ 
+ # Check if the current `accelerator <https://pytorch.org/docs/stable/torch.html#accelerators>`__
+ # is available, and if not, use the CPU
+ device = torch.accelerator.current_accelerator().type if torch.accelerator.is_available() else "cpu"
+ print(f"Using {device} device")
+--- /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/intermediate_source/flask_rest_api_tutorial.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/intermediate_source/flask_rest_api_tutorial.py
+@@ -98,11 +98,11 @@
+ # transform pipeline, which transforms our images as required. You
+ # can read more about transforms `here <https://pytorch.org/vision/stable/transforms.html>`_.
+ 
+ import io
+ 
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ from PIL import Image
+ 
+ def transform_image(image_bytes):
+     my_transforms = transforms.Compose([transforms.Resize(255),
+                                         transforms.CenterCrop(224),
+--- /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/intermediate_source/forward_ad_usage.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/intermediate_source/forward_ad_usage.py
+@@ -198,22 +198,22 @@
+     return x ** 2 + y ** 2
+ 
+ # Here is a basic example to compute the JVP of the above function.
+ # The ``jvp(func, primals, tangents)`` returns ``func(*primals)`` as well as the
+ # computed Jacobian-vector product (JVP). Each primal must be associated with a tangent of the same shape.
+-primal_out, tangent_out = ft.jvp(fn, (primal0, primal1), (tangent0, tangent1))
++primal_out, tangent_out = ft.torch.func.jvp(fn, (primal0, primal1), (tangent0, tangent1))
+ 
+ # ``functorch.jvp`` requires every primal to be associated with a tangent.
+ # If we only want to associate certain inputs to `fn` with tangents,
+ # then we'll need to create a new function that captures inputs without tangents:
+ primal = torch.randn(10, 10)
+ tangent = torch.randn(10, 10)
+ y = torch.randn(10, 10)
+ 
+ import functools
+ new_fn = functools.partial(fn, y=y)
+-primal_out, tangent_out = ft.jvp(new_fn, (primal,), (tangent,))
++primal_out, tangent_out = ft.torch.func.jvp(new_fn, (primal,), (tangent,))
+ 
+ ######################################################################
+ # Using the functional API with Modules
+ # --------------------------------------------------------------------
+ # To use ``nn.Module`` with ``functorch.jvp`` to compute Jacobian-vector products
+@@ -237,11 +237,11 @@
+ # Because ``jvp`` requires every input to be associated with a tangent, we need to
+ # create a new function that, when given the parameters, produces the output
+ def func_params_only(params):
+     return func(params, buffers, input)
+ 
+-model_output, jvp_out = ft.jvp(func_params_only, (params,), (tangents,))
++model_output, jvp_out = ft.torch.func.jvp(func_params_only, (params,), (tangents,))
+ 
+ 
+ ######################################################################
+ # [0] https://en.wikipedia.org/wiki/Dual_number
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/intermediate_source/fx_conv_bn_fuser.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/intermediate_source/fx_conv_bn_fuser.py
+@@ -218,11 +218,11 @@
+ ######################################################################
+ # Benchmarking our Fusion on ResNet18
+ # -----------------------------------
+ # We can test our fusion pass on a larger model like ResNet18 and see how much
+ # this pass improves inference performance.
+-import torchvision.models as models
++from torchvision import models
+ import time
+ 
+ rn18 = models.resnet18()
+ rn18.eval()
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/intermediate_source/fx_profiling_tutorial.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/intermediate_source/fx_profiling_tutorial.py
+@@ -18,11 +18,11 @@
+ # For this tutorial, we are going to use the torchvision ResNet18 model
+ # for demonstration purposes.
+ 
+ import torch
+ import torch.fx
+-import torchvision.models as models
++from torchvision import models
+ 
+ rn18 = models.resnet18()
+ rn18.eval()
+ 
+ ######################################################################
+--- /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/intermediate_source/autograd_saved_tensors_hooks_tutorial.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/intermediate_source/autograd_saved_tensors_hooks_tutorial.py
+@@ -484,11 +484,11 @@
+     return temp_file
+ 
+ def unpack_hook(tensor_or_sctf):
+     if isinstance(tensor_or_sctf, torch.Tensor):
+         return tensor_or_sctf
+-    return torch.load(tensor_or_sctf.name)
++    return torch.load(tensor_or_sctf.name, weights_only=True)
+ 
+ class SaveToDisk(nn.Module):
+     def __init__(self, module):
+         super().__init__()
+         self.module = module
+--- /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/prototype_source/numeric_suite_tutorial.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/prototype_source/numeric_suite_tutorial.py
+@@ -27,11 +27,11 @@
+ import numpy as np
+ import torch
+ import torch.nn as nn
+ import torchvision
+ from torchvision import models, datasets
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ import os
+ import torch.quantization
+ import torch.quantization._numeric_suite as ns
+ from torch.quantization import (
+     default_eval_fn,
+--- /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/recipes_source/recipes/profiler_recipe.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/recipes_source/recipes/profiler_recipe.py
+@@ -42,11 +42,11 @@
+ # In this recipe we will use ``torch``, ``torchvision.models``
+ # and ``profiler`` modules:
+ #
+ 
+ import torch
+-import torchvision.models as models
++from torchvision import models
+ from torch.profiler import profile, record_function, ProfilerActivity
+ 
+ 
+ ######################################################################
+ # 2. Instantiate a simple Resnet model
+--- /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/prototype_source/fx_graph_mode_ptq_dynamic.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/prototype_source/fx_graph_mode_ptq_dynamic.py
+@@ -252,12 +252,12 @@
+ )
+ 
+ model_to_quantize.load_state_dict(
+     torch.load(
+         model_data_filepath + 'word_language_model_quantize.pth',
+-        map_location=torch.device('cpu')
+-        )
++        map_location=torch.device('cpu'), 
++        weights_only=True)
+     )
+ 
+ model_to_quantize.eval()
+ 
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/recipes_source/recipes/zeroing_out_gradients.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/tutorials/recipes_source/recipes/zeroing_out_gradients.py
+@@ -68,11 +68,11 @@
+ import torch.nn.functional as F
+ 
+ import torch.optim as optim
+ 
+ import torchvision
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ 
+ ######################################################################
+ # 2. Load and normalize the dataset
+ # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Repository: tutorials

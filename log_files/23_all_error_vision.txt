@@ -1,0 +1,358 @@
+Repository: vision
+Checking root directory only to avoid duplication.
+gallery/transforms/plot_cutmix_mixup.py:58:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+gallery/transforms/plot_cutmix_mixup.py:78:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+gallery/transforms/plot_transforms_e2e.py:148:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+references/similarity/test.py:30:18: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+references/similarity/test.py:5:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+references/similarity/train.py:4:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+test/preprocess-bench.py:8:1: TOR203 [*] Consider replacing 'import torchvision.datasets as datasets' with 'from torchvision import datasets'.
+test/preprocess-bench.py:9:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+test/test_transforms.py:11:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+references/segmentation/train.py:110:14: TOR101 [*] Use of deprecated function torch.cuda.amp.autocast
+references/depth/stereo/train.py:172:10: TOR101 [*] Use of deprecated function torch.cuda.amp.autocast
+references/depth/stereo/train.py:317:14: TOR101 [*] Use of deprecated function torch.cuda.amp.autocast
+gallery/others/plot_video_api.py:318:10: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+references/classification/train.py:29:14: TOR101 [*] Use of deprecated function torch.cuda.amp.autocast
+references/similarity/model.py:2:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+test/test_transforms_v2.py:2270:14: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+test/test_transforms_v2.py:2305:18: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+test/test_transforms_v2.py:5457:25: TOR202 The transform `v2.ToTensor()` is deprecated and will be removed in a future release. Instead, please use `v2.Compose([v2.ToImage(), v2.ToDtype(torch.float32, scale=True)])`.
+test/test_transforms_v2.py:5706:40: TOR202 The transform `v2.ToTensor()` is deprecated and will be removed in a future release. Instead, please use `v2.Compose([v2.ToImage(), v2.ToDtype(torch.float32, scale=True)])`.
+test/test_transforms_v2.py:5726:21: TOR202 The transform `v2.ToTensor()` is deprecated and will be removed in a future release. Instead, please use `v2.Compose([v2.ToImage(), v2.ToDtype(torch.float32, scale=True)])`.
+test/test_transforms_v2.py:5767:40: TOR202 The transform `v2.ToTensor()` is deprecated and will be removed in a future release. Instead, please use `v2.Compose([v2.ToImage(), v2.ToDtype(torch.float32, scale=True)])`.
+test/test_transforms_v2.py:5772:21: TOR202 The transform `v2.ToTensor()` is deprecated and will be removed in a future release. Instead, please use `v2.Compose([v2.ToImage(), v2.ToDtype(torch.float32, scale=True)])`.
+test/test_transforms_v2.py:5855:30: TOR202 The transform `v2.ToTensor()` is deprecated and will be removed in a future release. Instead, please use `v2.Compose([v2.ToImage(), v2.ToDtype(torch.float32, scale=True)])`.
+test/test_ops.py:235:14: TOR101 [*] Use of deprecated function torch.cuda.amp.autocast
+test/test_ops.py:500:14: TOR101 [*] Use of deprecated function torch.cuda.amp.autocast
+test/test_ops.py:516:14: TOR101 [*] Use of deprecated function torch.cpu.amp.autocast
+test/test_ops.py:859:14: TOR101 [*] Use of deprecated function torch.cuda.amp.autocast
+test/test_ops.py:866:14: TOR101 [*] Use of deprecated function torch.cpu.amp.autocast
+test/test_ops.py:1196:14: TOR101 [*] Use of deprecated function torch.cuda.amp.autocast
+references/depth/stereo/cascade_evaluation.py:142:10: TOR101 [*] Use of deprecated function torch.cuda.amp.autocast
+torchvision/_meta_registrations.py:13:12: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+references/detection/engine.py:30:14: TOR101 [*] Use of deprecated function torch.cuda.amp.autocast
+references/video_classification/train.py:28:14: TOR101 [*] Use of deprecated function torch.cuda.amp.autocast
+test/test_models.py:609:10: TOR101 [*] Use of deprecated function torch.cuda.amp.autocast
+test/test_models.py:708:14: TOR101 [*] Use of deprecated function torch.cuda.amp.autocast
+test/test_models.py:764:14: TOR101 [*] Use of deprecated function torch.cuda.amp.autocast
+test/test_models.py:867:14: TOR101 [*] Use of deprecated function torch.cuda.amp.autocast
+test/test_models.py:944:14: TOR101 [*] Use of deprecated function torch.cuda.amp.autocast
+Finished checking 298 files.
+[*] 13 potentially fixable with the --fix option
+--- /Users/anuragagarwal/Desktop/torchfix/examples/vision/references/classification/train.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/vision/references/classification/train.py
+@@ -24,11 +24,11 @@
+ 
+     header = f"Epoch: [{epoch}]"
+     for i, (image, target) in enumerate(metric_logger.log_every(data_loader, args.print_freq, header)):
+         start_time = time.time()
+         image, target = image.to(device), target.to(device)
+-        with torch.cuda.amp.autocast(enabled=scaler is not None):
++        with torch.amp.autocast("cuda", enabled=scaler is not None):
+             output = model(image)
+             loss = criterion(output, target)
+ 
+         optimizer.zero_grad()
+         if scaler is not None:
+--- /Users/anuragagarwal/Desktop/torchfix/examples/vision/references/detection/engine.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/vision/references/detection/engine.py
+@@ -25,11 +25,11 @@
+         )
+ 
+     for images, targets in metric_logger.log_every(data_loader, print_freq, header):
+         images = list(image.to(device) for image in images)
+         targets = [{k: v.to(device) if isinstance(v, torch.Tensor) else v for k, v in t.items()} for t in targets]
+-        with torch.cuda.amp.autocast(enabled=scaler is not None):
++        with torch.amp.autocast("cuda", enabled=scaler is not None):
+             loss_dict = model(images, targets)
+             losses = sum(loss for loss in loss_dict.values())
+ 
+         # reduce losses over all GPUs for logging purposes
+         loss_dict_reduced = utils.reduce_dict(loss_dict)
+--- /Users/anuragagarwal/Desktop/torchfix/examples/vision/references/depth/stereo/cascade_evaluation.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/vision/references/depth/stereo/cascade_evaluation.py
+@@ -137,11 +137,11 @@
+         logger.add_meter(meter_name, fmt="{global_avg:.4f}")
+     if "fl-all" not in args.metrics:
+         logger.add_meter("fl-all", fmt="{global_avg:.4f}")
+ 
+     num_processed_samples = 0
+-    with torch.cuda.amp.autocast(enabled=args.mixed_precision, dtype=torch.float16):
++    with torch.amp.autocast("cuda", enabled=args.mixed_precision, dtype=torch.float16):
+         batch_idx = 0
+         for blob in metric_logger.log_every(val_loader, print_freq, header):
+             image_left, image_right, disp_gt, valid_disp_mask = (x.to(device) for x in blob)
+             padder = utils.InputPadder(image_left.shape, mode=padder_mode)
+             image_left, image_right = padder.pad(image_left, image_right)
+--- /Users/anuragagarwal/Desktop/torchfix/examples/vision/references/similarity/model.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/vision/references/similarity/model.py
+@@ -1,7 +1,7 @@
+ import torch.nn as nn
+-import torchvision.models as models
++from torchvision import models
+ 
+ 
+ class EmbeddingNet(nn.Module):
+     def __init__(self, backbone=None):
+         super().__init__()
+--- /Users/anuragagarwal/Desktop/torchfix/examples/vision/references/similarity/test.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/vision/references/similarity/test.py
+@@ -1,10 +1,10 @@
+ import unittest
+ from collections import defaultdict
+ 
+ import torch
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ from sampler import PKSampler
+ from torch.utils.data import DataLoader
+ from torchvision.datasets import FakeData
+ 
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/vision/references/similarity/train.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/vision/references/similarity/train.py
+@@ -1,9 +1,9 @@
+ import os
+ 
+ import torch
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ from loss import TripletMarginLoss
+ from model import EmbeddingNet
+ from sampler import PKSampler
+ from torch.optim import Adam
+ from torch.utils.data import DataLoader
+--- /Users/anuragagarwal/Desktop/torchfix/examples/vision/references/depth/stereo/train.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/vision/references/depth/stereo/train.py
+@@ -167,11 +167,11 @@
+         logger.add_meter(meter_name, fmt="{global_avg:.4f}")
+     if "fl-all" not in args.metrics:
+         logger.add_meter("fl-all", fmt="{global_avg:.4f}")
+ 
+     num_processed_samples = 0
+-    with torch.cuda.amp.autocast(enabled=args.mixed_precision, dtype=torch.float16):
++    with torch.amp.autocast("cuda", enabled=args.mixed_precision, dtype=torch.float16):
+         for blob in metric_logger.log_every(val_loader, print_freq, header):
+             image_left, image_right, disp_gt, valid_disp_mask = (x.to(device) for x in blob)
+             padder = utils.InputPadder(image_left.shape, mode=padder_mode)
+             image_left, image_right = padder.pad(image_left, image_right)
+ 
+@@ -312,11 +312,11 @@
+         data_blob = next(loader)
+         optimizer.zero_grad()
+ 
+         # unpack the data blob
+         image_left, image_right, disp_mask, valid_disp_mask = (x.to(device) for x in data_blob)
+-        with torch.cuda.amp.autocast(enabled=args.mixed_precision, dtype=torch.float16):
++        with torch.amp.autocast("cuda", enabled=args.mixed_precision, dtype=torch.float16):
+             disp_predictions = model(image_left, image_right, flow_init=None, num_iters=args.recurrent_updates)
+             # different models have different outputs, make sure we get the right ones for this task
+             disp_predictions = make_stereo_flow(disp_predictions, model_out_channels)
+             # should the architecture or training loop require it, we have to adjust the disparity mask
+             # target to possibly look like an optical flow mask
+--- /Users/anuragagarwal/Desktop/torchfix/examples/vision/references/segmentation/train.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/vision/references/segmentation/train.py
+@@ -105,11 +105,11 @@
+     metric_logger = utils.MetricLogger(delimiter="  ")
+     metric_logger.add_meter("lr", utils.SmoothedValue(window_size=1, fmt="{value}"))
+     header = f"Epoch: [{epoch}]"
+     for image, target in metric_logger.log_every(data_loader, print_freq, header):
+         image, target = image.to(device), target.to(device)
+-        with torch.cuda.amp.autocast(enabled=scaler is not None):
++        with torch.amp.autocast("cuda", enabled=scaler is not None):
+             output = model(image)
+             loss = criterion(output, target)
+ 
+         optimizer.zero_grad()
+         if scaler is not None:
+--- /Users/anuragagarwal/Desktop/torchfix/examples/vision/references/video_classification/train.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/vision/references/video_classification/train.py
+@@ -23,11 +23,11 @@
+ 
+     header = f"Epoch: [{epoch}]"
+     for video, target, _ in metric_logger.log_every(data_loader, print_freq, header):
+         start_time = time.time()
+         video, target = video.to(device), target.to(device)
+-        with torch.cuda.amp.autocast(enabled=scaler is not None):
++        with torch.amp.autocast("cuda", enabled=scaler is not None):
+             output = model(video)
+             loss = criterion(output, target)
+ 
+         optimizer.zero_grad()
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/vision/test/preprocess-bench.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/vision/test/preprocess-bench.py
+@@ -3,12 +3,12 @@
+ from timeit import default_timer as timer
+ 
+ import torch
+ import torch.utils.data
+ import torchvision
+-import torchvision.datasets as datasets
+-import torchvision.transforms as transforms
++from torchvision import datasets
++from torchvision import transforms
+ from torch.utils.model_zoo import tqdm
+ 
+ 
+ parser = argparse.ArgumentParser(description="PyTorch ImageNet Training")
+ parser.add_argument("--data", metavar="PATH", required=True, help="path to dataset")
+--- /Users/anuragagarwal/Desktop/torchfix/examples/vision/test/test_models.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/vision/test/test_models.py
+@@ -604,11 +604,11 @@
+     out = model(model_input)
+     assert model_input[0] is x
+ 
+     checkOut(out)
+ 
+-    with torch.cuda.amp.autocast():
++    with torch.amp.autocast("cuda"):
+         out = model(model_input)
+ 
+     checkOut(out)
+ 
+     _check_input_backprop(model, model_input)
+@@ -703,11 +703,11 @@
+     assert out.shape[-1] == num_classes
+     _check_jit_scriptable(model, (x,), unwrapper=script_model_unwrapper.get(model_name, None), eager_out=out)
+     _check_fx_compatible(model, x, eager_out=out)
+ 
+     if dev == "cuda":
+-        with torch.cuda.amp.autocast():
++        with torch.amp.autocast("cuda"):
+             out = model(x)
+             # See autocast_flaky_numerics comment at top of file.
+             if model_name not in autocast_flaky_numerics:
+                 _assert_expected(out.cpu(), model_name, prec=0.1)
+             assert out.shape[-1] == 50
+@@ -759,11 +759,11 @@
+ 
+     _check_jit_scriptable(model, (x,), unwrapper=script_model_unwrapper.get(model_name, None), eager_out=out)
+     _check_fx_compatible(model, x, eager_out=out)
+ 
+     if dev == "cuda":
+-        with torch.cuda.amp.autocast(), torch.no_grad(), freeze_rng_state():
++        with torch.amp.autocast("cuda"), torch.no_grad(), freeze_rng_state():
+             out = model(x)
+             # See autocast_flaky_numerics comment at top of file.
+             if model_name not in autocast_flaky_numerics:
+                 full_validation &= check_out(out["out"])
+ 
+@@ -862,11 +862,11 @@
+ 
+     full_validation = check_out(out)
+     _check_jit_scriptable(model, ([x],), unwrapper=script_model_unwrapper.get(model_name, None), eager_out=out)
+ 
+     if dev == "cuda":
+-        with torch.cuda.amp.autocast(), torch.no_grad(), freeze_rng_state():
++        with torch.amp.autocast("cuda"), torch.no_grad(), freeze_rng_state():
+             out = model(model_input)
+             # See autocast_flaky_numerics comment at top of file.
+             if model_name not in autocast_flaky_numerics:
+                 full_validation &= check_out(out)
+ 
+@@ -939,11 +939,11 @@
+     _check_jit_scriptable(model, (x,), unwrapper=script_model_unwrapper.get(model_name, None), eager_out=out)
+     _check_fx_compatible(model, x, eager_out=out)
+     assert out.shape[-1] == num_classes
+ 
+     if dev == "cuda":
+-        with torch.cuda.amp.autocast():
++        with torch.amp.autocast("cuda"):
+             out = model(x)
+             # See autocast_flaky_numerics comment at top of file.
+             if model_name not in autocast_flaky_numerics:
+                 _assert_expected(out.cpu(), model_name, prec=0.1)
+             assert out.shape[-1] == num_classes
+--- /Users/anuragagarwal/Desktop/torchfix/examples/vision/test/test_ops.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/vision/test/test_ops.py
+@@ -230,11 +230,11 @@
+ 
+     @needs_cuda
+     @pytest.mark.parametrize("x_dtype", (torch.float, torch.half))
+     @pytest.mark.parametrize("rois_dtype", (torch.float, torch.half))
+     def test_autocast(self, x_dtype, rois_dtype):
+-        with torch.cuda.amp.autocast():
++        with torch.amp.autocast("cuda"):
+             self.test_forward(torch.device("cuda"), contiguous=False, x_dtype=x_dtype, rois_dtype=rois_dtype)
+ 
+     def _helper_boxes_shape(self, func):
+         # test boxes as Tensor[N, 5]
+         with pytest.raises(AssertionError):
+@@ -495,11 +495,11 @@
+     @pytest.mark.parametrize("deterministic", (True, False))
+     @pytest.mark.parametrize("x_dtype", (torch.float, torch.half))
+     @pytest.mark.parametrize("rois_dtype", (torch.float, torch.half))
+     @pytest.mark.opcheck_only_one()
+     def test_autocast(self, aligned, deterministic, x_dtype, rois_dtype):
+-        with torch.cuda.amp.autocast():
++        with torch.amp.autocast("cuda"):
+             self.test_forward(
+                 torch.device("cuda"),
+                 contiguous=False,
+                 deterministic=deterministic,
+                 aligned=aligned,
+@@ -511,11 +511,11 @@
+     @pytest.mark.parametrize("aligned", (True, False))
+     @pytest.mark.parametrize("deterministic", (True, False))
+     @pytest.mark.parametrize("x_dtype", (torch.float, torch.bfloat16))
+     @pytest.mark.parametrize("rois_dtype", (torch.float, torch.bfloat16))
+     def test_autocast_cpu(self, aligned, deterministic, x_dtype, rois_dtype):
+-        with torch.cpu.amp.autocast():
++        with torch.amp.autocast("cpu"):
+             self.test_forward(
+                 torch.device("cpu"),
+                 contiguous=False,
+                 deterministic=deterministic,
+                 aligned=aligned,
+@@ -854,18 +854,18 @@
+     @needs_cuda
+     @pytest.mark.parametrize("iou", (0.2, 0.5, 0.8))
+     @pytest.mark.parametrize("dtype", (torch.float, torch.half))
+     @pytest.mark.opcheck_only_one()
+     def test_autocast(self, iou, dtype):
+-        with torch.cuda.amp.autocast():
++        with torch.amp.autocast("cuda"):
+             self.test_nms_gpu(iou=iou, dtype=dtype, device="cuda")
+ 
+     @pytest.mark.parametrize("iou", (0.2, 0.5, 0.8))
+     @pytest.mark.parametrize("dtype", (torch.float, torch.bfloat16))
+     def test_autocast_cpu(self, iou, dtype):
+         boxes, scores = self._create_tensors_with_iou(1000, iou)
+-        with torch.cpu.amp.autocast():
++        with torch.amp.autocast("cpu"):
+             keep_ref_float = ops.nms(boxes.to(dtype).float(), scores.to(dtype).float(), iou)
+             keep_dtype = ops.nms(boxes.to(dtype), scores.to(dtype), iou)
+         torch.testing.assert_close(keep_ref_float, keep_dtype)
+ 
+     @pytest.mark.parametrize(
+@@ -1191,11 +1191,11 @@
+     @needs_cuda
+     @pytest.mark.parametrize("batch_sz", (0, 33))
+     @pytest.mark.parametrize("dtype", (torch.float, torch.half))
+     @pytest.mark.opcheck_only_one()
+     def test_autocast(self, batch_sz, dtype):
+-        with torch.cuda.amp.autocast():
++        with torch.amp.autocast("cuda"):
+             self.test_forward(torch.device("cuda"), contiguous=False, batch_sz=batch_sz, dtype=dtype)
+ 
+     def test_forward_scriptability(self):
+         # Non-regression test for https://github.com/pytorch/vision/issues/4078
+         torch.jit.script(ops.DeformConv2d(in_channels=8, out_channels=8, kernel_size=3))
+--- /Users/anuragagarwal/Desktop/torchfix/examples/vision/test/test_transforms.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/vision/test/test_transforms.py
+@@ -6,11 +6,11 @@
+ from functools import partial
+ 
+ import numpy as np
+ import pytest
+ import torch
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ import torchvision.transforms._functional_tensor as F_t
+ import torchvision.transforms.functional as F
+ from PIL import Image
+ from torch._utils_internal import get_file_path_2
+ 
+Repository: vision

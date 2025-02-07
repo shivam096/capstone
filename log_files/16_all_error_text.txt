@@ -1,0 +1,316 @@
+Repository: text
+Checking root directory only to avoid duplication.
+examples/data_pipeline/roberta_dataframe.py:43:13: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/data_pipeline/roberta_dataframe.py:128:10: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/data_pipeline/roberta_datapipe.py:60:10: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+test/torchtext_unittest/prototype/test_functional.py:87:26: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/torchtext_unittest/prototype/test_functional.py:96:26: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/torchtext_unittest/prototype/test_transforms.py:128:26: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/torchtext_unittest/prototype/test_transforms.py:137:26: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchtext/vocab/vectors.py:173:60: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/text_classification/predict.py:39:13: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/text_classification/predict.py:40:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/text_classification/train.py:137:24: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/text_classification/train.py:138:24: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/text_classification/train.py:139:23: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/torcharrow/roberta_sst2_training_with_torcharrow.py:46:13: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/torcharrow/roberta_sst2_training_with_torcharrow.py:83:10: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/tutorials/sst2_classification_non_distributed.py:110:20: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/tutorials/sst2_classification_non_distributed.py:115:18: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/tutorials/t5_demo.py:136:20: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/tutorials/t5_demo.py:182:19: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/tutorials/t5_demo.py:200:20: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+test/torchtext_unittest/test_transforms.py:735:28: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/torchtext_unittest/test_transforms.py:744:28: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/torchtext_unittest/test_transforms.py:997:28: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/torchtext_unittest/test_transforms.py:1006:28: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/torchtext_unittest/test_transforms.py:1175:32: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/torchtext_unittest/test_transforms.py:1242:32: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/torchtext_unittest/test_vocab.py:209:24: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/torchtext_unittest/test_vocab.py:219:24: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/torchtext_unittest/prototype/test_vectors.py:144:34: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/torchtext_unittest/prototype/test_vectors.py:155:34: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchtext/models/t5/bundler.py:189:22: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/integration_tests/test_roberta_models.py:50:20: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+test/integration_tests/test_t5_models.py:83:20: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+Finished checking 151 files.
+[*] 12 potentially fixable with the --fix option
+--- /Users/anuragagarwal/Desktop/torchfix/examples/text/examples/data_pipeline/roberta_dataframe.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/text/examples/data_pipeline/roberta_dataframe.py
+@@ -38,11 +38,11 @@
+ 
+ 
+ def init_ta_gpt2bpe_vocab():
+     vocab_path = "https://download.pytorch.org/models/text/roberta.vocab.pt"
+     vocab_path = get_asset_local_path(vocab_path)
+-    vocab = torch.load(vocab_path)
++    vocab = torch.load(vocab_path, weights_only=True)
+     ta_vocab = _ta.Vocab(vocab.get_itos(), vocab.get_default_index())
+     return ta_vocab
+ 
+ 
+ class RobertaTransformDataFrameNativeOps(Module):
+--- /Users/anuragagarwal/Desktop/torchfix/examples/text/test/integration_tests/test_roberta_models.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/text/test/integration_tests/test_roberta_models.py
+@@ -45,11 +45,11 @@
+             transform = torch.jit.script(transform)
+             model = torch.jit.script(model)
+ 
+         model_input = torch.tensor(transform([test_text]))
+         actual = model(model_input)
+-        expected = torch.load(expected_asset_path)
++        expected = torch.load(expected_asset_path, weights_only=True)
+         torch.testing.assert_close(actual, expected)
+ 
+     @parameterized.expand(["jit", "not_jit"])
+     def test_models(self, name):
+         configuration, type = self.model_name.split("_")
+--- /Users/anuragagarwal/Desktop/torchfix/examples/text/test/integration_tests/test_t5_models.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/text/test/integration_tests/test_t5_models.py
+@@ -78,11 +78,11 @@
+             if not is_jit:
+                 self._t5_get_encoder(model, model_input, actual)
+         else:
+             actual = model(encoder_tokens=model_input)["decoder_output"]
+ 
+-        expected = torch.load(expected_asset_path)
++        expected = torch.load(expected_asset_path, weights_only=True)
+         torch.testing.assert_close(actual, expected, atol=1e-04, rtol=2.5e-06)
+ 
+     def _t5_get_encoder(self, model, model_input, encoder_output):
+         encoder = model.get_encoder()
+         # Need to set the key_padding_mask to ensure the same results
+--- /Users/anuragagarwal/Desktop/torchfix/examples/text/examples/text_classification/predict.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/text/examples/text_classification/predict.py
+@@ -34,12 +34,12 @@
+     parser.add_argument(
+         "--use-sp-tokenizer", type=bool, default=False, help="use sentencepiece tokenizer (default=False)"
+     )
+     args = parser.parse_args()
+ 
+-    model = torch.load(args.model)
+-    dictionary = torch.load(args.dictionary)
++    model = torch.load(args.model, weights_only=True)
++    dictionary = torch.load(args.dictionary, weights_only=True)
+     if args.use_sp_tokenizer:
+         sp_model_path = download_from_url(PRETRAINED_SP_MODEL["text_unigram_15000"])
+         sp_model = load_sp_model(sp_model_path)
+         tokenizer = SentencePieceTokenizer(sp_model)
+     else:
+--- /Users/anuragagarwal/Desktop/torchfix/examples/text/examples/torcharrow/roberta_sst2_training_with_torcharrow.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/text/examples/torcharrow/roberta_sst2_training_with_torcharrow.py
+@@ -41,11 +41,11 @@
+ 
+ 
+ def init_ta_gpt2bpe_vocab():
+     vocab_path = "https://download.pytorch.org/models/text/roberta.vocab.pt"
+     vocab_path = get_asset_local_path(vocab_path)
+-    vocab = torch.load(vocab_path)
++    vocab = torch.load(vocab_path, weights_only=True)
+     ta_vocab = _ta.Vocab(vocab.get_itos(), vocab.get_default_index())
+     return ta_vocab
+ 
+ 
+ def prepoc(df, tokenizer, vocab):
+--- /Users/anuragagarwal/Desktop/torchfix/examples/text/test/torchtext_unittest/prototype/test_functional.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/text/test/torchtext_unittest/prototype/test_functional.py
+@@ -82,17 +82,17 @@
+ 
+         with self.subTest("pybind"):
+             save_path = os.path.join(self.test_dir, "ben_pybind.pt")
+             ben = basic_english_normalize()
+             torch.save(ben, save_path)
+-            loaded_ben = torch.load(save_path)
++            loaded_ben = torch.load(save_path, weights_only=True)
+             self.assertEqual(loaded_ben(test_sample), ref_results)
+ 
+         with self.subTest("torchscript"):
+             save_path = os.path.join(self.test_dir, "ben_torchscrip.pt")
+             # Call the __prepare_scriptable__() func and convert the building block to the torbhind version
+             # Not expect users to use the torchbind version on eager mode but still need a CI test here.
+             ben = basic_english_normalize().__prepare_scriptable__()
+             torch.save(ben, save_path)
+-            loaded_ben = torch.load(save_path)
++            loaded_ben = torch.load(save_path, weights_only=True)
+             self.assertEqual(loaded_ben(test_sample), ref_results)
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/text/test/torchtext_unittest/prototype/test_transforms.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/text/test/torchtext_unittest/prototype/test_transforms.py
+@@ -123,17 +123,17 @@
+ 
+         with self.subTest("pybind"):
+             save_path = os.path.join(self.test_dir, "spm_pybind.pt")
+             spm = sentencepiece_tokenizer((model_path))
+             torch.save(spm, save_path)
+-            loaded_spm = torch.load(save_path)
++            loaded_spm = torch.load(save_path, weights_only=True)
+             self.assertEqual(expected, loaded_spm(input))
+ 
+         with self.subTest("torchscript"):
+             save_path = os.path.join(self.test_dir, "spm_torchscript.pt")
+             # Call the __prepare_scriptable__() func and convert the building block to the torbhind version
+             # Not expect users to use the torchbind version on eager mode but still need a CI test here.
+             spm = sentencepiece_tokenizer((model_path)).__prepare_scriptable__()
+             torch.save(spm, save_path)
+-            loaded_spm = torch.load(save_path)
++            loaded_spm = torch.load(save_path, weights_only=True)
+             self.assertEqual(expected, loaded_spm(input))
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/text/test/torchtext_unittest/prototype/test_vectors.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/text/test/torchtext_unittest/prototype/test_vectors.py
+@@ -139,22 +139,22 @@
+         vectors_obj = build_vectors(tokens, vecs)
+ 
+         with self.subTest("pybind"):
+             vector_path = os.path.join(self.test_dir, "vectors_pybind.pt")
+             torch.save(vectors_obj, vector_path)
+-            loaded_vectors_obj = torch.load(vector_path)
++            loaded_vectors_obj = torch.load(vector_path, weights_only=True)
+ 
+             self.assertEqual(loaded_vectors_obj["a"], tensorA)
+             self.assertEqual(loaded_vectors_obj["b"], tensorB)
+             self.assertEqual(loaded_vectors_obj["not_in_it"], expected_unk_tensor)
+ 
+         with self.subTest("torchscript"):
+             vector_path = os.path.join(self.test_dir, "vectors_torchscript.pt")
+             # Call the __prepare_scriptable__() func and convert the building block to the torbhind version
+             # Not expect users to use the torchbind version on eager mode but still need a CI test here.
+             torch.save(vectors_obj.__prepare_scriptable__(), vector_path)
+-            loaded_vectors_obj = torch.load(vector_path)
++            loaded_vectors_obj = torch.load(vector_path, weights_only=True)
+ 
+             self.assertEqual(loaded_vectors_obj["a"], tensorA)
+             self.assertEqual(loaded_vectors_obj["b"], tensorB)
+             self.assertEqual(loaded_vectors_obj["not_in_it"], expected_unk_tensor)
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/text/torchtext/vocab/vectors.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/text/torchtext/vocab/vectors.py
+@@ -168,11 +168,11 @@
+             if not os.path.exists(cache):
+                 os.makedirs(cache)
+             torch.save((self.itos, self.stoi, self.vectors, self.dim), path_pt)
+         else:
+             logger.info("Loading vectors from {}".format(path_pt))
+-            self.itos, self.stoi, self.vectors, self.dim = torch.load(path_pt)
++            self.itos, self.stoi, self.vectors, self.dim = torch.load(path_pt, weights_only=True)
+ 
+     def __len__(self):
+         return len(self.vectors)
+ 
+     def get_vecs_by_tokens(self, tokens, lower_case_backup=False):
+--- /Users/anuragagarwal/Desktop/torchfix/examples/text/test/torchtext_unittest/test_transforms.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/text/test/torchtext_unittest/test_transforms.py
+@@ -730,20 +730,20 @@
+ 
+     def test_gpt2_bpe_tokenizer_save_load_pybind(self) -> None:
+         tokenizer = self._load_tokenizer(test_scripting=False, return_tokens=False)
+         tokenizer_path = os.path.join(self.test_dir, "gpt2_tokenizer_pybind.pt")
+         torch.save(tokenizer, tokenizer_path)
+-        loaded_tokenizer = torch.load(tokenizer_path)
++        loaded_tokenizer = torch.load(tokenizer_path, weights_only=True)
+         self._gpt2_bpe_tokenizer((loaded_tokenizer))
+ 
+     def test_gpt2_bpe_tokenizer_save_load_torchscript(self) -> None:
+         tokenizer = self._load_tokenizer(test_scripting=False, return_tokens=False)
+         tokenizer_path = os.path.join(self.test_dir, "gpt2_tokenizer_torchscript.pt")
+         # Call the __prepare_scriptable__() func and convert the building block to the torbhind version
+         # Not expect users to use the torchbind version on eager mode but still need a CI test here.
+         torch.save(tokenizer.__prepare_scriptable__(), tokenizer_path)
+-        loaded_tokenizer = torch.load(tokenizer_path)
++        loaded_tokenizer = torch.load(tokenizer_path, weights_only=True)
+         self._gpt2_bpe_tokenizer((loaded_tokenizer))
+ 
+ 
+ class TestCharBPETokenizer(TorchtextTestCase):
+     def _load_tokenizer(self, return_tokens: bool):
+@@ -992,20 +992,20 @@
+ 
+     def test_clip_tokenizer_save_load_pybind(self) -> None:
+         tokenizer = self._load_tokenizer(init_using_merge_only=True, test_scripting=False, return_tokens=False)
+         tokenizer_path = os.path.join(self.test_dir, "gpt2_tokenizer_pybind.pt")
+         torch.save(tokenizer, tokenizer_path)
+-        loaded_tokenizer = torch.load(tokenizer_path)
++        loaded_tokenizer = torch.load(tokenizer_path, weights_only=True)
+         self._clip_tokenizer((loaded_tokenizer))
+ 
+     def test_clip_tokenizer_save_load_torchscript(self) -> None:
+         tokenizer = self._load_tokenizer(init_using_merge_only=True, test_scripting=False, return_tokens=False)
+         tokenizer_path = os.path.join(self.test_dir, "gpt2_tokenizer_torchscript.pt")
+         # Call the __prepare_scriptable__() func and convert the building block to the torbhind version
+         # Not expect users to use the torchbind version on eager mode but still need a CI test here.
+         torch.save(tokenizer.__prepare_scriptable__(), tokenizer_path)
+-        loaded_tokenizer = torch.load(tokenizer_path)
++        loaded_tokenizer = torch.load(tokenizer_path, weights_only=True)
+         self._clip_tokenizer((loaded_tokenizer))
+ 
+ 
+ class TestBERTTokenizer(TorchtextTestCase):
+     def _load_tokenizer(
+@@ -1170,11 +1170,11 @@
+             torch.jit.save(tokenizer, tokenizer_path)
+             loaded_tokenizer = torch.jit.load(tokenizer_path)
+             self._bert_tokenizer((loaded_tokenizer), do_lower_case=do_lower_case)
+         else:
+             torch.save(tokenizer, tokenizer_path)
+-            loaded_tokenizer = torch.load(tokenizer_path)
++            loaded_tokenizer = torch.load(tokenizer_path, weights_only=True)
+             self._bert_tokenizer((loaded_tokenizer), do_lower_case=do_lower_case)
+ 
+ 
+ class TestRegexTokenizer(TorchtextTestCase):
+     test_sample = "'\".<br />,()!?;:   Basic Regex Tokenization for a Line of Text   '\".<br />,()!?;:"
+@@ -1237,11 +1237,11 @@
+         with self.subTest("pybind"):
+             save_path = os.path.join(self.test_dir, "regex_pybind.pt")
+ 
+             tokenizer = RegexTokenizer(self.patterns_list)
+             torch.save(tokenizer, save_path)
+-            loaded_tokenizer = torch.load(save_path)
++            loaded_tokenizer = torch.load(save_path, weights_only=True)
+             results = loaded_tokenizer(self.test_sample)
+             self.assertEqual(results, self.ref_results)
+ 
+         with self.subTest("torchscript"):
+             save_path = os.path.join(self.test_dir, "regex_torchscript.pt")
+--- /Users/anuragagarwal/Desktop/torchfix/examples/text/test/torchtext_unittest/test_vocab.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/text/test/torchtext_unittest/test_vocab.py
+@@ -204,21 +204,21 @@
+         self.assertEqual(dict(v.get_stoi()), expected_stoi)
+ 
+         with self.subTest("pybind"):
+             vocab_path = os.path.join(self.test_dir, "vocab_pybind.pt")
+             torch.save(v, vocab_path)
+-            loaded_v = torch.load(vocab_path)
++            loaded_v = torch.load(vocab_path, weights_only=True)
+             self.assertEqual(v.get_itos(), expected_itos)
+             self.assertEqual(dict(loaded_v.get_stoi()), expected_stoi)
+             self.assertEqual(v["not in vocab"], 0)
+ 
+         with self.subTest("torchscript"):
+             vocab_path = os.path.join(self.test_dir, "vocab_torchscript.pt")
+             # Call the __prepare_scriptable__() func and convert the building block to the torbhind version
+             # Not expect users to use the torchbind version on eager mode but still need a CI test here.
+             torch.save(v.__prepare_scriptable__(), vocab_path)
+-            loaded_v = torch.load(vocab_path)
++            loaded_v = torch.load(vocab_path, weights_only=True)
+             self.assertEqual(v.get_itos(), expected_itos)
+             self.assertEqual(dict(loaded_v.get_stoi()), expected_stoi)
+             self.assertEqual(v["not in vocab"], 0)
+ 
+     def test_build_vocab_iterator(self) -> None:
+--- /Users/anuragagarwal/Desktop/torchfix/examples/text/torchtext/models/t5/bundler.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/text/torchtext/models/t5/bundler.py
+@@ -184,11 +184,11 @@
+         config_path = f"{ckpt_path}/config.json"
+         model_path = f"{ckpt_path}/pytorch_model.bin"
+ 
+         with open(config_path, "r") as handle:
+             config_json = json.load(handle)
+-        hf_weights = torch.load(model_path)
++        hf_weights = torch.load(model_path, weights_only=True)
+ 
+         config = T5Conf(
+             encoder_only=encoder_only,
+             linear_head="lm_head.weight" in hf_weights.keys(),
+             embedding_dim=config_json["d_model"],
+Repository: text

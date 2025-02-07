@@ -1,0 +1,4 @@
+Repository: extension-script
+Checking root directory only to avoid duplication.
+Finished checking 7 files.
+Repository: extension-script

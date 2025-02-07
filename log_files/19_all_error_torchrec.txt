@@ -1,0 +1,11 @@
+Repository: torchrec
+Checking root directory only to avoid duplication.
+examples/inference_legacy/dlrm_client.py:28:13: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/ray/train_torchrec.py:34:12: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchrec/inference/inference_legacy/client.py:27:13: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/bert4rec/dataloader/bert4rec_movielens_dataloader.py:105:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/bert4rec/dataloader/bert4rec_movielens_dataloader.py:129:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/bert4rec/dataloader/bert4rec_movielens_dataloader.py:153:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+examples/nvt_dataloader/nvt_binary_dataloader.py:210:22: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+Finished checking 406 files.
+Repository: torchrec

@@ -1,0 +1,3141 @@
+Repository: TensorRT
+Checking root directory only to avoid duplication.
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/50cdc517d124443e61b8e11d4bdb29f0/torch_export_cudagraphs.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/50cdc517d124443e61b8e11d4bdb29f0/torch_export_cudagraphs.py
+@@ -15,22 +15,22 @@
+ # In[ ]:
+ 
+ 
+ import torch
+ import torch_tensorrt
+-import torchvision.models as models
++from torchvision import models
+ 
+ 
+ # ## Compilation with `torch_tensorrt.compile` Using Default Settings
+ # 
+ # 
+ 
+ # In[ ]:
+ 
+ 
+ # We begin by defining and initializing a model
+-model = models.resnet18(pretrained=True).eval().to("cuda")
++model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+ 
+ # Define sample inputs
+ inputs = torch.randn((16, 3, 224, 224)).cuda()
+ 
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/669d3d90aba7fad1bec8bbd852aa9cbc/cross_runtime_compilation_for_windows.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/669d3d90aba7fad1bec8bbd852aa9cbc/cross_runtime_compilation_for_windows.py
+@@ -30,11 +30,11 @@
+ import argparse
+ import platform
+ 
+ import torch
+ import torch_tensorrt as torchtrt
+-import torchvision.models as models
++from torchvision import models
+ 
+ PARSER = argparse.ArgumentParser(
+     description="Cross runtime comilation for windows example: Resnet Model"
+ )
+ PARSER.add_argument(
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/68b8589f80a47518afd92bbad3fda19d/mutable_torchtrt_module_example.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/68b8589f80a47518afd92bbad3fda19d/mutable_torchtrt_module_example.py
+@@ -21,11 +21,11 @@
+ 
+ 
+ import numpy as np
+ import torch
+ import torch_tensorrt as torch_trt
+-import torchvision.models as models
++from torchvision import models
+ 
+ np.random.seed(5)
+ torch.manual_seed(5)
+ inputs = [torch.rand((1, 3, 224, 224)).to("cuda")]
+ 
+@@ -41,11 +41,11 @@
+     "use_python": False,
+     "enabled_precisions": {torch.float32},
+     "immutable_weights": False,
+ }
+ 
+-model = models.resnet18(pretrained=True).eval().to("cuda")
++model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+ mutable_module = torch_trt.MutableTorchTensorRTModule(model, **settings)
+ # You can use the mutable module just like the original pytorch module. The compilation happens while you first call the mutable module.
+ mutable_module(*inputs)
+ 
+ 
+@@ -58,11 +58,11 @@
+ # 
+ 
+ # In[ ]:
+ 
+ 
+-model2 = models.resnet18(pretrained=False).eval().to("cuda")
++model2 = models.resnet18(weights=None).eval().to("cuda")
+ mutable_module.load_state_dict(model2.state_dict())
+ 
+ 
+ # Check the output
+ # The refit happens while you call the mutable module again.
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/2c4fd8e65aa979aa6a0402a43ff9b15e/cross_runtime_compilation_for_windows.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/2c4fd8e65aa979aa6a0402a43ff9b15e/cross_runtime_compilation_for_windows.py
+@@ -27,11 +27,11 @@
+ import argparse
+ import platform
+ 
+ import torch
+ import torch_tensorrt as torchtrt
+-import torchvision.models as models
++from torchvision import models
+ 
+ PARSER = argparse.ArgumentParser(
+     description="Cross runtime comilation for windows example: Resnet Model"
+ )
+ PARSER.add_argument(
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/2fbbf7380f818b1cbce2b90bbcaf2904/mutable_torchtrt_module_example.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/2fbbf7380f818b1cbce2b90bbcaf2904/mutable_torchtrt_module_example.py
+@@ -17,11 +17,11 @@
+ """
+ 
+ import numpy as np
+ import torch
+ import torch_tensorrt as torch_trt
+-import torchvision.models as models
++from torchvision import models
+ 
+ np.random.seed(5)
+ torch.manual_seed(5)
+ inputs = [torch.rand((1, 3, 224, 224)).to("cuda")]
+ 
+@@ -32,22 +32,22 @@
+     "use_python": False,
+     "enabled_precisions": {torch.float32},
+     "immutable_weights": False,
+ }
+ 
+-model = models.resnet18(pretrained=True).eval().to("cuda")
++model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+ mutable_module = torch_trt.MutableTorchTensorRTModule(model, **settings)
+ # You can use the mutable module just like the original pytorch module. The compilation happens while you first call the mutable module.
+ mutable_module(*inputs)
+ 
+ # %%
+ # Make modifications to the mutable module.
+ # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 
+ # %%
+ # Making changes to mutable module can trigger refit or re-compilation. For example, loading a different state_dict and setting new weight values will trigger refit, and adding a module to the model will trigger re-compilation.
+-model2 = models.resnet18(pretrained=False).eval().to("cuda")
++model2 = models.resnet18(weights=None).eval().to("cuda")
+ mutable_module.load_state_dict(model2.state_dict())
+ 
+ 
+ # Check the output
+ # The refit happens while you call the mutable module again.
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/0daf1d0af656cac7b808856b71e6616f/torch_compile_resnet_example.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/0daf1d0af656cac7b808856b71e6616f/torch_compile_resnet_example.py
+@@ -15,18 +15,18 @@
+ # In[ ]:
+ 
+ 
+ import torch
+ import torch_tensorrt
+-import torchvision.models as models
++from torchvision import models
+ 
+ 
+ # In[ ]:
+ 
+ 
+ # Initialize model with half precision and sample inputs
+-model = models.resnet18(pretrained=True).half().eval().to("cuda")
++model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).half().eval().to("cuda")
+ inputs = [torch.randn((1, 3, 224, 224)).to("cuda").half()]
+ 
+ 
+ # ## Optional Input Arguments to `torch_tensorrt.compile`
+ # 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/1c759c0181fe2845e5579cc82e5b7a7a/engine_caching_example.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/1c759c0181fe2845e5579cc82e5b7a7a/engine_caching_example.py
+@@ -28,18 +28,18 @@
+ from typing import Dict, Optional
+ 
+ import numpy as np
+ import torch
+ import torch_tensorrt as torch_trt
+-import torchvision.models as models
++from torchvision import models
+ from torch_tensorrt.dynamo._defaults import TIMING_CACHE_PATH
+ from torch_tensorrt.dynamo._engine_cache import BaseEngineCache
+ 
+ np.random.seed(0)
+ torch.manual_seed(0)
+ 
+-model = models.resnet18(pretrained=True).eval().to("cuda")
++model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+ enabled_precisions = {torch.float}
+ debug = False
+ min_block_size = 1
+ use_python_runtime = False
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/3454ee6d4b68e83cdf0c757f0059986b/engine_caching_example.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/3454ee6d4b68e83cdf0c757f0059986b/engine_caching_example.py
+@@ -31,18 +31,18 @@
+ from typing import Dict, Optional
+ 
+ import numpy as np
+ import torch
+ import torch_tensorrt as torch_trt
+-import torchvision.models as models
++from torchvision import models
+ from torch_tensorrt.dynamo._defaults import TIMING_CACHE_PATH
+ from torch_tensorrt.dynamo._engine_cache import BaseEngineCache
+ 
+ np.random.seed(0)
+ torch.manual_seed(0)
+ 
+-model = models.resnet18(pretrained=True).eval().to("cuda")
++model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+ enabled_precisions = {torch.float}
+ debug = False
+ min_block_size = 1
+ use_python_runtime = False
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/3d4d74f6636d986f33167154f6553961/torch_export_cudagraphs.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/3d4d74f6636d986f33167154f6553961/torch_export_cudagraphs.py
+@@ -11,18 +11,18 @@
+ # Imports and Model Definition
+ # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 
+ import torch
+ import torch_tensorrt
+-import torchvision.models as models
++from torchvision import models
+ 
+ # %%
+ # Compilation with `torch_tensorrt.compile` Using Default Settings
+ # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 
+ # We begin by defining and initializing a model
+-model = models.resnet18(pretrained=True).eval().to("cuda")
++model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+ 
+ # Define sample inputs
+ inputs = torch.randn((16, 3, 224, 224)).cuda()
+ 
+ # %%
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/418941399c146271a7b7728ba3059960/dynamo_compile_resnet_example.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/418941399c146271a7b7728ba3059960/dynamo_compile_resnet_example.py
+@@ -11,16 +11,16 @@
+ # Imports and Model Definition
+ # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 
+ import torch
+ import torch_tensorrt
+-import torchvision.models as models
++from torchvision import models
+ 
+ # %%
+ 
+ # Initialize model with half precision and sample inputs
+-model = models.resnet18(pretrained=True).half().eval().to("cuda")
++model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).half().eval().to("cuda")
+ inputs = [torch.randn((1, 3, 224, 224)).to("cuda").half()]
+ 
+ # %%
+ # Optional Input Arguments to `torch_tensorrt.dynamo.compile`
+ # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/7e3a125a2d4ba8274a41b46f5e0723fa/refit_engine_example.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/7e3a125a2d4ba8274a41b46f5e0723fa/refit_engine_example.py
+@@ -32,11 +32,11 @@
+ # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 
+ import numpy as np
+ import torch
+ import torch_tensorrt as torch_trt
+-import torchvision.models as models
++from torchvision import models
+ from torch_tensorrt.dynamo import refit_module_weights
+ 
+ np.random.seed(0)
+ torch.manual_seed(0)
+ inputs = [torch.rand((1, 3, 224, 224)).to("cuda")]
+@@ -51,11 +51,11 @@
+ # indicate that the engine being built should support weight refitting later. Engines built without
+ # these setttings will not be able to be refit.
+ #
+ # In this case we are going to compile a ResNet18 model with randomly initialized weights and save it.
+ 
+-model = models.resnet18(pretrained=False).eval().to("cuda")
++model = models.resnet18(weights=None).eval().to("cuda")
+ exp_program = torch.export.export(model, tuple(inputs))
+ enabled_precisions = {torch.float}
+ debug = False
+ workspace_size = 20 << 30
+ min_block_size = 0
+@@ -85,11 +85,11 @@
+ # refit the model with the pretrained weights. This is done by setting up another PyTorch module
+ # with the target weights and exporting it as an ExportedProgram. Then the ``refit_module_weights``
+ # function is used to update the weights of the compiled module with the new weights.
+ 
+ # Create and compile the updated model
+-model2 = models.resnet18(pretrained=True).eval().to("cuda")
++model2 = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+ exp_program2 = torch.export.export(model2, tuple(inputs))
+ 
+ 
+ compiled_trt_ep = torch_trt.load("./compiled.ep")
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/8d74c66ac043702cc076cfc2479adc0f/vgg16_fp8_ptq.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/8d74c66ac043702cc076cfc2479adc0f/vgg16_fp8_ptq.py
+@@ -20,12 +20,12 @@
+ import modelopt.torch.quantization as mtq
+ import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+ import torch_tensorrt as torchtrt
+-import torchvision.datasets as datasets
+-import torchvision.transforms as transforms
++from torchvision import datasets
++from torchvision import transforms
+ from modelopt.torch.quantization.utils import export_torch_mode
+ 
+ 
+ class VGG(nn.Module):
+     def __init__(self, layer_spec, num_classes=1000, init_weights=False):
+@@ -127,11 +127,11 @@
+ # 
+ 
+ # In[ ]:
+ 
+ 
+-ckpt = torch.load(args.ckpt)
++ckpt = torch.load(args.ckpt, weights_only=True)
+ weights = ckpt["model_state_dict"]
+ 
+ if torch.cuda.device_count() > 1:
+     from collections import OrderedDict
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/9742a0a11c6b72e5522962aba0ade637/dynamo_compile_resnet_example.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/9742a0a11c6b72e5522962aba0ade637/dynamo_compile_resnet_example.py
+@@ -15,18 +15,18 @@
+ # In[ ]:
+ 
+ 
+ import torch
+ import torch_tensorrt
+-import torchvision.models as models
++from torchvision import models
+ 
+ 
+ # In[ ]:
+ 
+ 
+ # Initialize model with half precision and sample inputs
+-model = models.resnet18(pretrained=True).half().eval().to("cuda")
++model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).half().eval().to("cuda")
+ inputs = [torch.randn((1, 3, 224, 224)).to("cuda").half()]
+ 
+ 
+ # ## Optional Input Arguments to `torch_tensorrt.dynamo.compile`
+ # 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/d9a9caffd95dc397ffb9ea9d37a89f06/refit_engine_example.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/d9a9caffd95dc397ffb9ea9d37a89f06/refit_engine_example.py
+@@ -36,11 +36,11 @@
+ 
+ 
+ import numpy as np
+ import torch
+ import torch_tensorrt as torch_trt
+-import torchvision.models as models
++from torchvision import models
+ from torch_tensorrt.dynamo import refit_module_weights
+ 
+ np.random.seed(0)
+ torch.manual_seed(0)
+ inputs = [torch.rand((1, 3, 224, 224)).to("cuda")]
+@@ -58,11 +58,11 @@
+ # 
+ 
+ # In[ ]:
+ 
+ 
+-model = models.resnet18(pretrained=False).eval().to("cuda")
++model = models.resnet18(weights=None).eval().to("cuda")
+ exp_program = torch.export.export(model, tuple(inputs))
+ enabled_precisions = {torch.float}
+ debug = False
+ workspace_size = 20 << 30
+ min_block_size = 0
+@@ -95,11 +95,11 @@
+ 
+ # In[ ]:
+ 
+ 
+ # Create and compile the updated model
+-model2 = models.resnet18(pretrained=True).eval().to("cuda")
++model2 = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+ exp_program2 = torch.export.export(model2, tuple(inputs))
+ 
+ 
+ compiled_trt_ep = torch_trt.load("./compiled.ep")
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/6dc7949e3e7f3cb855e4a7b28eadc851/vgg16_fp8_ptq.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/6dc7949e3e7f3cb855e4a7b28eadc851/vgg16_fp8_ptq.py
+@@ -16,12 +16,12 @@
+ import modelopt.torch.quantization as mtq
+ import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+ import torch_tensorrt as torchtrt
+-import torchvision.datasets as datasets
+-import torchvision.transforms as transforms
++from torchvision import datasets
++from torchvision import transforms
+ from modelopt.torch.quantization.utils import export_torch_mode
+ 
+ 
+ class VGG(nn.Module):
+     def __init__(self, layer_spec, num_classes=1000, init_weights=False):
+@@ -119,11 +119,11 @@
+ 
+ # %%
+ # Load the pre-trained model weights
+ # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 
+-ckpt = torch.load(args.ckpt)
++ckpt = torch.load(args.ckpt, weights_only=True)
+ weights = ckpt["model_state_dict"]
+ 
+ if torch.cuda.device_count() > 1:
+     from collections import OrderedDict
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/d606a9660cce1388933de8448182f4ee/vgg16_ptq.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/d606a9660cce1388933de8448182f4ee/vgg16_ptq.py
+@@ -20,12 +20,12 @@
+ import modelopt.torch.quantization as mtq
+ import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+ import torch_tensorrt as torchtrt
+-import torchvision.datasets as datasets
+-import torchvision.transforms as transforms
++from torchvision import datasets
++from torchvision import transforms
+ from modelopt.torch.quantization.utils import export_torch_mode
+ 
+ 
+ class VGG(nn.Module):
+     def __init__(self, layer_spec, num_classes=1000, init_weights=False):
+@@ -132,11 +132,11 @@
+ # 
+ 
+ # In[ ]:
+ 
+ 
+-ckpt = torch.load(args.ckpt)
++ckpt = torch.load(args.ckpt, weights_only=True)
+ weights = ckpt["model_state_dict"]
+ 
+ if torch.cuda.device_count() > 1:
+     from collections import OrderedDict
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/d6e1bb6ec5f884994554d9d12e37a0f6/torch_compile_resnet_example.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/d6e1bb6ec5f884994554d9d12e37a0f6/torch_compile_resnet_example.py
+@@ -11,16 +11,16 @@
+ # Imports and Model Definition
+ # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 
+ import torch
+ import torch_tensorrt
+-import torchvision.models as models
++from torchvision import models
+ 
+ # %%
+ 
+ # Initialize model with half precision and sample inputs
+-model = models.resnet18(pretrained=True).half().eval().to("cuda")
++model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).half().eval().to("cuda")
+ inputs = [torch.randn((1, 3, 224, 224)).to("cuda").half()]
+ 
+ # %%
+ # Optional Input Arguments to `torch_tensorrt.compile`
+ # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/ef6d47fc0355ddff78547f419a7ddbf6/vgg16_ptq.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_downloads/ef6d47fc0355ddff78547f419a7ddbf6/vgg16_ptq.py
+@@ -16,12 +16,12 @@
+ import modelopt.torch.quantization as mtq
+ import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+ import torch_tensorrt as torchtrt
+-import torchvision.datasets as datasets
+-import torchvision.transforms as transforms
++from torchvision import datasets
++from torchvision import transforms
+ from modelopt.torch.quantization.utils import export_torch_mode
+ 
+ 
+ class VGG(nn.Module):
+     def __init__(self, layer_spec, num_classes=1000, init_weights=False):
+@@ -124,11 +124,11 @@
+ 
+ # %%
+ # Load the pre-trained model weights
+ # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 
+-ckpt = torch.load(args.ckpt)
++ckpt = torch.load(args.ckpt, weights_only=True)
+ weights = ckpt["model_state_dict"]
+ 
+ if torch.cuda.device_count() > 1:
+     from collections import OrderedDict
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_notebooks/vgg-qat.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/_notebooks/vgg-qat.py
+@@ -33,12 +33,12 @@
+ import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+ import torch.optim as optim
+ import torch.utils.data as data
+-import torchvision.transforms as transforms
+-import torchvision.datasets as datasets
++from torchvision import transforms
++from torchvision import datasets
+ import torch_tensorrt
+ 
+ from torch.utils.tensorboard import SummaryWriter
+ 
+ import pytorch_quantization
+@@ -248,11 +248,11 @@
+ 
+ # In[9]:
+ 
+ 
+ # vgg16_base_ckpt is the checkpoint generated from Step 3 : Training a baseline VGG16 model.
+-ckpt = torch.load("./vgg16_base_ckpt")
++ckpt = torch.load("./vgg16_base_ckpt", weights_only=True)
+ modified_state_dict={}
+ for key, val in ckpt["model_state_dict"].items():
+     # Remove 'module.' from the key names
+     if key.startswith('module'):
+         modified_state_dict[key[7:]] = val
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/v1.0.0/_notebooks/vgg-qat.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/v1.0.0/_notebooks/vgg-qat.py
+@@ -27,12 +27,12 @@
+ import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+ import torch.optim as optim
+ import torch.utils.data as data
+-import torchvision.transforms as transforms
+-import torchvision.datasets as datasets
++from torchvision import transforms
++from torchvision import datasets
+ import torch_tensorrt
+ 
+ from torch.utils.tensorboard import SummaryWriter
+ 
+ import pytorch_quantization
+@@ -242,11 +242,11 @@
+ 
+ # In[9]:
+ 
+ 
+ # vgg16_base_ckpt is the checkpoint generated from Step 3 : Training a baseline VGG16 model.
+-ckpt = torch.load("./vgg16_base_ckpt")
++ckpt = torch.load("./vgg16_base_ckpt", weights_only=True)
+ modified_state_dict={}
+ for key, val in ckpt["model_state_dict"].items():
+     # Remove 'module.' from the key names
+     if key.startswith('module'):
+         modified_state_dict[key[7:]] = val
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/v1.4.0/_downloads/9742a0a11c6b72e5522962aba0ade637/dynamo_compile_resnet_example.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/v1.4.0/_downloads/9742a0a11c6b72e5522962aba0ade637/dynamo_compile_resnet_example.py
+@@ -15,18 +15,18 @@
+ # In[ ]:
+ 
+ 
+ import torch
+ import torch_tensorrt
+-import torchvision.models as models
++from torchvision import models
+ 
+ 
+ # In[ ]:
+ 
+ 
+ # Initialize model with half precision and sample inputs
+-model = models.resnet18(pretrained=True).half().eval().to("cuda")
++model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).half().eval().to("cuda")
+ inputs = [torch.randn((1, 3, 224, 224)).to("cuda").half()]
+ 
+ 
+ # ## Optional Input Arguments to `torch_tensorrt.dynamo.compile`
+ # 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/v1.1.0/_notebooks/vgg-qat.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/v1.1.0/_notebooks/vgg-qat.py
+@@ -33,12 +33,12 @@
+ import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+ import torch.optim as optim
+ import torch.utils.data as data
+-import torchvision.transforms as transforms
+-import torchvision.datasets as datasets
++from torchvision import transforms
++from torchvision import datasets
+ import torch_tensorrt
+ 
+ from torch.utils.tensorboard import SummaryWriter
+ 
+ import pytorch_quantization
+@@ -248,11 +248,11 @@
+ 
+ # In[9]:
+ 
+ 
+ # vgg16_base_ckpt is the checkpoint generated from Step 3 : Training a baseline VGG16 model.
+-ckpt = torch.load("./vgg16_base_ckpt")
++ckpt = torch.load("./vgg16_base_ckpt", weights_only=True)
+ modified_state_dict={}
+ for key, val in ckpt["model_state_dict"].items():
+     # Remove 'module.' from the key names
+     if key.startswith('module'):
+         modified_state_dict[key[7:]] = val
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/v1.1.1/_notebooks/vgg-qat.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/v1.1.1/_notebooks/vgg-qat.py
+@@ -33,12 +33,12 @@
+ import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+ import torch.optim as optim
+ import torch.utils.data as data
+-import torchvision.transforms as transforms
+-import torchvision.datasets as datasets
++from torchvision import transforms
++from torchvision import datasets
+ import torch_tensorrt
+ 
+ from torch.utils.tensorboard import SummaryWriter
+ 
+ import pytorch_quantization
+@@ -248,11 +248,11 @@
+ 
+ # In[9]:
+ 
+ 
+ # vgg16_base_ckpt is the checkpoint generated from Step 3 : Training a baseline VGG16 model.
+-ckpt = torch.load("./vgg16_base_ckpt")
++ckpt = torch.load("./vgg16_base_ckpt", weights_only=True)
+ modified_state_dict={}
+ for key, val in ckpt["model_state_dict"].items():
+     # Remove 'module.' from the key names
+     if key.startswith('module'):
+         modified_state_dict[key[7:]] = val
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/v1.3.0/_notebooks/vgg-qat.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/v1.3.0/_notebooks/vgg-qat.py
+@@ -33,12 +33,12 @@
+ import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+ import torch.optim as optim
+ import torch.utils.data as data
+-import torchvision.transforms as transforms
+-import torchvision.datasets as datasets
++from torchvision import transforms
++from torchvision import datasets
+ import torch_tensorrt
+ 
+ from torch.utils.tensorboard import SummaryWriter
+ 
+ import pytorch_quantization
+@@ -248,11 +248,11 @@
+ 
+ # In[9]:
+ 
+ 
+ # vgg16_base_ckpt is the checkpoint generated from Step 3 : Training a baseline VGG16 model.
+-ckpt = torch.load("./vgg16_base_ckpt")
++ckpt = torch.load("./vgg16_base_ckpt", weights_only=True)
+ modified_state_dict={}
+ for key, val in ckpt["model_state_dict"].items():
+     # Remove 'module.' from the key names
+     if key.startswith('module'):
+         modified_state_dict[key[7:]] = val
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/v1.4.0/_downloads/418941399c146271a7b7728ba3059960/dynamo_compile_resnet_example.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/v1.4.0/_downloads/418941399c146271a7b7728ba3059960/dynamo_compile_resnet_example.py
+@@ -11,16 +11,16 @@
+ # Imports and Model Definition
+ # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 
+ import torch
+ import torch_tensorrt
+-import torchvision.models as models
++from torchvision import models
+ 
+ # %%
+ 
+ # Initialize model with half precision and sample inputs
+-model = models.resnet18(pretrained=True).half().eval().to("cuda")
++model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).half().eval().to("cuda")
+ inputs = [torch.randn((1, 3, 224, 224)).to("cuda").half()]
+ 
+ # %%
+ # Optional Input Arguments to `torch_tensorrt.dynamo.compile`
+ # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/v1.2.0/_notebooks/vgg-qat.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/docs/v1.2.0/_notebooks/vgg-qat.py
+@@ -33,12 +33,12 @@
+ import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+ import torch.optim as optim
+ import torch.utils.data as data
+-import torchvision.transforms as transforms
+-import torchvision.datasets as datasets
++from torchvision import transforms
++from torchvision import datasets
+ import torch_tensorrt
+ 
+ from torch.utils.tensorboard import SummaryWriter
+ 
+ import pytorch_quantization
+@@ -248,11 +248,11 @@
+ 
+ # In[9]:
+ 
+ 
+ # vgg16_base_ckpt is the checkpoint generated from Step 3 : Training a baseline VGG16 model.
+-ckpt = torch.load("./vgg16_base_ckpt")
++ckpt = torch.load("./vgg16_base_ckpt", weights_only=True)
+ modified_state_dict={}
+ for key, val in ckpt["model_state_dict"].items():
+     # Remove 'module.' from the key names
+     if key.startswith('module'):
+         modified_state_dict[key[7:]] = val
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/dynamo/cross_runtime_compilation_for_windows.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/dynamo/cross_runtime_compilation_for_windows.py
+@@ -27,11 +27,11 @@
+ import argparse
+ import platform
+ 
+ import torch
+ import torch_tensorrt as torchtrt
+-import torchvision.models as models
++from torchvision import models
+ 
+ PARSER = argparse.ArgumentParser(
+     description="Cross runtime comilation for windows example: Resnet Model"
+ )
+ PARSER.add_argument(
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/dynamo/torch_compile_resnet_example.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/dynamo/torch_compile_resnet_example.py
+@@ -11,16 +11,16 @@
+ # Imports and Model Definition
+ # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 
+ import torch
+ import torch_tensorrt
+-import torchvision.models as models
++from torchvision import models
+ 
+ # %%
+ 
+ # Initialize model with half precision and sample inputs
+-model = models.resnet18(pretrained=True).half().eval().to("cuda")
++model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).half().eval().to("cuda")
+ inputs = [torch.randn((1, 3, 224, 224)).to("cuda").half()]
+ 
+ # %%
+ # Optional Input Arguments to `torch_tensorrt.compile`
+ # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/dynamo/torch_export_cudagraphs.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/dynamo/torch_export_cudagraphs.py
+@@ -11,18 +11,18 @@
+ # Imports and Model Definition
+ # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 
+ import torch
+ import torch_tensorrt
+-import torchvision.models as models
++from torchvision import models
+ 
+ # %%
+ # Compilation with `torch_tensorrt.compile` Using Default Settings
+ # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 
+ # We begin by defining and initializing a model
+-model = models.resnet18(pretrained=True).eval().to("cuda")
++model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+ 
+ # Define sample inputs
+ inputs = torch.randn((16, 3, 224, 224)).cuda()
+ 
+ # %%
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/dynamo/refit_engine_example.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/dynamo/refit_engine_example.py
+@@ -32,11 +32,11 @@
+ # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 
+ import numpy as np
+ import torch
+ import torch_tensorrt as torch_trt
+-import torchvision.models as models
++from torchvision import models
+ from torch_tensorrt.dynamo import refit_module_weights
+ 
+ np.random.seed(0)
+ torch.manual_seed(0)
+ inputs = [torch.rand((1, 3, 224, 224)).to("cuda")]
+@@ -51,11 +51,11 @@
+ # indicate that the engine being built should support weight refitting later. Engines built without
+ # these setttings will not be able to be refit.
+ #
+ # In this case we are going to compile a ResNet18 model with randomly initialized weights and save it.
+ 
+-model = models.resnet18(pretrained=False).eval().to("cuda")
++model = models.resnet18(weights=None).eval().to("cuda")
+ exp_program = torch.export.export(model, tuple(inputs))
+ enabled_precisions = {torch.float}
+ debug = False
+ workspace_size = 20 << 30
+ min_block_size = 0
+@@ -85,11 +85,11 @@
+ # refit the model with the pretrained weights. This is done by setting up another PyTorch module
+ # with the target weights and exporting it as an ExportedProgram. Then the ``refit_module_weights``
+ # function is used to update the weights of the compiled module with the new weights.
+ 
+ # Create and compile the updated model
+-model2 = models.resnet18(pretrained=True).eval().to("cuda")
++model2 = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+ exp_program2 = torch.export.export(model2, tuple(inputs))
+ 
+ 
+ compiled_trt_ep = torch_trt.load("./compiled.ep")
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/dynamo/engine_caching_example.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/dynamo/engine_caching_example.py
+@@ -28,18 +28,18 @@
+ from typing import Dict, Optional
+ 
+ import numpy as np
+ import torch
+ import torch_tensorrt as torch_trt
+-import torchvision.models as models
++from torchvision import models
+ from torch_tensorrt.dynamo._defaults import TIMING_CACHE_PATH
+ from torch_tensorrt.dynamo._engine_cache import BaseEngineCache
+ 
+ np.random.seed(0)
+ torch.manual_seed(0)
+ 
+-model = models.resnet18(pretrained=True).eval().to("cuda")
++model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+ enabled_precisions = {torch.float}
+ debug = False
+ min_block_size = 1
+ use_python_runtime = False
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/dynamo/mutable_torchtrt_module_example.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/dynamo/mutable_torchtrt_module_example.py
+@@ -17,11 +17,11 @@
+ """
+ 
+ import numpy as np
+ import torch
+ import torch_tensorrt as torch_trt
+-import torchvision.models as models
++from torchvision import models
+ 
+ np.random.seed(5)
+ torch.manual_seed(5)
+ inputs = [torch.rand((1, 3, 224, 224)).to("cuda")]
+ 
+@@ -32,22 +32,22 @@
+     "use_python": False,
+     "enabled_precisions": {torch.float32},
+     "immutable_weights": False,
+ }
+ 
+-model = models.resnet18(pretrained=True).eval().to("cuda")
++model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+ mutable_module = torch_trt.MutableTorchTensorRTModule(model, **settings)
+ # You can use the mutable module just like the original pytorch module. The compilation happens while you first call the mutable module.
+ mutable_module(*inputs)
+ 
+ # %%
+ # Make modifications to the mutable module.
+ # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 
+ # %%
+ # Making changes to mutable module can trigger refit or re-compilation. For example, loading a different state_dict and setting new weight values will trigger refit, and adding a module to the model will trigger re-compilation.
+-model2 = models.resnet18(pretrained=False).eval().to("cuda")
++model2 = models.resnet18(weights=None).eval().to("cuda")
+ mutable_module.load_state_dict(model2.state_dict())
+ 
+ 
+ # Check the output
+ # The refit happens while you call the mutable module again.
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/dynamo/vgg16_ptq.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/dynamo/vgg16_ptq.py
+@@ -16,12 +16,12 @@
+ import modelopt.torch.quantization as mtq
+ import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+ import torch_tensorrt as torchtrt
+-import torchvision.datasets as datasets
+-import torchvision.transforms as transforms
++from torchvision import datasets
++from torchvision import transforms
+ from modelopt.torch.quantization.utils import export_torch_mode
+ 
+ 
+ class VGG(nn.Module):
+     def __init__(self, layer_spec, num_classes=1000, init_weights=False):
+@@ -124,11 +124,11 @@
+ 
+ # %%
+ # Load the pre-trained model weights
+ # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 
+-ckpt = torch.load(args.ckpt)
++ckpt = torch.load(args.ckpt, weights_only=True)
+ weights = ckpt["model_state_dict"]
+ 
+ if torch.cuda.device_count() > 1:
+     from collections import OrderedDict
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/fx/fx2trt_example.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/fx/fx2trt_example.py
+@@ -134,11 +134,11 @@
+ 
+ lowered_model_output = split_mod(*inputs)
+ 
+ # Save and load model
+ torch.save(split_mod, "trt.pt")
+-reload_trt_mod = torch.load("trt.pt")
++reload_trt_mod = torch.load("trt.pt", weights_only=True)
+ reload_model_output = reload_trt_mod(*inputs)
+ 
+ # Make sure the results match
+ regular_model_output = model(*inputs)
+ torch.testing.assert_close(
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/fx/fx2trt_example_next.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/fx/fx2trt_example_next.py
+@@ -166,11 +166,11 @@
+ 
+ print("Saving the partially compiled module state_dict")
+ # Save and load model
+ torch.save(split_mod, "trt.pt")
+ print("Loading the partially compiled module state_dict")
+-reload_trt_mod = torch.load("trt.pt")
++reload_trt_mod = torch.load("trt.pt", weights_only=True)
+ reload_model_output = reload_trt_mod(*inputs)
+ 
+ # Make sure the results match
+ regular_model_output = model(*inputs)
+ torch.testing.assert_close(
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/fx/torch_trt_simple_example.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/fx/torch_trt_simple_example.py
+@@ -1,10 +1,11 @@
+ import torch
+ import copy
+ import torchvision
+ import torch_tensorrt
+ from torch_tensorrt.fx import InputTensorSpec
++from torchvision import models
+ 
+ 
+ def test_torch_tensorrt(model, inputs):
+     # torchscript path
+     model_ts = copy.deepcopy(model)
+@@ -82,9 +83,9 @@
+         > 0.99
+     )
+ 
+ 
+ if __name__ == "__main__":
+-    model = torchvision.models.resnet18(pretrained=True).cuda().eval()
++    model = torchvision.models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).cuda().eval()
+     inputs = [torch.ones((32, 3, 224, 224), device=torch.device("cuda"))]  # type: ignore[attr-defined]
+     test_torch_tensorrt(model, inputs)
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/fx/torch_trt_simple_example_next.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/fx/torch_trt_simple_example_next.py
+@@ -1,10 +1,11 @@
+ import torch
+ import copy
+ import torchvision
+ import torch_tensorrt
+ from torch_tensorrt.fx import InputTensorSpec
++from torchvision import models
+ 
+ 
+ def test_torch_tensorrt(model, inputs):
+     # torchscript path
+     model_ts = copy.deepcopy(model)
+@@ -82,9 +83,9 @@
+         > 0.99
+     )
+ 
+ 
+ if __name__ == "__main__":
+-    model = torchvision.models.resnet18(pretrained=True).cuda().eval()
++    model = torchvision.models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).cuda().eval()
+     inputs = [torch.ones((32, 3, 224, 224), device=torch.device("cuda"))]  # type: ignore[attr-defined]
+     test_torch_tensorrt(model, inputs)
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/int8/training/vgg16/export_ckpt.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/int8/training/vgg16/export_ckpt.py
+@@ -3,12 +3,12 @@
+ 
+ import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+ import torch.utils.data as data
+-import torchvision.transforms as transforms
+-import torchvision.datasets as datasets
++from torchvision import transforms
++from torchvision import datasets
+ 
+ from vgg16 import vgg16
+ 
+ 
+ def test(model, dataloader, crit):
+@@ -41,11 +41,11 @@
+ 
+ args = PARSER.parse_args()
+ model = vgg16(num_classes=10, init_weights=False)
+ model = model.cuda()
+ 
+-ckpt = torch.load(args.ckpt)
++ckpt = torch.load(args.ckpt, weights_only=True)
+ weights = ckpt["model_state_dict"]
+ 
+ if torch.cuda.device_count() > 1:
+     from collections import OrderedDict
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/fx/lower_example.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/fx/lower_example.py
+@@ -4,10 +4,11 @@
+ 
+ import torch
+ import torchvision
+ from torch_tensorrt.fx import compile
+ from torch_tensorrt.fx.utils import LowerPrecision
++from torchvision import models
+ 
+ 
+ """
+ The purpose of this example is to demostrate the onverall flow of lowering a PyTorch model
+ to TensorRT conveniently with lower.py.
+@@ -197,9 +198,9 @@
+     result = Result(module=module, input=input, conf=conf, time_sec=time)
+     return result
+ 
+ 
+ if __name__ == "__main__":
+-    test_model = torchvision.models.resnet18(pretrained=True)
++    test_model = torchvision.models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1)
+     input = [torch.rand(128, 3, 224, 224)]  # type: ignore[attr-defined]
+     benchmark(test_model, input, 50, 128)
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/fx/lower_example_aten.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/fx/lower_example_aten.py
+@@ -4,10 +4,11 @@
+ 
+ import torch
+ import torchvision
+ from torch_tensorrt.fx import compile
+ from torch_tensorrt.fx.utils import LowerPrecision
++from torchvision import models
+ 
+ 
+ """
+ The purpose of this example is to demostrate the onverall flow of lowering a PyTorch model
+ to TensorRT conveniently with lower.py.
+@@ -189,9 +190,9 @@
+     result = Result(module=module, input=input, conf=conf, time_sec=time)
+     return result
+ 
+ 
+ if __name__ == "__main__":
+-    test_model = torchvision.models.resnet18(pretrained=True)
++    test_model = torchvision.models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1)
+     input = [torch.rand(128, 3, 224, 224)]  # type: ignore[attr-defined]
+     benchmark(test_model, input, 50, 128)
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/fx/quantized_resnet_test.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/fx/quantized_resnet_test.py
+@@ -3,11 +3,11 @@
+ # @manual=//deeplearning/trt/python:py_tensorrt
+ import tensorrt as trt
+ import torch.fx
+ 
+ import torch_tensorrt.fx.tracer.acc_tracer.acc_tracer as acc_tracer
+-import torchvision.models as models
++from torchvision import models
+ from torch.ao.quantization.quantize_fx import (
+     convert_fx,
+     convert_to_reference_fx,
+     prepare_fx,
+ )
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/notebooks/getting_started_with_fx_path_lower_to_trt.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/notebooks/getting_started_with_fx_path_lower_to_trt.py
+@@ -13,10 +13,11 @@
+ 
+ import torch
+ import torchvision
+ from torch_tensorrt.fx.lower import compile
+ from torch_tensorrt.fx.utils import LowerPrecision
++from torchvision import models
+ 
+ 
+ # Specify the `configuration` class used for FX path lowering and benchmark. To extend, add a new configuration field to this class, and modify the lowering or benchmark behavior in `run_configuration_benchmark()` correspondingly. It automatically stores all its values to a `Result` dataclass.   
+ # `Result` is another dataclass that holds raw essential benchmark result values like Batch size, QPS, accuracy, etc..
+ # 
+@@ -205,11 +206,11 @@
+ 
+     for res in results:
+         print(res.format())
+ 
+ 
+-test_model = torchvision.models.resnet18(pretrained=True)
++test_model = torchvision.models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1)
+ input = [torch.rand(128, 3, 224, 224)]
+ benchmark(test_model, input, 50, 128)
+ 
+ 
+ # 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/notebooks/getting_started_with_fx_path_module.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/notebooks/getting_started_with_fx_path_module.py
+@@ -131,11 +131,11 @@
+ 
+ # In[9]:
+ 
+ 
+ torch.save(split_mod, "trt.pt")
+-reload_trt_mod = torch.load("trt.pt")
++reload_trt_mod = torch.load("trt.pt", weights_only=True)
+ reload_model_output = reload_trt_mod(*inputs)
+ 
+ # Make sure the results match
+ regular_model_output = model(*inputs)
+ torch.testing.assert_close(
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/int8/training/vgg16/export_qat.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/int8/training/vgg16/export_qat.py
+@@ -3,12 +3,12 @@
+ 
+ import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+ import torch.utils.data as data
+-import torchvision.transforms as transforms
+-import torchvision.datasets as datasets
++from torchvision import transforms
++from torchvision import datasets
+ 
+ from vgg16 import vgg16
+ 
+ from pytorch_quantization import quant_modules
+ from pytorch_quantization import nn as quant_nn
+@@ -46,11 +46,11 @@
+ 
+ quant_modules.initialize()
+ model = vgg16(num_classes=10, init_weights=False)
+ model = model.cuda()
+ 
+-ckpt = torch.load(args.ckpt)
++ckpt = torch.load(args.ckpt, weights_only=True)
+ weights = {}
+ for key, val in ckpt["model_state_dict"].items():
+     # Remove 'module.' from the key names
+     if key.startswith("module"):
+         weights[key[7:]] = val
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/int8/training/vgg16/finetune_qat.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/int8/training/vgg16/finetune_qat.py
+@@ -6,12 +6,12 @@
+ import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+ import torch.optim as optim
+ import torch.utils.data as data
+-import torchvision.datasets as datasets
+-import torchvision.transforms as transforms
++from torchvision import datasets
++from torchvision import transforms
+ from pytorch_quantization import calib
+ from pytorch_quantization import nn as quant_nn
+ from pytorch_quantization import quant_modules
+ from pytorch_quantization.tensor_quant import QuantDescriptor
+ from torch.utils.tensorboard import SummaryWriter
+@@ -241,11 +241,11 @@
+ 
+     if args.start_from != 0:
+         ckpt_file = args.ckpt_dir + "/ckpt_epoch" + str(args.start_from) + ".pth"
+         print("Loading from checkpoint {}".format(ckpt_file))
+         assert os.path.isfile(ckpt_file)
+-        ckpt = torch.load(ckpt_file)
++        ckpt = torch.load(ckpt_file, weights_only=True)
+         modified_state_dict = {}
+         for key, val in ckpt["model_state_dict"].items():
+             # Remove 'module.' from the key names
+             if key.startswith("module"):
+                 modified_state_dict[key[7:]] = val
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/int8/training/vgg16/main.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/int8/training/vgg16/main.py
+@@ -6,12 +6,12 @@
+ import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+ import torch.optim as optim
+ import torch.utils.data as data
+-import torchvision.datasets as datasets
+-import torchvision.transforms as transforms
++from torchvision import datasets
++from torchvision import transforms
+ from vgg16 import vgg16
+ 
+ PARSER = argparse.ArgumentParser(
+     description="VGG16 example to use with Torch-TensorRT PTQ"
+ )
+@@ -139,11 +139,11 @@
+ 
+     if args.start_from != 0:
+         ckpt_file = args.ckpt_dir + "/ckpt_epoch" + str(args.start_from) + ".pth"
+         print("Loading from checkpoint {}".format(ckpt_file))
+         assert os.path.isfile(ckpt_file)
+-        ckpt = torch.load(ckpt_file)
++        ckpt = torch.load(ckpt_file, weights_only=True)
+         model.load_state_dict(ckpt["model_state_dict"])
+         opt.load_state_dict(ckpt["opt_state_dict"])
+         state = ckpt["state"]
+ 
+     for epoch in range(args.start_from, args.epochs):
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/int8/training/vgg16/test_qat.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/examples/int8/training/vgg16/test_qat.py
+@@ -3,12 +3,12 @@
+ 
+ import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+ import torch.utils.data as data
+-import torchvision.transforms as transforms
+-import torchvision.datasets as datasets
++from torchvision import transforms
++from torchvision import datasets
+ 
+ from vgg16 import vgg16
+ 
+ from pytorch_quantization import quant_modules
+ from pytorch_quantization import nn as quant_nn
+@@ -51,11 +51,11 @@
+ 
+ quant_modules.initialize()
+ model = vgg16(num_classes=10, init_weights=False)
+ model = model.cuda()
+ 
+-ckpt = torch.load(args.ckpt)
++ckpt = torch.load(args.ckpt, weights_only=True)
+ weights = ckpt["model_state_dict"]
+ 
+ model.load_state_dict(weights)
+ model.eval()
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/notebooks/qat-ptq-workflow.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/notebooks/qat-ptq-workflow.py
+@@ -52,10 +52,12 @@
+ # Please install the <a href="https://github.com/NVIDIA/Torch-TensorRT/tree/master/examples/int8/training/vgg16#prequisites">required dependencies</a> and import these libraries accordingly
+ 
+ # In[23]:
+ 
+ 
++from torchvision import models
++
+ get_ipython().system('pip install ipywidgets --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host=files.pythonhosted.org')
+ get_ipython().system('pip install wget')
+ 
+ 
+ # In[2]:
+@@ -65,11 +67,11 @@
+ import torch.backends.cudnn as cudnn
+ import torch.nn as nn
+ import torch.nn.functional as F
+ import torch.optim as optim
+ import torch.utils.data as data
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ from torchvision import models, datasets
+ import torch_tensorrt
+ 
+ 
+ import pytorch_quantization
+@@ -179,11 +181,11 @@
+     if feature_extracting:
+         for param in model.parameters():
+             param.requires_grad = False
+ 
+ feature_extract = True #This varaible can be set False if you want to finetune the model by updating all the parameters.
+-model = models.mobilenet_v2(pretrained=True)
++model = models.mobilenet_v2(weights=models.MobileNet_V2_Weights.IMAGENET1K_V1)
+ set_parameter_requires_grad(model, feature_extract)
+ #Define a classification head for 10 classes.
+ model.classifier[1] = nn.Linear(1280, 10)
+ model = model.cuda()
+ 
+@@ -409,17 +411,17 @@
+ 
+ 
+ # We define Mobilenetv2 again just like we did above
+ # All the regular conv, FC layers will be converted to their quantized counterparts due to quant_modules.initialize()
+ feature_extract = False
+-q_model = models.mobilenet_v2(pretrained=True)
++q_model = models.mobilenet_v2(weights=models.MobileNet_V2_Weights.IMAGENET1K_V1)
+ set_parameter_requires_grad(q_model, feature_extract)
+ q_model.classifier[1] = nn.Linear(1280, 10)
+ q_model = q_model.cuda()
+ 
+ # mobilenetv2_base_ckpt is the checkpoint generated from Step 2 : Training a baseline Mobilenetv2 model.
+-ckpt = torch.load("./mobilenetv2_base_ckpt")
++ckpt = torch.load("./mobilenetv2_base_ckpt", weights_only=True)
+ modified_state_dict={}
+ for key, val in ckpt["model_state_dict"].items():
+     # Remove 'module.' from the key names
+     if key.startswith('module'):
+         modified_state_dict[key[7:]] = val
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/notebooks/vgg-qat.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/notebooks/vgg-qat.py
+@@ -54,12 +54,12 @@
+ import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+ import torch.optim as optim
+ import torch.utils.data as data
+-import torchvision.transforms as transforms
+-import torchvision.datasets as datasets
++from torchvision import transforms
++from torchvision import datasets
+ import torch_tensorrt
+ 
+ 
+ import pytorch_quantization
+ from pytorch_quantization import nn as quant_nn
+@@ -267,11 +267,11 @@
+ 
+ # In[9]:
+ 
+ 
+ # vgg16_base_ckpt is the checkpoint generated from Step 3 : Training a baseline VGG16 model.
+-ckpt = torch.load("./vgg16_base_ckpt")
++ckpt = torch.load("./vgg16_base_ckpt", weights_only=True)
+ modified_state_dict={}
+ for key, val in ckpt["model_state_dict"].items():
+     # Remove 'module.' from the key names
+     if key.startswith('module'):
+         modified_state_dict[key[7:]] = val
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/py/torch_tensorrt/fx/test/core/test_trt_module.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/py/torch_tensorrt/fx/test/core/test_trt_module.py
+@@ -27,11 +27,11 @@
+ 
+         mod = acc_tracer.trace(mod, inputs)
+         interp = TRTInterpreter(mod, input_specs=InputTensorSpec.from_tensors(inputs))
+         trt_mod = TRTModule(*interp.run(lower_precision=LowerPrecision.FP32))
+         torch.save(trt_mod, "trt.pt")
+-        reload_trt_mod = torch.load("trt.pt")
++        reload_trt_mod = torch.load("trt.pt", weights_only=True)
+ 
+         torch.testing.assert_close(
+             reload_trt_mod(inputs[0].cuda()).cpu(), ref_output, rtol=1e-04, atol=1e-04
+         )
+         os.remove(f"{os.getcwd()}/trt.pt")
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/modules/hub.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/modules/hub.py
+@@ -4,11 +4,11 @@
+ import custom_models as cm
+ import timm
+ import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+-import torchvision.models as models
++from torchvision import models
+ from transformers import BertConfig, BertModel, BertTokenizer
+ 
+ torch.hub._validate_not_a_forked_repo = lambda a, b, c: True
+ 
+ torch_version = torch.__version__
+@@ -21,26 +21,26 @@
+ 
+ # Downloads all model files again if manifest file is not present
+ MANIFEST_FILE = "model_manifest.json"
+ 
+ models = {
+-    "alexnet": {"model": models.alexnet(pretrained=True), "path": "both"},
+-    "vgg16": {"model": models.vgg16(pretrained=True), "path": "both"},
++    "alexnet": {"model": models.alexnet(weights=models.AlexNet_Weights.IMAGENET1K_V1), "path": "both"},
++    "vgg16": {"model": models.vgg16(weights=models.VGG16_Weights.IMAGENET1K_V1), "path": "both"},
+     "squeezenet": {"model": models.squeezenet1_0(pretrained=True), "path": "both"},
+-    "densenet": {"model": models.densenet161(pretrained=True), "path": "both"},
+-    "inception_v3": {"model": models.inception_v3(pretrained=True), "path": "both"},
++    "densenet": {"model": models.densenet161(weights=models.DenseNet161_Weights.IMAGENET1K_V1), "path": "both"},
++    "inception_v3": {"model": models.inception_v3(weights=models.Inception_V3_Weights.IMAGENET1K_V1), "path": "both"},
+     "shufflenet": {"model": models.shufflenet_v2_x1_0(pretrained=True), "path": "both"},
+     "mobilenet_v2": {"model": models.mobilenet_v2(pretrained=True), "path": "both"},
+     "resnext50_32x4d": {
+         "model": models.resnext50_32x4d(pretrained=True),
+         "path": "both",
+     },
+     "wideresnet50_2": {
+-        "model": models.wide_resnet50_2(pretrained=True),
++        "model": models.wide_resnet50_2(weights=models.Wide_ResNet50_2_Weights.IMAGENET1K_V1),
+         "path": "both",
+     },
+-    "mnasnet": {"model": models.mnasnet1_0(pretrained=True), "path": "both"},
++    "mnasnet": {"model": models.mnasnet1_0(weights=models.MNASNet1_0_Weights.IMAGENET1K_V1), "path": "both"},
+     "resnet18": {
+         "model": torch.hub.load("pytorch/vision:v0.9.0", "resnet18", pretrained=True),
+         "path": "both",
+     },
+     "resnet50": {
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/core/test_classes.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/core/test_classes.py
+@@ -3,11 +3,11 @@
+ from typing import Dict
+ 
+ import torch
+ import torch_tensorrt
+ import torch_tensorrt as torchtrt
+-import torchvision.models as models
++from torchvision import models
+ from torch_tensorrt.dynamo.runtime._TorchTensorRTModule import TorchTensorRTModule
+ 
+ import tensorrt as trt
+ 
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/dynamo/conversion/test_embedding_bag_aten.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/dynamo/conversion/test_embedding_bag_aten.py
+@@ -351,11 +351,11 @@
+ 
+     @parameterized.expand(
+         [
+             param(
+                 test_name="dynamic_offsets_1",
+-                weight=torch.range(0, 29, dtype=torch.float32).reshape(15, 2),
++                weight=torch.arange(0, 30, dtype=torch.float32).reshape(15, 2),
+                 indices=torch.tensor([i for i in range(15)], dtype=torch.int32),
+                 offsets=torch.tensor([0, 2], dtype=torch.int32),
+                 scale_grad_by_freq=False,
+                 mode=0,
+                 sparse=False,
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/py/torch_tensorrt/fx/test/tracer/test_acc_tracer.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/py/torch_tensorrt/fx/test/tracer/test_acc_tracer.py
+@@ -12,10 +12,11 @@
+ import torch_tensorrt.fx.tracer.acc_tracer.acc_ops as acc_ops
+ import torch_tensorrt.fx.tracer.acc_tracer.acc_tracer as acc_tracer
+ import torch_tensorrt.fx.tracer.acc_tracer.acc_utils as acc_utils
+ import torchvision
+ from parameterized import param, parameterized
++from torchvision import models
+ 
+ torch.manual_seed(0)
+ 
+ _LOGGER: logging.Logger = logging.getLogger(__name__)
+ 
+@@ -2360,39 +2361,39 @@
+ 
+     def test_mobilenet_v3(self):
+         """
+         Test that we can trace mobilenet v3 small and run/compare against the untraced version.
+         """
+-        m = torchvision.models.mobilenet_v3_small(pretrained=True)
++        m = torchvision.models.mobilenet_v3_small(weights=models.MobileNet_V3_Small_Weights.IMAGENET1K_V1)
+         self._make_model_unit_test(m, enable_allclose=True)
+ 
+     def test_mobilenet_v2(self):
+         """
+         Test that we can trace mobilenet v2 small and run/compare against the untraced version.
+         """
+-        m = torchvision.models.mobilenet_v2(pretrained=True)
++        m = torchvision.models.mobilenet_v2(weights=models.MobileNet_V2_Weights.IMAGENET1K_V1)
+         self._make_model_unit_test(m)
+ 
+     def test_vgg16(self):
+         """
+         Test that we can trace vgg16 and run/compare against the untraced version.
+         """
+-        m = torchvision.models.vgg16(pretrained=True)
++        m = torchvision.models.vgg16(weights=models.VGG16_Weights.IMAGENET1K_V1)
+         self._make_model_unit_test(m)
+ 
+     def test_resnet18(self):
+         """
+         Test that we can trace resnet18 and run/compare against the untraced version.
+         """
+-        m = torchvision.models.resnet18(pretrained=True)
++        m = torchvision.models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1)
+         self._make_model_unit_test(m)
+ 
+     def test_resnext50_32x4d(self):
+         """
+         Test that we can trace resnext and run/compare against the untraced version.
+         """
+-        m = torchvision.models.resnext50_32x4d(pretrained=True)
++        m = torchvision.models.resnext50_32x4d(weights=models.ResNeXt50_32X4D_Weights.IMAGENET1K_V1)
+         self._make_model_unit_test(m)
+ 
+     def test_cumsum(self):
+         # Tests call_function version
+         self._make_acc_op_function_test(acc_ops.cumsum, torch.cumsum, dim=1)
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/api/test_e2e_behavior.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/api/test_e2e_behavior.py
+@@ -2,17 +2,17 @@
+ import unittest
+ from typing import Dict
+ 
+ import torch
+ import torch_tensorrt as torchtrt
+-import torchvision.models as models
++from torchvision import models
+ from utils import same_output_format
+ 
+ 
+ class TestInputTypeDefaultsFP32Model(unittest.TestCase):
+     def test_input_use_default_fp32(self):
+-        self.model = models.resnet18(pretrained=True).eval().to("cuda")
++        self.model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+         self.input = torch.randn((1, 3, 224, 224)).to("cuda")
+ 
+         ts_model = torch.jit.script(self.model)
+         trt_mod = torchtrt.ts.compile(
+             ts_model,
+@@ -20,11 +20,11 @@
+             enabled_precisions={torch.float, torch.half},
+         )
+         trt_mod(self.input)
+ 
+     def test_input_respect_user_setting_fp32_weights_fp16_in(self):
+-        self.model = models.resnet18(pretrained=True).eval().to("cuda")
++        self.model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+         self.input = torch.randn((1, 3, 224, 224)).to("cuda")
+ 
+         ts_model = torch.jit.script(self.model)
+         trt_mod = torchtrt.ts.compile(
+             ts_model,
+@@ -33,11 +33,11 @@
+             enabled_precisions={torch.float, torch.half},
+         )
+         trt_mod(self.input.half())
+ 
+     def test_input_respect_user_setting_fp32_weights_fp16_in_non_constructor(self):
+-        self.model = models.resnet18(pretrained=True).eval().to("cuda")
++        self.model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+         self.input = torch.randn((1, 3, 224, 224)).to("cuda")
+ 
+         ts_model = torch.jit.script(self.model)
+         input_spec = torchtrt.Input(self.input.shape)
+         input_spec.dtype = torchtrt.dtype.half
+@@ -51,11 +51,11 @@
+         trt_mod(self.input.half())
+ 
+ 
+ class TestInputTypeDefaultsFP16Model(unittest.TestCase):
+     def test_input_use_default_fp16(self):
+-        self.model = models.resnet18(pretrained=True).eval().to("cuda")
++        self.model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+         self.input = torch.randn((1, 3, 224, 224)).to("cuda")
+ 
+         half_mod = torch.jit.script(self.model)
+         half_mod.half()
+ 
+@@ -65,11 +65,11 @@
+             enabled_precisions={torch.float, torch.half},
+         )
+         trt_mod(self.input.half())
+ 
+     def test_input_use_default_fp16_without_fp16_enabled(self):
+-        self.model = models.resnet18(pretrained=True).eval().to("cuda")
++        self.model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+         self.input = torch.randn((1, 3, 224, 224)).to("cuda")
+ 
+         half_mod = torch.jit.script(self.model)
+         half_mod.half()
+ 
+@@ -77,11 +77,11 @@
+             half_mod, inputs=[torchtrt.Input(self.input.shape)]
+         )
+         trt_mod(self.input.half())
+ 
+     def test_input_respect_user_setting_fp16_weights_fp32_in(self):
+-        self.model = models.resnet18(pretrained=True).eval().to("cuda")
++        self.model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+         self.input = torch.randn((1, 3, 224, 224)).to("cuda")
+ 
+         half_mod = torch.jit.script(self.model)
+         half_mod.half()
+ 
+@@ -92,11 +92,11 @@
+             enabled_precisions={torch.float, torch.half},
+         )
+         trt_mod(self.input)
+ 
+     def test_input_respect_user_setting_fp16_weights_fp32_in_non_constuctor(self):
+-        self.model = models.resnet18(pretrained=True).eval().to("cuda")
++        self.model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+         self.input = torch.randn((1, 3, 224, 224)).to("cuda")
+ 
+         half_mod = torch.jit.script(self.model)
+         half_mod.half()
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/api/test_embed_engines.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/api/test_embed_engines.py
+@@ -1,18 +1,18 @@
+ import unittest
+ import torch_tensorrt as torchtrt
+ import torch
+-import torchvision.models as models
++from torchvision import models
+ import copy
+ import timm
+ from typing import Dict
+ from utils import cosine_similarity, COSINE_THRESHOLD
+ 
+ 
+ class TestModelToEngineToModel(unittest.TestCase):
+     def test_resnet50(self):
+-        self.model = models.resnet50(pretrained=True).eval().to("cuda")
++        self.model = models.resnet50(weights=models.ResNet50_Weights.IMAGENET1K_V1).eval().to("cuda")
+         self.input = torch.randn((1, 3, 224, 224)).to("cuda")
+ 
+         compile_spec = {
+             "inputs": [
+                 torchtrt.Input(
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/api/test_logging.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/api/test_logging.py
+@@ -2,11 +2,11 @@
+ import unittest
+ from typing import Dict
+ 
+ import torch
+ import torch_tensorrt as torchtrt
+-import torchvision.models as models
++from torchvision import models
+ 
+ 
+ @unittest.skipIf(
+     not torchtrt.ENABLED_FEATURES.torchscript_frontend,
+     "TorchScript Frontend is not available",
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/api/test_module_fallback.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/api/test_module_fallback.py
+@@ -1,17 +1,17 @@
+ import unittest
+ import torch_tensorrt as torchtrt
+ import torch
+-import torchvision.models as models
++from torchvision import models
+ import copy
+ from typing import Dict
+ from utils import cosine_similarity, COSINE_THRESHOLD
+ 
+ 
+ class TestModuleFallback(unittest.TestCase):
+     def test_fallback_resnet18(self):
+-        self.model = models.resnet18(pretrained=True).eval().to("cuda")
++        self.model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+         self.input = torch.randn((1, 3, 224, 224)).to("cuda")
+         compile_spec = {
+             "inputs": [
+                 torchtrt.Input(
+                     self.input.shape, dtype=torch.float, format=torch.contiguous_format
+@@ -31,11 +31,11 @@
+             cos_sim > COSINE_THRESHOLD,
+             msg=f"Resnet18 TRT outputs don't match with the original model. Cosine sim score: {cos_sim} Threshold: {COSINE_THRESHOLD}",
+         )
+ 
+     def test_fallback_mobilenet_v2(self):
+-        self.model = models.mobilenet_v2(pretrained=True).eval().to("cuda")
++        self.model = models.mobilenet_v2(weights=models.MobileNet_V2_Weights.IMAGENET1K_V1).eval().to("cuda")
+         self.input = torch.randn((1, 3, 224, 224)).to("cuda")
+         compile_spec = {
+             "inputs": [
+                 torchtrt.Input(
+                     self.input.shape, dtype=torch.float, format=torch.contiguous_format
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/dynamo/runtime/test_002_lazy_engine_init.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/dynamo/runtime/test_002_lazy_engine_init.py
+@@ -4,11 +4,11 @@
+ import unittest
+ 
+ import torch
+ import torch_tensorrt
+ import torch_tensorrt as torchtrt
+-import torchvision.models as models
++from torchvision import models
+ from torch.testing._internal.common_utils import TestCase
+ from torch_tensorrt.dynamo import CompilationSettings
+ from torch_tensorrt.dynamo.utils import COSINE_THRESHOLD, cosine_similarity
+ from torch_tensorrt.runtime import PythonTorchTensorRTModule, TorchTensorRTModule
+ 
+@@ -140,11 +140,11 @@
+         model_output = model(input_data_0, input_data_1)
+ 
+         assert_close(trt_output, model_output)
+ 
+     def test_lazy_engine_init_py_e2e(self):
+-        model = models.resnet18(pretrained=True).eval().to("cuda")
++        model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+         input = torch.randn((1, 3, 224, 224)).to("cuda")
+ 
+         compile_spec = {
+             "inputs": [
+                 torchtrt.Input(
+@@ -176,11 +176,11 @@
+     @unittest.skipIf(
+         not torch_tensorrt.ENABLED_FEATURES.torch_tensorrt_runtime,
+         "Torch-TensorRT Runtime is not available",
+     )
+     def test_lazy_engine_init_cpp_e2e(self):
+-        model = models.resnet18(pretrained=False).eval().to("cuda")
++        model = models.resnet18(weights=None).eval().to("cuda")
+         input = torch.randn((1, 3, 224, 224)).to("cuda")
+ 
+         compile_spec = {
+             "inputs": [
+                 torchtrt.Input(
+@@ -212,11 +212,11 @@
+     @unittest.skipIf(
+         not torch_tensorrt.ENABLED_FEATURES.torch_tensorrt_runtime,
+         "Torch-TensorRT Runtime is not available",
+     )
+     def test_lazy_engine_init_cpp_serialization(self):
+-        model = models.resnet18(pretrained=False).eval().to("cuda")
++        model = models.resnet18(weights=None).eval().to("cuda")
+         input = torch.randn((1, 3, 224, 224)).to("cuda")
+ 
+         compile_spec = {
+             "inputs": [
+                 torchtrt.Input(
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/dynamo/runtime/test_mutable_torchtrt_module.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/dynamo/runtime/test_mutable_torchtrt_module.py
+@@ -6,11 +6,11 @@
+ import pytest
+ import timm
+ import torch
+ import torch.nn.functional as F
+ import torch_tensorrt as torch_trt
+-import torchvision.models as models
++from torchvision import models
+ from torch import nn
+ from torch_tensorrt.dynamo.runtime._MutableTorchTensorRTModule import RefitFlag
+ from torch_tensorrt.dynamo.utils import check_output_equal
+ 
+ assertions = unittest.TestCase()
+@@ -49,12 +49,12 @@
+         "use_python_runtime": False,
+         "enabled_precisions": {torch.float32},
+         "immutable_weights": False,
+     }
+ 
+-    model = models.resnet18(pretrained=True).eval().to("cuda")
+-    model2 = models.resnet18(pretrained=False).eval().to("cuda")
++    model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
++    model2 = models.resnet18(weights=None).eval().to("cuda")
+     mutable_module = torch_trt.MutableTorchTensorRTModule(model, **compile_spec)
+     mutable_module(*inputs)
+ 
+     mutable_module.load_state_dict(model2.state_dict())
+     assertions.assertTrue(
+@@ -88,11 +88,11 @@
+         "use_python_runtime": False,
+         "enabled_precisions": {torch.float32},
+         "immutable_weights": False,
+     }
+ 
+-    model = models.resnet18(pretrained=True).eval().to("cuda")
++    model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+     mutable_module = torch_trt.MutableTorchTensorRTModule(model, **compile_spec)
+     mutable_module(*inputs)
+ 
+     save_path = os.path.join(tempfile.gettempdir(), "mutable_module.pkl")
+     torch_trt.MutableTorchTensorRTModule.save(mutable_module, save_path)
+@@ -121,11 +121,11 @@
+         "use_python_runtime": False,
+         "enabled_precisions": {torch.float32},
+         "immutable_weights": False,
+     }
+ 
+-    model = models.resnet18(pretrained=True).eval().to("cuda")
++    model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+     mutable_module = torch_trt.MutableTorchTensorRTModule(model, **compile_spec)
+     mutable_module(*inputs)
+ 
+     mutable_module.conv1.weight = nn.Parameter(
+         torch.rand_like(mutable_module.conv1.weight)
+@@ -161,11 +161,11 @@
+         "use_python_runtime": False,
+         "enabled_precisions": {torch.float32},
+         "immutable_weights": False,
+     }
+ 
+-    model = models.resnet18(pretrained=True).eval().to("cuda")
++    model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+     mutable_module = torch_trt.MutableTorchTensorRTModule(model, **compile_spec)
+     mutable_module(*inputs)
+ 
+     mutable_module.conv1.weight = nn.Parameter(
+         mutable_module.original_model.conv1.weight
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/api/test_classes.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/api/test_classes.py
+@@ -2,11 +2,11 @@
+ import unittest
+ from typing import Dict
+ 
+ import torch
+ import torch_tensorrt as torchtrt
+-import torchvision.models as models
++from torchvision import models
+ from torch_tensorrt.dynamo.runtime._TorchTensorRTModule import TorchTensorRTModule
+ 
+ 
+ @unittest.skipIf(
+     not torchtrt.ENABLED_FEATURES.torchscript_frontend,
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/api/test_collections.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/api/test_collections.py
+@@ -3,11 +3,11 @@
+ import os
+ import unittest
+ 
+ import torch
+ import torch_tensorrt as torchtrt
+-import torchvision.models as models
++from torchvision import models
+ from utils import COSINE_THRESHOLD, cosine_similarity
+ 
+ 
+ def find_repo_root(max_depth=10):
+     dir_path = os.path.dirname(os.path.realpath(__file__))
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/hw/test_multi_gpu.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/hw/test_multi_gpu.py
+@@ -1,10 +1,10 @@
+ import unittest
+ 
+ import torch
+ import torch_tensorrt as torchtrt
+-import torchvision.models as models
++from torchvision import models
+ from model_test_case import ModelTestCase
+ 
+ 
+ @unittest.skipIf(
+     not torchtrt.ENABLED_FEATURES.torchscript_frontend,
+@@ -134,16 +134,16 @@
+ 
+ def test_suite():
+     suite = unittest.TestSuite()
+     suite.addTest(
+         TestMultiGpuSwitching.parametrize(
+-            TestMultiGpuSwitching, model=models.resnet18(pretrained=True)
++            TestMultiGpuSwitching, model=models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1)
+         )
+     )
+     suite.addTest(
+         TestMultiGpuSerializeDeserializeSwitching.parametrize(
+-            TestMultiGpuSwitching, model=models.resnet18(pretrained=True)
++            TestMultiGpuSwitching, model=models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1)
+         )
+     )
+ 
+     return suite
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/integrations/test_to_backend_api.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/integrations/test_to_backend_api.py
+@@ -1,22 +1,22 @@
+ # type: ignore
+ import unittest
+ 
+ import torch
+ import torch_tensorrt as torchtrt
+-import torchvision.models as models
++from torchvision import models
+ from utils import COSINE_THRESHOLD, cosine_similarity
+ 
+ 
+ @unittest.skipIf(
+     not torchtrt.ENABLED_FEATURES.torchscript_frontend,
+     "TorchScript Frontend is not available",
+ )
+ class TestToBackendLowering(unittest.TestCase):
+     def setUp(self):
+         self.input = torch.randn((1, 3, 300, 300)).to("cuda")
+-        self.model = models.resnet18(pretrained=True).eval().to("cuda")
++        self.model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+         self.scripted_model = torch.jit.script(self.model)
+         self.spec = {
+             "forward": torchtrt.ts.TensorRTCompileSpec(
+                 **{
+                     "inputs": [torchtrt.Input([1, 3, 300, 300])],
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/integrations/test_trt_intercompatibility.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/integrations/test_trt_intercompatibility.py
+@@ -1,21 +1,21 @@
+ import unittest
+ 
+ import tensorrt as trt
+ import torch
+ import torch_tensorrt as torchtrt
+-import torchvision.models as models
++from torchvision import models
+ from utils import COSINE_THRESHOLD, cosine_similarity
+ 
+ 
+ @unittest.skipIf(
+     not torchtrt.ENABLED_FEATURES.torchscript_frontend,
+     "TorchScript Frontend is not available",
+ )
+ class TestPyTorchToTRTEngine(unittest.TestCase):
+     def test_pt_to_trt(self):
+-        self.model = models.resnet18(pretrained=True).eval().to("cuda:0")
++        self.model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda:0")
+         self.input = torch.randn((1, 3, 224, 224)).to("cuda:0")
+         self.ts_model = torch.jit.script(self.model)
+         compile_spec = {
+             "inputs": [torchtrt.Input(self.input.shape)],
+             "truncate_long_and_double": True,
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/api/test_operator_fallback.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/api/test_operator_fallback.py
+@@ -1,17 +1,17 @@
+ import unittest
+ import torch_tensorrt as torchtrt
+ import torch
+-import torchvision.models as models
++from torchvision import models
+ import copy
+ from typing import Dict
+ from utils import cosine_similarity, COSINE_THRESHOLD
+ 
+ 
+ class TestFallbackModels(unittest.TestCase):
+     def test_fallback_resnet18(self):
+-        self.model = models.resnet18(pretrained=True).eval().to("cuda")
++        self.model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+         self.input = torch.randn((1, 3, 224, 224)).to("cuda")
+         compile_spec = {
+             "inputs": [
+                 torchtrt.Input(
+                     self.input.shape, dtype=torch.float, format=torch.contiguous_format
+@@ -31,11 +31,11 @@
+             cos_sim > COSINE_THRESHOLD,
+             msg=f"Resnet18 TRT outputs don't match with the original model. Cosine sim score: {cos_sim} Threshold: {COSINE_THRESHOLD}",
+         )
+ 
+     def test_fallback_resnet18_with_tensor_domain(self):
+-        self.model = models.resnet18(pretrained=True).eval().to("cuda")
++        self.model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+         self.input = torch.randn((1, 3, 224, 224)).to("cuda")
+         compile_spec = {
+             "inputs": [
+                 torchtrt.Input(
+                     self.input.shape,
+@@ -58,11 +58,11 @@
+             cos_sim > COSINE_THRESHOLD,
+             msg=f"Resnet18 TRT outputs don't match with the original model. Cosine sim score: {cos_sim} Threshold: {COSINE_THRESHOLD}",
+         )
+ 
+     def test_fallback_mobilenet_v2(self):
+-        self.model = models.mobilenet_v2(pretrained=True).eval().to("cuda")
++        self.model = models.mobilenet_v2(weights=models.MobileNet_V2_Weights.IMAGENET1K_V1).eval().to("cuda")
+         self.input = torch.randn((1, 3, 224, 224)).to("cuda")
+         compile_spec = {
+             "inputs": [
+                 torchtrt.Input(
+                     self.input.shape, dtype=torch.float, format=torch.contiguous_format
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/api/test_ts_backend.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/api/test_ts_backend.py
+@@ -1,17 +1,17 @@
+ import unittest
+ import torch_tensorrt as torchtrt
+ import torch
+-import torchvision.models as models
++from torchvision import models
+ import copy
+ from typing import Dict
+ from utils import cosine_similarity, COSINE_THRESHOLD
+ 
+ 
+ class TestCompile(unittest.TestCase):
+     def test_compile_traced(self):
+-        self.model = models.vgg16(pretrained=True).eval().to("cuda")
++        self.model = models.vgg16(weights=models.VGG16_Weights.IMAGENET1K_V1).eval().to("cuda")
+         self.input = torch.randn((1, 3, 224, 224)).to("cuda")
+         self.traced_model = torch.jit.trace(self.model, [self.input])
+ 
+         compile_spec = {
+             "inputs": [
+@@ -32,11 +32,11 @@
+             cos_sim > COSINE_THRESHOLD,
+             msg=f"VGG16 TRT outputs don't match with the original model. Cosine sim score: {cos_sim} Threshold: {COSINE_THRESHOLD}",
+         )
+ 
+     def test_compile_script(self):
+-        self.model = models.vgg16(pretrained=True).eval().to("cuda")
++        self.model = models.vgg16(weights=models.VGG16_Weights.IMAGENET1K_V1).eval().to("cuda")
+         self.input = torch.randn((1, 3, 224, 224)).to("cuda")
+         self.scripted_model = torch.jit.script(self.model)
+         with torch.no_grad():
+             trt_mod = torchtrt.ts.compile(
+                 self.scripted_model,
+@@ -49,11 +49,11 @@
+                 cos_sim > COSINE_THRESHOLD,
+                 msg=f"VGG16 TRT outputs don't match with the original model. Cosine sim score: {cos_sim} Threshold: {COSINE_THRESHOLD}",
+             )
+ 
+     def test_compile_global(self):
+-        self.model = models.vgg16(pretrained=True).eval().to("cuda")
++        self.model = models.vgg16(weights=models.VGG16_Weights.IMAGENET1K_V1).eval().to("cuda")
+         self.input = torch.randn((1, 3, 224, 224)).to("cuda")
+         self.scripted_model = torch.jit.script(self.model)
+         trt_mod = torchtrt.compile(
+             self.scripted_model,
+             inputs=[self.input],
+@@ -65,11 +65,11 @@
+             cos_sim > COSINE_THRESHOLD,
+             msg=f"VGG16 TRT outputs don't match with the original model. Cosine sim score: {cos_sim} Threshold: {COSINE_THRESHOLD}",
+         )
+ 
+     def test_from_torch_tensor(self):
+-        self.model = models.vgg16(pretrained=True).eval().to("cuda")
++        self.model = models.vgg16(weights=models.VGG16_Weights.IMAGENET1K_V1).eval().to("cuda")
+         self.input = torch.randn((1, 3, 224, 224)).to("cuda")
+         self.traced_model = torch.jit.trace(self.model, [self.input])
+         compile_spec = {
+             "inputs": [self.input],
+             "device": {
+@@ -85,11 +85,11 @@
+             cos_sim > COSINE_THRESHOLD,
+             msg=f"VGG16 TRT outputs don't match with the original model. Cosine sim score: {cos_sim} Threshold: {COSINE_THRESHOLD}",
+         )
+ 
+     def test_device(self):
+-        self.model = models.vgg16(pretrained=True).eval().to("cuda")
++        self.model = models.vgg16(weights=models.VGG16_Weights.IMAGENET1K_V1).eval().to("cuda")
+         self.input = torch.randn((1, 3, 224, 224)).to("cuda")
+         self.traced_model = torch.jit.trace(self.model, [self.input])
+         compile_spec = {
+             "inputs": [self.input],
+             "device": torchtrt.Device("gpu:0"),
+@@ -102,11 +102,11 @@
+             cos_sim > COSINE_THRESHOLD,
+             msg=f"VGG16 TRT outputs don't match with the original model. Cosine sim score: {cos_sim} Threshold: {COSINE_THRESHOLD}",
+         )
+ 
+     def test_default_device(self):
+-        self.model = models.vgg16(pretrained=True).eval().to("cuda")
++        self.model = models.vgg16(weights=models.VGG16_Weights.IMAGENET1K_V1).eval().to("cuda")
+         self.input = torch.randn((1, 3, 224, 224)).to("cuda")
+         self.traced_model = torch.jit.trace(self.model, [self.input])
+         compile_spec = {"inputs": [self.input], "enabled_precisions": {torch.float}}
+ 
+         trt_mod = torchtrt.ts.compile(self.traced_model, **compile_spec)
+@@ -117,19 +117,19 @@
+         )
+ 
+ 
+ class TestCheckMethodOpSupport(unittest.TestCase):
+     def test_check_support(self):
+-        module = models.alexnet(pretrained=True).eval().to("cuda")
++        module = models.alexnet(weights=models.AlexNet_Weights.IMAGENET1K_V1).eval().to("cuda")
+         self.module = torch.jit.trace(module, torch.ones((1, 3, 224, 224)).to("cuda"))
+ 
+         self.assertTrue(torchtrt.ts.check_method_op_support(self.module, "forward"))
+ 
+ 
+ class TestModuleIdentification(unittest.TestCase):
+     def test_module_type(self):
+-        nn_module = models.alexnet(pretrained=True).eval().to("cuda")
++        nn_module = models.alexnet(weights=models.AlexNet_Weights.IMAGENET1K_V1).eval().to("cuda")
+         ts_module = torch.jit.trace(nn_module, torch.ones([1, 3, 224, 224]).to("cuda"))
+         fx_module = torch.fx.symbolic_trace(nn_module)
+ 
+         self.assertEqual(
+             torchtrt._compile._parse_module_type(nn_module),
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/hw/test_api_dla.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/hw/test_api_dla.py
+@@ -1,10 +1,10 @@
+ import unittest
+ 
+ import torch
+ import torch_tensorrt as torchtrt
+-import torchvision.models as models
++from torchvision import models
+ from utils import COSINE_THRESHOLD, cosine_similarity
+ 
+ 
+ @unittest.skipIf(
+     not torchtrt.ENABLED_FEATURES.torchscript_frontend,
+@@ -76,11 +76,11 @@
+ 
+ 
+ def test_suite():
+     suite = unittest.TestSuite()
+     suite.addTest(
+-        TestCompile.parametrize(TestCompile, model=models.resnet18(pretrained=True))
++        TestCompile.parametrize(TestCompile, model=models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1))
+     )
+ 
+     return suite
+ 
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/dynamo/models/test_dyn_models.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/dynamo/models/test_dyn_models.py
+@@ -5,10 +5,11 @@
+ import pytest
+ import timm
+ import torch
+ import torch_tensorrt as torchtrt
+ from torch_tensorrt.dynamo.utils import COSINE_THRESHOLD, cosine_similarity
++from torchvision import models
+ 
+ assertions = unittest.TestCase()
+ 
+ 
+ @pytest.mark.unit
+@@ -178,13 +179,13 @@
+ @pytest.mark.unit
+ def test_resnet_dynamic(ir):
+     """
+     Tests the Resnet18 model (which is fully convertible) with dynamic shapes
+     """
+-    import torchvision.models as models
+-
+-    model = models.resnet18(pretrained=True).eval().to("cuda")
++    from torchvision import models
++
++    model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+ 
+     compile_spec = {
+         "device": torchtrt.Device("cuda:0"),
+         "enabled_precisions": {torch.float},
+         "ir": ir,
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/dynamo/models/test_engine_cache.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/dynamo/models/test_engine_cache.py
+@@ -5,11 +5,11 @@
+ from typing import Optional
+ 
+ import pytest
+ import torch
+ import torch_tensorrt as torch_trt
+-import torchvision.models as models
++from torchvision import models
+ from torch.testing._internal.common_utils import TestCase
+ from torch_tensorrt.dynamo._defaults import TIMING_CACHE_PATH
+ from torch_tensorrt.dynamo._engine_cache import BaseEngineCache
+ from torch_tensorrt.dynamo._settings import CompilationSettings
+ from torch_tensorrt.dynamo.utils import COSINE_THRESHOLD, cosine_similarity
+@@ -56,11 +56,11 @@
+         return None
+ 
+ 
+ class TestHashFunction(TestCase):
+     def test_reexport_is_equal(self):
+-        pyt_model = models.resnet18(pretrained=True).eval().to("cuda")
++        pyt_model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+         example_inputs = (torch.randn((100, 3, 224, 224)).to("cuda"),)
+         batch = torch.export.Dim("batch", min=1, max=200)
+ 
+         exp_program1 = torch.export.export(
+             pyt_model, args=example_inputs, dynamic_shapes={"x": {0: batch}}
+@@ -93,11 +93,11 @@
+         hash2 = BaseEngineCache.get_hash(exp_program2.module(), input_specs2, settings2)
+ 
+         self.assertEqual(hash1, hash2)
+ 
+     def test_input_shape_change_is_not_equal(self):
+-        pyt_model = models.resnet18(pretrained=True).eval().to("cuda")
++        pyt_model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+         example_inputs = (torch.randn((100, 3, 224, 224)).to("cuda"),)
+         batch = torch.export.Dim("batch", min=1, max=200)
+ 
+         exp_program1 = torch.export.export(
+             pyt_model, args=example_inputs, dynamic_shapes={"x": {0: batch}}
+@@ -130,11 +130,11 @@
+         hash2 = BaseEngineCache.get_hash(exp_program2.module(), input_specs2, settings2)
+ 
+         self.assertNotEqual(hash1, hash2)
+ 
+     def test_engine_settings_is_not_equal(self):
+-        pyt_model = models.resnet18(pretrained=True).eval().to("cuda")
++        pyt_model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+         example_inputs = (torch.randn((100, 3, 224, 224)).to("cuda"),)
+         batch = torch.export.Dim("batch", min=1, max=200)
+ 
+         exp_program1 = torch.export.export(
+             pyt_model, args=example_inputs, dynamic_shapes={"x": {0: batch}}
+@@ -176,11 +176,11 @@
+ 
+ 
+ class TestEngineCache(TestCase):
+     @pytest.mark.xfail
+     def test_dynamo_compile_with_default_disk_engine_cache(self):
+-        model = models.resnet18(pretrained=True).eval().to("cuda")
++        model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+         example_inputs = (torch.randn((100, 3, 224, 224)).to("cuda"),)
+         # Mark the dim0 of inputs as dynamic
+         batch = torch.export.Dim("batch", min=1, max=200)
+         exp_program = torch.export.export(
+             model, args=example_inputs, dynamic_shapes={"x": {0: batch}}
+@@ -249,11 +249,11 @@
+             times[0] > times[2],
+             msg=f"Engine caching didn't speed up the compilation. Time taken without engine caching: {times[0]} ms, time taken with engine caching: {times[2]} ms",
+         )
+ 
+     def test_dynamo_compile_with_custom_engine_cache(self):
+-        model = models.resnet18(pretrained=True).eval().to("cuda")
++        model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+ 
+         engine_cache_dir = "/tmp/test_torch_dynamo_with_custom_engine_cache"
+         if os.path.exists(engine_cache_dir):
+             shutil.rmtree(engine_cache_dir)
+ 
+@@ -314,11 +314,11 @@
+             for h, count in custom_engine_cache.hashes.items()
+         ]
+ 
+     def test_dynamo_compile_change_input_shape(self):
+         """Runs compilation 3 times, the cache should miss each time"""
+-        model = models.resnet18(pretrained=True).eval().to("cuda")
++        model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+         # Mark the dim0 of inputs as dynamic
+ 
+         engine_cache_dir = "/tmp/test_torch_dynamo_with_custom_engine_cache"
+         if os.path.exists(engine_cache_dir):
+             shutil.rmtree(engine_cache_dir)
+@@ -347,11 +347,11 @@
+         ]
+ 
+     @pytest.mark.xfail
+     def test_torch_compile_with_default_disk_engine_cache(self):
+         # Custom Engine Cache
+-        model = models.resnet18(pretrained=True).eval().to("cuda")
++        model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+ 
+         engine_cache_dir = "/tmp/test_torch_compile_with_default_disk_engine_cache"
+         if os.path.exists(engine_cache_dir):
+             shutil.rmtree(engine_cache_dir)
+ 
+@@ -418,11 +418,11 @@
+             msg=f"Engine caching didn't speed up the compilation. Time taken without engine caching: {times[0]} ms, time taken with engine caching: {times[2]} ms",
+         )
+ 
+     def test_torch_compile_with_custom_engine_cache(self):
+         # Custom Engine Cache
+-        model = models.resnet18(pretrained=True).eval().to("cuda")
++        model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+ 
+         engine_cache_dir = "/tmp/test_torch_compile_with_custom_engine_cache"
+         if os.path.exists(engine_cache_dir):
+             shutil.rmtree(engine_cache_dir)
+ 
+@@ -485,11 +485,11 @@
+             for h, count in custom_engine_cache.hashes.items()
+         ]
+ 
+     def test_torch_trt_compile_change_input_shape(self):
+         # Custom Engine Cache
+-        model = models.resnet18(pretrained=True).eval().to("cuda")
++        model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+         engine_cache_dir = "/tmp/test_torch_trt_compile_change_input_shape"
+         if os.path.exists(engine_cache_dir):
+             shutil.rmtree(engine_cache_dir)
+ 
+         custom_engine_cache = MyEngineCache(engine_cache_dir)
+@@ -612,11 +612,11 @@
+ 
+     # @unittest.skip("benchmark on small models")
+     def test_caching_small_model(self):
+         from torch_tensorrt.dynamo._refit import refit_module_weights
+ 
+-        model = models.resnet18(pretrained=True).eval().to("cuda")
++        model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+ 
+         engine_cache_dir = "/tmp/test_caching_small_model"
+         if os.path.exists(engine_cache_dir):
+             shutil.rmtree(engine_cache_dir)
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/dynamo/models/test_models_export.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/dynamo/models/test_models_export.py
+@@ -6,22 +6,22 @@
+ 
+ import pytest
+ import timm
+ import torch
+ import torch_tensorrt as torchtrt
+-import torchvision.models as models
++from torchvision import models
+ from torch_tensorrt.dynamo.utils import COSINE_THRESHOLD, cosine_similarity
+ from transformers import BertModel
+ 
+ from packaging.version import Version
+ 
+ assertions = unittest.TestCase()
+ 
+ 
+ @pytest.mark.unit
+ def test_resnet18(ir):
+-    model = models.resnet18(pretrained=True).eval().to("cuda")
++    model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+     input = torch.randn((1, 3, 224, 224)).to("cuda")
+ 
+     compile_spec = {
+         "inputs": [
+             torchtrt.Input(
+@@ -49,11 +49,11 @@
+     torch._dynamo.reset()
+ 
+ 
+ @pytest.mark.unit
+ def test_mobilenet_v2(ir):
+-    model = models.mobilenet_v2(pretrained=True).eval().to("cuda")
++    model = models.mobilenet_v2(weights=models.MobileNet_V2_Weights.IMAGENET1K_V1).eval().to("cuda")
+     input = torch.randn((1, 3, 224, 224)).to("cuda")
+ 
+     compile_spec = {
+         "inputs": [
+             torchtrt.Input(
+@@ -162,11 +162,11 @@
+     torch._dynamo.reset()
+ 
+ 
+ @pytest.mark.unit
+ def test_resnet18_half(ir):
+-    model = models.resnet18(pretrained=True).eval().to("cuda").half()
++    model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda").half()
+     input = torch.randn((1, 3, 224, 224)).to("cuda").half()
+ 
+     compile_spec = {
+         "inputs": [
+             torchtrt.Input(
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/dynamo/models/test_reexport.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/dynamo/models/test_reexport.py
+@@ -4,11 +4,11 @@
+ 
+ import pytest
+ import torch
+ import torch.nn as nn
+ import torch_tensorrt as torchtrt
+-import torchvision.models as models
++from torchvision import models
+ from torch_tensorrt.dynamo.utils import COSINE_THRESHOLD, cosine_similarity
+ 
+ assertions = unittest.TestCase()
+ 
+ trt_ep_path = os.path.join(tempfile.gettempdir(), "trt.ep")
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/dynamo/models/test_weight_stripped_engine.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/dynamo/models/test_weight_stripped_engine.py
+@@ -3,11 +3,11 @@
+ import shutil
+ import unittest
+ 
+ import torch
+ import torch_tensorrt as torch_trt
+-import torchvision.models as models
++from torchvision import models
+ from torch.testing._internal.common_utils import TestCase
+ from torch_tensorrt.dynamo import convert_exported_program_to_serialized_trt_engine
+ from torch_tensorrt.dynamo._defaults import TIMING_CACHE_PATH
+ from torch_tensorrt.dynamo._refit import refit_module_weights
+ from torch_tensorrt.dynamo.utils import COSINE_THRESHOLD, cosine_similarity
+@@ -15,11 +15,11 @@
+ assertions = unittest.TestCase()
+ 
+ 
+ class TestWeightStrippedEngine(TestCase):
+     def test_three_ways_to_compile(self):
+-        pyt_model = models.resnet18(pretrained=True).eval().to("cuda")
++        pyt_model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+         example_inputs = (torch.randn((100, 3, 224, 224)).to("cuda"),)
+         exp_program = torch.export.export(pyt_model, example_inputs)
+ 
+         settings = {
+             "use_python_runtime": False,
+@@ -56,11 +56,11 @@
+         assert torch.allclose(
+             gm1_output, gm2_output, 1e-2, 1e-2
+         ), "gm2_output is not correct"
+ 
+     def test_three_ways_to_compile_weight_stripped_engine(self):
+-        pyt_model = models.resnet18(pretrained=True).eval().to("cuda")
++        pyt_model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+         example_inputs = (torch.randn((100, 3, 224, 224)).to("cuda"),)
+ 
+         settings = {
+             "use_python_runtime": False,
+             "enabled_precisions": {torch.float},
+@@ -88,11 +88,11 @@
+         assertions.assertEqual(
+             gm1_output.sum(), 0, msg="gm1_output should be all zeros"
+         )
+ 
+     def test_weight_stripped_engine_sizes(self):
+-        pyt_model = models.resnet18(pretrained=True).eval().to("cuda")
++        pyt_model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+         example_inputs = (torch.randn((100, 3, 224, 224)).to("cuda"),)
+         exp_program = torch.export.export(pyt_model, example_inputs)
+         weight_included_engine = convert_exported_program_to_serialized_trt_engine(
+             exp_program,
+             example_inputs,
+@@ -125,11 +125,11 @@
+             > len(bytes(weight_stripped_refit_identical_engine)),
+             msg=f"Weight-stripped refit-identical engine size is not smaller than the weight included engine size. Weight included engine size: {len(bytes(weight_included_engine))}, weight-stripped refit-identical engine size: {len(bytes(weight_stripped_refit_identical_engine))}",
+         )
+ 
+     def test_weight_stripped_engine_results(self):
+-        pyt_model = models.resnet18(pretrained=True).eval().to("cuda")
++        pyt_model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+         example_inputs = (torch.randn((100, 3, 224, 224)).to("cuda"),)
+         # Mark the dim0 of inputs as dynamic
+         batch = torch.export.Dim("batch", min=1, max=200)
+         exp_program = torch.export.export(
+             pyt_model, args=example_inputs, dynamic_shapes={"x": {0: batch}}
+@@ -186,11 +186,11 @@
+ 
+     @unittest.skip(
+         "For now, torch-trt will save weighted engine if strip_engine_weights is False. In the near future, we plan to save weight-stripped engine regardless of strip_engine_weights, which is pending on TRT's feature development: NVBug #4914602"
+     )
+     def test_engine_caching_saves_weight_stripped_engine(self):
+-        pyt_model = models.resnet18(pretrained=True).eval().to("cuda")
++        pyt_model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+         example_inputs = (torch.randn((100, 3, 224, 224)).to("cuda"),)
+         exp_program = torch.export.export(pyt_model, example_inputs)
+ 
+         engine_cache_dir = "/tmp/test_engine_caching_saves_weight_stripped_engine"
+         if os.path.exists(engine_cache_dir):
+@@ -232,11 +232,11 @@
+             len(bytes(weight_included_engine)) > len(bytes(cached_stripped_engine)),
+             msg=f"cached engine size is not smaller than the weight included engine size. Weight included engine size: {len(bytes(weight_included_engine))}, cached stripped engine size: {len(bytes(cached_stripped_engine))}",
+         )
+ 
+     def test_dynamo_compile_with_refittable_weight_stripped_engine(self):
+-        pyt_model = models.resnet18(pretrained=True).eval().to("cuda")
++        pyt_model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+         example_inputs = (torch.randn((100, 3, 224, 224)).to("cuda"),)
+         exp_program = torch.export.export(pyt_model, args=example_inputs)
+ 
+         engine_cache_dir = (
+             "/tmp/test_dynamo_compile_with_refittable_weight_stripped_engine"
+@@ -314,11 +314,11 @@
+             times[0] > times[2],
+             msg=f"Engine caching didn't speed up the compilation. Time taken without engine caching: {times[0]} ms, time taken with engine caching: {times[2]} ms",
+         )
+ 
+     def test_torch_compile_with_refittable_weight_stripped_engine(self):
+-        pyt_model = models.resnet18(pretrained=True).eval().to("cuda")
++        pyt_model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+ 
+         engine_cache_dir = (
+             "/tmp/test_torch_compile_with_refittable_weight_stripped_engine"
+         )
+         if os.path.exists(engine_cache_dir):
+@@ -482,11 +482,11 @@
+             cos_sim > COSINE_THRESHOLD,
+             msg=f"TRT outputs don't match with the original model. Cosine sim score: {cos_sim} Threshold: {COSINE_THRESHOLD}",
+         )
+ 
+     def test_two_TRTRuntime_in_refitting(self):
+-        pyt_model = models.resnet18(pretrained=True).eval().to("cuda")
++        pyt_model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+         example_inputs = (torch.randn((100, 3, 224, 224)).to("cuda"),)
+         batch = torch.export.Dim("batch", min=1, max=200)
+         exp_program = torch.export.export(
+             pyt_model, args=example_inputs, dynamic_shapes={"x": {0: batch}}
+         )
+@@ -522,11 +522,11 @@
+                 msg=f"{'PythonTorchTensorRTModule' if use_python_runtime else 'TorchTensorRTModule'} outputs don't match with the original model. Cosine sim score: {cos_sim} Threshold: {COSINE_THRESHOLD}",
+             )
+ 
+     @unittest.skip("Waiting for implementation")
+     def test_refit_identical_engine_weights(self):
+-        pyt_model = models.resnet18(pretrained=True).eval().to("cuda")
++        pyt_model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+         example_inputs = (torch.randn((100, 3, 224, 224)).to("cuda"),)
+         exp_program = torch.export.export(pyt_model, example_inputs)
+ 
+         engine_cache_dir = "/tmp/test_refit_identical_engine_weights"
+         if os.path.exists(engine_cache_dir):
+@@ -543,11 +543,11 @@
+             strip_engine_weights=True,
+             refit_identical_engine_weights=True,
+         )
+         output = trt_gm(*example_inputs)
+ 
+-        pyt_model2 = models.resnet18(pretrained=False).eval().to("cuda")
++        pyt_model2 = models.resnet18(weights=None).eval().to("cuda")
+         exp_program2 = torch.export.export(pyt_model2, example_inputs)
+ 
+         try:
+             refit_module_weights(trt_gm, exp_program)
+         except Exception as e:
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/model_test_case.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/model_test_case.py
+@@ -1,8 +1,8 @@
+ import unittest
+ import torch
+-import torchvision.models as models
++from torchvision import models
+ import os
+ 
+ REPO_ROOT = os.path.abspath(os.getcwd()) + "/../../"
+ 
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/models/test_models.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/models/test_models.py
+@@ -3,21 +3,21 @@
+ from typing import Dict
+ 
+ import timm
+ import torch
+ import torch_tensorrt as torchtrt
+-import torchvision.models as models
++from torchvision import models
+ from utils import COSINE_THRESHOLD, cosine_similarity
+ 
+ 
+ @unittest.skipIf(
+     not torchtrt.ENABLED_FEATURES.torchscript_frontend,
+     "TorchScript Frontend is not available",
+ )
+ class TestModels(unittest.TestCase):
+     def test_resnet18(self):
+-        self.model = models.resnet18(pretrained=True).eval().to("cuda")
++        self.model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+         self.input = torch.randn((1, 3, 224, 224)).to("cuda")
+ 
+         compile_spec = {
+             "inputs": [
+                 torchtrt.Input(
+@@ -38,11 +38,11 @@
+             cos_sim > COSINE_THRESHOLD,
+             msg=f"Resnet50 TRT outputs don't match with the original model. Cosine sim score: {cos_sim} Threshold: {COSINE_THRESHOLD}",
+         )
+ 
+     def test_mobilenet_v2(self):
+-        self.model = models.mobilenet_v2(pretrained=True).eval().to("cuda")
++        self.model = models.mobilenet_v2(weights=models.MobileNet_V2_Weights.IMAGENET1K_V1).eval().to("cuda")
+         self.input = torch.randn((1, 3, 224, 224)).to("cuda")
+ 
+         compile_spec = {
+             "inputs": [
+                 torchtrt.Input(
+@@ -90,11 +90,11 @@
+             cos_sim > COSINE_THRESHOLD,
+             msg=f"EfficientNet-B0 TRT outputs don't match with the original model. Cosine sim score: {cos_sim} Threshold: {COSINE_THRESHOLD}",
+         )
+ 
+     def test_resnet18_half(self):
+-        self.model = models.resnet18(pretrained=True).eval().to("cuda")
++        self.model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+         self.input = torch.randn((1, 3, 224, 224)).to("cuda")
+         self.scripted_model = torch.jit.script(self.model)
+         self.scripted_model.half()
+ 
+         compile_spec = {
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/models/test_multiple_registered_engines.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/models/test_multiple_registered_engines.py
+@@ -3,22 +3,22 @@
+ from typing import Dict
+ 
+ import timm
+ import torch
+ import torch_tensorrt as torchtrt
+-import torchvision.models as models
++from torchvision import models
+ from utils import COSINE_THRESHOLD, cosine_similarity
+ 
+ 
+ @unittest.skipIf(
+     not torchtrt.ENABLED_FEATURES.torchscript_frontend,
+     "TorchScript Frontend is not available",
+ )
+ class TestModelToEngineToModel(unittest.TestCase):
+     def test_multiple_engines(self):
+-        self.resnet18 = models.resnet18(pretrained=True).eval().to("cuda")
+-        self.resnet50 = models.resnet50(pretrained=True).eval().to("cuda")
++        self.resnet18 = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
++        self.resnet50 = models.resnet50(weights=models.ResNet50_Weights.IMAGENET1K_V1).eval().to("cuda")
+         self.input1 = torch.randn((1, 3, 224, 224)).to("cuda")
+         self.input2 = torch.randn((1, 3, 224, 224)).to("cuda")
+ 
+         compile_spec = {
+             "inputs": [
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/qat/test_qat_trt_accuracy.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/qat/test_qat_trt_accuracy.py
+@@ -4,11 +4,11 @@
+ 
+ import torch
+ import torch.nn as nn
+ import torch_tensorrt as torchtrt
+ import torchvision
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ from torch.nn import functional as F
+ from torch_tensorrt.ts.logging import *
+ 
+ 
+ def find_repo_root(max_depth=10):
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/ptq/test_ptq_dataloader_calibrator.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/ptq/test_ptq_dataloader_calibrator.py
+@@ -3,11 +3,11 @@
+ 
+ import torch
+ import torch.nn as nn
+ import torch_tensorrt as torchtrt
+ import torchvision
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ import torch_tensorrt.ts.ptq as PTQ
+ from torch.nn import functional as F
+ from torch_tensorrt.ts.logging import *
+ 
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/ptq/test_ptq_to_backend.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/ptq/test_ptq_to_backend.py
+@@ -3,11 +3,11 @@
+ 
+ import torch
+ import torch.nn as nn
+ import torch_tensorrt as torchtrt
+ import torchvision
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ import torch_tensorrt.ts.ptq as PTQ
+ from torch.nn import functional as F
+ from torch_tensorrt.ts.logging import *
+ 
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/ptq/test_ptq_trt_calibrator.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/ts/ptq/test_ptq_trt_calibrator.py
+@@ -3,11 +3,11 @@
+ 
+ import torch
+ import torch.nn as nn
+ import torch_tensorrt as torchtrt
+ import torchvision
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ from torch.nn import functional as F
+ from torch_tensorrt.ts.logging import *
+ 
+ import tensorrt as trt
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/dynamo/models/test_export_kwargs_serde.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/dynamo/models/test_export_kwargs_serde.py
+@@ -6,11 +6,11 @@
+ import pytest
+ import timm
+ import torch
+ import torch.nn.functional as F
+ import torch_tensorrt as torchtrt
+-import torchvision.models as models
++from torchvision import models
+ from torch import nn
+ from torch_tensorrt.dynamo._compiler import (
+     convert_exported_program_to_serialized_trt_engine,
+ )
+ from torch_tensorrt.dynamo.utils import (
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/dynamo/models/test_export_serde.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/dynamo/models/test_export_serde.py
+@@ -3,11 +3,11 @@
+ import unittest
+ 
+ import pytest
+ import torch
+ import torch_tensorrt as torchtrt
+-import torchvision.models as models
++from torchvision import models
+ from torch_tensorrt.dynamo.utils import COSINE_THRESHOLD, cosine_similarity
+ 
+ assertions = unittest.TestCase()
+ 
+ trt_ep_path = os.path.join(tempfile.gettempdir(), "trt.ep")
+docs/_downloads/6dc7949e3e7f3cb855e4a7b28eadc851/vgg16_fp8_ptq.py:124:8: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+docs/_downloads/6dc7949e3e7f3cb855e4a7b28eadc851/vgg16_fp8_ptq.py:21:1: TOR203 [*] Consider replacing 'import torchvision.datasets as datasets' with 'from torchvision import datasets'.
+docs/_downloads/6dc7949e3e7f3cb855e4a7b28eadc851/vgg16_fp8_ptq.py:22:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+tests/modules/hub.py:26:26: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/modules/hub.py:27:24: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/modules/hub.py:29:27: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/modules/hub.py:30:31: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/modules/hub.py:38:18: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/modules/hub.py:41:26: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/modules/hub.py:9:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+tests/py/core/test_classes.py:8:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+tests/py/dynamo/conversion/test_embedding_bag_aten.py:356:24: TOR101 [*] Use of deprecated function torch.range
+tests/py/dynamo/models/test_dyn_models.py:185:13: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_dyn_models.py:183:5: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+tests/py/dynamo/models/test_engine_cache.py:61:21: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_engine_cache.py:98:21: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_engine_cache.py:135:21: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_engine_cache.py:181:17: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_engine_cache.py:254:17: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_engine_cache.py:319:17: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_engine_cache.py:352:17: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_engine_cache.py:423:17: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_engine_cache.py:490:17: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_engine_cache.py:617:17: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_engine_cache.py:10:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+docs/_notebooks/vgg-qat.py:38:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+docs/_notebooks/vgg-qat.py:39:1: TOR203 [*] Consider replacing 'import torchvision.datasets as datasets' with 'from torchvision import datasets'.
+docs/_notebooks/vgg-qat.py:253:8: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+docs/v1.1.1/_notebooks/vgg-qat.py:38:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+docs/v1.1.1/_notebooks/vgg-qat.py:39:1: TOR203 [*] Consider replacing 'import torchvision.datasets as datasets' with 'from torchvision import datasets'.
+docs/v1.1.1/_notebooks/vgg-qat.py:253:8: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/dynamo/refit_engine_example.py:56:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+examples/dynamo/refit_engine_example.py:90:10: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+examples/dynamo/refit_engine_example.py:37:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+examples/torchtrt_runtime_example/network.py:13:16: TOR101 Use of deprecated function torch.norm
+notebooks/qat-ptq-workflow.py:184:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+notebooks/qat-ptq-workflow.py:414:11: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+notebooks/qat-ptq-workflow.py:70:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+notebooks/qat-ptq-workflow.py:420:8: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+notebooks/vgg-qat.py:59:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+notebooks/vgg-qat.py:60:1: TOR203 [*] Consider replacing 'import torchvision.datasets as datasets' with 'from torchvision import datasets'.
+notebooks/vgg-qat.py:272:8: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tests/py/dynamo/models/test_models_export.py:22:13: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_models_export.py:54:13: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_models_export.py:167:13: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_models_export.py:11:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+tests/py/dynamo/models/test_reexport.py:9:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+tests/py/dynamo/models/test_weight_stripped_engine.py:20:21: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_weight_stripped_engine.py:61:21: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_weight_stripped_engine.py:93:21: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_weight_stripped_engine.py:130:21: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_weight_stripped_engine.py:191:21: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_weight_stripped_engine.py:237:21: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_weight_stripped_engine.py:319:21: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_weight_stripped_engine.py:487:21: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_weight_stripped_engine.py:527:21: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_weight_stripped_engine.py:548:22: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_weight_stripped_engine.py:8:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+docs/_downloads/3454ee6d4b68e83cdf0c757f0059986b/engine_caching_example.py:43:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+docs/_downloads/3454ee6d4b68e83cdf0c757f0059986b/engine_caching_example.py:36:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+docs/_downloads/3d4d74f6636d986f33167154f6553961/torch_export_cudagraphs.py:23:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+docs/_downloads/3d4d74f6636d986f33167154f6553961/torch_export_cudagraphs.py:16:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+docs/_downloads/418941399c146271a7b7728ba3059960/dynamo_compile_resnet_example.py:21:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+docs/_downloads/418941399c146271a7b7728ba3059960/dynamo_compile_resnet_example.py:16:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+docs/_downloads/d9a9caffd95dc397ffb9ea9d37a89f06/refit_engine_example.py:63:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+docs/_downloads/d9a9caffd95dc397ffb9ea9d37a89f06/refit_engine_example.py:100:10: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+docs/_downloads/d9a9caffd95dc397ffb9ea9d37a89f06/refit_engine_example.py:41:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+examples/dynamo/engine_caching_example.py:40:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+examples/dynamo/engine_caching_example.py:33:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+examples/dynamo/mutable_torchtrt_module_example.py:37:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+examples/dynamo/mutable_torchtrt_module_example.py:48:10: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+examples/dynamo/mutable_torchtrt_module_example.py:22:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+tests/py/dynamo/runtime/test_mutable_torchtrt_module.py:54:13: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/runtime/test_mutable_torchtrt_module.py:55:14: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/runtime/test_mutable_torchtrt_module.py:93:13: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/runtime/test_mutable_torchtrt_module.py:126:13: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/runtime/test_mutable_torchtrt_module.py:166:13: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/runtime/test_mutable_torchtrt_module.py:11:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+tests/py/ts/model_test_case.py:3:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+tests/py/ts/models/test_models.py:18:22: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/models/test_models.py:43:22: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/models/test_models.py:95:22: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/models/test_models.py:8:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+tests/py/ts/models/test_multiple_registered_engines.py:18:25: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/models/test_multiple_registered_engines.py:19:25: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/models/test_multiple_registered_engines.py:8:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+docs/_downloads/50cdc517d124443e61b8e11d4bdb29f0/torch_export_cudagraphs.py:31:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+docs/_downloads/50cdc517d124443e61b8e11d4bdb29f0/torch_export_cudagraphs.py:20:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+docs/_downloads/669d3d90aba7fad1bec8bbd852aa9cbc/cross_runtime_compilation_for_windows.py:35:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+docs/_downloads/68b8589f80a47518afd92bbad3fda19d/mutable_torchtrt_module_example.py:46:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+docs/_downloads/68b8589f80a47518afd92bbad3fda19d/mutable_torchtrt_module_example.py:63:10: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+docs/_downloads/68b8589f80a47518afd92bbad3fda19d/mutable_torchtrt_module_example.py:26:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+notebooks/getting_started_with_fx_path_lower_to_trt.py:210:14: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+notebooks/getting_started_with_fx_path_module.py:136:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+py/torch_tensorrt/fx/test/tracer/test_acc_tracer.py:2365:13: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+py/torch_tensorrt/fx/test/tracer/test_acc_tracer.py:2372:13: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+py/torch_tensorrt/fx/test/tracer/test_acc_tracer.py:2379:13: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+py/torch_tensorrt/fx/test/tracer/test_acc_tracer.py:2386:13: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+py/torch_tensorrt/fx/test/tracer/test_acc_tracer.py:2393:13: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+py/torch_tensorrt/fx/test/tracer/test_dispatch_tracer.py:18:12: TOR901 Use `torch.library._scoped_library` instead of `torch.library.Library` in PyTorch tests files. See https://github.com/pytorch/pytorch/pull/118318 for details.
+tests/py/dynamo/runtime/test_002_lazy_engine_init.py:145:17: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/runtime/test_002_lazy_engine_init.py:181:17: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/runtime/test_002_lazy_engine_init.py:217:17: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/runtime/test_002_lazy_engine_init.py:9:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+tests/py/ts/hw/test_multi_gpu.py:139:42: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/hw/test_multi_gpu.py:144:42: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/hw/test_multi_gpu.py:5:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+tests/py/ts/integrations/test_to_backend_api.py:17:22: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/integrations/test_to_backend_api.py:6:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+tests/py/ts/integrations/test_trt_intercompatibility.py:16:22: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/integrations/test_trt_intercompatibility.py:6:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+tests/py/ts/qat/test_qat_trt_accuracy.py:9:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+docs/v1.1.0/_notebooks/vgg-qat.py:38:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+docs/v1.1.0/_notebooks/vgg-qat.py:39:1: TOR203 [*] Consider replacing 'import torchvision.datasets as datasets' with 'from torchvision import datasets'.
+docs/v1.1.0/_notebooks/vgg-qat.py:253:8: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/dynamo/cross_runtime_compilation_for_windows.py:32:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+examples/fx/torch_trt_simple_example.py:87:13: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+examples/fx/torch_trt_simple_example_next.py:87:13: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+examples/int8/training/vgg16/export_ckpt.py:8:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+examples/int8/training/vgg16/export_ckpt.py:9:1: TOR203 [*] Consider replacing 'import torchvision.datasets as datasets' with 'from torchvision import datasets'.
+examples/int8/training/vgg16/export_ckpt.py:46:8: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tests/py/ts/api/test_classes.py:7:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+tests/py/ts/api/test_collections.py:8:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+tests/py/ts/ptq/test_ptq_dataloader_calibrator.py:8:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+tests/py/ts/ptq/test_ptq_to_backend.py:8:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+tests/py/ts/ptq/test_ptq_trt_calibrator.py:8:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+docs/_downloads/0daf1d0af656cac7b808856b71e6616f/torch_compile_resnet_example.py:20:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+docs/_downloads/0daf1d0af656cac7b808856b71e6616f/torch_compile_resnet_example.py:27:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+docs/_downloads/1c759c0181fe2845e5579cc82e5b7a7a/engine_caching_example.py:33:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+docs/_downloads/1c759c0181fe2845e5579cc82e5b7a7a/engine_caching_example.py:40:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+docs/_downloads/d606a9660cce1388933de8448182f4ee/vgg16_ptq.py:25:1: TOR203 [*] Consider replacing 'import torchvision.datasets as datasets' with 'from torchvision import datasets'.
+docs/_downloads/d606a9660cce1388933de8448182f4ee/vgg16_ptq.py:26:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+docs/_downloads/d606a9660cce1388933de8448182f4ee/vgg16_ptq.py:137:8: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+docs/_downloads/d6e1bb6ec5f884994554d9d12e37a0f6/torch_compile_resnet_example.py:16:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+docs/_downloads/d6e1bb6ec5f884994554d9d12e37a0f6/torch_compile_resnet_example.py:21:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+docs/v1.2.0/_notebooks/vgg-qat.py:38:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+docs/v1.2.0/_notebooks/vgg-qat.py:39:1: TOR203 [*] Consider replacing 'import torchvision.datasets as datasets' with 'from torchvision import datasets'.
+docs/v1.2.0/_notebooks/vgg-qat.py:253:8: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/fx/lower_example.py:202:18: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+examples/fx/lower_example_aten.py:194:18: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+examples/fx/quantized_resnet_test.py:8:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+tests/py/dynamo/models/test_export_kwargs_serde.py:11:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+tests/py/dynamo/models/test_export_serde.py:8:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+tests/py/dynamo/models/test_model_refit.py:11:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+tests/py/dynamo/models/test_model_refit.py:35:13: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_model_refit.py:36:14: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_model_refit.py:90:13: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_model_refit.py:91:14: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_model_refit.py:139:13: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_model_refit.py:140:14: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_model_refit.py:189:13: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_model_refit.py:190:14: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_model_refit.py:299:13: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_model_refit.py:300:14: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_model_refit.py:344:13: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_model_refit.py:345:14: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_model_refit.py:463:13: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_model_refit.py:464:14: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_model_refit.py:567:13: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_model_refit.py:568:14: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_model_refit.py:612:13: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_model_refit.py:613:14: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_models.py:9:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+tests/py/dynamo/models/test_models.py:18:13: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_models.py:49:13: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/dynamo/models/test_models.py:158:13: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+docs/_downloads/7e3a125a2d4ba8274a41b46f5e0723fa/refit_engine_example.py:56:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+docs/_downloads/7e3a125a2d4ba8274a41b46f5e0723fa/refit_engine_example.py:90:10: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+docs/_downloads/7e3a125a2d4ba8274a41b46f5e0723fa/refit_engine_example.py:37:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+docs/_downloads/8d74c66ac043702cc076cfc2479adc0f/vgg16_fp8_ptq.py:132:8: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+docs/_downloads/8d74c66ac043702cc076cfc2479adc0f/vgg16_fp8_ptq.py:25:1: TOR203 [*] Consider replacing 'import torchvision.datasets as datasets' with 'from torchvision import datasets'.
+docs/_downloads/8d74c66ac043702cc076cfc2479adc0f/vgg16_fp8_ptq.py:26:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+docs/_downloads/9742a0a11c6b72e5522962aba0ade637/dynamo_compile_resnet_example.py:27:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+docs/_downloads/9742a0a11c6b72e5522962aba0ade637/dynamo_compile_resnet_example.py:20:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+docs/_downloads/ef6d47fc0355ddff78547f419a7ddbf6/vgg16_ptq.py:129:8: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+docs/_downloads/ef6d47fc0355ddff78547f419a7ddbf6/vgg16_ptq.py:21:1: TOR203 [*] Consider replacing 'import torchvision.datasets as datasets' with 'from torchvision import datasets'.
+docs/_downloads/ef6d47fc0355ddff78547f419a7ddbf6/vgg16_ptq.py:22:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+docs/v1.4.0/_downloads/9742a0a11c6b72e5522962aba0ade637/dynamo_compile_resnet_example.py:27:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+docs/v1.4.0/_downloads/9742a0a11c6b72e5522962aba0ade637/dynamo_compile_resnet_example.py:20:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+examples/dynamo/torch_compile_resnet_example.py:21:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+examples/dynamo/torch_compile_resnet_example.py:16:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+examples/dynamo/torch_export_cudagraphs.py:23:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+examples/dynamo/torch_export_cudagraphs.py:16:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+examples/int8/training/vgg16/export_qat.py:51:8: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/int8/training/vgg16/export_qat.py:8:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+examples/int8/training/vgg16/export_qat.py:9:1: TOR203 [*] Consider replacing 'import torchvision.datasets as datasets' with 'from torchvision import datasets'.
+examples/int8/training/vgg16/finetune_qat.py:246:16: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/int8/training/vgg16/finetune_qat.py:11:1: TOR203 [*] Consider replacing 'import torchvision.datasets as datasets' with 'from torchvision import datasets'.
+examples/int8/training/vgg16/finetune_qat.py:12:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+examples/int8/training/vgg16/main.py:144:16: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/int8/training/vgg16/main.py:11:1: TOR203 [*] Consider replacing 'import torchvision.datasets as datasets' with 'from torchvision import datasets'.
+examples/int8/training/vgg16/main.py:12:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+examples/int8/training/vgg16/test_qat.py:56:8: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/int8/training/vgg16/test_qat.py:8:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+examples/int8/training/vgg16/test_qat.py:9:1: TOR203 [*] Consider replacing 'import torchvision.datasets as datasets' with 'from torchvision import datasets'.
+docs/_downloads/2c4fd8e65aa979aa6a0402a43ff9b15e/cross_runtime_compilation_for_windows.py:32:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+docs/_downloads/2fbbf7380f818b1cbce2b90bbcaf2904/mutable_torchtrt_module_example.py:37:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+docs/_downloads/2fbbf7380f818b1cbce2b90bbcaf2904/mutable_torchtrt_module_example.py:48:10: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+docs/_downloads/2fbbf7380f818b1cbce2b90bbcaf2904/mutable_torchtrt_module_example.py:22:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+docs/v1.0.0/_notebooks/vgg-qat.py:32:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+docs/v1.0.0/_notebooks/vgg-qat.py:33:1: TOR203 [*] Consider replacing 'import torchvision.datasets as datasets' with 'from torchvision import datasets'.
+docs/v1.0.0/_notebooks/vgg-qat.py:247:8: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+docs/v1.3.0/_notebooks/vgg-qat.py:38:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+docs/v1.3.0/_notebooks/vgg-qat.py:39:1: TOR203 [*] Consider replacing 'import torchvision.datasets as datasets' with 'from torchvision import datasets'.
+docs/v1.3.0/_notebooks/vgg-qat.py:253:8: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+docs/v1.4.0/_downloads/418941399c146271a7b7728ba3059960/dynamo_compile_resnet_example.py:21:9: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+docs/v1.4.0/_downloads/418941399c146271a7b7728ba3059960/dynamo_compile_resnet_example.py:16:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+examples/dynamo/vgg16_ptq.py:21:1: TOR203 [*] Consider replacing 'import torchvision.datasets as datasets' with 'from torchvision import datasets'.
+examples/dynamo/vgg16_ptq.py:22:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+examples/dynamo/vgg16_ptq.py:129:8: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/fx/fx2trt_example.py:139:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+examples/fx/fx2trt_example_next.py:171:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+py/torch_tensorrt/fx/test/core/test_trt_module.py:32:26: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tests/py/ts/api/test_e2e_behavior.py:13:22: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/api/test_e2e_behavior.py:25:22: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/api/test_e2e_behavior.py:38:22: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/api/test_e2e_behavior.py:56:22: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/api/test_e2e_behavior.py:70:22: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/api/test_e2e_behavior.py:82:22: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/api/test_e2e_behavior.py:97:22: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/api/test_e2e_behavior.py:7:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+tests/py/ts/api/test_embed_engines.py:13:22: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/api/test_embed_engines.py:4:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+tests/py/ts/api/test_logging.py:7:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+tests/py/ts/api/test_module_fallback.py:12:22: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/api/test_module_fallback.py:36:22: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/api/test_module_fallback.py:4:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+tests/py/ts/api/test_operator_fallback.py:12:22: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/api/test_operator_fallback.py:36:22: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/api/test_operator_fallback.py:63:22: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/api/test_operator_fallback.py:4:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+tests/py/ts/api/test_ts_backend.py:12:22: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/api/test_ts_backend.py:37:22: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/api/test_ts_backend.py:54:22: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/api/test_ts_backend.py:70:22: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/api/test_ts_backend.py:90:22: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/api/test_ts_backend.py:107:22: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/api/test_ts_backend.py:122:18: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/api/test_ts_backend.py:130:21: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/api/test_ts_backend.py:4:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+tests/py/ts/hw/test_api_dla.py:81:52: TOR201 [*] Parameter `pretrained` is deprecated, please use `weights` instead.
+tests/py/ts/hw/test_api_dla.py:5:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+tools/perf/perf_run.py:640:23: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+tools/perf/utils.py:9:1: TOR203 [*] Consider replacing 'import torchvision.models as models' with 'from torchvision import models'.
+Finished checking 653 files.
+[*] 86 potentially fixable with the --fix option
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/dynamo/models/test_model_refit.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/dynamo/models/test_model_refit.py
+@@ -6,11 +6,11 @@
+ import tensorrt as trt
+ import torch
+ import torch.nn.functional as F
+ import torch_tensorrt as torchtrt
+ import torch_tensorrt as torch_trt
+-import torchvision.models as models
++from torchvision import models
+ from torch import nn
+ from torch_tensorrt.dynamo import refit_module_weights
+ from torch_tensorrt.dynamo._refit import (
+     construct_refit_mapping,
+     get_engine_from_encoded_engine,
+@@ -30,12 +30,12 @@
+     not torch_trt.ENABLED_FEATURES.torch_tensorrt_runtime,
+     "TorchScript Frontend is not available",
+ )
+ @pytest.mark.unit
+ def test_mapping():
+-    model = models.resnet18(pretrained=False).eval().to("cuda")
+-    model2 = models.resnet18(pretrained=True).eval().to("cuda")
++    model = models.resnet18(weights=None).eval().to("cuda")
++    model2 = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+     inputs = [torch.randn((1, 3, 224, 224)).to("cuda")]
+     trt_input = [
+         torchtrt.Input(i.shape, dtype=torch.float, format=torch.contiguous_format)
+         for i in inputs
+     ]
+@@ -85,12 +85,12 @@
+     not torch_trt.ENABLED_FEATURES.torch_tensorrt_runtime,
+     "TorchScript Frontend is not available",
+ )
+ @pytest.mark.unit
+ def test_refit_one_engine_with_weightmap():
+-    model = models.resnet18(pretrained=False).eval().to("cuda")
+-    model2 = models.resnet18(pretrained=True).eval().to("cuda")
++    model = models.resnet18(weights=None).eval().to("cuda")
++    model2 = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+     inputs = [torch.randn((1, 3, 224, 224)).to("cuda")]
+     enabled_precisions = {torch.float}
+     debug = False
+     min_block_size = 1
+     use_python_runtime = False
+@@ -134,12 +134,12 @@
+     not torch_trt.ENABLED_FEATURES.torch_tensorrt_runtime,
+     "TorchScript Frontend is not available",
+ )
+ @pytest.mark.unit
+ def test_refit_one_engine_no_map_with_weightmap():
+-    model = models.resnet18(pretrained=False).eval().to("cuda")
+-    model2 = models.resnet18(pretrained=True).eval().to("cuda")
++    model = models.resnet18(weights=None).eval().to("cuda")
++    model2 = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+     inputs = [torch.randn((1, 3, 224, 224)).to("cuda")]
+     enabled_precisions = {torch.float}
+     debug = False
+     min_block_size = 1
+     use_python_runtime = False
+@@ -184,12 +184,12 @@
+     not torch_trt.ENABLED_FEATURES.torch_tensorrt_runtime,
+     "TorchScript Frontend is not available",
+ )
+ @pytest.mark.unit
+ def test_refit_one_engine_with_wrong_weightmap():
+-    model = models.resnet18(pretrained=False).eval().to("cuda")
+-    model2 = models.resnet18(pretrained=True).eval().to("cuda")
++    model = models.resnet18(weights=None).eval().to("cuda")
++    model2 = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+     inputs = [torch.randn((1, 3, 224, 224)).to("cuda")]
+     enabled_precisions = {torch.float}
+     debug = False
+     min_block_size = 1
+     use_python_runtime = False
+@@ -294,12 +294,12 @@
+     "TorchScript Frontend is not available",
+ )
+ @pytest.mark.unit
+ def test_refit_one_engine_inline_runtime__with_weightmap():
+     trt_ep_path = os.path.join(tempfile.gettempdir(), "compiled.ep")
+-    model = models.resnet18(pretrained=False).eval().to("cuda")
+-    model2 = models.resnet18(pretrained=True).eval().to("cuda")
++    model = models.resnet18(weights=None).eval().to("cuda")
++    model2 = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+     inputs = [torch.randn((1, 3, 224, 224)).to("cuda")]
+     enabled_precisions = {torch.float}
+     debug = False
+     min_block_size = 1
+     use_python_runtime = False
+@@ -339,12 +339,12 @@
+     torch._dynamo.reset()
+ 
+ 
+ @pytest.mark.unit
+ def test_refit_one_engine_python_runtime_with_weightmap():
+-    model = models.resnet18(pretrained=False).eval().to("cuda")
+-    model2 = models.resnet18(pretrained=True).eval().to("cuda")
++    model = models.resnet18(weights=None).eval().to("cuda")
++    model2 = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+     inputs = [torch.randn((1, 3, 224, 224)).to("cuda")]
+     enabled_precisions = {torch.float}
+     debug = False
+     min_block_size = 1
+     use_python_runtime = True
+@@ -458,12 +458,12 @@
+     not torch_trt.ENABLED_FEATURES.torch_tensorrt_runtime,
+     "TorchScript Frontend is not available",
+ )
+ @pytest.mark.unit
+ def test_refit_one_engine_without_weightmap():
+-    model = models.resnet18(pretrained=True).eval().to("cuda")
+-    model2 = models.resnet18(pretrained=False).eval().to("cuda")
++    model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
++    model2 = models.resnet18(weights=None).eval().to("cuda")
+     inputs = [torch.randn((1, 3, 224, 224)).to("cuda")]
+     enabled_precisions = {torch.float}
+     debug = False
+     min_block_size = 1
+     use_python_runtime = False
+@@ -562,12 +562,12 @@
+     "TorchScript Frontend is not available",
+ )
+ @pytest.mark.unit
+ def test_refit_one_engine_inline_runtime_without_weightmap():
+     trt_ep_path = os.path.join(tempfile.gettempdir(), "compiled.ep")
+-    model = models.resnet18(pretrained=True).eval().to("cuda")
+-    model2 = models.resnet18(pretrained=False).eval().to("cuda")
++    model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
++    model2 = models.resnet18(weights=None).eval().to("cuda")
+     inputs = [torch.randn((1, 3, 224, 224)).to("cuda")]
+     enabled_precisions = {torch.float}
+     debug = False
+     min_block_size = 1
+     use_python_runtime = False
+@@ -607,12 +607,12 @@
+     torch._dynamo.reset()
+ 
+ 
+ @pytest.mark.unit
+ def test_refit_one_engine_python_runtime_without_weightmap():
+-    model = models.resnet18(pretrained=True).eval().to("cuda")
+-    model2 = models.resnet18(pretrained=False).eval().to("cuda")
++    model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
++    model2 = models.resnet18(weights=None).eval().to("cuda")
+     inputs = [torch.randn((1, 3, 224, 224)).to("cuda")]
+     enabled_precisions = {torch.float}
+     debug = False
+     min_block_size = 1
+     use_python_runtime = True
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/dynamo/models/test_models.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tests/py/dynamo/models/test_models.py
+@@ -4,20 +4,20 @@
+ 
+ import pytest
+ import timm
+ import torch
+ import torch_tensorrt as torchtrt
+-import torchvision.models as models
++from torchvision import models
+ from torch_tensorrt.dynamo.utils import COSINE_THRESHOLD, cosine_similarity
+ from transformers import BertModel
+ 
+ assertions = unittest.TestCase()
+ 
+ 
+ @pytest.mark.unit
+ def test_resnet18(ir):
+-    model = models.resnet18(pretrained=True).eval().to("cuda")
++    model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda")
+     input = torch.randn((1, 3, 224, 224)).to("cuda")
+ 
+     compile_spec = {
+         "inputs": [
+             torchtrt.Input(
+@@ -44,11 +44,11 @@
+     torch._dynamo.reset()
+ 
+ 
+ @pytest.mark.unit
+ def test_mobilenet_v2(ir):
+-    model = models.mobilenet_v2(pretrained=True).eval().to("cuda")
++    model = models.mobilenet_v2(weights=models.MobileNet_V2_Weights.IMAGENET1K_V1).eval().to("cuda")
+     input = torch.randn((1, 3, 224, 224)).to("cuda")
+ 
+     compile_spec = {
+         "inputs": [
+             torchtrt.Input(
+@@ -153,11 +153,11 @@
+     torch._dynamo.reset()
+ 
+ 
+ @pytest.mark.unit
+ def test_resnet18_half(ir):
+-    model = models.resnet18(pretrained=True).eval().to("cuda").half()
++    model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1).eval().to("cuda").half()
+     input = torch.randn((1, 3, 224, 224)).to("cuda").half()
+ 
+     compile_spec = {
+         "inputs": [
+             torchtrt.Input(
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tools/perf/perf_run.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tools/perf/perf_run.py
+@@ -635,11 +635,11 @@
+         model = torch.jit.load(model_name).cuda().eval()
+ 
+     # Load PyTorch Model, if provided
+     if len(model_name_torch) > 0 and os.path.exists(model_name_torch):
+         print("Loading user provided torch model: ", model_name_torch)
+-        model_torch = torch.load(model_name_torch).cuda().eval()
++        model_torch = torch.load(model_name_torch, weights_only=True).cuda().eval()
+     elif model_name_torch in BENCHMARK_MODELS:
+         model_torch = BENCHMARK_MODELS[model_name_torch]["model"].cuda().eval()
+ 
+     # If neither model type was provided
+     if (model is None) and (model_torch is None):
+--- /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tools/perf/utils.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/TensorRT/tools/perf/utils.py
+@@ -4,11 +4,11 @@
+ import custom_models as cm
+ import numpy as np
+ import tensorrt as trt
+ import timm
+ import torch
+-import torchvision.models as models
++from torchvision import models
+ from transformers import AutoModel, AutoModelForCausalLM
+ 
+ BENCHMARK_MODEL_NAMES = {
+     "vgg16",
+     "alexnet",
+Repository: TensorRT

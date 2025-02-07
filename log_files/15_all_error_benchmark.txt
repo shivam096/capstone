@@ -1,0 +1,1193 @@
+Repository: benchmark
+Checking root directory only to avoid duplication.
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/e2e_models/vision_resnet50/__init__.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/e2e_models/vision_resnet50/__init__.py
+@@ -3,11 +3,11 @@
+ 
+ from pathlib import Path
+ 
+ import torch
+ import torchvision
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ from torchbenchmark.tasks import COMPUTER_VISION
+ from torchbenchmark.util.e2emodel import E2EBenchmarkModel
+ from torchvision import models
+ from tqdm import tqdm
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/LearningToPaint/baseline/train_renderer.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/LearningToPaint/baseline/train_renderer.py
+@@ -38,11 +38,11 @@
+     if use_cuda:
+         net.cuda()
+ 
+ 
+ def load_weights():
+-    pretrained_dict = torch.load("../renderer.pkl")
++    pretrained_dict = torch.load("../renderer.pkl", weights_only=True)
+     model_dict = net.state_dict()
+     pretrained_dict = {k: v for k, v in pretrained_dict.items() if k in model_dict}
+     model_dict.update(pretrained_dict)
+     net.load_state_dict(model_dict)
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/LearningToPaint/baseline/DRL/wgan.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/LearningToPaint/baseline/DRL/wgan.py
+@@ -94,11 +94,11 @@
+     torch.save(netD.state_dict(), "{}/wgan.pkl".format(path))
+     netD.to(device)
+ 
+ 
+ def load_gan(path):
+-    netD.load_state_dict(torch.load("{}/wgan.pkl".format(path)))
++    netD.load_state_dict(torch.load("{}/wgan.pkl".format(path), weights_only=True))
+ 
+ 
+ def update(fake_data, real_data):
+     fake_data = fake_data.detach()
+     real_data = real_data.detach()
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/LearningToPaint/baseline/env.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/LearningToPaint/baseline/env.py
+@@ -1,9 +1,9 @@
+ import cv2
+ import numpy as np
+ import torch
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ from .DRL.ddpg import decode
+ from .utils.util import *
+ 
+ # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/LearningToPaint/baseline/test.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/LearningToPaint/baseline/test.py
+@@ -43,11 +43,11 @@
+         coord[0, 0, i, j] = i / (width - 1.0)
+         coord[0, 1, i, j] = j / (width - 1.0)
+ coord = coord.to(device)  # Coordconv
+ 
+ Decoder = FCN()
+-Decoder.load_state_dict(torch.load(args.renderer))
++Decoder.load_state_dict(torch.load(args.renderer, weights_only=True))
+ 
+ 
+ def decode(x, canvas):  # b * (10 + 3)
+     x = x.view(-1, 10 + 3)
+     stroke = 1 - Decoder(x[:, :10])
+@@ -129,11 +129,11 @@
+     output = cv2.resize(output, origin_shape)
+     cv2.imwrite("output/generated" + str(imgid) + ".png", output)
+ 
+ 
+ actor = ResNet(9, 18, 65)  # action_bundle = 5, 65 = 5 * 13
+-actor.load_state_dict(torch.load(args.actor))
++actor.load_state_dict(torch.load(args.actor, weights_only=True))
+ actor = actor.to(device).eval()
+ Decoder = Decoder.to(device).eval()
+ 
+ canvas = torch.zeros([1, 3, width, width]).to(device)
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/LearningToPaint/baseline/DRL/ddpg.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/LearningToPaint/baseline/DRL/ddpg.py
+@@ -221,12 +221,12 @@
+         self.noise_level = np.random.uniform(0, factor, self.env_batch)
+ 
+     def load_weights(self, path):
+         if path is None:
+             return
+-        self.actor.load_state_dict(torch.load("{}/actor.pkl".format(path)))
+-        self.critic.load_state_dict(torch.load("{}/critic.pkl".format(path)))
++        self.actor.load_state_dict(torch.load("{}/actor.pkl".format(path), weights_only=True))
++        self.critic.load_state_dict(torch.load("{}/critic.pkl".format(path), weights_only=True))
+         load_gan(path)
+ 
+     def save_model(self, path):
+         self.actor.cpu()
+         self.critic.cpu()
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/LearningToPaint/baseline_modelfree/DRL/ddpg.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/LearningToPaint/baseline_modelfree/DRL/ddpg.py
+@@ -19,11 +19,11 @@
+ coord = coord.to(device)
+ 
+ criterion = nn.MSELoss()
+ 
+ Decoder = FCN()
+-Decoder.load_state_dict(torch.load("../renderer.pkl"))
++Decoder.load_state_dict(torch.load("../renderer.pkl", weights_only=True))
+ 
+ 
+ def decode(x, canvas):  # b * (10 + 3)
+     x = x.view(-1, 10 + 3)
+     stroke = 1 - Decoder(x[:, :10])
+@@ -214,12 +214,12 @@
+         self.noise_level = np.random.uniform(0, factor, self.env_batch)
+ 
+     def load_weights(self, path):
+         if path is None:
+             return
+-        self.actor.load_state_dict(torch.load("{}/actor.pkl".format(path)))
+-        self.critic.load_state_dict(torch.load("{}/critic.pkl".format(path)))
++        self.actor.load_state_dict(torch.load("{}/actor.pkl".format(path), weights_only=True))
++        self.critic.load_state_dict(torch.load("{}/critic.pkl".format(path), weights_only=True))
+         load_gan(path)
+ 
+     def save_model(self, path):
+         self.actor.cpu()
+         self.critic.cpu()
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/Background_Matting/test_background-matting_image.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/Background_Matting/test_background-matting_image.py
+@@ -81,11 +81,11 @@
+ # initialize network
+ fo = glob.glob(model_main_dir + "netG_epoch_*")
+ model_name1 = fo[0]
+ netM = ResnetConditionHR(input_nc=(3, 3, 1, 4), output_nc=4, n_blocks1=7, n_blocks2=3)
+ netM = nn.DataParallel(netM)
+-netM.load_state_dict(torch.load(model_name1))
++netM.load_state_dict(torch.load(model_name1, weights_only=True))
+ netM.cuda()
+ netM.eval()
+ cudnn.benchmark = True
+ reso = (512, 512)  # input reoslution to the network
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/LearningToPaint/baseline_modelfree/train_renderer.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/LearningToPaint/baseline_modelfree/train_renderer.py
+@@ -25,11 +25,11 @@
+     if use_cuda:
+         net.cuda()
+ 
+ 
+ def load_weights():
+-    pretrained_dict = torch.load("../renderer.pkl")
++    pretrained_dict = torch.load("../renderer.pkl", weights_only=True)
+     model_dict = net.state_dict()
+     pretrained_dict = {k: v for k, v in pretrained_dict.items() if k in model_dict}
+     model_dict.update(pretrained_dict)
+     net.load_state_dict(model_dict)
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/Super_SloMo/__init__.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/Super_SloMo/__init__.py
+@@ -3,11 +3,11 @@
+ from argparse import Namespace
+ from typing import Tuple
+ 
+ import torch
+ import torch.optim as optim
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ 
+ from torchbenchmark import DATA_PATH
+ from torchbenchmark.tasks import COMPUTER_VISION
+ 
+ from ...util.model import BenchmarkModel
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/Super_SloMo/train.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/Super_SloMo/train.py
+@@ -5,11 +5,11 @@
+ import random
+ 
+ import dataloader
+ import torch
+ import torch.optim as optim
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ from model_wrapper import Model
+ from tensorboardX import SummaryWriter
+ 
+ 
+ random.seed(1337)
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/Super_SloMo/video_to_slomo.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/Super_SloMo/video_to_slomo.py
+@@ -7,11 +7,11 @@
+ from shutil import rmtree
+ 
+ import dataloader
+ import slomo_model as model
+ import torch
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ from PIL import Image
+ from tqdm import tqdm
+ 
+ # For parsing commandline arguments
+ parser = argparse.ArgumentParser()
+@@ -191,11 +191,11 @@
+         param.requires_grad = False
+ 
+     flowBackWarp = model.backWarp(videoFrames.dim[0], videoFrames.dim[1], device)
+     flowBackWarp = flowBackWarp.to(device)
+ 
+-    dict1 = torch.load(args.checkpoint, map_location="cpu")
++    dict1 = torch.load(args.checkpoint, map_location="cpu", weights_only=True)
+     ArbTimeFlowIntrp.load_state_dict(dict1["state_dictAT"])
+     flowComp.load_state_dict(dict1["state_dictFC"])
+ 
+     # Interpolate frames
+     frameCounter = 1
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/LearningToPaint/baseline_modelfree/DRL/wgan.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/LearningToPaint/baseline_modelfree/DRL/wgan.py
+@@ -93,11 +93,11 @@
+     torch.save(netD.state_dict(), "{}/wgan.pkl".format(path))
+     netD.to(device)
+ 
+ 
+ def load_gan(path):
+-    netD.load_state_dict(torch.load("{}/wgan.pkl".format(path)))
++    netD.load_state_dict(torch.load("{}/wgan.pkl".format(path), weights_only=True))
+ 
+ 
+ def update(fake_data, real_data):
+     fake_data = fake_data.detach()
+     real_data = real_data.detach()
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/LearningToPaint/baseline_modelfree/env.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/LearningToPaint/baseline_modelfree/env.py
+@@ -1,9 +1,9 @@
+ import cv2
+ import numpy as np
+ import torch
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ from DRL.ddpg import decode
+ from utils.util import *
+ from torchvision import transforms
+ 
+ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/LearningToPaint/baseline_modelfree/test.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/LearningToPaint/baseline_modelfree/test.py
+@@ -43,11 +43,11 @@
+         coord[0, 0, i, j] = i / (width - 1.0)
+         coord[0, 1, i, j] = j / (width - 1.0)
+ coord = coord.to(device)  # Coordconv
+ 
+ Decoder = FCN()
+-Decoder.load_state_dict(torch.load(args.renderer))
++Decoder.load_state_dict(torch.load(args.renderer, weights_only=True))
+ 
+ 
+ def decode(x, canvas):  # b * (10 + 3)
+     x = x.view(-1, 10 + 3)
+     stroke = 1 - Decoder(x[:, :10])
+@@ -129,11 +129,11 @@
+     output = cv2.resize(output, origin_shape)
+     cv2.imwrite("output/generated" + str(imgid) + ".png", output)
+ 
+ 
+ actor = ResNet(9, 18, 65)  # action_bundle = 5, 65 = 5 * 13
+-actor.load_state_dict(torch.load(args.actor))
++actor.load_state_dict(torch.load(args.actor, weights_only=True))
+ actor = actor.to(device).eval()
+ Decoder = Decoder.to(device).eval()
+ 
+ canvas = torch.zeros([1, 3, width, width]).to(device)
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/Super_SloMo/eval.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/Super_SloMo/eval.py
+@@ -40,11 +40,11 @@
+     with torch.set_grad_enabled(False):
+         back_warp = model.backWarp(w, h, device).to(device)
+ 
+ 
+ def load_models(checkpoint):
+-    states = torch.load(checkpoint, map_location="cpu")
++    states = torch.load(checkpoint, map_location="cpu", weights_only=True)
+     interp.load_state_dict(states["state_dictAT"])
+     flow.load_state_dict(states["state_dictFC"])
+ 
+ 
+ def interpolate_batch(frames, factor):
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/demucs/demucs/utils.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/demucs/demucs/utils.py
+@@ -159,11 +159,11 @@
+     with warnings.catch_warnings():
+         warnings.simplefilter("ignore")
+         load_from = path
+         if str(path).endswith(".gz"):
+             load_from = gzip.open(path, "rb")
+-        klass, args, kwargs, state = th.load(load_from, "cpu")
++        klass, args, kwargs, state = th.load(load_from, "cpu", weights_only=True)
+     model = klass(*args, **kwargs)
+     model.load_state_dict(state)
+     return model
+ 
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/demucs/demucs/__main__.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/demucs/demucs/__main__.py
+@@ -124,11 +124,11 @@
+         return
+ 
+     optimizer = th.optim.Adam(model.parameters(), lr=args.lr)
+ 
+     try:
+-        saved = th.load(checkpoint, map_location="cpu")
++        saved = th.load(checkpoint, map_location="cpu", weights_only=True)
+     except IOError:
+         saved = SavedState()
+     else:
+         model.load_state_dict(saved.last_state)
+         optimizer.load_state_dict(saved.optimizer)
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/demucs/check.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/demucs/check.py
+@@ -1,8 +1,8 @@
+ import sys
+ 
+ import torch
+ 
+-a = torch.load(sys.argv[1])
+-b = torch.load(sys.argv[2])
++a = torch.load(sys.argv[1], weights_only=True)
++b = torch.load(sys.argv[2], weights_only=True)
+ torch.testing.assert_allclose(a, b, rtol=0.01, atol=0.01)
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/moco/detection/convert-pretrain-to-detectron2.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/moco/detection/convert-pretrain-to-detectron2.py
+@@ -7,11 +7,11 @@
+ import torch
+ 
+ if __name__ == "__main__":
+     input = sys.argv[1]
+ 
+-    obj = torch.load(input, map_location="cpu")
++    obj = torch.load(input, map_location="cpu", weights_only=True)
+     obj = obj["state_dict"]
+ 
+     newmodel = {}
+     for k, v in obj.items():
+         if not k.startswith("module.encoder_q."):
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/maml/__init__.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/maml/__init__.py
+@@ -60,11 +60,11 @@
+         ]
+ 
+         self.module = Meta(args, config).to(device)
+ 
+         if use_data_file:
+-            self.example_inputs = torch.load(f"{root}/batch.pt")
++            self.example_inputs = torch.load(f"{root}/batch.pt", weights_only=True)
+             self.example_inputs = tuple(
+                 [torch.from_numpy(i).to(self.device) for i in self.example_inputs]
+             )
+         else:
+             # synthesize data parameterized by arg values
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/pytorch_CycleGAN_and_pix2pix/data/base_dataset.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/pytorch_CycleGAN_and_pix2pix/data/base_dataset.py
+@@ -6,11 +6,11 @@
+ import random
+ from abc import ABC, abstractmethod
+ 
+ import numpy as np
+ import torch.utils.data as data
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ from PIL import Image
+ 
+ 
+ class BaseDataset(data.Dataset, ABC):
+     """This class is an abstract base class (ABC) for datasets.
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/pytorch_CycleGAN_and_pix2pix/data/colorization_dataset.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/pytorch_CycleGAN_and_pix2pix/data/colorization_dataset.py
+@@ -1,9 +1,9 @@
+ import os.path
+ 
+ import numpy as np
+-import torchvision.transforms as transforms
++from torchvision import transforms
+ from data.base_dataset import BaseDataset, get_transform
+ from data.image_folder import make_dataset
+ from PIL import Image
+ from skimage import color  # require skimage
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/moco/main_lincls.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/moco/main_lincls.py
+@@ -15,12 +15,12 @@
+ import torch.nn as nn
+ import torch.nn.parallel
+ import torch.optim
+ import torch.utils.data
+ import torch.utils.data.distributed
+-import torchvision.datasets as datasets
+-import torchvision.transforms as transforms
++from torchvision import datasets
++from torchvision import transforms
+ from torchvision import models
+ 
+ model_names = sorted(
+     name
+     for name in models.__dict__
+@@ -232,11 +232,11 @@
+ 
+     # load from pre-trained, before DistributedDataParallel constructor
+     if args.pretrained:
+         if os.path.isfile(args.pretrained):
+             print("=> loading checkpoint '{}'".format(args.pretrained))
+-            checkpoint = torch.load(args.pretrained, map_location="cpu")
++            checkpoint = torch.load(args.pretrained, map_location="cpu", weights_only=True)
+ 
+             # rename moco pre-trained keys
+             state_dict = checkpoint["state_dict"]
+             for k in list(state_dict.keys()):
+                 # retain only encoder_q up to before the embedding layer
+@@ -300,15 +300,15 @@
+     # optionally resume from a checkpoint
+     if args.resume:
+         if os.path.isfile(args.resume):
+             print("=> loading checkpoint '{}'".format(args.resume))
+             if args.gpu is None:
+-                checkpoint = torch.load(args.resume)
++                checkpoint = torch.load(args.resume, weights_only=True)
+             else:
+                 # Map model to be loaded to specified single gpu.
+                 loc = "cuda:{}".format(args.gpu)
+-                checkpoint = torch.load(args.resume, map_location=loc)
++                checkpoint = torch.load(args.resume, map_location=loc, weights_only=True)
+             args.start_epoch = checkpoint["epoch"]
+             best_acc1 = checkpoint["best_acc1"]
+             if args.gpu is not None:
+                 # best_acc1 may be from a checkpoint from a different GPU
+                 best_acc1 = best_acc1.to(args.gpu)
+@@ -518,11 +518,11 @@
+     """
+     Linear classifier should not change any weights other than the linear layer.
+     This sanity check asserts nothing wrong happens (e.g., BN stats updated).
+     """
+     print("=> loading '{}' for sanity check".format(pretrained_weights))
+-    checkpoint = torch.load(pretrained_weights, map_location="cpu")
++    checkpoint = torch.load(pretrained_weights, map_location="cpu", weights_only=True)
+     state_dict_pre = checkpoint["state_dict"]
+ 
+     for k in list(state_dict.keys()):
+         # only ignore fc layer
+         if "fc.weight" in k or "fc.bias" in k:
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/moco/main_moco.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/moco/main_moco.py
+@@ -16,12 +16,12 @@
+ import torch.nn as nn
+ import torch.nn.parallel
+ import torch.optim
+ import torch.utils.data
+ import torch.utils.data.distributed
+-import torchvision.datasets as datasets
+-import torchvision.transforms as transforms
++from torchvision import datasets
++from torchvision import transforms
+ from torchvision import models
+ 
+ from .moco.builder import MoCo
+ 
+ model_names = sorted(
+@@ -295,15 +295,15 @@
+     # optionally resume from a checkpoint
+     if args.resume:
+         if os.path.isfile(args.resume):
+             print("=> loading checkpoint '{}'".format(args.resume))
+             if args.gpu is None:
+-                checkpoint = torch.load(args.resume)
++                checkpoint = torch.load(args.resume, weights_only=True)
+             else:
+                 # Map model to be loaded to specified single gpu.
+                 loc = "cuda:{}".format(args.gpu)
+-                checkpoint = torch.load(args.resume, map_location=loc)
++                checkpoint = torch.load(args.resume, map_location=loc, weights_only=True)
+             args.start_epoch = checkpoint["epoch"]
+             model.load_state_dict(checkpoint["state_dict"])
+             optimizer.load_state_dict(checkpoint["optimizer"])
+             print(
+                 "=> loaded checkpoint '{}' (epoch {})".format(
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/pytorch_CycleGAN_and_pix2pix/test_cyclegan.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/pytorch_CycleGAN_and_pix2pix/test_cyclegan.py
+@@ -65,11 +65,11 @@
+             data_name = "pytorch_CycleGAN_and_pix2pix_example_inputs"
+             root = install_data(data_name)
+         except Exception as e:
+             msg = f"Failed to download data from manifold: {e}"
+             raise RuntimeError(msg) from e
+-    data = torch.load(f"{root}/example_input.pt")
++    data = torch.load(f"{root}/example_input.pt", weights_only=True)
+     input = data["A"].to(device)
+ 
+     return model, (input,)
+ 
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/nvidia_deeprecommender/nvinfer.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/nvidia_deeprecommender/nvinfer.py
+@@ -240,11 +240,11 @@
+             )
+ 
+         self.path_to_model = Path(self.args.save_path)
+         if self.path_to_model.is_file():
+             print("Loading model from: {}".format(self.path_to_model))
+-            self.rencoder.load_state_dict(torch.load(self.args.save_path))
++            self.rencoder.load_state_dict(torch.load(self.args.save_path, weights_only=True))
+ 
+         if not self.args.silent:
+             print("######################################################")
+             print("######################################################")
+             print("############# AutoEncoder Model: #####################")
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/nvidia_deeprecommender/nvtrain.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/nvidia_deeprecommender/nvtrain.py
+@@ -357,11 +357,11 @@
+             os.makedirs(self.args.logdir, exist_ok=True)
+             self.model_checkpoint = self.args.logdir + "/model"
+             self.path_to_model = Path(self.model_checkpoint)
+             if self.path_to_model.is_file():
+                 print("Loading model from: {}".format(self.model_checkpoint))
+-                self.rencoder.load_state_dict(torch.load(self.model_checkpoint))
++                self.rencoder.load_state_dict(torch.load(self.model_checkpoint, weights_only=True))
+ 
+         if not self.args.silent:
+             print("######################################################")
+             print("######################################################")
+             print("############# AutoEncoder Model: #####################")
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/pytorch_CycleGAN_and_pix2pix/models/base_model.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/pytorch_CycleGAN_and_pix2pix/models/base_model.py
+@@ -196,11 +196,11 @@
+                 net = getattr(self, "net" + name)
+                 if isinstance(net, torch.nn.DataParallel):
+                     net = net.module
+                 # if you are using PyTorch newer than 0.4 (e.g., built from
+                 # GitHub source), you can remove str() on self.device
+-                state_dict = torch.load(load_path, map_location=str(self.device))
++                state_dict = torch.load(load_path, map_location=str(self.device), weights_only=True)
+                 if hasattr(state_dict, "_metadata"):
+                     del state_dict._metadata
+ 
+                 # patch InstanceNorm checkpoints prior to 0.4
+                 self.__patch_instance_norm_state_dict(state_dict, net)
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/pytorch_unet/pytorch_unet/utils/data_loading.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/pytorch_unet/pytorch_unet/utils/data_loading.py
+@@ -57,11 +57,11 @@
+     def load(cls, filename):
+         ext = splitext(filename)[1]
+         if ext in [".npz", ".npy"]:
+             return Image.fromarray(np.load(filename))
+         elif ext in [".pt", ".pth"]:
+-            return Image.fromarray(torch.load(filename).numpy())
++            return Image.fromarray(torch.load(filename, weights_only=True).numpy())
+         else:
+             return Image.open(filename)
+ 
+     def __getitem__(self, idx):
+         name = self.ids[idx]
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/pytorch_unet/pytorch_unet/predict.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/pytorch_unet/pytorch_unet/predict.py
+@@ -122,11 +122,11 @@
+     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+     logging.info(f"Loading model {args.model}")
+     logging.info(f"Using device {device}")
+ 
+     net.to(device=device)
+-    net.load_state_dict(torch.load(args.model, map_location=device))
++    net.load_state_dict(torch.load(args.model, map_location=device, weights_only=True))
+ 
+     logging.info("Model loaded!")
+ 
+     for i, filename in enumerate(in_files):
+         logging.info(f"\nPredicting image {filename} ...")
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/pytorch_unet/pytorch_unet/train.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/pytorch_unet/pytorch_unet/train.py
+@@ -107,11 +107,11 @@
+                 )
+ 
+                 images = images.to(device=device, dtype=torch.float32)
+                 true_masks = true_masks.to(device=device, dtype=torch.long)
+ 
+-                with torch.cuda.amp.autocast(enabled=amp):
++                with torch.amp.autocast("cuda", enabled=amp):
+                     masks_pred = net(images)
+                     loss = criterion(masks_pred, true_masks) + dice_loss(
+                         F.softmax(masks_pred, dim=1).float(),
+                         F.one_hot(true_masks, net.n_classes)
+                         .permute(0, 3, 1, 2)
+@@ -240,11 +240,11 @@
+         f"\t{net.n_classes} output channels (classes)\n"
+         f'\t{"Bilinear" if net.bilinear else "Transposed conv"} upscaling'
+     )
+ 
+     if args.load:
+-        net.load_state_dict(torch.load(args.load, map_location=device))
++        net.load_state_dict(torch.load(args.load, map_location=device, weights_only=True))
+         logging.info(f"Model loaded from {args.load}")
+ 
+     net.to(device=device)
+     try:
+         train_net(
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/sam/build_sam.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/sam/build_sam.py
+@@ -104,9 +104,9 @@
+         pixel_std=[58.395, 57.12, 57.375],
+     )
+     sam.eval()
+     if checkpoint is not None:
+         with open(checkpoint, "rb") as f:
+-            state_dict = torch.load(f)
++            state_dict = torch.load(f, weights_only=True)
+         sam.load_state_dict(state_dict)
+     return sam
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/pytorch_stargan/solver.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/pytorch_stargan/solver.py
+@@ -123,14 +123,14 @@
+         """Restore the trained generator and discriminator."""
+         print("Loading the trained models from step {}...".format(resume_iters))
+         G_path = os.path.join(self.model_save_dir, "{}-G.ckpt".format(resume_iters))
+         D_path = os.path.join(self.model_save_dir, "{}-D.ckpt".format(resume_iters))
+         self.G.load_state_dict(
+-            torch.load(G_path, map_location=lambda storage, loc: storage)
++            torch.load(G_path, map_location=lambda storage, loc: storage, weights_only=True)
+         )
+         self.D.load_state_dict(
+-            torch.load(D_path, map_location=lambda storage, loc: storage)
++            torch.load(D_path, map_location=lambda storage, loc: storage, weights_only=True)
+         )
+ 
+     def build_tensorboard(self):
+         """Build a tensorboard logger."""
+         from .logger import Logger
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/pytorch_unet/__init__.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/pytorch_unet/__init__.py
+@@ -58,11 +58,11 @@
+         criterion = nn.CrossEntropyLoss()
+ 
+         self.model.train()
+ 
+         if True:
+-            with torch.cuda.amp.autocast(enabled=self.args.amp):
++            with torch.amp.autocast("cuda", enabled=self.args.amp):
+                 masks_pred = self.model(self.example_inputs)
+                 masks_true = self.sample_masks
+                 loss = criterion(masks_pred, masks_true) + dice_loss(
+                     F.softmax(masks_pred, dim=1).float(),
+                     F.one_hot(masks_true, self.model.n_classes)
+@@ -87,11 +87,11 @@
+             self.model = torch.jit.script(self.model)
+ 
+     def eval(self) -> Tuple[torch.Tensor]:
+         torch.backends.cudnn.deterministic = True
+         self.model.eval()
+-        with torch.cuda.amp.autocast(enabled=self.args.amp):
++        with torch.amp.autocast("cuda", enabled=self.args.amp):
+             mask_pred = self.model(self.example_inputs)
+ 
+             if self.model.n_classes == 1:
+                 mask_pred = (F.sigmoid(mask_pred) > 0.5).float()
+             else:
+torchbenchmark/e2e_models/hf_bert/__init__.py:178:28: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchbenchmark/e2e_models/hf_bert/__init__.py:184:27: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchbenchmark/e2e_models/hf_bert/__init__.py:334:35: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchbenchmark/e2e_models/hf_bert/trainer.py:134:28: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchbenchmark/e2e_models/hf_bert/trainer.py:140:27: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchbenchmark/models/LearningToPaint/baseline_modelfree/DRL/critic.py:8:12: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/LearningToPaint/baseline_modelfree/DRL/critic.py:62:17: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/LearningToPaint/baseline_modelfree/DRL/critic.py:89:22: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/LearningToPaint/baseline_modelfree/DRL/critic.py:90:22: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/LearningToPaint/baseline_modelfree/DRL/critic.py:95:22: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/LearningToPaint/baseline_modelfree/DRL/critic.py:105:17: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/LearningToPaint/baseline_modelfree/DRL/critic.py:137:22: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/LearningToPaint/baseline_modelfree/DRL/critic.py:139:22: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/LearningToPaint/baseline_modelfree/DRL/critic.py:140:22: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/LearningToPaint/baseline_modelfree/DRL/critic.py:141:22: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/LearningToPaint/baseline_modelfree/DRL/ddpg.py:24:25: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/LearningToPaint/baseline_modelfree/DRL/ddpg.py:219:36: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/LearningToPaint/baseline_modelfree/DRL/ddpg.py:220:37: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/demucs/demucs/__main__.py:129:17: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/maml/__init__.py:65:35: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/speech_transformer/speech_transformer/transformer/transformer.py:50:19: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/tacotron2/train_tacotron2.py:60:20: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchbenchmark/models/tacotron2/train_tacotron2.py:99:23: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/tacotron2/train_tacotron2.py:113:23: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/tacotron2/waveglow/convert_model.py:38:30: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/tacotron2/waveglow/convert_model.py:59:22: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/tacotron2/waveglow/convert_model.py:78:13: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/LearningToPaint/baseline/DRL/wgan.py:99:26: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/LearningToPaint/baseline/DRL/wgan.py:30:22: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/LearningToPaint/baseline/DRL/wgan.py:31:22: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/LearningToPaint/baseline/DRL/wgan.py:32:22: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/LearningToPaint/baseline/DRL/wgan.py:33:22: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/LearningToPaint/baseline/DRL/wgan.py:34:22: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/LearningToPaint/baseline/env.py:4:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+torchbenchmark/models/LearningToPaint/baseline/test.py:48:25: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/LearningToPaint/baseline/test.py:134:23: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/Super_SloMo/eval.py:45:14: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/dlrm/data_loader_terabyte.py:327:21: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchbenchmark/models/dlrm/data_loader_terabyte.py:348:23: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchbenchmark/models/dlrm/data_loader_terabyte.py:79:23: TOR106 Use `torch.log1p(x)` instead of `torch.log(1 + x)`. It is more accurate for small values of `x`.
+torchbenchmark/models/dlrm/data_loader_terabyte.py:83:23: TOR106 Use `torch.log1p(x)` instead of `torch.log(1 + x)`. It is more accurate for small values of `x`.
+torchbenchmark/models/dlrm/dlrm_data_pytorch.py:397:28: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchbenchmark/models/dlrm/dlrm_data_pytorch.py:416:27: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchbenchmark/models/dlrm/dlrm_data_pytorch.py:292:17: TOR106 Use `torch.log1p(x)` instead of `torch.log(1 + x)`. It is more accurate for small values of `x`.
+torchbenchmark/models/dlrm/dlrm_data_pytorch.py:320:13: TOR106 Use `torch.log1p(x)` instead of `torch.log(1 + x)`. It is more accurate for small values of `x`.
+torchbenchmark/models/pytorch_CycleGAN_and_pix2pix/data/base_dataset.py:11:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+torchbenchmark/models/pytorch_CycleGAN_and_pix2pix/data/colorization_dataset.py:4:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+torchbenchmark/models/sam/build_sam.py:109:26: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/tacotron2/waveglow/tacotron2/train.py:105:23: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/tacotron2/waveglow/tacotron2/train.py:113:23: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/util/extra_args.py:200:39: TOR101 [*] Use of deprecated function torch.cuda.amp.autocast
+torchbenchmark/util/extra_args.py:206:29: TOR101 [*] Use of deprecated function torch.cuda.amp.autocast
+torchbenchmark/util/extra_args.py:216:29: TOR101 [*] Use of deprecated function torch.cuda.amp.autocast
+torchbenchmark/util/extra_args.py:225:39: TOR101 [*] Use of deprecated function torch.cpu.amp.autocast
+torchbenchmark/util/extra_args.py:231:29: TOR101 [*] Use of deprecated function torch.cpu.amp.autocast
+userbenchmark/functorch/simple_models.py:6:1: TOR103 Import of deprecated function functorch.grad
+userbenchmark/functorch/simple_models.py:6:1: TOR103 Import of deprecated function functorch.vmap
+userbenchmark/functorch/simple_models.py:95:9: TOR101 Use of deprecated function functorch.vmap
+userbenchmark/functorch/simple_models.py:117:9: TOR101 Use of deprecated function functorch.vmap
+userbenchmark/functorch/simple_models.py:130:9: TOR101 Use of deprecated function functorch.vmap
+userbenchmark/functorch/simple_models.py:160:9: TOR101 Use of deprecated function functorch.vmap
+userbenchmark/functorch/simple_models.py:160:14: TOR101 Use of deprecated function functorch.grad
+torchbenchmark/models/Background_Matting/test_background-matting_image.py:86:22: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/moco/main_lincls.py:20:1: TOR203 [*] Consider replacing 'import torchvision.datasets as datasets' with 'from torchvision import datasets'.
+torchbenchmark/models/moco/main_lincls.py:21:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+torchbenchmark/models/moco/main_lincls.py:237:26: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/moco/main_lincls.py:305:30: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/moco/main_lincls.py:309:30: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/moco/main_lincls.py:523:18: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/moco/main_moco.py:378:24: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchbenchmark/models/moco/main_moco.py:21:1: TOR203 [*] Consider replacing 'import torchvision.datasets as datasets' with 'from torchvision import datasets'.
+torchbenchmark/models/moco/main_moco.py:22:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+torchbenchmark/models/moco/main_moco.py:300:30: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/moco/main_moco.py:304:30: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/yolov3/check.py:7:1: TOR101 Use of deprecated function torch.testing.assert_allclose
+torchbenchmark/models/yolov3/check.py:5:5: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/yolov3/check.py:6:5: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/util/model.py:486:40: TOR101 [*] Use of deprecated function torch.cpu.amp.autocast
+torchbenchmark/util/model.py:488:40: TOR101 [*] Use of deprecated function torch.cuda.amp.autocast
+torchbenchmark/models/Background_Matting/__init__.py:84:24: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchbenchmark/models/demucs/check.py:7:1: TOR101 Use of deprecated function torch.testing.assert_allclose
+torchbenchmark/models/demucs/check.py:5:5: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/demucs/check.py:6:5: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/nvidia_deeprecommender/nvinfer.py:245:43: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/nvidia_deeprecommender/nvtrain.py:362:47: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/pytorch_unet/pytorch_unet/utils/data_loading.py:62:36: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/vision_maskrcnn/__init__.py:100:13: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchbenchmark/models/vision_maskrcnn/__init__.py:77:22: TOR201 Parameter `pretrained` is deprecated, please use `weights` instead.
+torchbenchmark/canary_models/torchrec_dlrm/data/dlrm_dataloader.py:50:12: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchbenchmark/canary_models/torchrec_dlrm/data/dlrm_dataloader.py:101:18: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchbenchmark/models/LearningToPaint/baseline/DRL/critic.py:8:12: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/LearningToPaint/baseline/DRL/critic.py:53:17: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/LearningToPaint/baseline/DRL/critic.py:80:22: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/LearningToPaint/baseline/DRL/critic.py:81:22: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/LearningToPaint/baseline/DRL/critic.py:86:22: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/LearningToPaint/baseline/DRL/critic.py:96:17: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/LearningToPaint/baseline/DRL/ddpg.py:226:36: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/LearningToPaint/baseline/DRL/ddpg.py:227:37: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/Super_SloMo/train.py:96:15: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchbenchmark/models/Super_SloMo/train.py:10:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+torchbenchmark/models/Super_SloMo/video_to_slomo.py:196:13: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/Super_SloMo/video_to_slomo.py:179:25: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchbenchmark/models/Super_SloMo/video_to_slomo.py:12:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+torchbenchmark/models/pytorch_CycleGAN_and_pix2pix/models/base_model.py:201:30: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/tacotron2/inference.py:58:23: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/tacotron2/inference.py:68:12: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/tacotron2/waveglow/train.py:46:23: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/util/distributed/core_model/trainer.py:118:38: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/LearningToPaint/baseline/train_renderer.py:43:23: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/LearningToPaint/baseline_modelfree/train_renderer.py:30:23: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/Super_SloMo/__init__.py:64:18: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchbenchmark/models/Super_SloMo/__init__.py:8:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+torchbenchmark/models/functorch_dp_cifar10/__init__.py:6:1: TOR103 Import of deprecated function functorch.grad
+torchbenchmark/models/functorch_dp_cifar10/__init__.py:6:1: TOR103 Import of deprecated function functorch.vmap
+torchbenchmark/models/functorch_dp_cifar10/__init__.py:100:24: TOR101 Use of deprecated function functorch.vmap
+torchbenchmark/models/functorch_dp_cifar10/__init__.py:100:29: TOR101 Use of deprecated function functorch.grad
+torchbenchmark/models/functorch_maml_omniglot/__init__.py:11:1: TOR103 Import of deprecated function functorch.grad
+torchbenchmark/models/functorch_maml_omniglot/__init__.py:11:1: TOR103 Import of deprecated function functorch.vmap
+torchbenchmark/models/functorch_maml_omniglot/__init__.py:28:17: TOR101 Use of deprecated function functorch.grad
+torchbenchmark/models/functorch_maml_omniglot/__init__.py:123:32: TOR101 Use of deprecated function functorch.vmap
+torchbenchmark/models/opacus_cifar10/__init__.py:50:29: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchbenchmark/models/phlippe_densenet/__init__.py:190:24: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchbenchmark/models/pytorch_CycleGAN_and_pix2pix/test_cyclegan.py:70:12: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/pytorch_unet/pytorch_unet/predict.py:127:25: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/pytorch_unet/pytorch_unet/train.py:112:22: TOR101 [*] Use of deprecated function torch.cuda.amp.autocast
+torchbenchmark/models/pytorch_unet/pytorch_unet/train.py:245:29: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/pytorch_unet/pytorch_unet/train.py:50:20: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchbenchmark/models/pytorch_unet/pytorch_unet/train.py:51:18: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchbenchmark/models/soft_actor_critic/sac.py:60:36: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/soft_actor_critic/sac.py:61:38: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/soft_actor_critic/sac.py:62:38: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/tacotron2/waveglow/glow.py:129:17: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/tacotron2/waveglow/glow.py:140:27: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/tacotron2/waveglow/glow.py:152:24: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/tacotron2/waveglow/glow.py:161:30: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/tacotron2/waveglow/glow_old.py:35:17: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/tacotron2/waveglow/glow_old.py:55:24: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/tacotron2/waveglow/glow_old.py:59:26: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/tacotron2/waveglow/glow_old.py:68:30: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/tacotron2/waveglow/inference.py:45:16: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/tacotron2/waveglow/inference.py:58:15: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/util/framework/gnn/model_factory.py:47:20: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/util/framework/gnn/model_factory.py:49:20: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/e2e_models/hf_t5/__init__.py:262:28: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchbenchmark/e2e_models/hf_t5/__init__.py:268:27: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchbenchmark/e2e_models/vision_resnet50/__init__.py:8:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+torchbenchmark/models/LearningToPaint/baseline_modelfree/DRL/wgan.py:30:22: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/LearningToPaint/baseline_modelfree/DRL/wgan.py:31:22: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/LearningToPaint/baseline_modelfree/DRL/wgan.py:32:22: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/LearningToPaint/baseline_modelfree/DRL/wgan.py:33:22: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/LearningToPaint/baseline_modelfree/DRL/wgan.py:34:22: TOR101 Use of deprecated function torch.nn.utils.weight_norm: https://github.com/pytorch-labs/torchfix#torchnnutilsweight_norm
+torchbenchmark/models/LearningToPaint/baseline_modelfree/DRL/wgan.py:98:26: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/LearningToPaint/baseline_modelfree/env.py:4:1: TOR203 [*] Consider replacing 'import torchvision.transforms as transforms' with 'from torchvision import transforms'.
+torchbenchmark/models/LearningToPaint/baseline_modelfree/test.py:48:25: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/LearningToPaint/baseline_modelfree/test.py:134:23: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/moco/__init__.py:112:31: TOR401 Detected DataLoader running with synchronized implementation. Please enable asynchronous dataloading by setting num_workers > 0 when initializing DataLoader.
+torchbenchmark/models/moco/detection/convert-pretrain-to-detectron2.py:12:11: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/pytorch_stargan/solver.py:128:13: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/pytorch_stargan/solver.py:131:13: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/pytorch_unet/__init__.py:63:18: TOR101 [*] Use of deprecated function torch.cuda.amp.autocast
+torchbenchmark/models/pytorch_unet/__init__.py:92:14: TOR101 [*] Use of deprecated function torch.cuda.amp.autocast
+torchbenchmark/models/yolov3/yolo_utils/utils.py:748:9: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/yolov3/yolo_utils/utils.py:758:9: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/demucs/demucs/utils.py:164:38: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/dlrm/dlrm_s_pytorch.py:917:28: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/dlrm/dlrm_s_pytorch.py:921:28: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/dlrm/dlrm_s_pytorch.py:928:24: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/dlrm/tools/visualize.py:1256:20: TOR102 [*] `torch.load` without `weights_only` parameter is unsafe. Explicitly set `weights_only` to False only if you trust the data you load and full pickle functionality is needed, otherwise set `weights_only=True`.
+torchbenchmark/models/tts_angular/model.py:193:28: TOR101 Use of deprecated function torch.norm
+torchbenchmark/models/tts_angular/model.py:193:52: TOR101 Use of deprecated function torch.norm
+Finished checking 534 files.
+[*] 51 potentially fixable with the --fix option
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/dlrm/dlrm_s_pytorch.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/dlrm/dlrm_s_pytorch.py
+@@ -912,22 +912,22 @@
+         if use_gpu:
+             if dlrm.ndevices > 1:
+                 # NOTE: when targeting inference on multiple GPUs,
+                 # load the model as is on CPU or GPU, with the move
+                 # to multiple GPUs to be done in parallel_forward
+-                ld_model = torch.load(args.load_model)
++                ld_model = torch.load(args.load_model, weights_only=True)
+             else:
+                 # NOTE: when targeting inference on single GPU,
+                 # note that the call to .to(device) has already happened
+                 ld_model = torch.load(
+                     args.load_model,
+                     map_location=torch.device("cuda"),
+                     # map_location=lambda storage, loc: storage.cuda(0)
+-                )
++                weights_only=True)
+         else:
+             # when targeting inference on CPU
+-            ld_model = torch.load(args.load_model, map_location=torch.device("cpu"))
++            ld_model = torch.load(args.load_model, map_location=torch.device("cpu"), weights_only=True)
+         dlrm.load_state_dict(ld_model["state_dict"])
+         ld_j = ld_model["iter"]
+         ld_k = ld_model["epoch"]
+         ld_nepochs = ld_model["nepochs"]
+         ld_nbatches = ld_model["nbatches"]
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/dlrm/tools/visualize.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/dlrm/tools/visualize.py
+@@ -1251,11 +1251,11 @@
+ 
+     # Load model is specified
+     if not (args.load_model == ""):
+         print("Loading saved model {}".format(args.load_model))
+ 
+-        ld_model = torch.load(args.load_model, map_location=torch.device("cpu"))
++        ld_model = torch.load(args.load_model, map_location=torch.device("cpu"), weights_only=True)
+         dlrm.load_state_dict(ld_model["state_dict"])
+ 
+         print("Model loaded", args.load_model)
+         # print(dlrm)
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/speech_transformer/speech_transformer/transformer/transformer.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/speech_transformer/speech_transformer/transformer/transformer.py
+@@ -45,11 +45,11 @@
+         return nbest_hyps
+ 
+     @classmethod
+     def load_model(cls, path):
+         # Load to CPU
+-        package = torch.load(path, map_location=lambda storage, loc: storage)
++        package = torch.load(path, map_location=lambda storage, loc: storage, weights_only=True)
+         model, LFR_m, LFR_n = cls.load_model_from_package(package)
+         return model, LFR_m, LFR_n
+ 
+     @classmethod
+     def load_model_from_package(cls, package):
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/soft_actor_critic/sac.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/soft_actor_critic/sac.py
+@@ -55,13 +55,13 @@
+ 
+     def load(self, path):
+         actor_path = os.path.join(path, "actor.pt")
+         critic1_path = os.path.join(path, "critic1.pt")
+         critic2_path = os.path.join(path, "critic2.pt")
+-        self.actor.load_state_dict(torch.load(actor_path))
+-        self.critic1.load_state_dict(torch.load(critic1_path))
+-        self.critic2.load_state_dict(torch.load(critic2_path))
++        self.actor.load_state_dict(torch.load(actor_path, weights_only=True))
++        self.critic1.load_state_dict(torch.load(critic1_path, weights_only=True))
++        self.critic2.load_state_dict(torch.load(critic2_path, weights_only=True))
+ 
+     def forward(self, state, from_cpu=True):
+         if from_cpu:
+             state = self.process_state(state)
+         self.actor.eval()
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/tacotron2/inference.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/tacotron2/inference.py
+@@ -53,21 +53,21 @@
+ # In[4]:
+ 
+ 
+ checkpoint_path = "tacotron2_statedict.pt"
+ model = load_model(hparams)
+-model.load_state_dict(torch.load(checkpoint_path)['state_dict'])
++model.load_state_dict(torch.load(checkpoint_path, weights_only=True)['state_dict'])
+ _ = model.cuda().eval().half()
+ 
+ 
+ # #### Load WaveGlow for mel2audio synthesis and denoiser
+ 
+ # In[5]:
+ 
+ 
+ waveglow_path = 'waveglow_256channels.pt'
+-waveglow = torch.load(waveglow_path)['model']
++waveglow = torch.load(waveglow_path, weights_only=True)['model']
+ waveglow.cuda().eval().half()
+ for k in waveglow.convinv:
+     k.float()
+ denoiser = Denoiser(waveglow)
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/tacotron2/train_tacotron2.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/tacotron2/train_tacotron2.py
+@@ -94,11 +94,11 @@
+ 
+ 
+ def warm_start_model(checkpoint_path, model, ignore_layers):
+     assert os.path.isfile(checkpoint_path)
+     print("Warm starting model from checkpoint '{}'".format(checkpoint_path))
+-    checkpoint_dict = torch.load(checkpoint_path, map_location="cpu")
++    checkpoint_dict = torch.load(checkpoint_path, map_location="cpu", weights_only=True)
+     model_dict = checkpoint_dict["state_dict"]
+     if len(ignore_layers) > 0:
+         model_dict = {k: v for k, v in model_dict.items() if k not in ignore_layers}
+         dummy_dict = model.state_dict()
+         dummy_dict.update(model_dict)
+@@ -108,11 +108,11 @@
+ 
+ 
+ def load_checkpoint(checkpoint_path, model, optimizer):
+     assert os.path.isfile(checkpoint_path)
+     print("Loading checkpoint '{}'".format(checkpoint_path))
+-    checkpoint_dict = torch.load(checkpoint_path, map_location="cpu")
++    checkpoint_dict = torch.load(checkpoint_path, map_location="cpu", weights_only=True)
+     model.load_state_dict(checkpoint_dict["state_dict"])
+     optimizer.load_state_dict(checkpoint_dict["optimizer"])
+     learning_rate = checkpoint_dict["learning_rate"]
+     iteration = checkpoint_dict["iteration"]
+     print("Loaded checkpoint '{}' from iteration {}".format(checkpoint_path, iteration))
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/tacotron2/waveglow/convert_model.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/tacotron2/waveglow/convert_model.py
+@@ -73,9 +73,9 @@
+ 
+ 
+ if __name__ == "__main__":
+     old_model_path = sys.argv[1]
+     new_model_path = sys.argv[2]
+-    model = torch.load(old_model_path, map_location="cpu")
++    model = torch.load(old_model_path, map_location="cpu", weights_only=True)
+     model["model"] = update_model(model["model"])
+     torch.save(model, new_model_path)
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/tacotron2/waveglow/inference.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/tacotron2/waveglow/inference.py
+@@ -40,11 +40,11 @@
+     sampling_rate,
+     is_fp16,
+     denoiser_strength,
+ ):
+     mel_files = files_to_list(mel_files)
+-    waveglow = torch.load(waveglow_path)["model"]
++    waveglow = torch.load(waveglow_path, weights_only=True)["model"]
+     waveglow = waveglow.remove_weightnorm(waveglow)
+     waveglow.cuda().eval()
+     if is_fp16:
+         from apex import amp
+ 
+@@ -53,11 +53,11 @@
+     if denoiser_strength > 0:
+         denoiser = Denoiser(waveglow).cuda()
+ 
+     for i, file_path in enumerate(mel_files):
+         file_name = os.path.splitext(os.path.basename(file_path))[0]
+-        mel = torch.load(file_path)
++        mel = torch.load(file_path, weights_only=True)
+         mel = torch.autograd.Variable(mel.cuda())
+         mel = torch.unsqueeze(mel, 0)
+         mel = mel.half() if is_fp16 else mel
+         with torch.no_grad():
+             audio = waveglow.infer(mel, sigma=sigma)
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/tacotron2/waveglow/train.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/tacotron2/waveglow/train.py
+@@ -41,11 +41,11 @@
+ from torch.utils.data.distributed import DistributedSampler
+ 
+ 
+ def load_checkpoint(checkpoint_path, model, optimizer):
+     assert os.path.isfile(checkpoint_path)
+-    checkpoint_dict = torch.load(checkpoint_path, map_location="cpu")
++    checkpoint_dict = torch.load(checkpoint_path, map_location="cpu", weights_only=True)
+     iteration = checkpoint_dict["iteration"]
+     optimizer.load_state_dict(checkpoint_dict["optimizer"])
+     model_for_loading = checkpoint_dict["model"]
+     model.load_state_dict(model_for_loading.state_dict())
+     print("Loaded checkpoint '{}' (iteration {})".format(checkpoint_path, iteration))
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/tacotron2/waveglow/tacotron2/train.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/tacotron2/waveglow/tacotron2/train.py
+@@ -100,19 +100,19 @@
+ 
+ 
+ def warm_start_model(checkpoint_path, model):
+     assert os.path.isfile(checkpoint_path)
+     print("Warm starting model from checkpoint '{}'".format(checkpoint_path))
+-    checkpoint_dict = torch.load(checkpoint_path, map_location="cpu")
++    checkpoint_dict = torch.load(checkpoint_path, map_location="cpu", weights_only=True)
+     model.load_state_dict(checkpoint_dict["state_dict"])
+     return model
+ 
+ 
+ def load_checkpoint(checkpoint_path, model, optimizer):
+     assert os.path.isfile(checkpoint_path)
+     print("Loading checkpoint '{}'".format(checkpoint_path))
+-    checkpoint_dict = torch.load(checkpoint_path, map_location="cpu")
++    checkpoint_dict = torch.load(checkpoint_path, map_location="cpu", weights_only=True)
+     model.load_state_dict(checkpoint_dict["state_dict"])
+     optimizer.load_state_dict(checkpoint_dict["optimizer"])
+     learning_rate = checkpoint_dict["learning_rate"]
+     iteration = checkpoint_dict["iteration"]
+     print("Loaded checkpoint '{}' from iteration {}".format(checkpoint_path, iteration))
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/util/framework/gnn/model_factory.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/util/framework/gnn/model_factory.py
+@@ -42,13 +42,13 @@
+         self.tb_args, self.extra_args = parse_tb_args(self.extra_args)
+ 
+         root = str(Path(__file__).parent.parent.parent.parent)
+         sparse = True if self.tb_args.graph_type == "sparse" else False
+         if sparse:
+-            data = torch.load(f"{root}/data/.data/Reddit_minimal/sub_reddit_sparse.pt")
++            data = torch.load(f"{root}/data/.data/Reddit_minimal/sub_reddit_sparse.pt", weights_only=True)
+         else:
+-            data = torch.load(f"{root}/data/.data/Reddit_minimal/sub_reddit.pt")
++            data = torch.load(f"{root}/data/.data/Reddit_minimal/sub_reddit.pt", weights_only=True)
+         mask = None
+         sampler = None
+         kwargs = {
+             "batch_size": self.batch_size,
+             "shuffle": False,
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/util/distributed/core_model/trainer.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/util/distributed/core_model/trainer.py
+@@ -113,11 +113,11 @@
+                 if self.check_correctness_distributed == "reference":
+                     with open(self.reference_data_path, "wb") as f:
+                         torch.save(grad_params, f)
+                 elif self.check_correctness_distributed == "test":
+                     with open(self.reference_data_path, "rb") as f:
+-                        ref_params = torch.load(f)
++                        ref_params = torch.load(f, weights_only=True)
+ 
+                     def do_correctness_check():
+                         correctness = True
+                         for ref_name, ref_param in ref_params.items():
+                             if ref_name not in grad_params:
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/util/extra_args.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/util/extra_args.py
+@@ -195,42 +195,42 @@
+     elif dargs.precision == "amp_fp16":
+         assert model.device == "cuda", f"{model.device} has no fp16 autocast."
+         if model.test == "eval":
+             import torch
+ 
+-            model.add_context(lambda: torch.cuda.amp.autocast(dtype=torch.float16))
++            model.add_context(lambda: torch.amp.autocast("cuda", dtype=torch.float16))
+         elif model.test == "train":
+             import torch
+ 
+             if is_staged_train_test(model):
+                 model.add_context(
+-                    lambda: torch.cuda.amp.autocast(dtype=torch.float16),
++                    lambda: torch.amp.autocast("cuda", dtype=torch.float16),
+                     stage=TEST_STAGE.FORWARD,
+                 )
+             else:
+                 warnings.warn(
+                     "Usually models only want to enable AMP in forward path, so expected "
+                     "model to have staged train support. As the model do not support staged "
+                     "training, try to add context to TEST_STAGE.ALL."
+                 )
+                 model.add_context(
+-                    lambda: torch.cuda.amp.autocast(dtype=torch.float16),
++                    lambda: torch.amp.autocast("cuda", dtype=torch.float16),
+                     stage=TEST_STAGE.ALL,
+                 )
+ 
+     elif dargs.precision == "amp_bf16":
+         assert model.device == "cpu", "amp_bf16 is only supported on cpu device."
+         if model.test == "eval":
+             import torch
+ 
+-            model.add_context(lambda: torch.cpu.amp.autocast(dtype=torch.bfloat16))
++            model.add_context(lambda: torch.amp.autocast("cpu", dtype=torch.bfloat16))
+         elif model.test == "train":
+             if is_staged_train_test(model):
+                 import torch
+ 
+                 model.add_context(
+-                    lambda: torch.cpu.amp.autocast(dtype=torch.bfloat16),
++                    lambda: torch.amp.autocast("cpu", dtype=torch.bfloat16),
+                     stage=TEST_STAGE.FORWARD,
+                 )
+             else:
+                 if hasattr(model, "enable_amp"):
+                     model.enable_amp()
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/yolov3/check.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/yolov3/check.py
+@@ -1,8 +1,8 @@
+ import sys
+ 
+ import torch
+ 
+-a = torch.load(sys.argv[1])
+-b = torch.load(sys.argv[2])
++a = torch.load(sys.argv[1], weights_only=True)
++b = torch.load(sys.argv[2], weights_only=True)
+ torch.testing.assert_allclose(a, b, rtol=0.01, atol=0.01)
+ 
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/yolov3/yolo_utils/utils.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/models/yolov3/yolo_utils/utils.py
+@@ -743,21 +743,21 @@
+ 
+ def strip_optimizer(
+     f="weights/best.pt",
+ ):  # from utils.utils import *; strip_optimizer()
+     # Strip optimizer from *.pt files for lighter files (reduced by 2/3 size)
+-    x = torch.load(f, map_location=torch.device("cpu"))
++    x = torch.load(f, map_location=torch.device("cpu"), weights_only=True)
+     x["optimizer"] = None
+     print("Optimizer stripped from %s" % f)
+     torch.save(x, f)
+ 
+ 
+ def create_backbone(
+     f="weights/best.pt",
+ ):  # from utils.utils import *; create_backbone()
+     # create a backbone from a *.pt file
+-    x = torch.load(f, map_location=torch.device("cpu"))
++    x = torch.load(f, map_location=torch.device("cpu"), weights_only=True)
+     x["optimizer"] = None
+     x["training_results"] = None
+     x["epoch"] = -1
+     for p in x["model"].parameters():
+         p.requires_grad = True
+--- /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/util/model.py
++++ /Users/anuragagarwal/Desktop/torchfix/examples/benchmark/torchbenchmark/util/model.py
+@@ -481,13 +481,13 @@
+         if not self.dynamo and self.opt_args.backend == "cudagraph":
+             return NotImplementedError("AMP not implemented for cudagraphs")
+         if not hasattr(self, "amp_context"):
+             raise RuntimeError(f"{self.name} doesn't have amp_context support!")
+         if self.device == "cpu":
+-            self.amp_context = lambda: torch.cpu.amp.autocast()
++            self.amp_context = lambda: torch.amp.autocast("cpu")
+         elif self.device == "cuda":
+-            self.amp_context = lambda: torch.cuda.amp.autocast()
++            self.amp_context = lambda: torch.amp.autocast("cuda")
+         if self.test == "eval":
+             self.add_context(self.amp_context)
+         elif self.test == "train":
+             if is_staged_train_test(self):
+                 self.add_context(self.amp_context, TEST_STAGE.FORWARD)
+Repository: benchmark

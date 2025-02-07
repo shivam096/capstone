@@ -1,0 +1,5 @@
+Repository: translate
+Total Python lines:    27289
+Total TorchFix errors (TOR***): 4
+Individual TorchFix error counts:
+TOR102: 4
